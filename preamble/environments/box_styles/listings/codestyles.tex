@@ -1,0 +1,245 @@
+% User level comparator
+    % source: https://tex.stackexchange.com/a/748134/383565
+\ExplSyntaxOn
+\cs_set_eq:NN \DimComparenNnT \dim_compare:nNnT
+\cs_set_eq:NN \DimComparenNnTF \dim_compare:nNnTF
+\cs_set_eq:NN \BoolLazyOrnnT \bool_lazy_or:nnT
+\cs_set_eq:NN \BoolLazyOrnnTF \bool_lazy_or:nnTF
+\cs_set_eq:NN \TLIfEqeeT \tl_if_eq:eeT
+\ExplSyntaxOff
+
+% Colors
+\def\ColorCodeBase{Maroon}
+\def\ColorCodeColback{\ColorCodeBase!5}
+\def\ColorCodeColbacktitle{\ColorCodeBase!5}
+\def\ColorCodeTitle{\ColorCodeBase!70!black}
+\def\ColorCodeBorderline{\ColorCodeBase}
+\def\ColorCodeLineNumber{\ColorCodeBase}
+\def\ColorCodeLineNumberBackground{\ColorCodeBase!20}
+
+\tcbset{
+% expl3 equivalents
+    % Help sourced from https://tex.stackexchange.com/a/748130/383565
+  ,DimComparenNnT/.code n args={4}{\DimComparenNnT{#1}#2{#3}{\pgfkeysalso{#4}}}
+  ,DimComparenNnTF/.code n args={5}{\DimComparenNnTF{#1}#2{#3}{\pgfkeysalso{#4}}{\pgfkeysalso{#5}}}
+  ,BoolLazyOrnnT/.code n args={4}{\BoolLazyOrnnT{#1}{#2}{\pgfkeysalso{#3}}}
+  ,BoolLazyOrnnTF/.code n args={4}{\BoolLazyOrnnTF{#1}{#2}{\pgfkeysalso{#3}}{\pgfkeysalso{#4}}}
+  ,TLIfEqeeT/.code n args={3}{\TLIfEqeeT{#1}{#2}{\pgfkeysalso{#3}}}
+  % ,TLIFEqeeT/.code n args={3}{\TLIfEqeeT{#1}{#2}{\pgfkeysalso{#3}}}
+% Base listing style
+    % Help sourced from https://tex.stackexchange.com/a/748148/383565
+    % codestylebase = 
+    % #1  { ! <=> \BooleanTrue <=> nonumber } 
+    % #2  { ' <=> \BooleanTrue <=> autowidth (not accounting for the title's width) } 
+    % #3  { " <=> \BooleanTrue <=> autowidth accounting for the title's width } 
+    % #4  { alternative title } 
+    % #5  { default title } 
+    % #6  { IfBlankF <=> use alternative title }
+  ,codestylebase/.code n args={6}
+  {
+    \pgfkeysalso
+    {
+      left                            = {\truelefthspace},
+      listing engine                  = minted,
+      minted style                    = staroffice,
+      IfBooleanTF = {#1} 
+          {   
+          BoolLazyOrnnTF = {#2} {#3}
+              {
+              DimComparenNnTF          = {\textwidthoutside}{<}{\eqboxwidth{codewidth\arabic{code}}+\truelefthspace+\linebreakcorrector}
+                {
+                minted options           = 
+                  {
+                  breaklines,
+                  autogobble,
+                  numbersep = \numbersep
+                  },
+                }
+                {
+                minted options           = 
+                  {
+                  autogobble,
+                  numbersep = \numbersep
+                  },   
+                }
+              }
+              {
+              minted options           = 
+                {
+                breaklines,
+                autogobble,
+                numbersep = \numbersep
+                },
+              }
+          }
+          {
+          BoolLazyOrnnTF = {#2} {#3}
+              {
+              DimComparenNnTF          = {\textwidthoutside}{<}{\eqboxwidth{codewidth\arabic{code}}+\truelefthspace+\linebreakcorrector}
+                {
+                minted options           = 
+                  {
+                  breaklines,
+                  autogobble,
+                  linenos,
+                  numbersep = \numbersep
+                  },
+                }
+                {
+                minted options           = 
+                  {
+                  autogobble,
+                  linenos,
+                  numbersep = \numbersep
+                  },   
+                }
+              }
+              {
+              minted options           = 
+                {
+                breaklines,
+                autogobble,
+                linenos,
+                numbersep = \numbersep
+                },
+              }
+          },
+      listing only,
+      BoolLazyOrnnT = {#2} {#3}
+          {
+          DimComparenNnT = {\eqboxwidth{codewidth\arabic{code}}+\truelefthspace+\linebreakcorrector}{<}{\textwidthoutside}{text width = \eqboxwidth{codewidth\arabic{code}}}
+          },
+      breakable,
+      enhanced,
+      skin                            = enhanced jigsaw,
+      boxsep  = \boxsep,
+      boxrule = \boxrule,
+      colback                         = \ColorCodeColback, 
+      IfBlankTF                       = {#6} 
+          {IfBooleanTF = {#3}
+              {
+              title = {\sffamily\bfseries\color{\ColorCodeTitle}{\hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}\eqsavebox{\codewidth}[codewidth\arabic{code}]{#5}#5}}
+              }
+              {
+              title = {\sffamily\bfseries\color{\ColorCodeTitle}{\hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}#5}} 
+              }
+          } 
+          {IfBooleanTF = {#3}
+              {
+              title = {\sffamily\bfseries\color{\ColorCodeTitle}{\hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}\eqsavebox{\codewidth}[codewidth\arabic{code}]{#4}#4}}
+              }
+              {
+              title = {\sffamily\bfseries\color{\ColorCodeTitle}{\hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}#4}}
+              }
+          },
+      toptitle                        = 2mm,
+      bottomtitle                     = 2mm,
+      colbacktitle                    = \ColorCodeColbacktitle,
+      borderline west                 = {\BorderlineWestThickness}{0pt}{\ColorCodeBorderline},
+          overlay unbroken                = {
+          \begin{tcbclipinterior}
+              % Background for the code line numebrs
+              \filldraw[\ColorCodeLineNumberBackground] 
+              (frame.south west) --
+              (interior.north west) {[rounded corners=4] --
+              ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) --
+              ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south west)} --
+              (frame.south west);
+              % Borderline west of \BorderlineWestThickness thickness
+              \fill[\ColorCodeBorderline] (frame.south west)
+              rectangle ([xshift=\BorderlineWestThickness]frame.north west);
+          \end{tcbclipinterior}
+      },
+      overlay first                   = {
+          \begin{tcbclipinterior}
+              % Background for the code line numebrs
+              \filldraw[\ColorCodeLineNumberBackground] 
+              (frame.south west) --
+              (interior.north west) {[rounded corners=4] --
+              ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0)} --
+              ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south west) --
+              (frame.south west);
+              % Borderline west of \BorderlineWestThickness thickness
+              \fill[\ColorCodeBorderline] (frame.south west)
+              rectangle ([xshift=\BorderlineWestThickness]frame.north west);
+          \end{tcbclipinterior}
+      },
+      overlay middle                  = {
+          \begin{tcbclipinterior}
+              % Background for the code line numebrs
+              \fill[\ColorCodeLineNumberBackground] (frame.south west)
+              rectangle ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.north west);
+              % Borderline west of \BorderlineWestThickness thickness
+              \fill[\ColorCodeBorderline] (frame.south west)
+              rectangle ([xshift=\BorderlineWestThickness]frame.north west);
+          \end{tcbclipinterior}
+      }, 
+      overlay last                    = {
+          \begin{tcbclipinterior}
+              % Background for the code line numebrs
+              \filldraw[\ColorCodeLineNumberBackground] 
+              (frame.south west) --
+              (frame.north west) --
+              ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) {[rounded corners=4] --
+              ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south west)} --
+              (frame.south west);
+              % Borderline west of \BorderlineWestThickness thickness
+              \fill[\ColorCodeBorderline] (frame.south west)
+              rectangle ([xshift=\BorderlineWestThickness]frame.north west);
+          \end{tcbclipinterior}
+      },
+    }
+  }
+% listing environment style
+    % Help sourced from https://tex.stackexchange.com/a/748148/383565
+    % codestlyenvironment = 
+    % #1  { flush or normal: vertical spacing }
+    % #2  { ! <=> \BooleanTrue <=> nonumber } 
+    % #3  { ' <=> \BooleanTrue <=> autowidth (not accounting for the title's width) } 
+    % #4  { " <=> \BooleanTrue <=> autowidth accounting for the title's width } 
+    % #5  { alternative title } 
+    % #6  { default title } 
+    % #7  { IfBlankF <=> use alternative title }
+  ,codestyleenvironment/.code n args={8}
+  {
+    \pgfkeysalso{
+      TLIfEqeeT                       = {#1} {flush} {before skip = -\vlengthbeforelisting,},
+      TLIfEqeeT                       = {#1} {normal} {before skip = \vlengthbetweencorrector,},
+      code = {\DisplayedToPygments{#8}},
+      codestylebase                   = {#2}{#3}{#4}{#5}{#6}{#7},
+      minted language                 = {\pygmentsname},
+    }
+  }
+% input listing style
+    % Help sourced from https://tex.stackexchange.com/a/748148/383565
+    % codestyleinput = 
+    % #1  { * <=> \BooleanTrue <=> flush vertical spacing }
+    % #2  { ! <=> \BooleanTrue <=> nonumber } 
+    % #3  { ' <=> \BooleanTrue <=> autowidth (not account for the title's width) } 
+    % #4  { " <=> \BooleanTrue <=> autowidth accounting for the title's width } 
+    % #5  { alternative title } 
+    % #6  { default title } 
+    % #7  { IfBlankF <=> use alternative title }
+    % #8  { listing file }
+    % #9  { manual minted language }
+  ,codestyleinput/.code n args={9}
+  {
+    \pgfkeysalso{
+      codestylebase                   = {#2}{#3}{#4}{#5}{#6}{#7},
+      IfBooleanTF = {#1} {before skip = \vlengthbetweencorrector} {before skip = -\vlengthbeforelisting},
+      code = {\storefileextension{#8}
+      \FileExtensionToLanguage{\fileextension}},
+      IfBlankTF                       = {#9} {minted language = {\pygmentsname},} {minted language = #9},
+      listing file={#8},
+    }
+  },
+}
+
+% Base listing style, continued
+\renewcommand{\theFancyVerbLine}{
+                \eqmakebox[code\arabic{code}][c]{
+                    \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
+                }
+            }
+\renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codewidth\arabic{code}]{#1}#1}
+

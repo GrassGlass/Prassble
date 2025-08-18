@@ -1,0 +1,282 @@
+\newkeytheorem{proof*}[
+    ,name = Proof
+    ,style = proofbox]
+\renewenvironment{proof}[1][\proofname]
+{\vspace{-\vlengthBetweenColoredBoxes}\begin{proof*}}{\end{proof*}}
+
+\newkeytheorem{answer*}[
+    ,name = Answer
+    ,style = proofbox]
+\newenvironment{answer}[1][\proofname]
+{\vspace{-\vlengthBetweenColoredBoxes}\begin{answer*}}{\end{answer*}}
+
+% Numbered
+    % Family of environments with chapter as parent
+        % greenboxes: definition, notation, motivation, recall
+        \newkeytheorem{definition}
+        [
+            ,style = greenbox
+            ,parent = chapter
+        ]
+        \newkeytheorem{notation,motivation,recall}
+        [
+            ,style = greenbox
+            ,sibling = definition
+        ]
+
+        % redboxes: claim, proposition, lemma, theorem, corollary
+        \newkeytheorem{claim,proposition,lemma,theorem,corollary}
+        [
+            ,style = redbox
+            ,sibling = definition
+        ]
+
+        % blueboxes: observation, example, remark, note
+        \newkeytheorem{observation,example,remark,note}
+        [
+            ,style = bluebox
+            ,sibling = definition
+        ]
+
+    % Family of environments with section as parent
+        % purpleboxes: problem, question, exercise
+        \newkeytheorem{problem}
+        [
+            ,style = purplebox
+            ,parent = section
+        ]
+        \newkeytheorem{question,exercise}
+        [
+            ,style = purplebox
+            ,sibling = problem
+        ]
+
+% No number
+    % Family of environments with chapter as parent
+        % greenboxes: definition, notation, motivation, recall
+        \newkeytheorem{definition*}
+        [
+            ,name = Definition
+            ,style = greenbox
+            ,numbered = false
+        ]
+        \newkeytheorem{notation*}
+        [
+            ,name = Notation
+            ,style = greenbox
+            ,numbered = false
+        ]
+        \newkeytheorem{motivation*}
+        [
+            ,name = Motivation
+            ,style = greenbox
+            ,numbered = false
+        ]
+        \newkeytheorem{recall*}
+        [
+            ,name = Recall
+            ,style = greenbox
+            ,numbered = false
+        ]
+
+        % redboxes: claim, proposition, lemma, theorem, corollary
+        \newkeytheorem{claim*}
+        [
+            ,name = Claim
+            ,style = redbox
+            ,numbered = false
+        ]
+        \newkeytheorem{proposition*}
+        [
+            ,name = Proposition
+            ,style = redbox
+            ,numbered = false
+        ]
+        \newkeytheorem{lemma*}
+        [
+            ,name = Lemma
+            ,style = redbox
+            ,numbered = false
+        ]
+        \newkeytheorem{theorem*}
+        [
+            ,name = Theorem
+            ,style = redbox
+            ,numbered = false
+        ]
+        \newkeytheorem{corollary*}
+        [
+            ,name = Corollary
+            ,style = redbox
+            ,numbered = false
+        ]
+
+        % blueboxes: observation, example, remark, note
+        \newkeytheorem{observation*}
+        [
+            ,name = Observation
+            ,style = bluebox
+            ,numbered = false
+        ]
+        \newkeytheorem{example*}
+        [
+            ,name = Example
+            ,style = bluebox
+            ,numbered = false
+        ]
+        \newkeytheorem{remark*}
+        [
+            ,name = Remark
+            ,style = bluebox
+            ,numbered = false
+        ]
+        \newkeytheorem{note*}
+        [
+            ,name = Note
+            ,style = bluebox
+            ,numbered = false
+        ]
+
+    % Family of environments with section as parent
+        % purpleboxes: problem, question, exercise
+        \newkeytheorem{problem*}
+        [
+            ,name = Problem
+            ,style = purplebox
+            ,numbered = false
+        ]
+        \newkeytheorem{question*}
+        [
+            ,name = Question
+            ,style = purplebox
+            ,numbered = false
+        ]
+        \newkeytheorem{exercise*}
+        [
+            ,name = Exercise
+            ,style = purplebox
+            ,numbered = false
+        ]
+
+% Self-⟨env-name⟩ environments
+    % Family of environments with chapter as parent
+        % greenboxes: mydefinition, mynotation, mymotivation, myrecall
+        \newkeytheorem{mydefinition}
+        [
+            ,name = MyDefinition
+            ,style = greenbox
+            ,parent = chapter
+            ,counter-format = \arabic{chapter}.\Alph{mydefinition}
+        ]
+        \newkeytheorem{mynotation}
+        [
+            ,name = MyNotation
+            ,style = greenbox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{mynotation}
+        ]
+        \newkeytheorem{mymotivation}
+        [
+            ,name = MyMotivation
+            ,style = greenbox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{mymotivation}
+        ]
+        \newkeytheorem{myrecall}
+        [
+            ,name = MyRecall
+            ,style = greenbox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{myrecall}
+        ]
+
+        % redboxes: claim, myproposition, mylemma, mytheorem, mycorollary
+        \newkeytheorem{myclaim}
+        [
+            ,name = MyClaim
+            ,style = redbox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{myclaim}
+        ]
+        \newkeytheorem{myproposition}
+        [
+            ,name = MyProposition
+            ,style = redbox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{myproposition}
+        ]
+        \newkeytheorem{mylemma}
+        [
+            ,name = MyLemma
+            ,style = redbox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{mylemma}
+        ]
+        \newkeytheorem{mytheorem}
+        [
+            ,name = MyTheorem
+            ,style = redbox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{mytheorem}
+        ]
+        \newkeytheorem{mycorollary}
+        [
+            ,name = MyCorollary
+            ,style = redbox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{mycorollary}
+        ]
+
+        % blueboxes: myobservation, myexample, myremark, mynote
+        \newkeytheorem{myobservation}
+        [
+            ,name = MyObservation
+            ,style = bluebox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{myobservation}
+        ]
+        \newkeytheorem{myexample}
+        [
+            ,name = MyExample
+            ,style = bluebox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{myexample}
+        ]
+        \newkeytheorem{myremark}
+        [
+            ,name = MyRemark
+            ,style = bluebox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{myremark}
+        ]
+        \newkeytheorem{mynote}
+        [
+            ,name = MyNote
+            ,style = bluebox
+            ,sibling = mydefinition
+            ,counter-format = \arabic{chapter}.\Alph{mynote}
+        ]
+
+    % Family of environments with section as parent
+        % purpleboxes: myproblem, myquestion, myexercise
+        \newkeytheorem{myproblem}
+        [
+            ,name = MyProblem
+            ,style = purplebox
+            ,parent = chapter
+            ,counter-format = \arabic{chapter}.\Alph{myproblem}
+        ]
+        \newkeytheorem{myquestion}
+        [
+            ,name = MyQuestion
+            ,style = purplebox
+            ,sibling = myproblem
+            ,counter-format = \arabic{chapter}.\Alph{myquestion}
+        ]
+        \newkeytheorem{myexercise}
+        [
+            ,name = MyExercise
+            ,style = purplebox
+            ,sibling = myproblem
+            ,counter-format = \arabic{chapter}.\Alph{myexercise}
+        ]

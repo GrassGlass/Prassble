@@ -1,0 +1,45 @@
+\ExplSyntaxOn
+% Add \centering, approperiate line breaks, and define some important lengths, for listing environments and input listings. 
+    % Modified from tcolorbox source: https://github.com/T-F-S/tcolorbox/releases/tag/v6.7.1
+    % Date of access: 24/7/25 (DD/MM/YY)
+    % tcolorbox Version 6.7.1 (2025-07-08)
+\makeatletter
+\newenvironment{modifiedtcblisting}[1]{%
+% Before the tcblisting environment
+    % The value of \textwidth where the corresponding listing environment is located
+        % The name is \textwidth*outside* precisely because its the \textwidth (immediately) outside the listing environment
+        \edef\textwidthoutside{\the\textwidth}%
+    % The length to move the code line numbers right by, such that they are horizontally centered on their background.
+        % It is recommended that only the length \lefthspace is altered
+        \setlength{\truelefthspace}{\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%
+  % Centering the tcblisting environment
+  \par\begingroup\centering%
+% The tcblisting environment 
+  \stepcounter{tcblisting}\edef\thetcblistingcount{\thetcblisting}%
+  \tcb@layer@pushup%
+  \tcb@apply@box@options{capture=minipage,#1}%
+  \begingroup\tcbverbatimwrite{\kvtcb@listingfile}%
+}{\endtcbverbatimwrite\endgroup%
+  \tcbinputlisting@core%
+% After the tcblisting environment
+  \stepcounter{code}\vspace{-\vlengthafterlisting}\endgroup%
+}
+\long\def\modifiedtcbinputlisting#1{%
+% Before \tcbinputlisting
+    % The value of \textwidth where the corresponding listing environment is located
+        % The name is \textwidth*outside* precisely because its the \textwidth (immediately) outside the listing environment
+        \edef\textwidthoutside{\the\textwidth}%
+    % The length to move the code line numbers right by, such that they are horizontally centered on their background.
+        % It is recommended that only the value \manuallefthspace is altered
+        \setlength{\truelefthspace}{\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%
+  % Centering the \tcbinputlisting
+  \par\begingroup\centering%
+% The \tcbinputlisting 
+  \stepcounter{tcblisting}\edef\thetcblistingcount{\thetcblisting}%
+  \tcb@layer@pushup%
+  \tcb@apply@box@options{capture=minipage,#1}%
+  \tcbinputlisting@core%
+% After \tcbinputlisting
+  \stepcounter{code}\vspace{-\vlengthafterlisting}\endgroup%
+}
+\ExplSyntaxOff

@@ -1,0 +1,44 @@
+% itemrange command: \itemrange{1} generates (a)--(b) or (b)--(c), etc
+% source: https://tex.stackexchange.com/a/745868/383565
+    \def\itemrange#1{%
+    \stepcounter{enumi}%
+    \edef\labelenumi{(\alph{enumi})--(\noexpand\alph{enumi})}
+    \addtocounter{enumi}{\inteval{#1-1}}%
+    \item
+    \def\labelenumi{(\alph{enumi})}% reset to default
+    }
+
+% \Item
+    \newcommand{\Item}[3]{%
+    \setcounter{enumi}{\inteval{#2}}%
+    \edef\labelenumi{(\alph{enumi})\unexpanded{\({}#1{}\)}(\noexpand\alph{enumi})}
+    \setcounter{enumi}{\inteval{#3-1}}%
+    \item
+    \def\labelenumi{(\alph{enumi})}% reset to default
+    }
+
+    \newcommand{\itemimplies}[2]{\Item{\implies}{#1}{#2}}
+
+% Desired alignment of labels
+% source: https://tex.stackexchange.com/a/547398/383565
+
+    \newcommand\enumeratelabel[2][r]{\eqmakebox[listlabel@\EnumitemId][#1]{#2}}
+
+    \newlength{\myparindent}
+    \setlength{\myparindent}{15pt} % <- value to be changed by user
+    \setlength{\parindent}{\myparindent}
+
+    \setlist{labelindent=\parindent} % < Usually a good idea (according to the documentation of enumitem)
+
+% enumerate style
+    \setlist[enumerate,1]{
+    label={(\alph*)},
+    labelwidth=\eqboxwidth{listlabel@\EnumitemId},
+    leftmargin=!,
+    format=\enumeratelabel,
+    }
+    \setlist[enumerate,2]{
+    label={(\roman*)},
+    labelwidth=\eqboxwidth{listlabel@\EnumitemId},
+    leftmargin=!,
+    format=\enumeratelabel,}

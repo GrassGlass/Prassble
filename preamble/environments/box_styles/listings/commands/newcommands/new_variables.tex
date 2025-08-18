@@ -1,0 +1,43 @@
+\ExplSyntaxOn
+% All new variables for name_converters.tex, which include the functions 
+% 1. \NumberInClist{ item }{ clist }
+% 2. \AddFileExtensionLanguageTriple{ file extension }{ pygments language }{ displayed language }
+% 3. \FileExtensionToLanguage{ file extension }
+% 4. \DisplayedToPygments{ displayed language }
+  % Integers
+    % The integer output by \NumberInClist{ item }{ clist } --- the position of an item in a clist, counting from the left.
+      % If the item #2 appears multiple times in the clist #1 = {x1, x2, ... ,xn}, then \numberinclist is the least integer i such that xi is contained in the clist #1.
+    \int_new:N \numberinclist
+  % Token lists
+    % \NumberInClist{ item }{ clist }
+      % An arbitrary item from the clist in \NumberInClist{ item }{ clist }, which we use to iteratively match again item = \l__listings_NumberInClist_item_of_interest_tl
+      \tl_new:N \l__listings_NumberInClist_item_from_clist_tl
+      % The item we want to find the location of in \NumberInClist{ item }{ clist }
+      \tl_new:N \l__listings_NumberInClist_item_of_interest_tl
+    % \FileExtensionToLanguage{ file extension }
+      % The displayed name from \l__listings_NameConverters_displayed_languages_clist corresponding to the given file extension 
+      \tl_new:N \displayedname
+      % The (Pygments-understood) language name from \l__listings_NameConverters_Pygments_languages_clist that corresponds to the given file extension
+      \tl_new:N \pygmentsname
+      % Storing the file extension in a token list 
+      \tl_new:N \l__listings_FileExtensionToLanguage_citem_file_extension_tl
+    % \DisplayedToPygments{ displayed language }
+      % Storing the displayed language in a token list
+      \tl_new:N \l__listings_DisplayedToPygments_citem_displayed_tl
+  % Clists
+    % \AddFileExtensionLanguageTriple{ file extension }{ pygments language }{ displayed language } & \FileExtensionToLanguage{ file extension } & \DisplayedToPygments{ displayed language }
+      % Global
+        % The clist of all file extensions that we will convert from
+        \clist_new:N \g_listings_NameConverters_file_extensions_clist
+        % The clist of all corresponding (Pygments-understood) language names that each file extension will be converted to  
+        \clist_new:N \g_listings_NameConverters_Pygments_languages_clist
+        % The clist of all corresponding displayed language names
+        \clist_new:N \g_listings_NameConverters_displayed_languages_clist
+      % Local
+        % The temporary clist of (Pygments-understood) language names that we append to \g_listings_NameConverters_file_extensions_clist 
+        \clist_new:N \l__listings_AddFileExtensionLanguageTriple_new_file_extensions_clist   
+        % The temporary clist of file extensions that we append to \g_listings_NameConverters_Pygments_languages_clist
+        \clist_new:N \l__listings_AddFileExtensionLanguageTriple_new_Pygments_languages_clist
+        % The temporary clist of displayed language names that we append to \g_listings_NameConverters_displayed_languages_clist
+        \clist_new:N \l__listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist
+\ExplSyntaxOff

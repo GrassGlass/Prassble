@@ -1,0 +1,19 @@
+% Symbols \correct and \wrong
+\newcommand{\correct}{\textcolor{green!70!black}{\checkmark}}
+\newcommand{\wrong}[1][]{\textcolor{red}{\(\times\) #1}}
+
+\newbox\eeveebox
+\setbox\eeveebox\hbox{%
+\raisebox{-5pt}{\includegraphics[height=3ex]{\CurrentFilePath/../figures/iibui.pdf}}%
+}
+\def\eeveeKawaii{\copy\eeveebox}
+
+% Asymptote symbol
+\newbox\asybox
+\setbox\asybox\hbox{%
+\raisebox{-14pt}{\includegraphics[height=7ex]{\CurrentFilePath/../figures/Asymptote-Logo.pdf}}%
+}
+\def\AsymptoteLogo{\copy\asybox}
+
+% TikZ symbol
+\newcommand{\TikZ}{Ti\textcolor{orange}{\emph{k}}Z}

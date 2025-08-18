@@ -1,0 +1,78 @@
+% Standard boxes
+    % source for the tcolorbox indentation fix 
+    % "before upper={\parindent15pt\noindent}":
+    %  https://tex.stackexchange.com/a/200654/383565
+
+\theoremstyle{definition}
+
+\newkeytheoremstyle{greenbox}{
+    headfont	            = {\sffamily\bfseries\color{ForestGreen!70!black}},
+    bodyfont	            = {\normalfont},
+    tcolorbox-no-titlebar	= {
+        breakable,
+        skin    = enhanced jigsaw,
+        boxsep  = \boxsep,
+        boxrule = \boxrule,
+        colback = ForestGreen!5,
+        borderline west ={\BorderlineWestThickness}{0pt}{ForestGreen},
+        before upper={\parindent=\myparindent},
+    }
+}
+
+\newkeytheoremstyle{bluebox}{
+    headfont	            = {\sffamily\bfseries\color{NavyBlue!70!black}},
+    bodyfont	            = {\normalfont},
+    tcolorbox-no-titlebar	= {
+        breakable,
+        skin    = enhanced jigsaw,
+        boxsep  = \boxsep,
+        boxrule = \boxrule,
+        colback = NavyBlue!5,
+        borderline west ={\BorderlineWestThickness}{0pt}{NavyBlue},
+        before upper={\parindent=\myparindent},
+    }
+}
+
+\newkeytheoremstyle{purplebox}{
+    headfont	            = {\sffamily\bfseries\color{Mulberry!70!black}},
+    bodyfont	            = {\normalfont},
+    tcolorbox-no-titlebar	= {
+        breakable,
+        skin    = enhanced jigsaw,
+        boxsep  = \boxsep,
+        boxrule = \boxrule,
+        colback = Mulberry!5,
+        borderline west ={\BorderlineWestThickness}{0pt}{Mulberry},
+        before upper={\parindent=\myparindent},
+    }
+}
+
+\newkeytheoremstyle{redbox}{
+    headfont	            = {\sffamily\bfseries\color{RawSienna!70!black}},
+    bodyfont	            = {\normalfont},
+    tcolorbox-no-titlebar	= {
+        breakable,
+        skin    = enhanced jigsaw,
+        boxsep  = \boxsep,
+        boxrule = \boxrule,
+        colback = RawSienna!5,
+        borderline west ={\BorderlineWestThickness}{0pt}{RawSienna},
+        before upper={\parindent=\myparindent},
+    }
+}
+
+\newkeytheoremstyle{proofbox}{
+    headfont	            = {\sffamily\bfseries\color{RawSienna!70!black}},
+    bodyfont	            = {\normalfont},
+    numbered	            = no,
+    qed = \eeveeKawaii,
+    tcolorbox-no-titlebar	= {
+        breakable,
+        skin    = enhanced jigsaw,
+        boxsep  = \boxsep,
+        boxrule = \boxrule,
+        colback = RawSienna!1,
+        borderline west ={\BorderlineWestThickness}{0pt}{RawSienna},
+        before upper={\parindent=\myparindent},
+    }
+}

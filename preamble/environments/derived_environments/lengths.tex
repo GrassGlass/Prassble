@@ -1,0 +1,46 @@
+% boxsep
+\setlength{\boxsep}{1pt}
+
+% boxrule
+\setlength{\boxrule}{0pt}
+
+% The approximate vertical space between two consequective (non-listing) colorboxes.
+    % \vspace{-\vlengthBetweenColoredBoxes} is used to flush two consequctive (*non listing*) colorboxes together, such that there is no whitespace between them.
+    \setlength{\vlengthBetweenColoredBoxes}{9.1pt}
+
+% The thickness of the western borderline (i.e. on the left boundary) of the colorboxes
+\setlength{\BorderlineWestThickness}{2pt}
+
+% The approximate vertical space from the top of a listing box to the bottom of another (non-listing) tcolorbox --- placed directly above the listing box.
+\setlength{\vlengthbeforelisting}{3.6pt}
+
+% The approximate vertical space from the bottom of a listing box to the top of another (non-listing) tcolorbox --- placed directly below the listing box.
+\setlength{\vlengthafterlisting}{3.4375pt}
+
+% Corrects the vertical space before starred listing environments
+    % The approximate vertical space from the top of a listing box to the bottom of another (non-listing) tcolorbox --- placed directly above the listing box
+    % is made the same as
+    % The approximate vertical space from the top of a (non-listing) tcolorbox to the bottom of another (non-listing) tcolorbox --- placed directly above the first.
+    \setlength{\vlengthbetweencorrector}{7.12pt}
+
+% The distance between each code line number and the verbatim code on the same line 
+    % More accurately, in this case, rather than ``the number'', it is 
+    % \eqmakebox[code\arabic{code}][c]{\textcolor{Maroon}{\scriptsize\arabic{FancyVerbLine}}})
+    \setlength{\numbersep}{0.2474691189148802em}
+
+% Controls the length of the code line number backgrounds
+    % The code line number overlays have a background whose color is darker than the rest of the listing box, but lighter than the borderline to the left. This background has horizontal width \eqboxwidth{code\arabic{code}} + \linenumberpadding
+    \setlength{\linenumberpadding}{0.2474691189148802em}
+
+%* The maximum length that the listing boxes can otherwise overflow by 
+    % Depends on the document's textwidth --- the length \edef\textwidthoutside{\the\textwidth} placed in the preamble
+    %! Pick a listing environment (of maximal local width, i.e. with "breaklines" enabled) and let the local textwidth inside it be \localmaxtextwidth. It is *extremely* important that \localmaxtextwidth+\eqboxwidth{codewidth\arabic{code}}+\lefthspace+\linebreakcorrector => \textwidthoutside, for the autowidth to work correctly. 
+        %* Otherwise, we will face a bug where deleting the .aux file is necessary when recompiling the listing environment, after changes have been made past the initial two compilations.
+    % Ideally, just ever so slightly less than, so that breaklines isn't automatically triggered when the box --- for which the optional argument ' or " has been activated --- can still fit within the bounds of your page (i.e. box width => \textwidthoutside).
+    \setlength{\linebreakcorrector}{13.38109pt}
+
+% The length to move the code line numbers right by, such that they are horizontally centered on their background.
+\setlength{\lefthspace}{8.5pt}
+    
+% How much to move the title right by, to make the title's positioning consistent with other colorboxes
+\setlength{\titleleft}{1.1pt}

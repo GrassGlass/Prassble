@@ -1,0 +1,28 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // Docker 
+                "ms-azuretools.vscode-docker",
+                // TeX & Friends
+                "james-yu.latex-workshop",
+                "streetsidesoftware.code-spell-checker",
+                // Julia
+                "julialang.language-julia",
+                // Others
+                "aaron-bond.better-comments"
+            ]
+        }
+    },
+    "mounts": [
+        // "source=${env:USERPROFILE}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached" // Windows only to use Git credentials
+    ],
+    "features": {
+        "ghcr.io/julialang/devcontainer-features/julia:1": {}
+    },
+    // "postCreateCommand": "julia; import Pkg; Pkg.add([\"LinearAlgebraX\", \"Random\"]; exit()"
+    // "postCreateCommand": "apt-get update && apt-get install build-essential && Y && cpan PDF::API2 && yes"
+}

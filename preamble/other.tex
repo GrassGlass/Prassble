@@ -1,0 +1,34 @@
+  % TeX units converter
+  \ExplSyntaxOn
+  \NewDocumentCommand{\convertto}{mm}
+      % #1 = em or ex (or any other unit)
+      % #2 = dimen to convert
+  {
+    \texttt{#2~=~\fp_to_decimal:n { (#2)/(1#1) }#1}
+  }
+  \ExplSyntaxOff
+  %
+  %
+  % Highlighting
+  % source: https://tex.stackexchange.com/a/542997/383565
+  \newcommand{\highlight}[2][red!30]{\mathpalette{\highlightwithstyle[#1]}{#2}}
+  \newcommand{\highlightwithstyle}[3][red!50]{
+    \begingroup                         %% <- limit scope of \box0 and \fboxsep assignment
+      \sbox0{$\mathsurround 0pt #2#3$}% %% <- typeset content in box 0
+      \setlength{\fboxsep}{.5pt}        %% <- set (smaller) framebox margins
+      \sbox2{\hspace{-.5pt}%            %% <- create box 2, undo margin
+        \colorbox{#1}{\usebox0}%        %% <- print the contents of box 0 in a \colorbox
+      }%
+      \dp2=\dp0 \ht2=\ht0 \wd2=\wd0     %% <- set dimensions of box 2 to match box 0
+      \box2                             %% <- print box 2
+    \endgroup                           %% <- revert old definitions of the boxes and \fboxsep
+  }   
+  %
+  %
+  % \eqmakebox with automatically generated tags
+    % Generic counter tag
+    \newcounter{Eqboxgroup}
+    % An environment in which exactly all the \Eqmakebox's contained (and no others) have the same generic tag
+    \NewDocumentEnvironment{Eqboxgroup}{}{\stepcounter{Eqboxgroup}}{}
+    % An \eqmakebox with a generic tag
+    \NewDocumentCommand{\Eqmakebox}{ O{c} m }{\eqmakebox[Eqboxgroup\arabic{Eqboxgroup}][#1]{#2}}

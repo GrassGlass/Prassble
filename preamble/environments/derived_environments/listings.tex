@@ -1,0 +1,72 @@
+% Listings to print code out verbatim (minted)
+
+    % environments
+        % listing environment style
+        % Help sourced from https://tex.stackexchange.com/a/748148/383565
+        % codestlyenvironment = 
+            % #1  { flush or normal: vertical spacing }
+            % #2  { ! <=> \BooleanTrue <=> nonumber } 
+            % #3  { ' <=> \BooleanTrue <=> autowidth (not accounting for the title's width) } 
+            % #4  { " <=> \BooleanTrue <=> autowidth accounting for the title's width } 
+            % #5  { alternative title } 
+            % #6  { default title } 
+            % #7  { IfEmptyF <=> use alternative title }
+            % #8  { displayed language name }
+        % environmental arguments
+            % #1  { ! <=> \BooleanTrue <=> nonumber } 
+            % #2  { ' <=> \BooleanTrue <=> autowidth (not accounting for the title's width) } 
+            % #3  { " <=> \BooleanTrue <=> autowidth accounting for the title's width } 
+            % #4  [ alternative title ]
+            % #5  [ additional tcbkeys ] 
+            % #6  { IfEmptyF <=> use alternative title #6 }
+        \ModifiedNewTCBListing{code}{ t! t' t" O{} O{} m }{
+            ,codestyleenvironment = {flush}{#1}{#2}{#3}{#4.}{#6.}{#4}{#6}
+            ,#5
+        }
+        \ModifiedNewTCBListing{code*}{ t! t' t" O{} O{} m }{
+            ,codestyleenvironment = {normal}{#1}{#2}{#3}{#4.}{#6.}{#4}{#6}
+            ,#5
+        }
+        \ModifiedNewTCBListing{codeoutput}{ t! t' t" O{} O{} m }{
+            ,codestyleenvironment = {flush}{#1}{#2}{#3}{Output (#4).}{Output.}{#4}{#6}
+            ,#5
+        }
+        \ModifiedNewTCBListing{codeoutput*}{ t! t' t" O{} O{} m }{
+            ,codestyleenvironment = {normal}{#1}{#2}{#3}{Output (#4).}{Output.}{#4}{#6}
+            ,#5
+        }
+
+    % Input commands
+        % input listing style
+        % Help sourced from https://tex.stackexchange.com/a/748148/383565
+        % codestyleinput = 
+            % #1  { * <=> \BooleanTrue <=> flush vertical spacing }
+            % #2  { ! <=> \BooleanTrue <=> nonumber } 
+            % #3  { ' <=> \BooleanTrue <=> autowidth (not account for the title's width) } 
+            % #4  { " <=> \BooleanTrue <=> autowidth accounting for the title's width } 
+            % #5  { alternative title } 
+            % #6  { default title } 
+            % #7  { IfEmptyF <=> use alternative title }
+            % #8  { listing file }
+            % #9  { manual minted language }
+        % command arguments
+            % #2  { ! <=> \BooleanTrue <=> nonumber } 
+            % #3  { ' <=> \BooleanTrue <=> autowidth (not account for the title's width) } 
+            % #4  { " <=> \BooleanTrue <=> autowidth accounting for the title's width } 
+            % #5  [ alternative title ]
+            % #6  [ additional tcbkeys ]
+            % #7  { listing file }
+            % #8  [ manual minted language ]
+        \ModifiedNewTCBInputListing{\inputcode}{ s t! t' t" O{} O{} m O{} }{
+            ,codestyleinput = {#1}{#2}{#3}{#4}{#5.}{\displayedname.}{#5}{#7}{#8}
+            ,#6
+        }
+
+        
+        \ModifiedNewTCBInputListing{\inputcodeoutput}{ s t! t' t" O{} O{} m O{} }{
+            ,codestyleinput = {#1}{#2}{#3}{#4}{Output (#5).}{Output.}{#5}{#7}{#8}
+            ,#6
+        }
+
+% Define what displayed langage and Pygments language is to be converted from each file extension
+\AddFileExtensionLanguageTriple{jl,txt,tex,tex}{julia,text,tex,latex}{Julia,Text,TeX,LaTeX}

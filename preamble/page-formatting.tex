@@ -1,0 +1,53 @@
+% page head
+\definecolor{mychapterorange}{rgb}{0.91, 0.45, 0.32}
+
+  % source1: https://tex.stackexchange.com/a/311505/383565
+  % source2: https://sg.mirrors.cicku.me/ctan/macros/latex/contrib/titlesec/titlesec.pdf
+  \newpagestyle{main}[\sffamily\color{mychapterorange}]{
+    \sethead[\thepage][\chaptertitle][\thesection] % even
+            {\thesection}{\sectiontitle}{\thepage}} % odd    
+  \pagestyle{main}
+
+% chapter
+  % Source: https://tex.stackexchange.com/a/169435
+
+  \titleformat{\chapter}[display]
+    {\normalfont\bfseries\color{mychapterorange}}
+    {\filleft\hspace*{-60pt}%
+      \rotatebox[origin=c]{90}{%
+        \normalfont\color{black}\Large%
+          \textls[180]{\textsc{\chaptertitlename}}%
+      }\hspace{10pt}%
+      {\setlength\fboxsep{0pt}%
+      \colorbox{mychapterorange}{\parbox[c][3cm][c]{2.5cm}{%
+        \centering\color{white}\fontsize{80}{90}\selectfont\thechapter}%
+      }}%
+    }
+    {10pt}
+    {\titlerule[2.5pt]\vskip3pt\titlerule\vskip4pt\LARGE\sffamily}
+
+% section
+  % Source: https://tex.stackexchange.com/a/738974/383565
+  \titleformat{\section}[hang]
+    {\normalfont\Large\bfseries\color{mychapterorange}}
+    {%
+    \begingroup
+    \setlength\fboxsep{3.5pt}%
+    \colorbox{mychapterorange}{\color{white}\thesection}%
+    \endgroup
+    }
+    {5pt}
+    {}
+
+% subsection
+  \titleformat{\subsection}[hang]
+    {\normalfont\Large\bfseries\color{mychapterorange}}
+    {%
+    \begingroup
+    \setlength\fboxsep{3pt}%
+    \setlength\fboxrule{0.9pt}%
+    \fbox{\thesubsection}%
+    \endgroup
+    }
+    {5pt}
+    {}
