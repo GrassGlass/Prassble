@@ -19,7 +19,7 @@ A LaTeX preamble made by Grass.
 
 > This work consists of all files listed in README
 
-`Prassble` provides a nice template preamble and coverpage for $\LaTeX$ documents---including useful macros/packages, colored boxes, etc.
+`Prassble` provides a nice template preamble and coverpage for LaTeX documents---including useful macros/packages, colored boxes, etc.
 
 ## Contents of the package
 
