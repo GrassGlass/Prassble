@@ -1,0 +1,20 @@
+\ExplSyntaxOn
+\AtEndDocument { \benchmark_toc: }
+\benchmark_tic:
+\ExplSyntaxOff
+\documentclass[11pt, titlepage, a4paper, oneside]{book}
+\input{preamble/preamble}
+
+\begin{document}
+%
+\input{maintitlepage.tex}
+%
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+%
+\chapter{First Chapter}
+
+\end{document}

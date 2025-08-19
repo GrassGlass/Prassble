@@ -1,0 +1,96 @@
+\colorlet{titlepagecolor}{NavyBlue}
+\colorlet{namecolor}{white}
+\begin{titlepage}
+    \newgeometry{left=7.5cm} %defines the geometry for the titlepage
+    \pagecolor{titlepagecolor}
+    \noindent
+    \large
+    \color{white}
+    \Huge\verb|\noexpand|\normalsize\\
+    \makebox[0pt][l]{\rule{1.3\textwidth}{1pt}}
+    \par
+    \noindent
+    \textbf{\textsf{Grass}} \textcolor{namecolor}{\textsf{}}
+    \vfill
+    \hspace{-5mm}
+    \begin{minipage}[c]{0.33\textwidth}
+        \begin{code}[\TeX][center title]{TeX}
+            ⵌ\the\textwidthⵌ
+        \end{code}
+        \vspace{-0.5mm}
+        \begin{code}'[][title={}]{TeX}
+            K
+            n
+            u
+            t
+            h
+        \end{code}
+    \end{minipage}
+    \begin{minipage}[c]{0.33\textwidth}
+        \vspace{1.5cm}
+        \begingroup
+            \def\ColorCodeBase{NavyBlue}
+            \def\ColorCodeBorderline{Maroon}
+            \def\ColorCodeColbacktitle{Maroon!5}
+            \begin{code}'[$\varepsilon$-\TeX][center title, sharp corners = southeast]{TeX}
+                \unexpandedⵌ\hspace{0.2mm}ⵌ
+            \end{code}
+            \vspace{-4.65mm}
+            \begin{tcolorbox}
+            [          
+                breakable,
+                enhanced,
+                skin    = enhanced jigsaw,
+                boxsep  = \boxsep,
+                boxrule = \boxrule,
+                colback = \ColorCodeColbacktitle,
+                borderline west = {\BorderlineWestThickness}{0pt}{\ColorCodeBorderline},
+                sharp corners,
+                rounded corners = southeast,
+            ]
+                \sffamily\bfseries\color{\ColorCodeTitle}
+                \resizebox{\textwidth}{!}{Peter Breitenlohner}\vphantom{\TeX}
+            \end{tcolorbox}
+        \endgroup
+    \end{minipage}
+    \begin{minipage}{0.166\textwidth}
+        \begin{code}[\unexpanded{\hspace{3.5mm}$\mathclap{\text{\LaTeX}}$}][text width = 0.166\textwidth]{LaTeX}
+            ⵌ\hspace{2\textwidth}ⵌ
+        \end{code}
+        \vspace{-0.6mm}
+        \begingroup 
+            \def\ColorCodeBase{NavyBlue}
+            \begin{code}[][title = {}, text width = 0.166\textwidth]{LaTeX}
+                ⵌ\hspace{2\textwidth}ⵌⵌ\hspace{\textwidth}ⵌ
+            \end{code}
+        \endgroup
+    \end{minipage}
+    \hspace{-4.3mm}
+    \begin{minipage}{0.166\textwidth}
+        \begingroup
+            \def\ColorCodeBase{NavyBlue}
+            \begin{code}[\unexpanded{\hspace{3.5mm}$\mathclap{\text{\LaTeX3}}$}][text width = 0.166\textwidth]{LaTeX}
+                ⵌ\hspace{2\textwidth}ⵌ
+            \end{code}
+        \endgroup
+        \vspace{-0.6mm}
+        \begin{code}[][title = {}, text width = 0.166\textwidth]{LaTeX}
+            ⵌ\hspace{2\textwidth}ⵌⵌ\hspace{\textwidth}ⵌ
+        \end{code}
+    \end{minipage}
+    \newline
+    \begingroup
+        \def\ColorCodeBase{ForestGreen}
+        \begin{code}[\pdftexbanner]{Text}
+            This is TeX
+        \end{code}
+    \endgroup
+    \vfill
+    \noindent
+    {\huge\textsf{Notes for the \TeX book}}
+    \vskip\baselineskip
+    \noindent
+    \textsf{17th August 2025--\today}
+\end{titlepage}
+\restoregeometry % restores the geometry
+\nopagecolor% Use this to restore the color pages to white
