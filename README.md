@@ -37,7 +37,8 @@ A LaTeX preamble made by Grass.
                         - `new_varaibles.tex`
                 - `codestyles.tex`
         - derived_environments
-            - `lengths_and_counters.tex`
+            - `lengths_and_counters.t
+            ex`
             - `listings.tex`
             - `nonlistings.tex`
     - math
