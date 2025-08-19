@@ -23,4 +23,31 @@ A LaTeX preamble made by Grass.
 
 ## Contents of the package
 
-- NewInputListing.tex
+- preamble
+    - environments
+        - box_styles
+            - listings
+                - commands
+                    - modified_commands
+                        - `NewInputListing.tex`
+                        - `NewListing.tex`
+                    - newcommands
+                        - `all_short_names.tex`
+                        - `name_converters.tex`
+                        - `new_varaibles.tex`
+                - `codestyles.tex`
+        - derived_environments
+            - `lengths_and_counters.tex`
+            - `listings.tex`
+            - `nonlistings.tex`
+    - math
+        - `general_math.tex`
+        - `specific_math.tex`
+    - `custom-symbols.tex`
+    - `enumeration.tex`
+    - `external_hyperlink_format.tex`
+    - `other.tex`
+    - `page-formatting.tex`
+    - `preamble.tex`
+- `maintitlepage.tex`
+- `main.tex`
