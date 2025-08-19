@@ -18,11 +18,11 @@
 %% This work consists of all files listed in README
 %%
 % page head
-\definecolor{mychapterorange}{rgb}{0.91, 0.45, 0.32}
+\definecolor{mychapterblue}{RGB}{0,82,155}
 
   % source1: https://tex.stackexchange.com/a/311505/383565
   % source2: https://sg.mirrors.cicku.me/ctan/macros/latex/contrib/titlesec/titlesec.pdf
-  \newpagestyle{main}[\sffamily\color{mychapterorange}]{
+  \newpagestyle{main}[\sffamily\color{mychapterblue}]{
     \sethead[\thepage][\chaptertitle][\thesection] % even
             {\thesection}{\sectiontitle}{\thepage}} % odd    
   \pagestyle{main}
@@ -31,14 +31,14 @@
   % Source: https://tex.stackexchange.com/a/169435
 
   \titleformat{\chapter}[display]
-    {\normalfont\bfseries\color{mychapterorange}}
+    {\normalfont\bfseries\color{mychapterblue}}
     {\filleft\hspace*{-60pt}%
       \rotatebox[origin=c]{90}{%
         \normalfont\color{black}\Large%
           \textls[180]{\textsc{\chaptertitlename}}%
       }\hspace{10pt}%
       {\setlength\fboxsep{0pt}%
-      \colorbox{mychapterorange}{\parbox[c][3cm][c]{2.5cm}{%
+      \colorbox{mychapterblue}{\parbox[c][3cm][c]{2.5cm}{%
         \centering\color{white}\fontsize{80}{90}\selectfont\thechapter}%
       }}%
     }
@@ -48,11 +48,11 @@
 % section
   % Source: https://tex.stackexchange.com/a/738974/383565
   \titleformat{\section}[hang]
-    {\normalfont\Large\bfseries\color{mychapterorange}}
+    {\normalfont\Large\bfseries\color{mychapterblue}}
     {%
     \begingroup
     \setlength\fboxsep{3.5pt}%
-    \colorbox{mychapterorange}{\color{white}\thesection}%
+    \colorbox{mychapterblue}{\color{white}\thesection}%
     \endgroup
     }
     {5pt}
@@ -60,7 +60,7 @@
 
 % subsection
   \titleformat{\subsection}[hang]
-    {\normalfont\Large\bfseries\color{mychapterorange}}
+    {\normalfont\Large\bfseries\color{mychapterblue}}
     {%
     \begingroup
     \setlength\fboxsep{3pt}%

@@ -31,7 +31,8 @@
   %   \usepackage{indentfirst}
 
   % Named colors
-  \usepackage[dvipsnames, table]{xcolor}
+  \PassOptionsToPackage{dvipsnames, table}{xcolor} 
+    % The table option of xcolor loads the colortbl package, in order to use the tools for coloring rows, columns, and cells within tables.
 
   % Tables
   \usepackage{array, booktabs, multirow, cellspace}
@@ -87,11 +88,10 @@
   \definecolor{carrotorange}{rgb}{0.93, 0.57, 0.13}
   \hypersetup{
     colorlinks=true,
-    linkcolor=carrotorange!95!black,
+    linkcolor=blue,
     filecolor=magenta,      
-    urlcolor=carrotorange!95!black,
-    linktoc=all,
-  }
+    urlcolor=cyan,
+    }
 
 % Custom setup
   % Easy input of multiple files
