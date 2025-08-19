@@ -1,7 +1,7 @@
 # Prassble
 A LaTeX preamble made by Grass.
 
-[//]: # Add CTAN hyperlink
+[//]: # (Add CTAN hyperlink)
 
 > The LaTeX project Prassble
 
