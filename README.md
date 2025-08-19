@@ -21,7 +21,7 @@ A LaTeX preamble made by Grass.
 
 `Prassble` provides a nice template preamble and coverpage for LaTeX documents---including useful macros/packages, colored boxes, etc.
 
-## Contents of the package
+## Contents of the LaTeX project Prassble
 
 - preamble
     - environments
