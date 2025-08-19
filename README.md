@@ -49,5 +49,5 @@ A LaTeX preamble made by Grass.
     - `external_hyperlink_format.tex`
     - `other.tex`
     - `page-formatting.tex`
-    - `preamble.tex``
+    - `preamble.tex`
 - `main.tex`
