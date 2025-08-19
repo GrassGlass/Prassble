@@ -1,0 +1,14 @@
+*.log
+*.out
+*.fdb_latexmk
+*.fls
+*.gz
+*.synctex(busy)
+*.listing
+*.pre
+*.aux
+!1.aux
+*.auxlock
+*.toc
+*.config.minted
+_minted/
