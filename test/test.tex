@@ -1,0 +1,61 @@
+\documentclass[11pt, titlepage, a4paper, oneside]{book}
+\ExplSyntaxOn
+\tl_gclear_new:N \test  
+\tl_set:Ne \test {julia}
+\ExplSyntaxOff
+\input{../preamble/preamble}
+
+% \DisableVerbatimCode{false}
+
+\begin{document}
+\begin{theorem}
+    Hello there!
+\end{theorem}
+\eqboxwidth{codewidth\arabic{code}}
+
+\newlength{\mylength}
+\setlength{\mylength}{\eqboxwidth{codewidth\arabic{code}}+\lefthspace+13.38109pt-0.00001pt}
+\the\mylength
+\begin{code}[autowidth = upper]{Julia}
+    test ⵌ\hspace{\textwidthoutside}ⵌ
+\end{code}
+\begin{code*}{Julia}
+    ⵌ\the\textwidthⵌ
+\end{code*}
+\the\textwidth
+
+\begin{minipage}{0.5\textwidth}
+    \begin{code}{Julia}
+    ⵌ\the\textwidthⵌ
+    \end{code}
+    \begin{code}[autowidth = upper]{Julia}
+    ⵌ\hspace{175.18944pt}ⵌ
+    \end{code}
+    code\arabic{code}
+
+    \eqboxwidth{code\arabic{code}}
+    \begin{code}[autowidth = upper]{Julia}
+    ⵌ\hspace{175.18945pt}ⵌ
+    \end{code}
+
+    \begin{code}[autowidth = upper]{Julia}
+    test
+    \end{code}
+
+    \the\textwidth
+\end{minipage}
+
+code\arabic{code}
+
+\def\myfileext{undefined}
+\eqboxwidth{code\arabic{code}}
+\inputcode[autowidth = upper]{test.jl}
+\inputcode[autowidth = upper]{test1.txt}
+
+\begin{code}{Julia}
+    # using LinearAlgebra #
+
+    let x
+\end{code}
+
+\end{document}

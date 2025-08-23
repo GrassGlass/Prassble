@@ -24,6 +24,12 @@
 \documentclass[11pt, titlepage, a4paper, oneside]{book}
 \input{preamble/preamble}
 
+\ModifiedNewTCBListing{test}{ ={OTitle} O{} m }{
+    ,codestylebase = {title}
+    ,minted language = #2
+    ,#1
+}
+
 \begin{document}
 %
 \input{maintitlepage.tex}
@@ -38,5 +44,7 @@
 \section{Name of First Section}
 \subsection{Name of First Subsection}
 Contents of the first subsection of this document
-
+\begin{test}[=,listing and text]{TeX}
+Hi \hspace{10cm} test
+\end{test}
 \end{document}
