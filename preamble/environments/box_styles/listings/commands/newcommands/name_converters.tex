@@ -86,9 +86,9 @@
       }
     % Expand all elements of the local private clist #1 = \l__listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist and store all its entries under the global public clist \\g_listings_NameConverters_displayed_languages_clist of all displayed languages
       % The expansion is to avoid cases such as where \foo={foo} and #1={\foo}, but \clist_if_in:NnTF #1 {foo} {T} {F} = F
-      \clist_set:Ne \l__listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist {#3}
+      \clist_set:Nn \l__listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist {#3}
       \clist_map_inline:Nn \l__listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist {
-        \clist_put_right:Ne \g_listings_NameConverters_displayed_languages_clist {##1}
+        \clist_put_right:Nn \g_listings_NameConverters_displayed_languages_clist {##1}
       }
     }
 %
@@ -103,7 +103,7 @@
       {
         % Displayed language name \displayedname
         \NumberInClist{\g_listings_NameConverters_file_extensions_clist}{\l__listings_FileExtensionToLanguage_citem_file_extension_tl}
-        \tl_set:Ne \displayedname {\clist_item:Nn \g_listings_NameConverters_displayed_languages_clist {\numberinclist}}
+        \tl_set:Nn \displayedname {\clist_item:Nn \g_listings_NameConverters_displayed_languages_clist {\numberinclist}}
         % Pygments-understood language name \pygmentsname
         \NumberInClist{\g_listings_NameConverters_file_extensions_clist}{\l__listings_FileExtensionToLanguage_citem_file_extension_tl}
         \tl_set:Ne \pygmentsname {\clist_item:Nn \g_listings_NameConverters_Pygments_languages_clist {\numberinclist}}
@@ -127,7 +127,7 @@
   \NewDocumentCommand{\DisplayedToPygments}{ m }{
     % Defining the item #1 as a token list
       % Using \tl_set:Ne with \clist_if_in:NVT avoids expansion issues that occur with \clist_if_in:NnT
-      \tl_set:Ne \l__listings_DisplayedToPygments_citem_displayed_tl {#1}
+      \tl_set:Nn \l__listings_DisplayedToPygments_citem_displayed_tl {#1}
     % If the displayed language #1 is in the clist \g_listings_NameConverters_displayed_languages_clist of displayed languages we want to convert,
     \clist_if_in:NVTF \g_listings_NameConverters_displayed_languages_clist \l__listings_DisplayedToPygments_citem_displayed_tl
       % Then select and store the corresponding pygments-understood language name \pygmentsname

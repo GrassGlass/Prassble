@@ -27,16 +27,21 @@
           % It is recommended that only the length \lefthspace is altered
           \setlength{\truelefthspace}{\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%
     % Centering the tcblisting environment
-    \par\begingroup\centering%
-  % The tcblisting environment 
-    \stepcounter{tcblisting}\edef\thetcblistingcount{\thetcblisting}%
-    \tcb@layer@pushup%
-    \tcb@apply@box@options{capture=minipage,#1}%
-    \begingroup\tcbverbatimwrite{\kvtcb@listingfile}%
-  }{\endtcbverbatimwrite\endgroup%
-    \tcbinputlisting@core%
-  % After the tcblisting environment
-    \stepcounter{code}\vspace{-\vlengthafterlisting}\endgroup%
+    \par%
+    \begingroup%
+      \centering%
+    % The tcblisting environment 
+      \stepcounter{tcblisting}\edef\thetcblistingcount{\thetcblisting}%
+      \tcb@layer@pushup%
+      \tcb@apply@box@options{capture=minipage,#1}%
+      \begingroup\tcbverbatimwrite{\kvtcb@listingfile}%
+    }{\endtcbverbatimwrite\endgroup%
+      \tcbinputlisting@core%
+    % After the tcblisting environment
+      \stepcounter{code}%
+      \eqsavebox{\codelower}[codelowerwidth\arabic{code}]{\g@@listings@autowidth@lower@contents@tl}%
+      \vspace{-\vlengthafterlisting}%
+    \endgroup%
   }
   %
   %

@@ -38,16 +38,32 @@
 
 % Variables
   % Definitions
-  \tl_new:N \l__listings_linenos_tl
-  \tl_new:N \l__listings_breaklines_tl
-  \tl_new:N \l__listings_OTitle_tl
-  \bool_new:N \l__listings_autowidth_all_bool
-  \bool_new:N \l__listings_autowidth_upper_bool
+  \tl_new:N \g__listings_linenos_tl
+  \tl_new:N \g__listings_breaklines_tl
+  \cs_new:Npn \__listings_title_contents:n #1 {#1 \g__listings_OTitle_tl.}
+  \tl_new:N \g__listings_OTitle_tl
+  \tl_new:N \g@@listings@autowidth@lower@contents@tl % We use the goofy syntax where _ is replaced with @, so that eqsavebox can take it as an argument
+  \dim_new:N \l__listings_autowidth_title_dim
+  \dim_new:N \l__listings_autowidth_upper_dim
+  \dim_new:N \l__listings_autowidth_lower_dim
+  \dim_new:N \g__listings_autowidth@core_dim
+  \cs_new:Npn \__listings_autowidth_title:n #1
+  {
+    \bool_if:NT 
+      {\g__listings_autowidth_title_bool} 
+      {
+        \eqsavebox{\codewidth}[codetitlewidth\arabic{code}]
+        {
+          \__listings_title_contents:n {#1}
+        }
+      }
+  }
+  \bool_new:N \g__listings_autowidth_title_bool
+  \bool_new:N \g__listings_autowidth_upper_bool
+  \bool_new:N \g__listings_autowidth_lower_bool
   % Values
-  \tl_set:Nn \l__listings_linenos_tl {linenos}
-  \tl_set:Nn \l__listings_breaklines_tl {breaklines}
-  \bool_set_false:N \l__listings_autowidth_all_bool
-  \bool_set_false:N \l__listings_autowidth_upper_bool
+  \tl_set:Nn \g__listings_linenos_tl {linenos}
+  \tl_set:Nn \g__listings_breaklines_tl {breaklines}
 
 \tcbset{
 % expl3 equivalents
@@ -59,86 +75,85 @@
   ,TLIfEqeeT/.code~n~args={3}{\TLIfEqeeT{#1}{#2}{\pgfkeysalso{#3}}}
   % ,TLIFEqeeT/.code~n~args={3}{\TLIfEqeeT{#1}{#2}{\pgfkeysalso{#3}}}
 % Listing keys
-  ,no~number/.code = {\tl_clear:N \l__listings_linenos_tl}
+  ,no~number/.code = {\tl_clear:N \g__listings_linenos_tl}
   ,autowidth@core/.code = 
   {
-    % Disable breaklines to allow \eqboxwidth{codewidth\arabic{code}} to correctly measure the greatest line width. Enable breaklines if the line width overflows into the margins.
-    \dim_compare:nNnTF
-      % Relationship to compare 
-      {\textwidthoutside} 
-      < 
-      {\eqboxwidth{codewidth\arabic{code}}+\truelefthspace+\linebreakcorrector}
-      % TF code execution
-      {\tl_set:Nn \l__listings_breaklines_tl {breaklines}}
-      {\tl_clear:N \l__listings_breaklines_tl}
+    % The line width \g__listings_autowidth@core_dim the box should be set to have (given this width is less than \textwidthoutside, i.e. doesn't overflow into the margins)
+      \bool_if:NT \g__listings_autowidth_title_bool
+      {
+        \dim_set:Nn \l__listings_autowidth_title_dim 
+        {
+          \eqboxwidth{codetitlewidth\arabic{code}}
+        }
+      }
+      \bool_if:NT \g__listings_autowidth_upper_bool
+      {
+        \dim_set:Nn \l__listings_autowidth_upper_dim
+        {
+          \eqboxwidth{codeupperwidth\arabic{code}}
+        }
+      }
+      \bool_if:NT \g__listings_autowidth_lower_bool
+      {
+        \dim_set:Nn \l__listings_autowidth_lower_dim
+        {
+          \eqboxwidth{codelowerwidth\arabic{code}}
+        }
+      }
+      \dim_set:Nn \g__listings_autowidth@core_dim 
+      {
+        \dim_max:nn 
+        {\l__listings_autowidth_title_dim} 
+        {
+          \dim_max:nn
+          {\l__listings_autowidth_upper_dim}
+          {\l__listings_autowidth_lower_dim}
+        }
+      }
+    % Disable breaklines to allow \eqboxwidth{codeupperwidth\arabic{code}} to correctly measure the greatest line width. Enable breaklines if the line width overflows into the margins.
+      \dim_compare:nNnTF
+        % Relationship to compare 
+        {\textwidthoutside} 
+        < 
+        {\g__listings_autowidth@core_dim+\truelefthspace+\linebreakcorrector}
+        % TF code execution
+        {\tl_set:Nn \g__listings_breaklines_tl {breaklines}}
+        {\tl_clear:N \g__listings_breaklines_tl}
     % autowidth functionality: setting the tcbkey 'text width'
       \dim_compare:nNnF
         % Relationship to compare
         {\textwidthoutside}
          <
-        {\eqboxwidth{codewidth\arabic{code}}+\truelefthspace+\linebreakcorrector}
+        {\g__listings_autowidth@core_dim+\truelefthspace+\linebreakcorrector}
         % F code execution
-        {\pgfkeysalso{text~width = \eqboxwidth{codewidth\arabic{code}}}}
+        {\pgfkeysalso{text~width = \g__listings_autowidth@core_dim}}
   }
   ,autowidth/.is~choice
-    ,autowidth/all/.code = {
-      \bool_set_true:N \l__listings_autowidth_all_bool
+    ,autowidth/title/.code = {
+      \bool_set_true:N \g__listings_autowidth_title_bool
       \pgfkeysalso{autowidth@core}} 
     ,autowidth/upper/.code = {
-      \bool_set_true:N \l__listings_autowidth_upper_bool
+      \bool_set_true:N \g__listings_autowidth_upper_bool
       \pgfkeysalso{autowidth@core}}
+    ,autowidth/lower/.code = {
+      \bool_set_true:N \g__listings_autowidth_lower_bool
+      \tl_set:Nn \g@@listings@autowidth@lower@contents@tl {\tcbuselistingtext}
+      \pgfkeysalso{listing~and~text}
+    }
   ,Title/.style = 
   {
-    IfBooleanTF = {\l__listings_autowidth_all_bool}
-      {
-        title   = 
+    title   = 
+    {
+      \sffamily\bfseries\color{\ColorCodeTitle}
         {
-          \sffamily\bfseries\color{\ColorCodeTitle}
-            {
-              \hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}
-              \eqsavebox{\codewidth}[codewidth\arabic{code}]{#1}
-              #1
-            }
-          }
-      }
-      {
-        title = 
-        {
-          \sffamily\bfseries\color{\ColorCodeTitle}
-          {
-            \hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}
-            #1
-          }
-        }
-      }
-  }
-    ,Title/.style = 
-  {
-    IfBooleanTF = {\l__listings_autowidth_all_bool}
-      {
-        title   = 
-        {
-          \sffamily\bfseries\color{\ColorCodeTitle}
-            {
-              \hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}
-              \eqsavebox{\codewidth}[codewidth\arabic{code}]{#1}
-              #1 \l__listings_OTitle_tl.
-            }
-          }
-      }
-      {
-        title = 
-        {
-          \sffamily\bfseries\color{\ColorCodeTitle}
-          {
-            \hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}
-            #1 \l__listings_OTitle_tl.
-          }
+          \hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}
+          \__listings_autowidth_title:n {#1}
+          \__listings_title_contents:n {#1}
         }
       }
   }
   ,OTitle/.code = {
-    \tl_if_empty:nF {#1} {\tl_set:Nn \l__listings_OTitle_tl {~(#1)}}
+    \tl_if_empty:nF {#1} {\tl_set:Nn \g__listings_OTitle_tl {~(#1)}}
   }
   ,vflush/.style = {before~skip = -\vlengthbeforelisting}
   ,vnormal/.style = {before~skip = \vlengthbetweencorrector}
@@ -152,9 +167,9 @@
     ,minted~style                    = staroffice
     ,minted~options                  = 
       {
-      \l__listings_breaklines_tl,
+      \g__listings_breaklines_tl,
       autogobble,
-      \l__listings_linenos_tl,
+      \g__listings_linenos_tl,
       numbersep = \numbersep
       }
     ,listing~only
@@ -256,5 +271,5 @@
                     \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
                 }
             }
-\renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codewidth\arabic{code}]{#1}#1}
+\renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codeupperwidth\arabic{code}]{#1}#1}
 
