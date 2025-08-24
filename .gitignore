@@ -12,3 +12,4 @@
 *.toc
 *.config.minted
 _minted/
+_test/
