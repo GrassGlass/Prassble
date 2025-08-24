@@ -47,13 +47,11 @@
 
 code\arabic{code}
 
-\def\myfileext{undefined}
 \eqboxwidth{code\arabic{code}}
 \inputcode[autowidth = upper]{test.jl}
-\inputcode*[autowidth = lower]{test1.txt}
-\eqboxwidth{codeupperwidth\arabic{code}}
+\inputcode*{test1.txt}
 
-\begin{code}[autowidth = title]{\TeX}
+\begin{code}[autowidth = lower]{\TeX}
     Hello hewwo
 \end{code}
 
