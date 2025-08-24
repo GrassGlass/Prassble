@@ -22,6 +22,10 @@
 \begin{code*}{Julia}
     ⵌ\the\textwidthⵌ
 \end{code*}
+\ExplSyntaxOn
+\l__listings_OTitle_tl\par
+\meaning\l__listings_OTitle_tl\par
+\ExplSyntaxOff
 \the\textwidth
 
 \begin{minipage}{0.5\textwidth}
@@ -52,10 +56,17 @@ code\arabic{code}
 \inputcode[autowidth = upper]{test.jl}
 \inputcode[autowidth = upper]{test1.txt}
 
-\begin{code}{Julia}
-    # using LinearAlgebra #
+% \begin{code}{Julia}
+%     # using LinearAlgebra #
 
-    let x
-\end{code}
+%     let x
+% \end{code}
+
+% \begin{code}{Text}
+%     testo
+% \end{code}
+% \begin{code*}[Ello]{Text}
+%     testo
+% \end{code*}
 
 \end{document}

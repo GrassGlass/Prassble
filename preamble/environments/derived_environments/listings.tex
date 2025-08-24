@@ -30,24 +30,24 @@
             % #1    [ <OTitle/pgfkeys> ]
             % #2    { <Displayed language> }
         
-        \ModifiedNewTCBListing{code}{ ={OTitle} O{} m }{
+        \ModifiedNewTCBListing{code}{ ={OTitle}  O{} m }{
             ,vflush
-            ,codestyleenvironment = {#2}{#2.}
+            ,codestyleenvironment = {#2}{#2}
             ,#1
         }
-        \ModifiedNewTCBListing{code*}{ ={OTitle} O{} m }{
+        \ModifiedNewTCBListing{code*}{ ={OTitle}  O{} m }{
             ,vnormal
-            ,codestyleenvironment = {#2}{#2.}
+            ,codestyleenvironment = {#2}{#2}
             ,#1
         }
-        \ModifiedNewTCBListing{codeoutput}{ ={OTitle} O{} m }{
+        \ModifiedNewTCBListing{codeoutput}{ ={OTitle}  O{} m }{
             ,vflush
-            ,codestyleenvironment = {#2}{Output.}
+            ,codestyleenvironment = {#2}{Output}
             ,#1
         }
-        \ModifiedNewTCBListing{codeoutput*}{ ={OTitle} O{} m }{
+        \ModifiedNewTCBListing{codeoutput*}{ ={OTitle}  O{} m }{
             ,vnormal
-            ,codestyleenvironment = {#2}{Output.}
+            ,codestyleenvironment = {#2}{Output}
             ,#1
         }
 
@@ -64,19 +64,19 @@
         
         \ModifiedNewTCBInputListing{\inputcode}{ s ={OTitle} O{} m }{
             ,IfBooleanTF = {#1}{vnormal}{vflush}
-            ,codestyleinput = {#3}{\displayedname.}
-            #2
+            ,codestyleinput = {#3}{\displayedname}
+            ,#2
         }
 
         \ModifiedNewTCBInputListing{\inputcodeoutput}{ s ={OTitle} O{} m }{
             ,IfBooleanTF = {#1}{vnormal}{vflush}
-            ,codestyleinput = {#3}{Output.}
-            #2
+            ,codestyleinput = {#3}{Output}
+            ,#2
         }
 
 % Inline listing
-\NewDocumentCommand{\codeinline}{ O{} m }{\mintinline[#1]{#2}}
-\NewDocumentCommand{\TeXinline}{ O{} }{\mintinline[#1]{TeX}}
+\NewDocumentCommand{\codeinline}{  O{} m }{\mintinline[#1]{#2}}
+\NewDocumentCommand{\TeXinline}{  O{} }{\mintinline[#1]{TeX}}
 
 % Define what displayed langage and Pygments language is to be converted from each file extension
 \AddFileExtensionLanguageTriple{jl,txt,tex,tex}{julia,text,tex,latex}{Julia,Text,TeX,LaTeX}
