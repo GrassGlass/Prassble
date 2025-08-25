@@ -18,6 +18,7 @@
 %% This work consists of all files listed in README
 %%
 \makeatletter
+\ExplSyntaxOn
   \newenvironment{modifiedtcblisting}[1]{%
   % Before the tcblisting environment
       % The value of \textwidth where the corresponding listing environment is located
@@ -38,14 +39,13 @@
     }{\endtcbverbatimwrite\endgroup%
       \tcbinputlisting@core%
     % After the tcblisting environment
+      \__listings_autowidth_lower_eqsavebox:n{\tcbuselistingtext}%
       \stepcounter{code}%
-      \eqsavebox{\codelower}[codelowerwidth\arabic{code}]{\g@@listings@autowidth@lower@contents@tl}%
       \vspace{-\vlengthafterlisting}%
     \endgroup%
   }
   %
   %
-  \ExplSyntaxOn
     \NewDocumentCommand \__tcobox_new_modified_TCBListing:w { m +O{} >{\TrimSpaces} m +m +m }
       {
         \__tcobox_process_newtcolorbox:nn { #2 }{ #3 }
@@ -59,5 +59,5 @@
         \bool_set_true:N \l__tcobox_prevent_init_overwrite_bool
         \__tcobox_new_modified_TCBListing:w \NewDocumentEnvironment
       }
-  \ExplSyntaxOff
+\ExplSyntaxOff
 \makeatother

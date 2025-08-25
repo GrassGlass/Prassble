@@ -42,7 +42,6 @@
   \tl_new:N \g__listings_breaklines_tl
   \cs_new:Npn \__listings_title_contents:n #1 {#1 \g__listings_OTitle_tl.}
   \tl_new:N \g__listings_OTitle_tl
-  \tl_new:N \g@@listings@autowidth@lower@contents@tl % We use the goofy syntax where _ is replaced with @, so that eqsavebox can take it as an argument
   \dim_new:N \l__listings_autowidth_title_dim
   \dim_new:N \l__listings_autowidth_upper_dim
   \dim_new:N \l__listings_autowidth_lower_dim
@@ -56,6 +55,14 @@
         {
           \__listings_title_contents:n {#1}
         }
+      }
+  }
+  \cs_new:Npn \__listings_autowidth_lower_eqsavebox:n #1
+  {
+    \bool_if:NT
+      {\g__listings_autowidth_lower_bool}
+      {
+        \eqsavebox{\codewidth}[codelowerwidth\arabic{code}]{#1}
       }
   }
   \bool_new:N \g__listings_autowidth_title_bool
@@ -137,8 +144,11 @@
       \pgfkeysalso{autowidth@core}}
     ,autowidth/lower/.code = {
       \bool_set_true:N \g__listings_autowidth_lower_bool
-      \tl_set:Nn \g@@listings@autowidth@lower@contents@tl {\tcbuselistingtext}
-      \pgfkeysalso{listing~and~text}
+      \pgfkeysalso
+      {
+        ,listing~and~text
+        ,autowidth@core
+      }
     }
   ,Title/.style = 
   {

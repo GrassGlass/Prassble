@@ -51,11 +51,11 @@ code\arabic{code}
 \inputcode[autowidth = upper]{test.jl}
 \inputcode*{test1.txt}
 
-\begin{code}[autowidth = lower]{\TeX}
-    Hello hewwo
-\end{code}
-
-\tcbuselistingtext
+\framebox[\eqboxwidth{codetitlewidth\arabic{code}}]{\eqboxwidth{codetitlewidth\arabic{code}}}
+\begin{code*}[autowidth = title, Title = {Hello}, no number]{\TeX}
+    Hello hewwo heh
+\end{code*}
+% \eqmakebox[codelowerwidth\arabic{code}]{\tcbuselistingtext}
 
 \inputcode*[autowidth = title, OTitle = {Hehe boi}]{test2.tex}
 
