@@ -40,8 +40,9 @@
 
 % Desired alignment of labels
 % source: https://tex.stackexchange.com/a/547398/383565
+    \newcommand{\labelalignment}{r}
 
-    \newcommand\enumeratelabel[2][r]{\eqmakebox[listlabel@\EnumitemId][#1]{#2}}
+    \newcommand\enumeratelabel[2][\labelalignment]{\eqmakebox[listlabel@\EnumitemId][#1]{#2}}
 
     \newlength{\myparindent}
     \setlength{\myparindent}{15pt} % <- value to be changed by user

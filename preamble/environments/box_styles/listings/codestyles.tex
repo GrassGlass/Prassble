@@ -65,9 +65,49 @@
         \eqsavebox{\codewidth}[codelowerwidth\arabic{code}]{#1}
       }
   }
+  \cs_new:Npn \__listings_debug_autowidth:
+  {
+    \bool_if:NT \g__listings_debug_autowidth_bool
+        { 
+          \renewcommand{\labelalignment}{c}
+          \begin{enumerate}
+            \item \emph{\textbackslash eqboxwidth\{\__listings_debug_argument_formatter:n {tag}\}}
+              \begin{enumerate}
+                \item[
+                    \underline
+                    {
+                      \__listings_debug_argument_formatter:n {tag}
+                    }
+                  ]  
+                \item[codetitlewidth:] \eqboxwidth{codetitlewidth\arabic{code}}
+                \item[codeupperwidth:] \eqboxwidth{codeupperwidth\arabic{code}}
+                \item[codelowerwidth:] \eqboxwidth{codelowerewidth\arabic{code}}
+              \end{enumerate}
+            \item \emph{\textbackslash l\textunderscore\textunderscore listings\textunderscore autowidth\textunderscore \__listings_debug_argument_formatter:n {component}\textunderscore dim}
+              \begin{enumerate}
+                \item
+                [
+                  \underline
+                  {
+                    \__listings_debug_argument_formatter:n
+                    {
+                      component
+                    }
+                  }
+                ] 
+                \item[title:] \dim_use:N \l__listings_autowidth_title_dim
+                \item[upper:] \dim_use:N \l__listings_autowidth_upper_dim
+                \item[lower:] \dim_use:N \l__listings_autowidth_lower_dim
+              \end{enumerate}
+        \end{enumerate}
+        \rule{\textwidth}{1pt}
+        }
+  }
+    \cs_new:Npn \__listings_debug_argument_formatter:n #1 {\textlangle #1 \textrangle}
   \bool_new:N \g__listings_autowidth_title_bool
   \bool_new:N \g__listings_autowidth_upper_bool
   \bool_new:N \g__listings_autowidth_lower_bool
+  \bool_new:N \g__listings_debug_autowidth_bool
   % Values
   \tl_set:Nn \g__listings_linenos_tl {linenos}
   \tl_set:Nn \g__listings_breaklines_tl {breaklines}
@@ -136,13 +176,18 @@
         {\pgfkeysalso{text~width = \g__listings_autowidth@core_dim}}
   }
   ,autowidth/.is~choice
-    ,autowidth/title/.code = {
+    ,autowidth/title/.code = 
+    {
       \bool_set_true:N \g__listings_autowidth_title_bool
-      \pgfkeysalso{autowidth@core}} 
-    ,autowidth/upper/.code = {
+      \pgfkeysalso{autowidth@core}
+    } 
+    ,autowidth/upper/.code = 
+    {
       \bool_set_true:N \g__listings_autowidth_upper_bool
-      \pgfkeysalso{autowidth@core}}
-    ,autowidth/lower/.code = {
+      \pgfkeysalso{autowidth@core}
+    }
+    ,autowidth/lower/.code = 
+    {
       \bool_set_true:N \g__listings_autowidth_lower_bool
       \pgfkeysalso
       {
@@ -150,6 +195,11 @@
         ,autowidth@core
       }
     }
+  ,debug/.is~choice
+    ,debug/autowidth/.code = 
+    {
+      \bool_set_true:N \g__listings_debug_autowidth_bool
+    } 
   ,Title/.style = 
   {
     title   = 

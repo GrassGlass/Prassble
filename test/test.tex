@@ -52,12 +52,23 @@ code\arabic{code}
 \inputcode*{test1.txt}
 
 \framebox[\eqboxwidth{codetitlewidth\arabic{code}}]{\eqboxwidth{codetitlewidth\arabic{code}}}
-\begin{code*}[autowidth = title, Title = {Hello}, no number]{\TeX}
+\begin{code*}
+[=
+    ,autowidth = title
+    ,Title = {Hello}
+    ,no number
+    ,debug = autowidth
+]{\TeX}
     Hello hewwo heh
 \end{code*}
+
+\begin{code*}[autowidth = upper, debug = autowidth]{\TeX}
+    Long short text
+\end{code*}
+
 % \eqmakebox[codelowerwidth\arabic{code}]{\tcbuselistingtext}
 
-\inputcode*[autowidth = title, OTitle = {Hehe boi}]{test2.tex}
+% \inputcode*[autowidth = title, OTitle = {Hehe boi}]{test2.tex}
 
 % \begin{code}{Julia}
 %     # using LinearAlgebra #
