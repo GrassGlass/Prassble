@@ -71,17 +71,19 @@
         { 
           \renewcommand{\labelalignment}{c}
           \begin{enumerate}
+            \item \emph{\textbackslash arabic\{code\}} \({}={}\) \arabic{code}
             \item \emph{\textbackslash eqboxwidth\{\__listings_debug_argument_formatter:n {tag}\}}
               \begin{enumerate}
-                \item[
+                \item
+                [
                     \underline
                     {
                       \__listings_debug_argument_formatter:n {tag}
                     }
                   ]  
-                \item[codetitlewidth:] \eqboxwidth{codetitlewidth\arabic{code}}
-                \item[codeupperwidth:] \eqboxwidth{codeupperwidth\arabic{code}}
-                \item[codelowerwidth:] \eqboxwidth{codelowerewidth\arabic{code}}
+                \item[codetitlewidth:] \eqboxwidth{codetitlewidth\arabic{code}}\ \rule{\eqboxwidth{codetitlewidth\arabic{code}}}{1pt}
+                \item[codeupperwidth:] \eqboxwidth{codeupperwidth\arabic{code}}\ \rule{\eqboxwidth{codeupperwidth\arabic{code}}}{1pt}
+                \item[codelowerwidth:] \eqboxwidth{codelowerewidth\arabic{code}}\ \rule{\eqboxwidth{codelowerwidth\arabic{code}}}{1pt}
               \end{enumerate}
             \item \emph{\textbackslash l\textunderscore\textunderscore listings\textunderscore autowidth\textunderscore \__listings_debug_argument_formatter:n {component}\textunderscore dim}
               \begin{enumerate}
@@ -95,9 +97,9 @@
                     }
                   }
                 ] 
-                \item[title:] \dim_use:N \l__listings_autowidth_title_dim
-                \item[upper:] \dim_use:N \l__listings_autowidth_upper_dim
-                \item[lower:] \dim_use:N \l__listings_autowidth_lower_dim
+                \item[title:] \dim_use:N \l__listings_autowidth_title_dim \ \rule{\l__listings_autowidth_title_dim}{1pt}
+                \item[upper:] \dim_use:N \l__listings_autowidth_upper_dim \ \rule{\l__listings_autowidth_upper_dim}{1pt}
+                \item[lower:] \dim_use:N \l__listings_autowidth_lower_dim \ \rule{\l__listings_autowidth_lower_dim}{1pt}
               \end{enumerate}
         \end{enumerate}
         \rule{\textwidth}{1pt}
