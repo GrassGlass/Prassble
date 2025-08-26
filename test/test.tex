@@ -72,14 +72,15 @@ code\arabic{code}
     Hello hewwo heh 
     ⵌ\textwidthoutsideⵌ
 \end{code*}
+\fbox{\parbox{5cm}{line 1\\ line 2}}
 \begin{code*}
 [=
-    ,autowidth = title
+    ,autowidth = lower
     ,no number
     ,debug = autowidth
+    ,listing and text
 ]{\TeX}
-    Hello hewwo heh
-    ⵌ\textwidthoutsideⵌ
+    Hello\\ hewwo\\ heh
 \end{code*}
 
 \begin{code*}[OTitle=Super long long long long long long long long long long long long long long long long long long long long title, autowidth = title, debug = autowidth]{\TeX}

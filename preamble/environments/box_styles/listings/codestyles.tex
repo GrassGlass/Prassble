@@ -66,7 +66,7 @@
     \bool_if:NT
       {\g__listings_autowidth_lower_bool}
       {
-        \eqsavebox{\codewidth}[codelowerwidth\arabic{code}]{#1}
+        \sbox0=\hbox{\eqparbox{codelowerwidth\arabic{code}}{#1}}
       }
   }
   \cs_new:Npn \__listings_debug_autowidth:
@@ -163,10 +163,10 @@
           {\l__listings_autowidth_lower_dim}
         }
       }
-    % Disable breaklines to allow \eqboxwidth{codeupperwidth\arabic{code}} to correctly measure the greatest line width. Enable breaklines if the line width overflows into the margins.
       \bool_if:nTF 
         {\g__listings_autowidth_upper_bool || \g__listings_autowidth_lower_bool} 
         {
+          % Autowidth = upper or lower: Disable breaklines to allow \eqboxwidth{codeupperwidth\arabic{code}} to correctly measure the greatest line width. Enable breaklines if the line width overflows into the margins---autowidth ceases to work (the listing behaves as if autowidth wasn't used). (Why? I'm not sure; this is just the behavior I observed and wrote my code around.)
           \dim_compare:nNnTF
             % Relationship to compare 
             {\textwidthoutside} 
@@ -177,6 +177,7 @@
             {\tl_clear:N \g__listings_breaklines_tl }
         }
         {
+          % Autowidth = title: the title might be smaller (in width) than the body (upper and lower parts). So, breaklines needs to be enabled to avoid overflowing contents. Why doesn't breaklines essentially disable autowidth in this case (unlike for autowidth = upper)? Breaklines is a minted key that affects only the minted environment---the upper part of the box. 
           \tl_set:Nn \g__listings_breaklines_tl {breaklines}
         }
     % autowidth functionality: setting the tcbkey 'text width'
