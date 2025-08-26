@@ -51,13 +51,6 @@
     % The code line number overlays have a background whose color is darker than the rest of the listing box, but lighter than the borderline to the left. This background has horizontal width \eqboxwidth{code\arabic{code}} + \linenumberpadding
     \setlength{\linenumberpadding}{0.2474691189148802em}
 
-%* The maximum length that the listing boxes can otherwise overflow by 
-    % Depends on the document's textwidth --- the length \edef\textwidthoutside{\the\textwidth} placed in the preamble
-    %! Pick a listing environment (of maximal local width, i.e. with "breaklines" enabled) and let the local textwidth inside it be \localmaxtextwidth. It is *extremely* important that \localmaxtextwidth+\eqboxwidth{codewidth\arabic{code}}+\lefthspace+\linebreakcorrector => \textwidthoutside, for the autowidth to work correctly. 
-        %* Otherwise, we will face a bug where deleting the .aux file is necessary when recompiling the listing environment, after changes have been made past the initial two compilations.
-    % Ideally, just ever so slightly less than, so that breaklines isn't automatically triggered when the box --- for which the optional argument ' or " has been activated --- can still fit within the bounds of your page (i.e. box width => \textwidthoutside).
-    \setlength{\linebreakcorrector}{13.38109pt}
-
 % The length to move the code line numbers right by, such that they are horizontally centered on their background.
 \setlength{\lefthspace}{8.5pt}
     
