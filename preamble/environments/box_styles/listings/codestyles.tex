@@ -46,6 +46,10 @@
   \dim_new:N \l__listings_autowidth_upper_dim
   \dim_new:N \l__listings_autowidth_lower_dim
   \dim_new:N \g__listings_autowidth@core_dim
+  \cs_new:Npn \__tcb_text_width_to_width:n #1
+  {
+    #1+\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper
+  }
   \cs_new:Npn \__listings_autowidth_title:n #1
   {
     \bool_if:NT 
@@ -163,17 +167,17 @@
       \dim_compare:nNnTF
         % Relationship to compare 
         {\textwidthoutside} 
-        < 
-        {\g__listings_autowidth@core_dim+\truelefthspace+\linebreakcorrector}
+         < 
+        {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_dim}}
         % TF code execution
         {\tl_set:Nn \g__listings_breaklines_tl {breaklines}}
-        {\tl_clear:N \g__listings_breaklines_tl}
+        {\tl_clear:N \g__listings_breaklines_tl }
     % autowidth functionality: setting the tcbkey 'text width'
       \dim_compare:nNnF
         % Relationship to compare
         {\textwidthoutside}
          <
-        {\g__listings_autowidth@core_dim+\truelefthspace+\linebreakcorrector}
+        {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_dim}}
         % F code execution
         {\pgfkeysalso{text~width = \g__listings_autowidth@core_dim}}
   }
@@ -333,5 +337,5 @@
                     \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
                 }
             }
-\renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codeupperwidth\arabic{code}]{#1}#1}
+\renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codeupperwidth\arabic{code}]{#1}\fbox{#1}}
 

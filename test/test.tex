@@ -22,7 +22,18 @@
 \begin{code*}{Julia}
     ⵌ\the\textwidthⵌ
 \end{code*}
-
+\begin{code*}
+    [Title=This should have breaklines enabled
+        ,autowidth = upper
+    ]{Julia}
+    ⵌ\def\mywidth{\the\textwidth}\hspace{\mywidth}ⵌ
+\end{code*}
+\begin{code*}
+    [Title=This should have breaklines disabled
+        ,autowidth = upper
+    ]{Julia}
+    ⵌ\def\mywidth{\the\textwidth}\hspace{\mywidth+0.00001pt}ⵌ
+\end{code*}
 \begin{minipage}{0.5\textwidth}
     \begin{code}{Julia}
     ⵌ\the\textwidthⵌ
@@ -54,24 +65,28 @@ code\arabic{code}
 \newpage
 \begin{code*}
 [=
-    ,text width = 29.26053pt
-    ,Title = {Hello}
+    ,text width = 22.91808pt
     ,no number
 ]{\TeX}
-    Hello hewwo heh
+    Hello hewwo heh 
+    ⵌ\textwidthoutsideⵌ
 \end{code*}
 \begin{code*}
 [=
     ,autowidth = title
-    ,Title = {Hello}
     ,no number
     ,debug = autowidth
 ]{\TeX}
     Hello hewwo heh
+    ⵌ\textwidthoutsideⵌ
 \end{code*}
 
 \begin{code*}[autowidth = upper, debug = autowidth]{\TeX}
     Long short text
+\end{code*}
+
+\begin{code*}[autowidth = upper]{\TeX}
+    Long text
 \end{code*}
 
 % \eqmakebox[codelowerwidth\arabic{code}]{\tcbuselistingtext}
