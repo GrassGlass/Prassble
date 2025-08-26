@@ -22,17 +22,18 @@
 \begin{code*}{Julia}
     ⵌ\the\textwidthⵌ
 \end{code*}
+\gdef\mywidth{383.60588pt}
 \begin{code*}
     [Title=This should have breaklines enabled
         ,autowidth = upper
     ]{Julia}
-    ⵌ\def\mywidth{\the\textwidth}\hspace{\mywidth}ⵌ
+    ⵌ\hspace{\mywidth}ⵌ
 \end{code*}
 \begin{code*}
     [Title=This should have breaklines disabled
         ,autowidth = upper
     ]{Julia}
-    ⵌ\def\mywidth{\the\textwidth}\hspace{\mywidth+0.00001pt}ⵌ
+    ⵌ\hspace{\mywidth+0.00001pt}ⵌ
 \end{code*}
 \begin{minipage}{0.5\textwidth}
     \begin{code}{Julia}

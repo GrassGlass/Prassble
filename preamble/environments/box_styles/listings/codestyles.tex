@@ -164,14 +164,21 @@
         }
       }
     % Disable breaklines to allow \eqboxwidth{codeupperwidth\arabic{code}} to correctly measure the greatest line width. Enable breaklines if the line width overflows into the margins.
-      \dim_compare:nNnTF
-        % Relationship to compare 
-        {\textwidthoutside} 
-         < 
-        {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_dim}}
-        % TF code execution
-        {\tl_set:Nn \g__listings_breaklines_tl {breaklines}}
-        {\tl_clear:N \g__listings_breaklines_tl }
+      \bool_if:nTF 
+        {\g__listings_autowidth_upper_bool || \g__listings_autowidth_lower_bool} 
+        {
+          \dim_compare:nNnTF
+            % Relationship to compare 
+            {\textwidthoutside} 
+            < 
+            {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_dim}}
+            % TF code execution
+            {\tl_set:Nn \g__listings_breaklines_tl {breaklines}}
+            {\tl_clear:N \g__listings_breaklines_tl }
+        }
+        {
+          \tl_set:Nn \g__listings_breaklines_tl {breaklines}
+        }
     % autowidth functionality: setting the tcbkey 'text width'
       \dim_compare:nNnF
         % Relationship to compare
