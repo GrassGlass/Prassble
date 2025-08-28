@@ -73,35 +73,32 @@ code\arabic{code}
     ⵌ\textwidthoutsideⵌ
 \end{code*}
 \fbox{\parbox{5cm}{line 1\\ line 2}}
-\begin{code*}
-[=
-    ,autowidth = lower
-    ,no number
-    ,debug = autowidth
-    ,listing and text
-]{\TeX}
-    Hello\\ hewwo\\ heh
-\end{code*}
-
 \begin{code*}[OTitle=Super long long long long long long long long long long long long long long long long long long long long title, autowidth = title, debug = autowidth]{\TeX}
     Long short text
 \end{code*}
 
-% \eqmakebox[codelowerwidth\arabic{code}]{\tcbuselistingtext}
-
-% \inputcode*[autowidth = title, OTitle = {Hehe boi}]{test2.tex}
-
-% \begin{code}{Julia}
-%     # using LinearAlgebra #
-
-%     let x
-% \end{code}
-
-% \begin{code}{Text}
-%     testo
-% \end{code}
-% \begin{code*}[Ello]{Text}
-%     testo
-% \end{code*}
+\begin{enumerate}
+    \item \codeinline{TeX}{autowidth = lower}
+    \begin{enumerate}
+        \item \codeinline{TeX}{\l__listings_autowidth_title_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
+        \begin{code*}
+        [=
+            ,autowidth = lower
+            ,no number
+            ,listing and text
+        ]{\TeX}
+            Hello\\ hewwo \hspace{10cm} heh
+        \end{code*}
+        \item \codeinline{TeX}{\l__listings_autowidth_title_dim < \eqboxwidth{codeupperwidth\arabic{code}}}
+        \begin{code*}
+        [=
+            ,autowidth = lower
+            ,no number
+            ,listing and text
+        ]{\TeX}
+            Hello\\ hewwo\\ heh
+        \end{code*}
+    \end{enumerate}
+\end{enumerate}
 
 \end{document}
