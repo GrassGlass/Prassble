@@ -26,7 +26,7 @@
   % Before \tcbinputlisting
       % The value of \textwidth where the corresponding listing environment is located
           % The name is \textwidth*outside* precisely because its the \textwidth (immediately) outside the listing environment
-          \edef\textwidthoutside{\the\textwidth}%
+          \edef\linewidthoutside{\the\textwidth}%
       % The length to move the code line numbers right by, such that they are horizontally centered on their background.
           % It is recommended that only the value \manuallefthspace is altered
           \setlength{\truelefthspace}{\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%

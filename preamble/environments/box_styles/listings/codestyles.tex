@@ -135,7 +135,7 @@
   ,no~number/.code = {\tl_clear:N \g__listings_linenos_tl}
   ,autowidth@core/.code = 
   {
-    % The line width \g__listings_autowidth@core_dim the box should be set to have (given this width is less than \textwidthoutside, i.e. doesn't overflow into the margins)
+    % The line width \g__listings_autowidth@core_dim the box should be set to have (given this width is less than \linewidthoutside, i.e. doesn't overflow into the margins)
       \bool_if:NT \g__listings_autowidth_title_bool
       {
         \dim_set:Nn \l__listings_autowidth_title_dim 
@@ -159,12 +159,18 @@
       }
       \dim_set:Nn \g__listings_autowidth@core_dim 
       {
-        \dim_max:nn 
-        {\l__listings_autowidth_title_dim} 
+        \dim_min:nn
         {
-          \dim_max:nn
-          {\l__listings_autowidth_upper_dim}
-          {\l__listings_autowidth_lower_dim}
+          \linewidthoutside
+        }
+        {
+          \dim_max:nn 
+          {\l__listings_autowidth_title_dim} 
+          {
+            \dim_max:nn
+            {\l__listings_autowidth_upper_dim}
+            {\l__listings_autowidth_lower_dim}
+          }
         }
       }
       \bool_if:nTF 
@@ -173,7 +179,7 @@
           % Autowidth = upper: Disable breaklines to allow \eqboxwidth{codeupperwidth\arabic{code}} to correctly measure the greatest line width. Enable breaklines if the line width overflows into the margins---autowidth ceases to work (the listing behaves as if autowidth wasn't used). (Why? I'm not sure; this is just the behavior I observed and wrote my code around.) 
           \dim_compare:nNnTF
             % Relationship to compare 
-            {\textwidthoutside} 
+            {\linewidthoutside} 
             < 
             {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_dim}}
             % TF code execution
@@ -188,7 +194,7 @@
     % autowidth functionality: setting the tcbkey 'text width'
       \dim_compare:nNnF
         % Relationship to compare
-        {\textwidthoutside}
+        {\linewidthoutside}
          <
         {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_dim}}
         % F code execution
