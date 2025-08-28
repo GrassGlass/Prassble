@@ -1,97 +1,74 @@
 \documentclass[11pt, titlepage, a4paper, oneside]{book}
-\ExplSyntaxOn
-\tl_gclear_new:N \test  
-\tl_set:Ne \test {julia}
-\ExplSyntaxOff
 \input{../preamble/preamble}
-
-% \DisableVerbatimCode{false}
+% \usepackage{showframe}
 
 \begin{document}
-\begin{theorem}
-    Hello there!
-\end{theorem}
-\eqboxwidth{codeupperwidth\arabic{code}}
-
-\newlength{\mylength}
-\setlength{\mylength}{\eqboxwidth{codeupperwidth\arabic{code}}+\lefthspace+13.38109pt-0.00001pt}
-\the\mylength
-\begin{code}[autowidth = upper]{Julia}
-    test ⵌ\hspace{\textwidthoutside}ⵌ
-\end{code}
-\begin{code*}{Julia}
-    ⵌ\the\textwidthⵌ
-\end{code*}
-\gdef\mywidth{383.60588pt}
-\begin{code*}
-    [Title=This should have breaklines enabled
-        ,autowidth = upper
-    ]{Julia}
-    ⵌ\hspace{\mywidth}ⵌ
-\end{code*}
-\begin{code*}
-    [Title=This should have breaklines disabled
-        ,autowidth = upper
-    ]{Julia}
-    ⵌ\hspace{\mywidth+0.00001pt}ⵌ
-\end{code*}
-\begin{minipage}{0.5\textwidth}
-    \begin{code}{Julia}
-    ⵌ\the\textwidthⵌ
-    \end{code}
-    \begin{code}[autowidth = upper]{Julia}
-    ⵌ\hspace{175.18944pt}ⵌ
-    \end{code}
-    code\arabic{code}
-
-    \eqboxwidth{code\arabic{code}}
-    \begin{code}[autowidth = upper]{Julia}
-    ⵌ\hspace{175.18945pt}ⵌ
-    \end{code}
-
-    \def\tcbuselistingtext{mydefinition}
-    \begin{code}[autowidth = upper, OTitle = {\tcbuselistingtext}]{Julia}
-    test
-    \end{code}
-
-    \the\textwidth
-\end{minipage}
-
-code\arabic{code}
-
-\eqboxwidth{code\arabic{code}}
-\inputcode[autowidth = upper]{test.jl}
-\inputcode*{test1.txt}
-
-\newpage
-\begin{code*}
-[=
-    ,text width = 22.91808pt
-    ,no number
-]{\TeX}
-    Hello hewwo heh 
-    ⵌ\textwidthoutsideⵌ
-\end{code*}
-\fbox{\parbox{5cm}{line 1\\ line 2}}
-\begin{code*}[OTitle=Super long long long long long long long long long long long long long long long long long long long long title, autowidth = title, debug = autowidth]{\TeX}
-    Long short text
-\end{code*}
-
+\chapter{ModifiedNewTCBListing}
 \begin{enumerate}
+    \item \codeinline{TeX}{autowidth = title}
+    \begin{enumerate}
+        \item \codeinline{TeX}{\l__listings_autowidth_title_dim <= \textwidthoutside}
+        
+        This box should be of width \codeinline{TeX}{\l__listings_autowidth_title_dim}
+        \begin{code*}
+            [
+                % ,Title={\footnotesize smol}
+                ,Title=smol
+                ,autowidth = title
+            ]{\TeX}
+            Long short text
+        \end{code*}
+        \item \codeinline{TeX}{\l__listings_autowidth_title_dim > \textwidthoutside}
+        
+        This title should break and be of width \codeinline{TeX}{\textwidthoutside}
+        \begin{code*}
+            [
+                ,Title=Super long long long long long long long long long long long long long long long long long long long long title
+                ,autowidth = title
+            ]{\TeX}
+            Long short text
+        \end{code*}
+    \end{enumerate}
+    \item \codeinline{TeX}{autowidth = upper}
+    \begin{enumerate}
+        \begin{code*}{Julia}
+            \xdef\mywidth{\the\textwidth}\mywidth ⵌ\xdef\mywidth{\the\textwidth}ⵌ 
+            \mywidth = ⵌ\mywidthⵌ 
+        \end{code*}
+        \item ~
+        \begin{code*}
+            [
+                ,Title=This should have breaklines enabled
+                ,autowidth = upper
+            ]{Julia}
+            ⵌ\hspace{\mywidth}ⵌ
+        \end{code*}
+        \item ~
+        \begin{code*}
+            [
+                ,Title=This should have breaklines disabled
+                ,autowidth = upper
+            ]{Julia}
+            ⵌ\hspace{\mywidth+0.00001pt}ⵌ
+        \end{code*}
+    \end{enumerate}
     \item \codeinline{TeX}{autowidth = lower}
     \begin{enumerate}
-        \item \codeinline{TeX}{\l__listings_autowidth_title_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
+        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
         \begin{code*}
         [=
+            ,Title=special title
+            ,autowidth = upper %
             ,autowidth = lower
-            ,no number
+            % ,no number
             ,listing and text
         ]{\TeX}
             Hello\\ hewwo \hspace{10cm} heh
         \end{code*}
-        \item \codeinline{TeX}{\l__listings_autowidth_title_dim < \eqboxwidth{codeupperwidth\arabic{code}}}
+        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim < \eqboxwidth{codeupperwidth\arabic{code}}}
         \begin{code*}
         [=
+            ,Title=special title
             ,autowidth = lower
             ,no number
             ,listing and text

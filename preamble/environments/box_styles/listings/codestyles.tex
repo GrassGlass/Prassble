@@ -182,7 +182,7 @@
         }
         {
           % Autowidth = title: the title might be smaller (in width) than the body (upper and lower parts). So, breaklines needs to be enabled to avoid overflowing contents. Why doesn't breaklines essentially disable autowidth in this case (unlike for autowidth = upper)? Breaklines is a minted key that affects only the minted environment---the upper part of the box. 
-          % If autowidth = lower wants to set the text width to something smaller than \l__listings_autowidth_upper_dim, then breaklines must be enabled. Why not just 
+          % If autowidth = lower wants to set the text width to something smaller than \l__listings_autowidth_upper_dim, then breaklines must be enabled. Why not just always have breaklines enabled? We may want autowidth = upper and lower. 
           \tl_set:Nn \g__listings_breaklines_tl {breaklines}
         }
     % autowidth functionality: setting the tcbkey 'text width'
