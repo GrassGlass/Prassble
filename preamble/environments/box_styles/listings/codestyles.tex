@@ -45,10 +45,18 @@
   \dim_new:N \l__listings_autowidth_title_dim
   \dim_new:N \l__listings_autowidth_upper_dim
   \dim_new:N \l__listings_autowidth_lower_dim
-  \dim_new:N \g__listings_autowidth@core_dim
+  \dim_new:N \g__listings_autowidth@core_measured_text_width_dim
+  \dim_new:N \g__listings_autowidth@core_measured_width_dim
+  \dim_new:N \g__listings_autowidth@core_text_width_dim
+  \dim_new:N \g__listings_autowidth_text_width_vs_width_difference_dim 
+  \dim_new:N \g__listings_autowidth@core_max_tcb_text_width_dim
   \cs_new:Npn \__tcb_text_width_to_width:n #1
   {
-    #1+\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper
+    #1+\g__listings_autowidth_text_width_vs_width_difference_dim
+  }
+  \cs_new:Npn \__tcb_width_to_text_width:n #1
+  {
+    #1-\g__listings_autowidth_text_width_vs_width_difference_dim
   }
   \cs_new:Npn \__listings_autowidth_title:n #1
   {
@@ -79,41 +87,29 @@
         { 
           \renewcommand{\labelalignment}{c}
           \begin{enumerate}
-            \item \emph{\textbackslash arabic\{code\}} \({}={}\) \arabic{code}
-            \item \emph{\textbackslash eqboxwidth\{\__listings_debug_argument_formatter:n {tag}\}}
+            \item \codeinline{TeX}{\arabic{code}}:\ \arabic{code}
+            \item \codeinline{TeX}{\eqboxwidth{ⵌ\textlangle tag\textrangleⵌ}}
               \begin{enumerate}
-                \item
-                [
-                    \underline
-                    {
-                      \__listings_debug_argument_formatter:n {tag}
-                    }
-                  ]  
-                \item[codetitlewidth:] \eqboxwidth{codetitlewidth\arabic{code}}\ \rule{\eqboxwidth{codetitlewidth\arabic{code}}}{1pt}
-                \item[codeupperwidth:] \eqboxwidth{codeupperwidth\arabic{code}}\ \rule{\eqboxwidth{codeupperwidth\arabic{code}}}{1pt}
-                \item[codelowerwidth:] \eqboxwidth{codelowerewidth\arabic{code}}\ \rule{\eqboxwidth{codelowerwidth\arabic{code}}}{1pt}
+                \item[\underline{\codeinline{TeX}{ⵌ\textlangle tag\textrangleⵌ}}]
+                \item[\codeinline{TeX}{codetitlewidth}:] \eqboxwidth{codetitlewidth\arabic{code}}\ \rule{\eqboxwidth{codetitlewidth\arabic{code}}}{1pt}
+                \item[\codeinline{TeX}{codeupperwidth}:] \eqboxwidth{codeupperwidth\arabic{code}}\ \rule{\eqboxwidth{codeupperwidth\arabic{code}}}{1pt}
+                \item[\codeinline{TeX}{codelowerwidth}:] \eqboxwidth{codelowerewidth\arabic{code}}\ \rule{\eqboxwidth{codelowerwidth\arabic{code}}}{1pt}
               \end{enumerate}
-            \item \emph{\textbackslash l\textunderscore\textunderscore listings\textunderscore autowidth\textunderscore \__listings_debug_argument_formatter:n {component}\textunderscore dim}
+            \item \codeinline{TeX}{\l__listings_autowidth_ⵌ\textlangle component\textrangleⵌ_dim}
               \begin{enumerate}
-                \item
-                [
-                  \underline
-                  {
-                    \__listings_debug_argument_formatter:n
-                    {
-                      component
-                    }
-                  }
-                ] 
-                \item[title:] \dim_use:N \l__listings_autowidth_title_dim \ \rule{\l__listings_autowidth_title_dim}{1pt}
-                \item[upper:] \dim_use:N \l__listings_autowidth_upper_dim \ \rule{\l__listings_autowidth_upper_dim}{1pt}
-                \item[lower:] \dim_use:N \l__listings_autowidth_lower_dim \ \rule{\l__listings_autowidth_lower_dim}{1pt}
+                \item[\underline{\codeinline{TeX}{ⵌ\textlangle component\textrangleⵌ}}]
+                \item[\codeinline{TeX}{title}:] \dim_use:N \l__listings_autowidth_title_dim \ \rule{\l__listings_autowidth_title_dim}{1pt}
+                \item[\codeinline{TeX}{upper}:] \dim_use:N \l__listings_autowidth_upper_dim \ \rule{\l__listings_autowidth_upper_dim}{1pt}
+                \item[\codeinline{TeX}{lower}:] \dim_use:N \l__listings_autowidth_lower_dim \ \rule{\l__listings_autowidth_lower_dim}{1pt}
               \end{enumerate}
+          \item \codeinline{TeX}{\g__listings_autowidth@core_measured_text_width_dim}:\ \dim_use:N \g__listings_autowidth@core_measured_text_width_dim 
+          \item \codeinline{TeX}{\g__listings_autowidth@core_measured_width_dim}:\ \dim_use:N \g__listings_autowidth@core_measured_width_dim
+          \item \codeinline{TeX}{\linewidthoutside}:\  \linewidthoutside
+          \item \codeinline{TeX}{\g__listings_autowidth@core_max_tcb_text_width_dim}:\ \dim_use:N \g__listings_autowidth@core_max_tcb_text_width_dim
         \end{enumerate}
-        \rule{\textwidth}{1pt}
+        \rule{\textwidth}{0.75pt}
         }
   }
-    \cs_new:Npn \__listings_debug_argument_formatter:n #1 {\textlangle #1 \textrangle}
   \bool_new:N \g__listings_autowidth_title_bool
   \bool_new:N \g__listings_autowidth_upper_bool
   \bool_new:N \g__listings_autowidth_lower_bool
@@ -135,7 +131,7 @@
   ,no~number/.code = {\tl_clear:N \g__listings_linenos_tl}
   ,autowidth@core/.code = 
   {
-    % The line width \g__listings_autowidth@core_dim the box should be set to have (given this width is less than \linewidthoutside, i.e. doesn't overflow into the margins)
+    % The line width \g__listings_autowidth@core_measured_text_width_dim the box should be set to have (given this width is less than \linewidthoutside, i.e. doesn't overflow into the margins)
       \bool_if:NT \g__listings_autowidth_title_bool
       {
         \dim_set:Nn \l__listings_autowidth_title_dim 
@@ -157,13 +153,8 @@
           \eqboxwidth{codelowerwidth\arabic{code}}
         }
       }
-      \dim_set:Nn \g__listings_autowidth@core_dim 
+      \dim_set:Nn \g__listings_autowidth@core_measured_text_width_dim 
       {
-        \dim_min:nn
-        {
-          \linewidthoutside
-        }
-        {
           \dim_max:nn 
           {\l__listings_autowidth_title_dim} 
           {
@@ -171,17 +162,26 @@
             {\l__listings_autowidth_upper_dim}
             {\l__listings_autowidth_lower_dim}
           }
-        }
+      }
+      \dim_set:Nn \g__listings_autowidth_text_width_vs_width_difference_dim  {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
+      \dim_set:Nn \g__listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\linewidthoutside}}
+      \dim_set:Nn \g__listings_autowidth@core_measured_width_dim {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_measured_text_width_dim}}
+      \dim_set:Nn \g__listings_autowidth@core_text_width_dim
+      {
+        \dim_min:nn 
+          {\g__listings_autowidth@core_max_tcb_text_width_dim} {\g__listings_autowidth@core_measured_text_width_dim} 
       }
       \bool_if:nTF 
-        {\g__listings_autowidth_upper_bool || {\g__listings_autowidth_lower_bool && ! \dim_compare_p:nNn {\eqboxwidth{codeupperwidth\arabic{code}}}>{\l__listings_autowidth_lower_dim}}} 
+        {
+          \g__listings_autowidth_upper_bool || {\g__listings_autowidth_lower_bool && ! \dim_compare_p:nNn {\eqboxwidth{codeupperwidth\arabic{code}}}>{\l__listings_autowidth_lower_dim}}
+        } 
         {
           % Autowidth = upper: Disable breaklines to allow \eqboxwidth{codeupperwidth\arabic{code}} to correctly measure the greatest line width. Enable breaklines if the line width overflows into the margins---autowidth ceases to work (the listing behaves as if autowidth wasn't used). (Why? I'm not sure; this is just the behavior I observed and wrote my code around.) 
           \dim_compare:nNnTF
             % Relationship to compare 
-            {\linewidthoutside} 
+            {\g__listings_autowidth@core_max_tcb_text_width_dim} 
             < 
-            {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_dim}}
+            {\g__listings_autowidth@core_measured_text_width_dim}
             % TF code execution
             {\tl_set:Nn \g__listings_breaklines_tl {breaklines}}
             {\tl_clear:N \g__listings_breaklines_tl }
@@ -192,13 +192,7 @@
           \tl_set:Nn \g__listings_breaklines_tl {breaklines}
         }
     % autowidth functionality: setting the tcbkey 'text width'
-      \dim_compare:nNnF
-        % Relationship to compare
-        {\linewidthoutside}
-         <
-        {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_dim}}
-        % F code execution
-        {\pgfkeysalso{text~width = \g__listings_autowidth@core_dim}}
+      \pgfkeysalso{text~width = \g__listings_autowidth@core_text_width_dim}
   }
   ,autowidth/.is~choice
     ,autowidth/title/.code = 
