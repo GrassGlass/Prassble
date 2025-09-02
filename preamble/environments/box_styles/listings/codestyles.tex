@@ -38,6 +38,7 @@
   \dim_new:N \l__listings_autowidth_title_dim
   \dim_new:N \l__listings_autowidth_upper_dim
   \dim_new:N \l__listings_autowidth_lower_dim
+  \dim_new:N \g__listings_autowidth_true_left_hspace_dim
   \dim_new:N \g__listings_autowidth@core_measured_text_width_dim
   \dim_new:N \g__listings_autowidth@core_measured_width_dim
   \dim_new:N \g__listings_autowidth@core_text_width_dim
@@ -226,7 +227,7 @@
     % codestylebase = { <Unparenthesized Title> }
   ,codestylebase/.style =
   {
-    ,left                            = {\truelefthspace}
+    ,left                            = {\g__listings_autowidth_true_left_hspace_dim}
     ,listing~engine                  = minted
     ,minted~style                    = staroffice
     ,minted~options                  = 
