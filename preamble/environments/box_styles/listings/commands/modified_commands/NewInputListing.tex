@@ -18,45 +18,51 @@
 %% This work consists of all files listed in README
 %%
 \makeatletter
+\ExplSyntaxOn
   % Add \centering, approperiate line breaks, and define some important lengths, for listing environments and input listings. 
       % Modified from tcolorbox source: https://github.com/T-F-S/tcolorbox/releases/tag/v6.7.1
       % Date of access: 24/7/25 (DD/MM/YY)
       % tcolorbox Version 6.7.1 (2025-07-08)
   \long\def\modifiedtcbinputlisting#1{%
   % Before \tcbinputlisting
-      % The value of \textwidth where the corresponding listing environment is located
-          % The name is \textwidth*outside* precisely because its the \textwidth (immediately) outside the listing environment
-          \edef\linewidthoutside{\the\textwidth}%
+      % The value of \linewidth where the corresponding listing environment is located
+          % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
+          \dim_set:Nn \g__listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
       % The length to move the code line numbers right by, such that they are horizontally centered on their background.
-          % It is recommended that only the value \manuallefthspace is altered
-          \setlength{\truelefthspace}{\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%
+          % It is recommended that only the length \lefthspace is altered
+          \dim_set:Nn \g__listings_autowidth_true_left_hspace_dim {\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%
     % Centering the \tcbinputlisting
-    \par\begingroup\centering%
+    \par%
+    \begingroup%
+      \centering%
   % The \tcbinputlisting 
     \stepcounter{tcblisting}\edef\thetcblistingcount{\thetcblisting}%
     \tcb@layer@pushup%
     \tcb@apply@box@options{capture=minipage,#1}%
     \tcbinputlisting@core%
   % After \tcbinputlisting
-    \stepcounter{code}\vspace{-\vlengthafterlisting}\endgroup%
+      \__listings_autowidth_lower_eqsavebox:n{\tcbuselistingtext}%
+      \__listings_debug_autowidth:%
+      \stepcounter{code}%
+      \vspace{-\vlengthafterlisting}%
+    \endgroup%
   }
   %
   %
-  \ExplSyntaxOn
-    \cs_new:Npn \__tcobox_new_modified_TCBInputListing:Nnnnn #1#2#3#4#5
-      {
-        \__tcobox_process_newtcolorbox:nn { #2 }{ #3 }
-        \exp_args:Nc #1 { #3 }{ #4 }{ \modifiedtcbinputlisting{#5,options@for=#3} }
-      }
-    \NewDocumentCommand \__tcobox_new_modified_TCBInputListing:w { m +O{} m }
-      {
-        \__tcobox_set_backslash_removed:Nn \l__tcobox_tmpa_tl { #3 }
-        \exp_args:NNnV \__tcobox_new_modified_TCBInputListing:Nnnnn #1 {#2} \l__tcobox_tmpa_tl
-      }
-    \NewDocumentCommand \ModifiedNewTCBInputListing { }
-      {
-        \bool_set_true:N \l__tcobox_prevent_init_overwrite_bool
-        \__tcobox_new_modified_TCBInputListing:w \NewDocumentCommand
-      }
-  \ExplSyntaxOff
+  \cs_new:Npn \__tcobox_new_modified_TCBInputListing:Nnnnn #1#2#3#4#5
+    {
+      \__tcobox_process_newtcolorbox:nn { #2 }{ #3 }
+      \exp_args:Nc #1 { #3 }{ #4 }{ \modifiedtcbinputlisting{#5,options@for=#3} }
+    }
+  \NewDocumentCommand \__tcobox_new_modified_TCBInputListing:w { m +O{} m }
+    {
+      \__tcobox_set_backslash_removed:Nn \l__tcobox_tmpa_tl { #3 }
+      \exp_args:NNnV \__tcobox_new_modified_TCBInputListing:Nnnnn #1 {#2} \l__tcobox_tmpa_tl
+    }
+  \NewDocumentCommand \ModifiedNewTCBInputListing { }
+    {
+      \bool_set_true:N \l__tcobox_prevent_init_overwrite_bool
+      \__tcobox_new_modified_TCBInputListing:w \NewDocumentCommand
+    }
+\ExplSyntaxOff
 \makeatother

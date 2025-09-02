@@ -6,6 +6,17 @@
 \input{../preamble/preamble}
 \usepackage{showframe}
 
+\newcounter{codeinput}
+\newwrite\tmptextfile
+\NewDocumentEnvironment{codeinput}{ O{} +b }{
+    \stepcounter{codeinput}%
+    \def\tmpfilename{\jobname\arabic{codeinput}.txt}%
+    \immediate\openout\tmptextfile=\tmpfilename%
+    \immediate\write\tmptextfile{#2}%
+    \immediate\closeout\tmptextfile%
+    \inputcode[#1]{\tmpfilename}
+}{ }
+
 \begin{document}
 \chapter{ModifiedNewTCBListing}
 \section{One Autowidth Option Selected}
@@ -379,5 +390,11 @@
         \hspace{\mywidth+0.00001pt}
     \end{code*}
 \end{enumerate}
+
+\chapter{ModifiedNewTCBInputListing}
+\inputcode{test.jl}
+\begin{codeinput}
+    Hello
+\end{codeinput}
 
 \end{document}
