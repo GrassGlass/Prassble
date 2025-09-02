@@ -48,15 +48,16 @@
   \dim_new:N \g__listings_autowidth@core_measured_text_width_dim
   \dim_new:N \g__listings_autowidth@core_measured_width_dim
   \dim_new:N \g__listings_autowidth@core_text_width_dim
-  \dim_new:N \g__listings_autowidth_text_width_vs_width_difference_dim 
+  \dim_new:N \g__listings_autowidth@core_text_width_vs_width_difference_dim 
   \dim_new:N \g__listings_autowidth@core_max_tcb_text_width_dim
+  \dim_new:N \g__listings_autowidth@core_max_tcb_width_dim
   \cs_new:Npn \__tcb_text_width_to_width:n #1
   {
-    #1+\g__listings_autowidth_text_width_vs_width_difference_dim
+    #1+\g__listings_autowidth@core_text_width_vs_width_difference_dim
   }
   \cs_new:Npn \__tcb_width_to_text_width:n #1
   {
-    #1-\g__listings_autowidth_text_width_vs_width_difference_dim
+    #1-\g__listings_autowidth@core_text_width_vs_width_difference_dim
   }
   \cs_new:Npn \__listings_autowidth_title:n #1
   {
@@ -104,8 +105,8 @@
               \end{enumerate}
           \item \codeinline{TeX}{\g__listings_autowidth@core_measured_text_width_dim}:\ \dim_use:N \g__listings_autowidth@core_measured_text_width_dim 
           \item \codeinline{TeX}{\g__listings_autowidth@core_measured_width_dim}:\ \dim_use:N \g__listings_autowidth@core_measured_width_dim
-          \item \codeinline{TeX}{\linewidthoutside}:\  \linewidthoutside
           \item \codeinline{TeX}{\g__listings_autowidth@core_max_tcb_text_width_dim}:\ \dim_use:N \g__listings_autowidth@core_max_tcb_text_width_dim
+          \item \codeinline{TeX}{\g__listings_autowidth@core_max_tcb_width_dim}:\  \dim_use:N \g__listings_autowidth@core_max_tcb_width_dim
         \end{enumerate}
         \rule{\textwidth}{0.75pt}
         }
@@ -131,7 +132,7 @@
   ,no~number/.code = {\tl_clear:N \g__listings_linenos_tl}
   ,autowidth@core/.code = 
   {
-    % The line width \g__listings_autowidth@core_measured_text_width_dim the box should be set to have (given this width is less than \linewidthoutside, i.e. doesn't overflow into the margins)
+    % The line width \g__listings_autowidth@core_measured_text_width_dim the box should be set to have (given this width is less than \g__listings_autowidth@core_max_tcb_width_dim, i.e. doesn't overflow into the margins)
       \bool_if:NT \g__listings_autowidth_title_bool
       {
         \dim_set:Nn \l__listings_autowidth_title_dim 
@@ -163,8 +164,8 @@
             {\l__listings_autowidth_lower_dim}
           }
       }
-      \dim_set:Nn \g__listings_autowidth_text_width_vs_width_difference_dim  {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
-      \dim_set:Nn \g__listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\linewidthoutside}}
+      \dim_set:Nn \g__listings_autowidth@core_text_width_vs_width_difference_dim  {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
+      \dim_set:Nn \g__listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\g__listings_autowidth@core_max_tcb_width_dim}}
       \dim_set:Nn \g__listings_autowidth@core_measured_width_dim {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_measured_text_width_dim}}
       \dim_set:Nn \g__listings_autowidth@core_text_width_dim
       {

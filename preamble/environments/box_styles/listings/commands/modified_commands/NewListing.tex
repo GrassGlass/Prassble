@@ -24,6 +24,7 @@
       % The value of \linewidth where the corresponding listing environment is located
           % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
           \edef\linewidthoutside{\the\linewidth}%
+          \dim_set:Nn \g__listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
       % The length to move the code line numbers right by, such that they are horizontally centered on their background.
           % It is recommended that only the length \lefthspace is altered
           \setlength{\truelefthspace}{\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%
