@@ -17,15 +17,8 @@
 %%
 %% This work consists of all files listed in README
 %%
-% User level comparator
-    % source: https://tex.stackexchange.com/a/748134/383565
 \makeatletter
 \ExplSyntaxOn
-\cs_set_eq:NN \DimComparenNnT \dim_compare:nNnT
-\cs_set_eq:NN \DimComparenNnTF \dim_compare:nNnTF
-\cs_set_eq:NN \BoolLazyOrnnT \bool_lazy_or:nnT
-\cs_set_eq:NN \BoolLazyOrnnTF \bool_lazy_or:nnTF
-\cs_set_eq:NN \TLIfEqeeT \tl_if_eq:eeT
 
 % Colors
 \def\ColorCodeBase{Maroon}
@@ -120,15 +113,6 @@
   \tl_set:Nn \g__listings_breaklines_tl {breaklines}
 
 \tcbset{
-% expl3 equivalents
-    % Help sourced from https://tex.stackexchange.com/a/748130/383565
-  ,DimComparenNnT/.code~n~args={4}{\DimComparenNnT{#1}#2{#3}{\pgfkeysalso{#4}}}
-  ,DimComparenNnTF/.code~n~args={5}{\DimComparenNnTF{#1}#2{#3}{\pgfkeysalso{#4}}{\pgfkeysalso{#5}}}
-  ,BoolLazyOrnnT/.code~n~args={4}{\BoolLazyOrnnT{#1}{#2}{\pgfkeysalso{#3}}}
-  ,BoolLazyOrnnTF/.code~n~args={4}{\BoolLazyOrnnTF{#1}{#2}{\pgfkeysalso{#3}}{\pgfkeysalso{#4}}}
-  ,TLIfEqeeT/.code~n~args={3}{\TLIfEqeeT{#1}{#2}{\pgfkeysalso{#3}}}
-  % ,TLIFEqeeT/.code~n~args={3}{\TLIfEqeeT{#1}{#2}{\pgfkeysalso{#3}}}
-% Listing keys
   ,no~number/.code = {\tl_clear:N \g__listings_linenos_tl}
   ,autowidth@core/.code = 
   {
