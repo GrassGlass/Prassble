@@ -117,6 +117,8 @@
   ,no~number/.code = {\tl_clear:N \g__listings_linenos_tl}
   ,autowidth@core/.code = 
   {
+      % The default tcb text width the box should be set to have, in the first compilation where eqparbox is still calculating the required widths.  
+      %% \dim_set:Nn \g__listings_autowidth@core_text_width_dim {\g__listings_autowidth@core_max_tcb_width_dim}
     % The line width \g__listings_autowidth@core_measured_text_width_dim the box should be set to have (given this width is less than \g__listings_autowidth@core_max_tcb_width_dim, i.e. doesn't overflow into the margins)
       \bool_if:NT \g__listings_autowidth_title_bool
       {
