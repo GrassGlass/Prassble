@@ -93,14 +93,16 @@
     }
 
 % Custom setup
-  % Easy input of multiple files
+  % Easy input of multiple files; \Input is \input but with the file path taken relative to preamble.tex
   \ExplSyntaxOn
   \clist_new:N \l__preamble_files_to_be_input_clist
+  \tl_new:N \g_preamble_path_tl
   \tl_new:N \l__preamble_path_to_prepend_tl
+  \tl_gset:Ne \g_preamble_path_tl {\CurrentFilePath}
   \NewDocumentCommand{\Input}{ O{} m }{
-    \tl_set:Nn \l__preamble_path_to_prepend_tl {#1/}
+    \tl_set:Nn \l__preamble_path_to_prepend_tl {#1}
     \clist_set:Nn \l__preamble_files_to_be_input_clist {#2} 
-    \clist_map_inline:Nn \l__preamble_files_to_be_input_clist {\input{\CurrentFilePath/\l__preamble_path_to_prepend_tl/##1}}
+    \clist_map_inline:Nn \l__preamble_files_to_be_input_clist {\input{\g_preamble_path_tl/\l__preamble_path_to_prepend_tl/##1}}
   }
   \ExplSyntaxOff
   
