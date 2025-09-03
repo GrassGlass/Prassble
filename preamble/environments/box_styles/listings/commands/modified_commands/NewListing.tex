@@ -22,28 +22,29 @@
   \newenvironment{modifiedtcblisting}[1]{%
   % Before the tcblisting environment
       % The value of \linewidth where the corresponding listing environment is located
-          % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
-          \dim_set:Nn \g__listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
+        % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
+        \dim_set:Nn \g__listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
       % The length to move the code line numbers right by, such that they are horizontally centered on their background.
-          % It is recommended that only the length \lefthspace is altered
-          \dim_set:Nn \g__listings_autowidth_true_left_hspace_dim {\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%
+        % It is recommended that only the length \lefthspace is altered
+        \dim_set:Nn \g__listings_autowidth_true_left_hspace_dim {\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%
     % Centering the tcblisting environment
     \par%
-    \begingroup%
+    \begingroup%=====%
       \centering%
-    % The tcblisting environment 
+  % The tcblisting environment 
       \stepcounter{tcblisting}\edef\thetcblistingcount{\thetcblisting}%
       \tcb@layer@pushup%
       \tcb@apply@box@options{capture=minipage,#1}%
       \begingroup\tcbverbatimwrite{\kvtcb@listingfile}%
-    }{\endtcbverbatimwrite\endgroup%
-      \tcbinputlisting@core%
-    % After the tcblisting environment
+  }
+  {\endtcbverbatimwrite\endgroup%
+    \tcbinputlisting@core%
+  % After the tcblisting environment
       \__listings_autowidth_lower_eqsavebox:n{\tcbuselistingtext}%
       \__listings_debug_autowidth:%
       \stepcounter{code}%
       \vspace{-\vlengthafterlisting}%
-    \endgroup%
+    \endgroup%=====%
   }
   %
   %

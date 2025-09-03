@@ -26,11 +26,11 @@
   \long\def\modifiedtcbinputlisting#1{%
   % Before \tcbinputlisting
       % The value of \linewidth where the corresponding listing environment is located
-          % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
-          \dim_set:Nn \g__listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
+        % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
+        \dim_set:Nn \g__listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
       % The length to move the code line numbers right by, such that they are horizontally centered on their background.
-          % It is recommended that only the length \lefthspace is altered
-          \dim_set:Nn \g__listings_autowidth_true_left_hspace_dim {\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%
+        % It is recommended that only the length \lefthspace is altered
+        \dim_set:Nn \g__listings_autowidth_true_left_hspace_dim {\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}%
     % Centering the \tcbinputlisting
     \par%
     \begingroup%

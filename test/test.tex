@@ -4,6 +4,9 @@
 \ExplSyntaxOff
 \documentclass[11pt, titlepage, a4paper, oneside]{book}
 \input{../preamble/preamble}
+
+\renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codeupperwidth\arabic{code}]{#1}\fbox{#1}}
+
 \usepackage{showframe}
 
 \newcounter{codeinput}
@@ -20,6 +23,9 @@
 
 \begin{document}
 This file is a compilation of various uses of the listing boxes generated with \codeinline{TeX}{\ModifiedNewTCBListing} and \codeinline{TeX}{\ModifiedNewTCBInputListing}. In this way, robustness checks are performed to ensure they function correctly---as bug-free as possible.
+\begin{code*}[debug=autowidth]{Text}
+    Hello
+\end{code*}
 \chapter{ModifiedNewTCBListing}
 \input{test_ModifiedNewTCBListing.tex}
 \begin{code*}[autowidth = upper, debug = autowidth]{Text}

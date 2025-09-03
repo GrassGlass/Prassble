@@ -117,7 +117,6 @@
   ,no~number/.code = {\tl_clear:N \g__listings_linenos_tl}
   ,autowidth@core/.code = 
   {
-      % The default tcb text width the box should be set to have, in the first compilation where eqparbox is still calculating the required widths.  
     % The line width \g__listings_autowidth@core_measured_text_width_dim the box should be set to have (given this width is less than \g__listings_autowidth@core_max_tcb_width_dim, i.e. doesn't overflow into the margins)
       \bool_if:NT \g__listings_autowidth_title_bool
       {
@@ -153,6 +152,7 @@
       \dim_set:Nn \g__listings_autowidth@core_text_width_vs_width_difference_dim  {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
       \dim_set:Nn \g__listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\g__listings_autowidth@core_max_tcb_width_dim}}
       \dim_set:Nn \g__listings_autowidth@core_measured_width_dim {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_measured_text_width_dim}}
+      % The default tcb text width the box should be set to have, in the first compilation where eqparbox is still calculating the required widths.  
       \dim_compare:nNnTF 
       {\eqboxwidth{codeupperwidth\arabic{code}}}
        =
@@ -347,5 +347,4 @@
                     \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
                 }
             }
-\renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codeupperwidth\arabic{code}]{#1}\fbox{#1}}
-
+\renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codeupperwidth\arabic{code}]{#1}#1}
