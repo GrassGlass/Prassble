@@ -140,33 +140,33 @@
           \eqboxwidth{codelowerwidth\arabic{code}}
         }
       }
+      \dim_set:Nn \g__listings_autowidth@core_measured_text_width_dim 
+        {
+          \dim_max:nn 
+          {\l__listings_autowidth_title_dim} 
+          {
+            \dim_max:nn
+            {\l__listings_autowidth_upper_dim}
+            {\l__listings_autowidth_lower_dim}
+          }
+        }
+      \dim_set:Nn \g__listings_autowidth@core_text_width_vs_width_difference_dim  {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
+      \dim_set:Nn \g__listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\g__listings_autowidth@core_max_tcb_width_dim}}
+      \dim_set:Nn \g__listings_autowidth@core_measured_width_dim {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_measured_text_width_dim}}
       \dim_compare:nNnTF 
       {\eqboxwidth{codeupperwidth\arabic{code}}}
        =
       {0pt}
       {
         %* Potentially fragile code
-        \dim_set:Nn \g__listings_autowidth@core_measured_text_width_dim {\g__listings_autowidth@core_max_tcb_width_dim}
+        \dim_set:Nn \g__listings_autowidth@core_text_width_dim {\g__listings_autowidth@core_max_tcb_width_dim}
       }
       {
-        \dim_set:Nn \g__listings_autowidth@core_measured_text_width_dim 
+        \dim_set:Nn \g__listings_autowidth@core_text_width_dim
         {
-            \dim_max:nn 
-            {\l__listings_autowidth_title_dim} 
-            {
-              \dim_max:nn
-              {\l__listings_autowidth_upper_dim}
-              {\l__listings_autowidth_lower_dim}
-            }
-        }
-      }
-      \dim_set:Nn \g__listings_autowidth@core_text_width_vs_width_difference_dim  {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
-      \dim_set:Nn \g__listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\g__listings_autowidth@core_max_tcb_width_dim}}
-      \dim_set:Nn \g__listings_autowidth@core_measured_width_dim {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_measured_text_width_dim}}
-      \dim_set:Nn \g__listings_autowidth@core_text_width_dim
-      {
-        \dim_min:nn 
-          {\g__listings_autowidth@core_max_tcb_text_width_dim} {\g__listings_autowidth@core_measured_text_width_dim} 
+          \dim_min:nn 
+            {\g__listings_autowidth@core_max_tcb_text_width_dim} {\g__listings_autowidth@core_measured_text_width_dim} 
+        } 
       }
       \bool_if:nTF 
         {
