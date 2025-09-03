@@ -93,16 +93,22 @@
     }
 
 % Custom setup
-  % Easy input of multiple files; \Input is \input but with the file path taken relative to preamble.tex
+
+  % Easy input of multiple files; \Input is \input but with the file path taken relative to
+    % 1. the directory preamble, if \Input is used before \begin{document}
+    % 2. the parent directory of the folder preamble (which in this case is the directory Prassble), if \Input is used after \begin{document}
   \ExplSyntaxOn
   \clist_new:N \l__preamble_files_to_be_input_clist
-  \tl_new:N \g_preamble_path_tl
-  \tl_new:N \l__preamble_path_to_prepend_tl
-  \tl_gset:Ne \g_preamble_path_tl {\CurrentFilePath}
+  \tl_new:N \g_file_directory_to_be_used_tl
+  \tl_new:N \g_preamble_path_to_preamble_tl
+  \tl_new:N \l__preamble_relative_path_to_prepend_tl
+  \tl_gset:Ne \g_preamble_path_to_preamble_tl {\CurrentFilePath}
+  \tl_set_eq:NN \g_file_directory_to_be_used_tl \g_preamble_path_to_preamble_tl
+  \AtEndPreamble{\tl_gset:Ne \g_file_directory_to_be_used_tl {\g_preamble_path_to_preamble_tl/../}}
   \NewDocumentCommand{\Input}{ O{} m }{
-    \tl_set:Nn \l__preamble_path_to_prepend_tl {#1}
+    \tl_set:Nn \l__preamble_relative_path_to_prepend_tl {#1}
     \clist_set:Nn \l__preamble_files_to_be_input_clist {#2} 
-    \clist_map_inline:Nn \l__preamble_files_to_be_input_clist {\input{\g_preamble_path_tl/\l__preamble_path_to_prepend_tl/##1}}
+    \clist_map_inline:Nn \l__preamble_files_to_be_input_clist {\input{\g_file_directory_to_be_used_tl/\l__preamble_relative_path_to_prepend_tl/##1}}
   }
   \ExplSyntaxOff
   
@@ -143,6 +149,8 @@
   }
 
   % page formatting
+    % The color of the headers and footers
+    \definecolor{HeaderColor}{RGB}{0,82,155} 
   \Input{page-formatting.tex}
 
   % Refer

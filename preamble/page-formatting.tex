@@ -17,28 +17,39 @@
 %%
 %% This work consists of all files listed in README
 %%
-% page head
-\definecolor{mychapterblue}{RGB}{0,82,155}
 
-  % source1: https://tex.stackexchange.com/a/311505/383565
-  % source2: https://sg.mirrors.cicku.me/ctan/macros/latex/contrib/titlesec/titlesec.pdf
-  \newpagestyle{main}[\sffamily\color{mychapterblue}]{
+% pagestyles
+  % main pagestyle
+    % source1: https://tex.stackexchange.com/a/311505/383565
+    % source2: https://sg.mirrors.cicku.me/ctan/macros/latex/contrib/titlesec/titlesec.pdf
+  \newpagestyle{main}[\sffamily\color{HeaderColor}]
+  {
     \sethead[\thepage][\chaptertitle][\thesection] % even
-            {\thesection}{\sectiontitle}{\thepage}} % odd    
+    {\thesection}{\sectiontitle}{\thepage}         % odd
+  } 
   \pagestyle{main}
+
+  % hw pagestyle
+  \newpagestyle{hw}[\sffamily\color{HeaderColor}]
+  {
+  \sethead{Author}{\textlangle Course Name\textrangle\ Homework \#1}{\thepage}
+  \color{HeaderColor}\headrule
+  }
+
+% page foot: remove page number from the bottom of chapter pages
+  \assignpagestyle{\chapter}{empty}
 
 % chapter
   % Source: https://tex.stackexchange.com/a/169435
-
   \titleformat{\chapter}[display]
-    {\normalfont\bfseries\color{mychapterblue}}
+    {\normalfont\bfseries\color{HeaderColor}}
     {\filleft\hspace*{-60pt}%
       \rotatebox[origin=c]{90}{%
         \normalfont\color{black}\Large%
           \textls[180]{\textsc{\chaptertitlename}}%
       }\hspace{10pt}%
       {\setlength\fboxsep{0pt}%
-      \colorbox{mychapterblue}{\parbox[c][3cm][c]{2.5cm}{%
+      \colorbox{HeaderColor}{\parbox[c][3cm][c]{2.5cm}{%
         \centering\color{white}\fontsize{80}{90}\selectfont\thechapter}%
       }}%
     }
@@ -48,11 +59,11 @@
 % section
   % Source: https://tex.stackexchange.com/a/738974/383565
   \titleformat{\section}[hang]
-    {\normalfont\Large\bfseries\color{mychapterblue}}
+    {\normalfont\Large\bfseries\color{HeaderColor}}
     {%
     \begingroup
     \setlength\fboxsep{3.5pt}%
-    \colorbox{mychapterblue}{\color{white}\thesection}%
+    \colorbox{HeaderColor}{\color{white}\thesection}%
     \endgroup
     }
     {5pt}
@@ -60,7 +71,7 @@
 
 % subsection
   \titleformat{\subsection}[hang]
-    {\normalfont\Large\bfseries\color{mychapterblue}}
+    {\normalfont\Large\bfseries\color{HeaderColor}}
     {%
     \begingroup
     \setlength\fboxsep{3pt}%

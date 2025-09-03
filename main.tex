@@ -21,7 +21,7 @@
 \AtEndDocument { \benchmark_toc: }
 \benchmark_tic:
 \ExplSyntaxOff
-\documentclass[11pt, titlepage, a4paper, oneside]{book}
+\documentclass[11pt, a4paper]{book}
 \input{preamble/preamble}
 
 \begin{document}
@@ -47,8 +47,12 @@ Contents of the first subsection of this document
 \end{proof}
 
 \subsection{Homework 1}
-\Input[../files/homework/core_files]{hw1.tex} 
-% Or equivalently, \Input{../files/homework/core_files/hw1.tex} 
+\Input{files/homework/hw1.tex}
 % If one is going to \input many files of a certain type (e.g. hw .tex files) in various places, it may be wise to define a relevant command (e.g. \HWInput) for both clarity and brevity. 
+\newpage
+This is the second page.
+
+\newpage
+This is the third page.
 
 \end{document}
