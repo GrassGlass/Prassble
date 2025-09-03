@@ -17,6 +17,21 @@
 %%
 %% This work consists of all files listed in README
 %%
+% Set default pagestyle to main
+\ExplSyntaxOn
+\tl_new:N \g__preamble_pagestyle_tl
+\NewDocumentCommand{\Pagestyle}{ m }
+{
+  \tl_set:Nn \g__preamble_pagestyle_tl {#1}
+  \pagestyle{#1}
+}
+\AtEndPreamble{
+  \tl_if_empty:NT \g__preamble_pagestyle_tl 
+  {
+    \Pagestyle{main}
+  }
+}
+\ExplSyntaxOff
 
 % pagestyles
   % main pagestyle
@@ -27,13 +42,12 @@
     \sethead[\thepage][\chaptertitle][\thesection] % even
     {\thesection}{\sectiontitle}{\thepage}         % odd
   } 
-  \pagestyle{main}
 
   % hw pagestyle
   \makeatletter
     \newpagestyle{hw}[\sffamily\color{HeaderColor}]
     {
-    \sethead{\@author}{\textlangle Course Name\textrangle\ Homework \#1}{\thepage}
+    \sethead{\@author}{\CourseName\ Homework \#\theHWNumber}{\thepage}
     \color{HeaderColor}\headrule
     }
   \makeatother
