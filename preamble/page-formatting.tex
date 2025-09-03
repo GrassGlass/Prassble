@@ -30,11 +30,13 @@
   \pagestyle{main}
 
   % hw pagestyle
-  \newpagestyle{hw}[\sffamily\color{HeaderColor}]
-  {
-  \sethead{Author}{\textlangle Course Name\textrangle\ Homework \#1}{\thepage}
-  \color{HeaderColor}\headrule
-  }
+  \makeatletter
+    \newpagestyle{hw}[\sffamily\color{HeaderColor}]
+    {
+    \sethead{\@author}{\textlangle Course Name\textrangle\ Homework \#1}{\thepage}
+    \color{HeaderColor}\headrule
+    }
+  \makeatother
 
 % page foot: remove page number from the bottom of chapter pages
   \assignpagestyle{\chapter}{empty}
