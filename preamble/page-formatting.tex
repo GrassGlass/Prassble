@@ -31,6 +31,10 @@
     \Pagestyle{main}
   }
 }
+\tl_if_eq:NnT \g__preamble_pagestyle_tl {hw} 
+{
+  \tl_set:Nn \NumberExerciseWithin {}
+}
 \ExplSyntaxOff
 
 % pagestyles
