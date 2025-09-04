@@ -127,6 +127,13 @@
   % Custom symbols (\eeveeKawaii, \TikZ, etc)
   \Input{custom-symbols.tex}
   
+  % page formatting
+  \definecolor{HeaderColor}{RGB}{0,82,155} 
+  \author{Author}
+  \def\CourseName{\textlangle Course Name\textrangle}
+  \newcounter{HWNumber}
+  \Input{page-formatting.tex}
+
   % Colored boxes
   \Input[environments/box_styles/listings/commands/newcommands]{%
     ,all_short_names.tex%
@@ -147,13 +154,6 @@
     ,nonlistings.tex%
     ,lengths.tex%
   }
-
-  % page formatting
-  \definecolor{HeaderColor}{RGB}{0,82,155} 
-  \author{Author}
-  \def\CourseName{\textlangle Course Name\textrangle}
-  \newcounter{HWNumber}
-  \Input{page-formatting.tex}
 
   % Refer
   \Input{external_hyperlink_format.tex}

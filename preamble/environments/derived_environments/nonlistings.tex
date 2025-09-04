@@ -10,13 +10,30 @@
 \newenvironment{answer}
 {\vspace{-\vlengthBetweenColoredBoxes}\begin{answer*}}{\end{answer*}}
 
+\ExplSyntaxOn
+\AtEndPreamble{
+% Set the keytheorems option "parent = " based on the Pagestyle selected
+    % Declaring variables
+    \tl_new:N \g__preamble_definition_parent_tl
+    \tl_new:N \g__preamble_problem_parent_tl
+    % Setting the option "parent = "
+        % Definition environment
+        \tl_if_eq:NnT \g__preamble_pagestyle_tl {main}
+            {\tl_set:Nn \g__preamble_definition_parent_tl {chapter}}
+        \tl_if_eq:NnT \g__preamble_pagestyle_tl {hw}
+            {\tl_clear:N \g__preamble_definition_parent_tl}
+        % Problem environment
+        \tl_if_eq:NnT \g__preamble_pagestyle_tl {main}
+            {\tl_set:Nn \g__preamble_problem_parent_tl {chapter}}
+        \tl_if_eq:NnT \g__preamble_pagestyle_tl {hw}
+            {\tl_clear:N \g__preamble_problem_parent_tl}
 % Numbered
     % Family of environments with chapter as parent
         % greenboxes: definition, notation, motivation, recall
         \newkeytheorem{definition}
         [
             ,style = greenbox
-            ,parent = chapter
+            ,parent:V = \g__preamble_definition_parent_tl
         ]
         \newkeytheorem{notation,motivation,recall}
         [
@@ -43,7 +60,7 @@
         \newkeytheorem{problem}
         [
             ,style = purplebox
-            ,parent = chapter
+            ,parent:V = \g__preamble_problem_parent_tl
         ]
         \newkeytheorem{question,exercise}
         [
@@ -165,7 +182,7 @@
         [
             ,name = MyDefinition
             ,style = greenbox
-            ,parent = chapter
+            ,parent:V = \g__preamble_definition_parent_tl
             ,counter-format = \arabic{chapter}.\Alph{mydefinition}
         ]
         \newkeytheorem{mynotation}
@@ -263,7 +280,7 @@
         [
             ,name = MyProblem
             ,style = purplebox
-            ,parent = chapter
+            ,parent:V = \g__preamble_problem_parent_tl
             ,counter-format = \arabic{chapter}.\Alph{myproblem}
         ]
         \newkeytheorem{myquestion}
@@ -280,3 +297,5 @@
             ,sibling = myproblem
             ,counter-format = \arabic{chapter}.\Alph{myexercise}
         ]
+}
+\ExplSyntaxOff
