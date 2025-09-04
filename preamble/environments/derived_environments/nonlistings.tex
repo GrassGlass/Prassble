@@ -11,29 +11,42 @@
 {\vspace{-\vlengthBetweenColoredBoxes}\begin{answer*}}{\end{answer*}}
 
 \ExplSyntaxOn
+% The command \CreateParent{ name }{ clist of Pagestyles }{ clist of corresponding values for the keytheorems Parent key} that defines a macro \<name>Parent, such that 'Parent = \<name>Parent' automatically adapts to the current \Pagestyle.
+\int_new:N \l__preamble_CreateParent_number_in_Pagestyles_int
+\clist_new:N \l__preamble_CreateParent_all_Pagestyles_clist
+\clist_new:N \l__preamble_CreateParent_parent_values_clist
+\NewDocumentCommand{\CreateParent}{ m m m }{
+    % Initalising the macro that is the value for the keytheorems key 'Parent = '
+    \tl_new:c {#1Parent}
+    % Defining #2 and #3 semantically as a clist
+    \clist_set:Nn \l__preamble_CreateParent_all_Pagestyles_clist {#2}
+    \clist_set:Nn \l__preamble_CreateParent_parent_values_clist {#3}
+    % Setting the value in "parent = <value>" for the current Pagestyle
+    \int_zero:N \l__preamble_CreateParent_number_in_Pagestyles_int
+    \clist_map_inline:nn {#2} 
+    {
+        \int_incr:N \l__preamble_CreateParent_number_in_Pagestyles_int
+        \tl_if_eq:NnT \g__preamble_pagestyle_tl {##1} 
+        {
+            \tl_gset:ce {#1Parent} 
+            {
+                \clist_item:Nn \l__preamble_CreateParent_parent_values_clist {\l__preamble_CreateParent_number_in_Pagestyles_int}
+            }
+        }
+    }
+}
+\ExplSyntaxOff
+
 \AtEndPreamble{
-% Set the keytheorems option "parent = " based on the Pagestyle selected
-    % Declaring variables
-    \tl_new:N \g__preamble_definition_parent_tl
-    \tl_new:N \g__preamble_problem_parent_tl
-    % Setting the option "parent = "
-        % Definition environment
-        \tl_if_eq:NnT \g__preamble_pagestyle_tl {main}
-            {\tl_set:Nn \g__preamble_definition_parent_tl {chapter}}
-        \tl_if_eq:NnT \g__preamble_pagestyle_tl {hw}
-            {\tl_clear:N \g__preamble_definition_parent_tl}
-        % Problem environment
-        \tl_if_eq:NnT \g__preamble_pagestyle_tl {main}
-            {\tl_set:Nn \g__preamble_problem_parent_tl {chapter}}
-        \tl_if_eq:NnT \g__preamble_pagestyle_tl {hw}
-            {\tl_clear:N \g__preamble_problem_parent_tl}
+\CreateParent{Definition}{main,hw}{chapter,}
+\CreateParent{Problem}{main,hw}{chapter,}
 % Numbered
     % Family of environments with chapter as parent
         % greenboxes: definition, notation, motivation, recall
         \newkeytheorem{definition}
         [
             ,style = greenbox
-            ,parent:V = \g__preamble_definition_parent_tl
+            ,parent:V = \DefinitionParent
         ]
         \newkeytheorem{notation,motivation,recall}
         [
@@ -60,7 +73,7 @@
         \newkeytheorem{problem}
         [
             ,style = purplebox
-            ,parent:V = \g__preamble_problem_parent_tl
+            ,parent:V = \ProblemParent
         ]
         \newkeytheorem{question,exercise}
         [
@@ -182,7 +195,7 @@
         [
             ,name = MyDefinition
             ,style = greenbox
-            ,parent:V = \g__preamble_definition_parent_tl
+            ,parent:V = \DefinitionParent
             ,counter-format = \arabic{chapter}.\Alph{mydefinition}
         ]
         \newkeytheorem{mynotation}
@@ -280,7 +293,7 @@
         [
             ,name = MyProblem
             ,style = purplebox
-            ,parent:V = \g__preamble_problem_parent_tl
+            ,parent:V = \ProblemParent
             ,counter-format = \arabic{chapter}.\Alph{myproblem}
         ]
         \newkeytheorem{myquestion}
@@ -298,4 +311,3 @@
             ,counter-format = \arabic{chapter}.\Alph{myexercise}
         ]
 }
-\ExplSyntaxOff
