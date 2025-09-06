@@ -17,10 +17,12 @@
 %%
 %% This work consists of all files listed in README
 %%
-% Listing environments: required counters and savebox
-\newcounter{code}
-\setcounter{code}{1}
-\newsavebox{\codewidth}
+% Counters
+    % Non-listings
+    \newcounter{homework}
+    % Listing environments
+    \newcounter{code}
+    \setcounter{code}{1}
 
 % Lengths
     % Non-listings
@@ -36,3 +38,6 @@
     \newlength{\linenumberpadding}
     \newlength{\titleleft}
     \newlength{\lefthspace}
+
+% Others
+\newsavebox{\codewidth}

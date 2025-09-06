@@ -23,7 +23,7 @@
 \tl_new:N \g__preamble_pagestyle_tl
 \NewDocumentCommand{\Pagestyle}{ m }
 {
-  \tl_set:Nn \g__preamble_pagestyle_tl {#1}
+  \tl_gset:Nn \g__preamble_pagestyle_tl {#1}
   \pagestyle{#1}
 }
 \AtEndPreamble{

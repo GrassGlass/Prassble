@@ -105,9 +105,12 @@
   \tl_gset:Ne \g_preamble_path_to_preamble_tl {\CurrentFilePath}
   \tl_set_eq:NN \g_file_directory_to_be_used_tl \g_preamble_path_to_preamble_tl
   \AtEndPreamble{\tl_gset:Ne \g_file_directory_to_be_used_tl {\g_preamble_path_to_preamble_tl/../}}
-  \NewDocumentCommand{\Input}{ O{} m }{
-    \tl_set:Nn \l__preamble_relative_path_to_prepend_tl {#1}
-    \clist_set:Nn \l__preamble_files_to_be_input_clist {#2} 
+  \NewDocumentCommand{\Input}{ s O{} m }{
+    \bool_if:nT {#1} {
+      \tl_set:Nn \g_file_directory_to_be_used_tl {\CurrentFilePath}
+    }
+    \tl_set:Nn \l__preamble_relative_path_to_prepend_tl {#2}
+    \clist_set:Nn \l__preamble_files_to_be_input_clist {#3} 
     \clist_map_inline:Nn \l__preamble_files_to_be_input_clist {\input{\g_file_directory_to_be_used_tl/\l__preamble_relative_path_to_prepend_tl/##1}}
   }
   \ExplSyntaxOff

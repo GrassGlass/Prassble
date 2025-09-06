@@ -36,8 +36,10 @@
 %
 \chapter{Name of First Chapter}
 This document can be used as a compilation of all work one produces in a course. For instance, it may include self-proofs of given theorems and all homework submissions. 
+%
 \section{Name of First Section}
-\subsection{Name of First Subsection}
+%
+\subsection{Theorems}
 Contents of the first subsection of this document
 \begin{theorem}
     This is the first theorem.
@@ -45,14 +47,39 @@ Contents of the first subsection of this document
 \begin{proof}
     This is my proof of the first theorem.
 \end{proof}
-
-\subsection{Homework 1}
-\Input{files/homework/hw1.tex}
-% If one is going to \input many files of a certain type (e.g. hw .tex files) in various places, it may be wise to define a relevant command (e.g. \HWInput) for both clarity and brevity. 
+%
+\subsection{Exercises}
+\begin{exercise}
+This is the first exercise.
+\end{exercise}
+%
+\edef\InitialExerciseValue{\arabic{exercise}}
+\setcounter{HWNumber}{1}
+\subsection{Homework \#\arabic{HWNumber}}
+\setcounter{homework}{0}
+\begingroup
+    \AtBeginEnvironment{exercise}{}
+    \renewcommand{\theexercise}{H.\arabic{HWNumber}.\arabic{exercise}}
+    \Input{files/homework/hw1.tex}
+\endgroup
+\setcounter{exercise}{\InitialExerciseValue}
+\begin{exercise}
+    test
+\end{exercise}
 \newpage
 This is the second page.
 
 \newpage
 This is the third page.
+%
+\chapter{Name of second chapter}
+%
+\section{Name of first section}
+\subsection{Theorems}
+\subsection{Exercises}
+\begin{exercise}
+    This is the first exercise of the second chapter.
+\end{exercise}
+\subsection{Homework 2}
 
 \end{document}
