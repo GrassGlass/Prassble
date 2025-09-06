@@ -56,9 +56,8 @@ This is the first exercise.
 \edef\InitialExerciseValue{\arabic{exercise}}
 \setcounter{HWNumber}{1}
 \subsection{Homework \#\arabic{HWNumber}}
-\setcounter{homework}{0}
+\setcounter{exercise}{0}
 \begingroup
-    \AtBeginEnvironment{exercise}{}
     \renewcommand{\theexercise}{H.\arabic{HWNumber}.\arabic{exercise}}
     \Input{files/homework/hw1.tex}
 \endgroup

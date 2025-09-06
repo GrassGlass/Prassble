@@ -17,7 +17,7 @@
         \seq_new:N \g__preamble_all_nonlistings_tl
     \NewDocumentCommand{\modifednewkeytheorem}{ m +O{} }
     {
-        \seq_gput_left:Nn \g__preamble_all_nonlistings_tl {#1}
+        \seq_gput_right:Nn \g__preamble_all_nonlistings_tl {#1}
         \newkeytheorem{#1}[#2]
     } 
     % The command \StyleDependentValue{ name }{ clist of BoxStyles }{ clist of corresponding values for a key=value <key>} that defines a macro \<name><key>, such that '<key> = \<name><key>' automatically adapts to the current boxstyle.
@@ -89,12 +89,12 @@
 
     % Family of environments with section as parent, and a separate hw environment
         % purpleboxes: problem, question, exercise, hw
-        \modifednewkeytheorem{problem}
+        \newkeytheorem{problem}
         [
             ,style = purplebox
             ,parent:V = \ProblemParent
         ]
-        \modifednewkeytheorem{question,exercise}
+        \newkeytheorem{question,exercise}
         [
             ,style = purplebox
             ,sibling = problem
@@ -103,25 +103,25 @@
 % No number
     % Family of environments with chapter as parent
         % greenboxes: definition, notation, motivation, recall
-        \modifednewkeytheorem{definition*}
+        \newkeytheorem{definition*}
         [
             ,name = Definition
             ,style = greenbox
             ,numbered = false
         ]
-        \modifednewkeytheorem{notation*}
+        \newkeytheorem{notation*}
         [
             ,name = Notation
             ,style = greenbox
             ,numbered = false
         ]
-        \modifednewkeytheorem{motivation*}
+        \newkeytheorem{motivation*}
         [
             ,name = Motivation
             ,style = greenbox
             ,numbered = false
         ]
-        \modifednewkeytheorem{recall*}
+        \newkeytheorem{recall*}
         [
             ,name = Recall
             ,style = greenbox
@@ -129,31 +129,31 @@
         ]
 
         % redboxes: claim, proposition, lemma, theorem, corollary
-        \modifednewkeytheorem{claim*}
+        \newkeytheorem{claim*}
         [
             ,name = Claim
             ,style = redbox
             ,numbered = false
         ]
-        \modifednewkeytheorem{proposition*}
+        \newkeytheorem{proposition*}
         [
             ,name = Proposition
             ,style = redbox
             ,numbered = false
         ]
-        \modifednewkeytheorem{lemma*}
+        \newkeytheorem{lemma*}
         [
             ,name = Lemma
             ,style = redbox
             ,numbered = false
         ]
-        \modifednewkeytheorem{theorem*}
+        \newkeytheorem{theorem*}
         [
             ,name = Theorem
             ,style = redbox
             ,numbered = false
         ]
-        \modifednewkeytheorem{corollary*}
+        \newkeytheorem{corollary*}
         [
             ,name = Corollary
             ,style = redbox
@@ -161,25 +161,25 @@
         ]
 
         % blueboxes: observation, example, remark, note
-        \modifednewkeytheorem{observation*}
+        \newkeytheorem{observation*}
         [
             ,name = Observation
             ,style = bluebox
             ,numbered = false
         ]
-        \modifednewkeytheorem{example*}
+        \newkeytheorem{example*}
         [
             ,name = Example
             ,style = bluebox
             ,numbered = false
         ]
-        \modifednewkeytheorem{remark*}
+        \newkeytheorem{remark*}
         [
             ,name = Remark
             ,style = bluebox
             ,numbered = false
         ]
-        \modifednewkeytheorem{note*}
+        \newkeytheorem{note*}
         [
             ,name = Note
             ,style = bluebox
@@ -188,19 +188,19 @@
 
     % Family of environments with section as parent
         % purpleboxes: problem, question, exercise
-        \modifednewkeytheorem{problem*}
+        \newkeytheorem{problem*}
         [
             ,name = Problem
             ,style = purplebox
             ,numbered = false
         ]
-        \modifednewkeytheorem{question*}
+        \newkeytheorem{question*}
         [
             ,name = Question
             ,style = purplebox
             ,numbered = false
         ]
-        \modifednewkeytheorem{exercise*}
+        \newkeytheorem{exercise*}
         [
             ,name = Exercise
             ,style = purplebox
@@ -210,28 +210,28 @@
 % % Self-⟨env-name⟩ environments
 %     % Family of environments with chapter as parent
 %         % greenboxes: mydefinition, mynotation, mymotivation, myrecall
-%         \modifednewkeytheorem{mydefinition}
+%         \newkeytheorem{mydefinition}
 %         [
 %             ,name = MyDefinition
 %             ,style = greenbox
 %             ,parent:V = \DefinitionParent
 %             ,counter-format = \arabic{chapter}.\Alph{mydefinition}
 %         ]
-%         \modifednewkeytheorem{mynotation}
+%         \newkeytheorem{mynotation}
 %         [
 %             ,name = MyNotation
 %             ,style = greenbox
 %             ,sibling = mydefinition
 %             ,counter-format = \arabic{chapter}.\Alph{mynotation}
 %         ]
-%         \modifednewkeytheorem{mymotivation}
+%         \newkeytheorem{mymotivation}
 %         [
 %             ,name = MyMotivation
 %             ,style = greenbox
 %             ,sibling = mydefinition
 %             ,counter-format = \arabic{chapter}.\Alph{mymotivation}
 %         ]
-%         \modifednewkeytheorem{myrecall}
+%         \newkeytheorem{myrecall}
 %         [
 %             ,name = MyRecall
 %             ,style = greenbox
@@ -240,35 +240,35 @@
 %         ]
 
 %         % redboxes: claim, myproposition, mylemma, mytheorem, mycorollary
-%         \modifednewkeytheorem{myclaim}
+%         \newkeytheorem{myclaim}
 %         [
 %             ,name = MyClaim
 %             ,style = redbox
 %             ,sibling = mydefinition
 %             ,counter-format = \arabic{chapter}.\Alph{myclaim}
 %         ]
-%         \modifednewkeytheorem{myproposition}
+%         \newkeytheorem{myproposition}
 %         [
 %             ,name = MyProposition
 %             ,style = redbox
 %             ,sibling = mydefinition
 %             ,counter-format = \arabic{chapter}.\Alph{myproposition}
 %         ]
-%         \modifednewkeytheorem{mylemma}
+%         \newkeytheorem{mylemma}
 %         [
 %             ,name = MyLemma
 %             ,style = redbox
 %             ,sibling = mydefinition
 %             ,counter-format = \arabic{chapter}.\Alph{mylemma}
 %         ]
-%         \modifednewkeytheorem{mytheorem}
+%         \newkeytheorem{mytheorem}
 %         [
 %             ,name = MyTheorem
 %             ,style = redbox
 %             ,sibling = mydefinition
 %             ,counter-format = \arabic{chapter}.\Alph{mytheorem}
 %         ]
-%         \modifednewkeytheorem{mycorollary}
+%         \newkeytheorem{mycorollary}
 %         [
 %             ,name = MyCorollary
 %             ,style = redbox
@@ -277,28 +277,28 @@
 %         ]
 
 %         % blueboxes: myobservation, myexample, myremark, mynote
-%         \modifednewkeytheorem{myobservation}
+%         \newkeytheorem{myobservation}
 %         [
 %             ,name = MyObservation
 %             ,style = bluebox
 %             ,sibling = mydefinition
 %             ,counter-format = \arabic{chapter}.\Alph{myobservation}
 %         ]
-%         \modifednewkeytheorem{myexample}
+%         \newkeytheorem{myexample}
 %         [
 %             ,name = MyExample
 %             ,style = bluebox
 %             ,sibling = mydefinition
 %             ,counter-format = \arabic{chapter}.\Alph{myexample}
 %         ]
-%         \modifednewkeytheorem{myremark}
+%         \newkeytheorem{myremark}
 %         [
 %             ,name = MyRemark
 %             ,style = bluebox
 %             ,sibling = mydefinition
 %             ,counter-format = \arabic{chapter}.\Alph{myremark}
 %         ]
-%         \modifednewkeytheorem{mynote}
+%         \newkeytheorem{mynote}
 %         [
 %             ,name = MyNote
 %             ,style = bluebox
@@ -308,21 +308,21 @@
 
 %     % Family of environments with section as parent
 %         % purpleboxes: myproblem, myquestion, myexercise
-%         \modifednewkeytheorem{myproblem}
+%         \newkeytheorem{myproblem}
 %         [
 %             ,name = MyProblem
 %             ,style = purplebox
 %             ,parent:V = \ProblemParent
 %             ,counter-format = \arabic{chapter}.\Alph{myproblem}
 %         ]
-%         \modifednewkeytheorem{myquestion}
+%         \newkeytheorem{myquestion}
 %         [
 %             ,name = MyQuestion
 %             ,style = purplebox
 %             ,sibling = myproblem
 %             ,counter-format = \arabic{chapter}.\Alph{myquestion}
 %         ]
-%         \modifednewkeytheorem{myexercise}
+%         \newkeytheorem{myexercise}
 %         [
 %             ,name = MyExercise
 %             ,style = purplebox
