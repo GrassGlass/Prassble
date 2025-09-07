@@ -140,6 +140,33 @@
     ,nonlistings.tex%
     ,lengths.tex%
   }
+  \AddToHWEnvList{table,figure}
+  \ExplSyntaxOn
+  \clist_new:N \test
+  \clist_set:Nn \test {definition,exercise}
+  \KeywordForInput{HW-In-Main}{files/homework}
+    [
+      \stepcounter{HWNumber}
+      \subsection{Homework \#\arabic{HWNumber}}
+      \group_begin:
+        \clist_map_inline:Nn \test 
+          {
+            \int_new:c {g__preamble_HW_In_Main_inital_#1_value_int}
+            \int_gset:cn {g__preamble_HW_In_Main_inital_#1_value_int} {\arabic{#1}}
+            \setcounter{#1}{0}
+            \cs_set:cpn {the#1} {H.\arabic{HWNumber}.\arabic{#1}}
+            \cs_set_eq:cc {theH#1} {the#1}
+          }
+    ]
+    [
+      \group_end:
+      \clist_map_inline:Nn \test
+        {
+          \int_set_eq:Nc \l_tmpa_int {g__preamble_HW_In_Main_inital_#1_value_int}
+          \setcounter{#1}{\l_tmpa_int}
+        }
+    ]
+  \ExplSyntaxOff
 
   % Refer
   \Input{external_hyperlink_format.tex}

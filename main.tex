@@ -52,16 +52,10 @@ Contents of the first subsection of this document
 \begin{exercise}\label{ex:1.1}
 This is the first exercise.
 \end{exercise}
-%
-\edef\InitialExerciseValue{\arabic{exercise}}
-\setcounter{HWNumber}{1}
-\subsection{Homework \#\arabic{HWNumber}}
-\setcounter{exercise}{0}
-\begingroup
-    \renewcommand{\theexercise}{H.\arabic{HWNumber}.\arabic{exercise}}
-    \Input[HW]{1.tex}
-\endgroup
-\setcounter{exercise}{\InitialExerciseValue}
+% 
+\Input[HW-In-Main]{1.tex}
+% 
+\meaning\theHexercise
 \section{Name of Second Section}
 \subsection{Theorems}
 \begin{theorem}

@@ -14,12 +14,16 @@
 \ExplSyntaxOn
     % The command \ModifiedNewKeyTheorem
         % Declaring variables
-        \seq_new:N \g__preamble_all_nonlistings_tl
+        \clist_new:N \g__preamble_environments_used_in_HWs_clist
     \NewDocumentCommand{\modifednewkeytheorem}{ m +O{} }
     {
-        \seq_gput_right:Nn \g__preamble_all_nonlistings_tl {#1}
+        \clist_gput_right:Nn \g__preamble_environments_used_in_HWs_clist {#1}
         \newkeytheorem{#1}[#2]
     } 
+    % The command \AddToHWEnvList
+    \NewDocumentCommand{\AddToHWEnvList}{ m }{
+        \clist_gput_right:Nn \g__preamble_environments_used_in_HWs_clist {#1}
+    }
     % The command \StyleDependentValue{ name }{ clist of BoxStyles }{ clist of corresponding values for a key=value <key>} that defines a macro \<name><key>, such that '<key> = \<name><key>' automatically adapts to the current boxstyle.
         % Declaring variables
         \int_new:N \l__preamble_StyleDependentValue_number_in_boxstyles_int
