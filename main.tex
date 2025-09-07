@@ -35,13 +35,13 @@
 \setcounter{page}{1}
 %
 \chapter{Name of First Chapter}
-This document can be used as a compilation of all work one produces in a course. For instance, it may include self-proofs of given theorems and all homework submissions. 
+This document can be used as a compilation of all work one produces in a course. For instance, it may include self-proofs of given theorems and all homework submissions.
 %
 \section{Name of First Section}
 %
 \subsection{Theorems}
 Contents of the first subsection of this document
-\begin{theorem}
+\begin{theorem}\label{thm:1.1}
     This is the first theorem.
 \end{theorem}
 \begin{proof}
@@ -49,7 +49,7 @@ Contents of the first subsection of this document
 \end{proof}
 %
 \subsection{Exercises}
-\begin{exercise}
+\begin{exercise}\label{ex:1.1}
 This is the first exercise.
 \end{exercise}
 %
@@ -59,12 +59,19 @@ This is the first exercise.
 \setcounter{exercise}{0}
 \begingroup
     \renewcommand{\theexercise}{H.\arabic{HWNumber}.\arabic{exercise}}
-    \Input{files/homework/hw1.tex}
+    \Input[HW]{1.tex}
 \endgroup
 \setcounter{exercise}{\InitialExerciseValue}
-\begin{exercise}
+\section{Name of Second Section}
+\subsection{Theorems}
+\begin{theorem}
+    This is the second theorem.
+\end{theorem}
+\subsection{Exercises}
+\begin{exercise}\label{ex:1.2}
     test
 \end{exercise}
+These are some hyperlinks with \codeinline{text}{zref-clever}: \zcref{ex:1.1}, \zcref{ex:1.2}, \zcref{ex:H.1.1}, \zcref{ex:H.1.2}, \zcref{ex:H.1.3}. We can also reference theorems: \zcref{thm:1.1}. 
 \newpage
 This is the second page.
 

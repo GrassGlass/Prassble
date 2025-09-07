@@ -94,42 +94,9 @@
 
 % Custom setup
 
-  \ExplSyntaxOn
-  \seq_new:N \g__preable_Input_keywords_seq
-  % Easy input of multiple files; \Input is \input but with the file path taken relative to
-    % 1. the directory preamble, if \Input is used before \begin{document}
-    % 2. the parent directory of the folder preamble (which in this case is the directory Prassble), if \Input is used after \begin{document}
-    % 3. \CurrentFilePath, if (at anywhere) the starred variant \Input* is used
-  \clist_new:N \l__preamble_files_to_be_input_clist
-  \tl_new:N \g_preamble_Input_prepend_tl
-  \tl_new:N \g_preamble_Input_append_tl
-  \tl_new:N \g_file_directory_to_be_used_tl
-  \tl_new:N \g_preamble_path_to_preamble_tl
-  \tl_new:N \l__preamble_relative_path_to_prepend_tl
-  \tl_gset:Ne \g_preamble_path_to_preamble_tl {\CurrentFilePath}
-  \tl_set_eq:NN \g_file_directory_to_be_used_tl \g_preamble_path_to_preamble_tl
-  \AtEndPreamble{\tl_gset:Ne \g_file_directory_to_be_used_tl {\g_preamble_path_to_preamble_tl/../}}
-  \NewDocumentCommand{\Input}{ s O{} m }{
-    \bool_if:nT {#1} 
-      {
-        \tl_set:Nn \g_file_directory_to_be_used_tl {\CurrentFilePath}
-      }
-    \seq_if_in:NeTF \g__preable_Input_keywords_seq {#2} 
-      {
-        \tl_set_eq:Nc \l__preamble_relative_path_to_prepend_tl {g__preamble_Input_keyword_#2}
-      } 
-      {
-        \tl_set:Nn \l__preamble_relative_path_to_prepend_tl {#2}
-      }
-    \clist_set:Nn \l__preamble_files_to_be_input_clist {#3} 
-    \clist_map_inline:Nn \l__preamble_files_to_be_input_clist 
-      {
-        \tl_use:N \g_preamble_Input_prepend_tl
-        \input{\g_file_directory_to_be_used_tl/\l__preamble_relative_path_to_prepend_tl/##1}
-        \tl_use:N \g_preamble_Input_append_tl
-      }
-  }
-  \ExplSyntaxOff
+  % Easy input of files
+  \input{\CurrentFilePath/Input_macro.tex}
+  \KeywordForInput{HW}{files/homework}
   
   % Math stuff
   \Input[math]{
