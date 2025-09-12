@@ -261,18 +261,16 @@
     ,colbacktitle                    = \ColorCodeColbacktitle,
     ,borderline~west                 = {\BorderlineWestThickness}{0pt}{\ColorCodeBorderline}
     ,overlay~unbroken                = {
-        \begin{tcbclipinterior}
-            % Background for the code line numebrs
-            \filldraw[\ColorCodeLineNumberBackground] 
-            (frame.south~west) --
-            (interior.north~west) {[rounded~corners=4] --
-            ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) --
-            ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west)} --
-            (frame.south~west);
-            % Borderline west of \BorderlineWestThickness thickness
-            \fill[\ColorCodeBorderline] (frame.south~west)
-            rectangle ([xshift=\BorderlineWestThickness]frame.north~west);
-        \end{tcbclipinterior}
+      % Background for the code line numebrs
+      \filldraw[\ColorCodeLineNumberBackground] 
+      (frame.south~west) --
+      (interior.north~west) {[rounded~corners=4] --
+      ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) --
+      ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west)} --
+      (frame.south~west);
+      % Borderline west of \BorderlineWestThickness thickness
+      \fill[\ColorCodeBorderline] (frame.south~west)
+      rectangle ([xshift=\BorderlineWestThickness]frame.north~west);
     }
     ,overlay~first                   = {
         \begin{tcbclipinterior}

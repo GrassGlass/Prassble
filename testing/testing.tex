@@ -1,0 +1,17 @@
+\documentclass{book}
+\usepackage[skins]{tcolorbox}
+
+\begin{document}
+\begin{tcolorbox}[enhanced,adjusted title=The title,
+frame code={\path[draw=red,fill=red!25]
+(frame.south west) rectangle (frame.north east);},
+interior titled code={\path[draw=blue,fill=blue!25]
+(interior.south west) rectangle (interior.north east);},
+segmentation code={\path[draw=green,fill=green!25]
+(segmentation.south west) rectangle (segmentation.north east);},
+title code={\path[draw=black,fill=brown!75!black]
+(title.south west) rectangle (title.north east);},
+overlay = {\filldraw (frame.north west) -- (frame.south west) -- (segmentation.south east) -- (frame.north east);}]
+The upper part.\tcblower The lower part.
+\end{tcolorbox}
+\end{document}
