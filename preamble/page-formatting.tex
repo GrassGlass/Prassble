@@ -20,14 +20,14 @@
 %! Must be loaded before derived_environments/nonlistings.tex; the \Pagestyle invocation affects the behavior of the boxes there.
 % Set default pagestyle to main
 \ExplSyntaxOn
-\tl_new:N \g__preamble_pagestyle_tl
+\tl_new:N \g__Prassble_pagestyle_tl
 \NewDocumentCommand{\Pagestyle}{ m }
 {
-  \tl_gset:Nn \g__preamble_pagestyle_tl {#1}
+  \tl_gset:Nn \g__Prassble_pagestyle_tl {#1}
   \pagestyle{#1}
 }
 \AtEndPreamble{
-  \tl_if_empty:NT \g__preamble_pagestyle_tl 
+  \tl_if_empty:NT \g__Prassble_pagestyle_tl 
   {
     \Pagestyle{main}
   }

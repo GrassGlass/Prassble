@@ -97,42 +97,42 @@
 }
 
 \ExplSyntaxOn
-    % The command \modifiednewkeytheorem that saves the name of the environemnt into \g__preamble_environments_used_in_HWs_clist
+    % The command \modifiednewkeytheorem that saves the name of the environemnt into \g__Prassble_environments_used_in_HWs_clist
         % Declaring variables
-        \clist_new:N \g__preamble_environments_used_in_HWs_clist
+        \clist_new:N \g__Prassble_environments_used_in_HWs_clist
     \NewDocumentCommand{\modifednewkeytheorem}{ m +O{} }
     {
-        \clist_gput_right:Nn \g__preamble_environments_used_in_HWs_clist {#1}
+        \clist_gput_right:Nn \g__Prassble_environments_used_in_HWs_clist {#1}
         \newkeytheorem{#1}[#2]
     } 
     % The command \AddToHWEnvList
     \NewDocumentCommand{\AddToHWEnvList}{ m }{
-        \clist_gput_right:Nn \g__preamble_environments_used_in_HWs_clist {#1}
+        \clist_gput_right:Nn \g__Prassble_environments_used_in_HWs_clist {#1}
     }
     % The command \StyleDependentValue{ name }{ clist of BoxStyles }{ clist of corresponding values for a key=value <key>} that defines a macro \<name><key>, such that '<key> = \<name><key>' automatically adapts to the current boxstyle.
         % Declaring variables
-        \int_new:N \l__preamble_StyleDependentValue_number_in_boxstyles_int
-        \tl_new:N \g__preamble_boxstyle_tl
-        \clist_new:N \l__preamble_StyleDependentValue_all_boxstyles_clist
-        \clist_new:N \l__preamble_StyleDependentValue_value_for_key_clist
+        \int_new:N \l__Prassble_StyleDependentValue_number_in_boxstyles_int
+        \tl_new:N \g__Prassble_boxstyle_tl
+        \clist_new:N \l__Prassble_StyleDependentValue_all_boxstyles_clist
+        \clist_new:N \l__Prassble_StyleDependentValue_value_for_key_clist
         % Default values
-        \tl_set:Nn \g__preamble_boxstyle_tl {\g__preamble_pagestyle_tl}
+        \tl_set:Nn \g__Prassble_boxstyle_tl {\g__Prassble_pagestyle_tl}
     \NewDocumentCommand{\StyleDependentValue}{ O{} m m m }{
         % Initalising the macro that is the value for the keytheorems key 'Parent = '
         \tl_new:c {#2#1}
         % Defining #2 and #3 semantically as a clist
-        \clist_set:Nn \l__preamble_StyleDependentValue_all_boxstyles_clist {#3}
-        \clist_set:Nn \l__preamble_StyleDependentValue_value_for_key_clist {#4}
+        \clist_set:Nn \l__Prassble_StyleDependentValue_all_boxstyles_clist {#3}
+        \clist_set:Nn \l__Prassble_StyleDependentValue_value_for_key_clist {#4}
         % Setting the value in "parent = <value>" for the current Pagestyle
-        \int_zero:N \l__preamble_StyleDependentValue_number_in_boxstyles_int
+        \int_zero:N \l__Prassble_StyleDependentValue_number_in_boxstyles_int
         \clist_map_inline:nn {#3} 
         {
-            \int_incr:N \l__preamble_StyleDependentValue_number_in_boxstyles_int
-            \tl_if_eq:enT {\g__preamble_boxstyle_tl} {##1} 
+            \int_incr:N \l__Prassble_StyleDependentValue_number_in_boxstyles_int
+            \tl_if_eq:enT {\g__Prassble_boxstyle_tl} {##1} 
             {
                 \tl_gset:ce {#2#1} 
                 {
-                    \clist_item:Nn \l__preamble_StyleDependentValue_value_for_key_clist {\l__preamble_StyleDependentValue_number_in_boxstyles_int}
+                    \clist_item:Nn \l__Prassble_StyleDependentValue_value_for_key_clist {\l__Prassble_StyleDependentValue_number_in_boxstyles_int}
                 }
             }
         }
@@ -146,16 +146,16 @@
         % The header
             \HWHeader{Homework \#\arabic{HWNumber}}
         % Redefinition of \the<environment> to distinguish environments (e.g. exercise) used in hw subsections vs the environments natively belonging to the lecture notes/reference text.
-            \clist_map_inline:Nn \g__preamble_environments_used_in_HWs_clist 
+            \clist_map_inline:Nn \g__Prassble_environments_used_in_HWs_clist 
             {
                 % Save the current counter value \the#1 for the environment #1 before the hw subsection
-                \int_new:c {g__preamble_HW_In_Main_inital_#1_value_int}
-                \int_gset:cn {g__preamble_HW_In_Main_inital_#1_value_int} {\arabic{#1}}
+                \int_new:c {g__Prassble_HW_In_Main_inital_#1_value_int}
+                \int_gset:cn {g__Prassble_HW_In_Main_inital_#1_value_int} {\arabic{#1}}
                 % Reset \the#1 for the hw subsection
                 \setcounter{#1}{0}
                 % Save the current definition of the#1 (the typeset counter) and theH#1.
-                \cs_set_eq:cc {g__preamble_pagestyle_main_the#1} {the#1}
-                \cs_set_eq:cc {g__preamble_pagestyle_main_theH#1} {theH#1}
+                \cs_set_eq:cc {g__Prassble_pagestyle_main_the#1} {the#1}
+                \cs_set_eq:cc {g__Prassble_pagestyle_main_theH#1} {theH#1}
                 % Redefine the#1 in our custom HW-in-Main style (again, this is to distinguish hw content from the contents of the main material).
                 \cs_set:cpn {the#1} {H.\arabic{HWNumber}.\arabic{#1}}
                 % Redefine theH#1 to ensure hyperref works correctly
@@ -164,11 +164,11 @@
     ]
     [
         % Restore the main pagestyle now that the hw subsection has ended
-        \clist_map_inline:Nn \g__preamble_environments_used_in_HWs_clist
+        \clist_map_inline:Nn \g__Prassble_environments_used_in_HWs_clist
             {
-            \cs_set_eq:cc {the#1} {g__preamble_pagestyle_main_the#1}
-            \cs_set_eq:cc {theH#1} {g__preamble_pagestyle_main_theH#1}
-            \int_set_eq:Nc \l_tmpa_int {g__preamble_HW_In_Main_inital_#1_value_int}
+            \cs_set_eq:cc {the#1} {g__Prassble_pagestyle_main_the#1}
+            \cs_set_eq:cc {theH#1} {g__Prassble_pagestyle_main_theH#1}
+            \int_set_eq:Nc \l_tmpa_int {g__Prassble_HW_In_Main_inital_#1_value_int}
             \setcounter{#1}{\l_tmpa_int}
             }
     ]

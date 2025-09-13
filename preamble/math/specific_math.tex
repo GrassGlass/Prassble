@@ -89,19 +89,19 @@
 
 %* pMatrix with an option `hat'
 \ExplSyntaxOn
-\tl_new:N \l__PreambleMath_tmp_matrix_tl
+\tl_new:N \l__PrassbleMath_tmp_matrix_tl
 \NewDocumentEnvironment{pMatrix}{ O{} +b }
 {
 \tl_if_eq:eeT {#1} {hat} 
     {
-        \tl_set:Nn \l__PreambleMath_tmp_matrix_tl 
+        \tl_set:Nn \l__PrassbleMath_tmp_matrix_tl 
             {
                 \begin{matrix}
                     #2
                 \end{matrix}
             }
-        \vphantom{\reallywidehat{\l__PreambleMath_tmp_matrix_tl}}
-        \left(\smash{\reallywidehat{\l__PreambleMath_tmp_matrix_tl}}\vphantom{\l__PreambleMath_tmp_matrix_tl}\right)
+        \vphantom{\reallywidehat{\l__PrassbleMath_tmp_matrix_tl}}
+        \left(\smash{\reallywidehat{\l__PrassbleMath_tmp_matrix_tl}}\vphantom{\l__PrassbleMath_tmp_matrix_tl}\right)
     }
 \tl_if_blank:eT {#1} 
     {
@@ -115,11 +115,11 @@
 % % The symbols \coloneqCOL and \COLeqcolon which produce \eqcolon and \coloneq, respectively prepended/appended with an invisible colon (\vcentcolon \mathrel {\mkern -1.2mu}}). Also, the symbol \COLeqCOL produces = prepended and appended with an invisible colon. 
 % \ExplSyntaxOn
 %     % hphantom equivalent in length to the colon in \coloneq and \eqcolon 
-%     \NewDocumentCommand{\l_PreambleMath_colonspace_hphantom}{}{\hphantom{\vcentcolon \mathrel {\mkern -1.2mu}}}
+%     \NewDocumentCommand{\l_PrassbleMath_colonspace_hphantom}{}{\hphantom{\vcentcolon \mathrel {\mkern -1.2mu}}}
 
-%     \NewDocumentCommand{\coloneqCOL}{}{\coloneq\l_PreambleMath_colonspace_hphantom}
-%     \NewDocumentCommand{\COLeqcolon}{}{\l_PreambleMath_colonspace_hphantom\eqcolon}
-%     \NewDocumentCommand{\COLeqCOL}{}{\l_PreambleMath_colonspace_hphantom =\l_PreambleMath_colonspace_hphantom}
+%     \NewDocumentCommand{\coloneqCOL}{}{\coloneq\l_PrassbleMath_colonspace_hphantom}
+%     \NewDocumentCommand{\COLeqcolon}{}{\l_PrassbleMath_colonspace_hphantom\eqcolon}
+%     \NewDocumentCommand{\COLeqCOL}{}{\l_PrassbleMath_colonspace_hphantom =\l_PrassbleMath_colonspace_hphantom}
 % \ExplSyntaxOff
 
 % Big cdot
