@@ -85,12 +85,6 @@
   \usepackage{hyperref}
   \usepackage{zref-titleref}
   \usepackage{zref-clever}
-  \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
-    }
 
 % Custom setup
 
@@ -141,7 +135,13 @@
     ,lengths.tex%
   }
   \AddToHWEnvList{table,figure}                       %*
-  \def\HWHeader{\subsection}                          %*
+  \newcommand{\HWInMainHeader}{\subsection{Homework \#\arabic{HWNumber}}}                                        %*
 
   % Refer
   \Input{external_hyperlink_format.tex}
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    }
