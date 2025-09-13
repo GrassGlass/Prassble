@@ -93,12 +93,12 @@
 
     % Family of environments with section as parent, and a separate hw environment
         % purpleboxes: problem, question, exercise, hw
-        \newkeytheorem{problem}
+        \modifednewkeytheorem{problem}
         [
             ,style = purplebox
             ,parent:V = \ProblemParent
         ]
-        \newkeytheorem{question,exercise}
+        \modifednewkeytheorem{question,exercise}
         [
             ,style = purplebox
             ,sibling = problem

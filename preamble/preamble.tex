@@ -142,14 +142,12 @@
   }
   \AddToHWEnvList{table,figure}
   \ExplSyntaxOn
-  \clist_new:N \test
-  \clist_set:Nn \test {definition,exercise}
   \KeywordForInput{HW-In-Main}{files/homework}
     [
       \stepcounter{HWNumber}
       \subsection{Homework \#\arabic{HWNumber}}
       \group_begin:
-        \clist_map_inline:Nn \test 
+        \clist_map_inline:Nn \g__preamble_environments_used_in_HWs_clist 
           {
             \int_new:c {g__preamble_HW_In_Main_inital_#1_value_int}
             \int_gset:cn {g__preamble_HW_In_Main_inital_#1_value_int} {\arabic{#1}}
@@ -160,7 +158,7 @@
     ]
     [
       \group_end:
-      \clist_map_inline:Nn \test
+      \clist_map_inline:Nn \g__preamble_environments_used_in_HWs_clist
         {
           \int_set_eq:Nc \l_tmpa_int {g__preamble_HW_In_Main_inital_#1_value_int}
           \setcounter{#1}{\l_tmpa_int}
