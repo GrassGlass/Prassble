@@ -11,52 +11,6 @@
 \newenvironment{answer}
 {\vspace{-\vlengthBetweenColoredBoxes}\begin{answer*}}{\end{answer*}}
 
-\ExplSyntaxOn
-    % The command \ModifiedNewKeyTheorem
-        % Declaring variables
-        \clist_new:N \g__preamble_environments_used_in_HWs_clist
-    \NewDocumentCommand{\modifednewkeytheorem}{ m +O{} }
-    {
-        \clist_gput_right:Nn \g__preamble_environments_used_in_HWs_clist {#1}
-        \newkeytheorem{#1}[#2]
-    } 
-    % The command \AddToHWEnvList
-    \NewDocumentCommand{\AddToHWEnvList}{ m }{
-        \clist_gput_right:Nn \g__preamble_environments_used_in_HWs_clist {#1}
-    }
-    % The command \StyleDependentValue{ name }{ clist of BoxStyles }{ clist of corresponding values for a key=value <key>} that defines a macro \<name><key>, such that '<key> = \<name><key>' automatically adapts to the current boxstyle.
-        % Declaring variables
-        \int_new:N \l__preamble_StyleDependentValue_number_in_boxstyles_int
-        \tl_new:N \g__preamble_boxstyle_tl
-        \clist_new:N \l__preamble_StyleDependentValue_all_boxstyles_clist
-        \clist_new:N \l__preamble_StyleDependentValue_value_for_key_clist
-        % Default values
-        \tl_set:Nn \g__preamble_boxstyle_tl {\g__preamble_pagestyle_tl}
-    \NewDocumentCommand{\StyleDependentValue}{ O{} m m m }{
-        % Initalising the macro that is the value for the keytheorems key 'Parent = '
-        \tl_new:c {#2#1}
-        % Defining #2 and #3 semantically as a clist
-        \clist_set:Nn \l__preamble_StyleDependentValue_all_boxstyles_clist {#3}
-        \clist_set:Nn \l__preamble_StyleDependentValue_value_for_key_clist {#4}
-        % Setting the value in "parent = <value>" for the current Pagestyle
-        \int_zero:N \l__preamble_StyleDependentValue_number_in_boxstyles_int
-        \clist_map_inline:nn {#3} 
-        {
-            \int_incr:N \l__preamble_StyleDependentValue_number_in_boxstyles_int
-            \tl_if_eq:enT {\g__preamble_boxstyle_tl} {##1} 
-            {
-                \tl_gset:ce {#2#1} 
-                {
-                    \clist_item:Nn \l__preamble_StyleDependentValue_value_for_key_clist {\l__preamble_StyleDependentValue_number_in_boxstyles_int}
-                }
-            }
-        }
-    }
-    \makeatletter
-        \tl_remove_all:Nn \@preamblecmds { \do \renewkeytheorem }
-    \makeatother
-\ExplSyntaxOff
-
 \AtEndPreamble{
 % Keys whose values depend on the current boxstyle (which, by default, is the pagestyle)
     % parent
