@@ -54,7 +54,6 @@
         The following box should have width equal to the linewidth.
         \begin{code*}
         [=
-            ,width=346.68253pt
             ,autowidth = lower
             % ,no number
             ,listing and text
@@ -67,7 +66,6 @@
         \begin{code*}
         [=
             ,Title=Long long long long long long long long long long long title 
-            ,width=346.68253pt
             ,autowidth = lower
             % ,no number
             ,listing and text
@@ -85,10 +83,63 @@
         ]{\TeX}
             Hello\\ hewwo\\ heh
         \end{code*}
-        % \item The following box should compile
-        % \begin{code*}[autowidth = lower]{\TeX}
-        %     \centering
+        \item The following box should compile
+        \begin{code*}
+        [
+            ,listing and text
+            ,autowidth = lower
+        ]{\TeX}
+            \centering
+            Hello \hspace{5cm} there\\
+            I
+        \end{code*}
+        %* BUG as described in README.md: a comment cannot have \hspace{<dim>} or \(...\) (though $...$ works).
+        % \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
+        
+        % The following box should have width equal to the linewidth.
+        % \begin{code*}
+        % [=
+        %     ,use comment = {Comment\\ hewwo \hspace{10cm} heh}
+        %     ,autowidth = lower
+        %     % ,no number
+        % ]{\TeX}
+        %     Comment\\ hewwo \hspace{10cm} heh
         % \end{code*}
+        % \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
+        
+        % The following box should have width equal to the width of the \codeinline{TeX}{\tcblower}
+        % \begin{code*}
+        % [=
+        %     ,Title=Long long long long long long long long long long long title 
+        %     ,use comment = {Comment\\ hewwo \hspace{5cm} heh}
+        %     ,autowidth = lower
+        % ]{\TeX}
+        %     Comment\\ hewwo \hspace{5cm} heh
+        % \end{code*}
+        % \item \codeinline{TeX}{\l__listings_autowidth_lower_dim < \eqboxwidth{codeupperwidth\arabic{code}}}
+        
+        % The following box should have width equal to that of the \codeinline{TeX}{\tcblower}.
+        % \begin{code*}
+        % [=
+        %     ,use comment = {Comment\\ hewwo\\ heh}
+        %     ,autowidth = lower
+        %     ,no number
+        % ]{\TeX}
+        %     Comment\\ hewwo\\ heh
+        % \end{code*}
+        % \item The following box should compile
+        % \begin{code}
+        % [
+        %     ,use comment = {%
+        %     \centering
+        %     Comment \hspace{5cm} there\\
+        %     I}
+        %     ,autowidth = lower
+        % ]{\TeX}
+        %     \centering
+        %     Comment \hspace{5cm} there\\
+        %     I
+        % \end{code}
     \end{enumerate}
 \end{enumerate}
 %
@@ -195,7 +246,6 @@
         The following box should have width equal to the linewidth.
         \begin{code*}
         [=
-            ,width=346.68253pt
             ,autowidth = title
             ,autowidth = lower
             ,listing and text
@@ -212,7 +262,6 @@
         \begin{code*}
         [=
             ,Title=Long long long long long long long long long title 
-            ,width=346.68253pt
             ,autowidth = title
             ,autowidth = lower
             ,listing and text
@@ -232,7 +281,7 @@
             Hello\\ hewwo\\ heh
         \end{code*}
     \end{enumerate}
-    \item \codeinline{TeX}{autowidth = upper + lower}
+    \item \codeinline{TeX}{autowidth = upper + lower, listing and text}
     \begin{enumerate}
         \begin{code*}{Julia}
             \xdef\mywidth{\the\linewidth}\mywidth ⵌ\xdef\mywidth{\the\linewidth}ⵌ 
@@ -243,6 +292,7 @@
             [
                 ,Title=This should have breaklines disabled
                 ,autowidth = upper
+                ,listing and text
                 ,autowidth = lower
             ]{Julia}
             \hspace{\mywidth}
@@ -252,6 +302,7 @@
             [
                 ,Title=This should have breaklines enabled
                 ,autowidth = upper
+                ,listing and text
                 ,autowidth = lower
             ]{Julia}
             \hspace{\mywidth+0.00001pt}
@@ -261,7 +312,6 @@
         The following box should have width equal to the linewidth.
         \begin{code*}
         [=
-            ,width=346.68253pt
             ,autowidth = upper
             ,autowidth = lower
             ,listing and text
@@ -274,7 +324,6 @@
         \begin{code*}
         [=
             ,Title=Long long long long long long long long long long long title 
-            ,width=346.68253pt
             ,autowidth = upper
             ,autowidth = lower
             ,listing and text
@@ -304,6 +353,7 @@
     \begin{code*}
         [
             ,Title=smol
+            ,listing and text
             ,autowidth = title
             ,autowidth = upper
             ,autowidth = lower
@@ -316,6 +366,7 @@
     \begin{code*}
         [
             ,Title=smol
+            ,listing and text
             ,autowidth = title
             ,autowidth = upper
             ,autowidth = lower
@@ -328,6 +379,7 @@
     \begin{code*}
         [
             ,Title=Super long long long long long long long long long long long title
+            ,listing and text
             ,autowidth = title
             ,autowidth = upper
             ,autowidth = lower
@@ -341,6 +393,7 @@
     \begin{code*}
         [
             ,Title=Super long long long long long long long long long long long long long long long long long long long long title
+            ,listing and text
             ,autowidth = title
             ,autowidth = upper
             ,autowidth = lower
@@ -356,6 +409,7 @@
     \begin{code*}
         [
             ,Title=This should have breaklines disabled
+            ,listing and text
             ,autowidth = title
             ,autowidth = upper
             ,autowidth = lower
@@ -366,6 +420,7 @@
     \begin{code*}
         [
             ,Title=This should have breaklines enabled
+            ,listing and text
             ,autowidth = title
             ,autowidth = upper
             ,autowidth = lower

@@ -1,2 +1,4 @@
-            Long short text
+            \centering
+            Hello \hspace{5cm} there\\
+            I
         

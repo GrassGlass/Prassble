@@ -1,9 +1,12 @@
 \documentclass[11pt]{book}
-\usepackage[listings]{tcolorbox}
+\usepackage[minted, skins]{tcolorbox}
 
 \begin{document}
-\begin{tcblisting}{comment={This comment is really only a comment}, listing and comment,
-colback=red!5!white,colframe=red!75!black}
-This is a \textbf{tcolorbox}.
+\begin{tcblisting}{
+    ,minted language = TeX
+    ,comment = {Comment\\ hewwo \hspace{10cm} heh \(\int_{a}^{b}f(x)\,dx\)}
+    ,listing and comment
+}
+Comment\\ hewwo \hspace{10cm} heh
 \end{tcblisting}
 \end{document}

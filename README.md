@@ -51,3 +51,19 @@ A LaTeX preamble made by Grass.
     - `page-formatting.tex`
     - `preamble.tex`
 - `main.tex`
+
+## Known bugs: 
+1. The custom listing environments (`code(*)`, `codeoutput(*)`, ...) cannot have `\hspace{<dim>}` or `\(...\)` included in the `tcbkey` `comment` (probably among other macros). The first results in `TeX capacity exceeded, sorry [input stack size=10000].`. As for the latter: the errors
+```
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+```
+and 
+```
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+```
+are produced. Interestingly, `$...$` works, though.

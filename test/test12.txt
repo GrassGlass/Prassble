@@ -1,2 +1,3 @@
-                ⵌ\hspace{\mywidth}ⵌ
+                \xdef\mywidth{\the\linewidth}\mywidth ⵌ\xdef\mywidth{\the\linewidth}ⵌ
+                \mywidth = ⵌ\mywidthⵌ
             
