@@ -64,16 +64,32 @@
         }
       }
   }
-  \cs_new:Npn \__listings_autowidth_lower_eqsavebox:n #1
+  \cs_new:Npn \__listings_autowidth_lower_savewidth:
   {
-    \bool_if:NT
-      {\g__listings_autowidth_lower_bool}
+    \bool_if:NT \g__listings_autowidth_lower_bool
       {
-        % \eqsavebox does not allow for line breaks. So, we use \eqparbox here instead, which does allow for line breaks. The \setbox0 = \hbox trick allows us to obtain the same effect as using \savebox, of not having any effect on the typeset output. 
-        \setbox0 = \hbox
-                  {
-                    \eqparbox{codelowerwidth\arabic{code}}{#1}
-                  }
+        % \eqminipage isused for width measurement
+          % \eqsavebox does not allow for line breaks
+          % \eqparbox allows for line breaks, but does not play well with \centering & friends
+        % The \setbox0 = \hbox trick allows us to obtain the same effect as using \savebox, of not having any effect on the typeset output. 
+        \bool_if:NT \g__listings_include_codeoutput_bool
+          {
+            \setbox0 = \hbox
+                      {
+                        \begin{eqminipage}{codelowerwidth\arabic{code}}
+                          \tcbuselistingtext
+                        \end{eqminipage}
+                      }
+          }
+        \bool_if:NT \g__listings_include_comment_bool
+          {
+            \setbox0 = \hbox
+                      {
+                        \begin{eqminipage}{codelowerwidth\arabic{code}}
+                          \tcbuselistingcomment
+                        \end{eqminipage}
+                      }
+          }
       }
   }
   \cs_new:Npn \__listings_debug_autowidth:
@@ -109,6 +125,8 @@
   \bool_new:N \g__listings_autowidth_upper_bool
   \bool_new:N \g__listings_autowidth_lower_bool
   \bool_new:N \g__listings_debug_autowidth_bool
+  \bool_new:N \g__listings_include_codeoutput_bool
+  \bool_new:N \g__listings_include_comment_bool
   % Values
   \tl_set:Nn \g__listings_linenos_tl {linenos}
   \tl_set:Nn \g__listings_breaklines_tl {breaklines}
@@ -207,7 +225,6 @@
       \bool_set_true:N \g__listings_autowidth_lower_bool
       \pgfkeysalso
       {
-        ,listing~and~text
         ,autowidth@core
       }
     }
@@ -216,6 +233,31 @@
     {
       \bool_set_true:N \g__listings_debug_autowidth_bool
     } 
+  ,text~only/.prefix~code = {
+    \bool_set_true:N \g__listings_include_codeoutput_bool
+  }
+  ,listing~and~text/.prefix~code = {
+    \bool_set_true:N \g__listings_include_codeoutput_bool
+  }
+  ,text~and~listing/.prefix~code = {
+    \bool_set_true:N \g__listings_include_codeoutput_bool
+  }
+  ,listing~only/.prefix~code = {
+    \bool_set_false:N \g__listings_include_codeoutput_bool
+  }
+  ,comment~only/.prefix~code = {
+    \bool_set_true:N \g__listings_include_comment_bool
+  }
+  ,listing~and~comment/.prefix~code = {
+    \bool_set_true:N \g__listings_include_comment_bool
+  }
+  ,comment~and~listing/.prefix~code = {
+    \bool_set_true:N \g__listings_include_comment_bool
+  }
+  ,use~comment/.style = {
+    ,comment = {#1}
+    ,listing~and~comment
+  }
   ,Title/.style = 
   {
     title   = 
@@ -360,8 +402,9 @@
 
 % Base listing style, continued
 \renewcommand{\theFancyVerbLine}{
-                \eqmakebox[code\arabic{code}][c]{
-                    \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
+                \eqparbox[c][][c]{code\arabic{code}}{
+                  \relax\ifvmode\centering\fi
+                  \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
                 }
             }
 \renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codeupperwidth\arabic{code}]{#1}#1}

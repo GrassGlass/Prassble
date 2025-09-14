@@ -1,2 +1,2 @@
-            Hello\\ hewwo \hspace{10cm} heh
+            Hello\\ hewwo \hspace{5cm} heh
         
