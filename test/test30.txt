@@ -1,3 +1,3 @@
         Long short text\\
-        Test \hspace{10cm} testo
+        Test \hspace{8.5cm} testo
     

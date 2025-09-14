@@ -1,2 +1,2 @@
-            Hello\\ hewwo \hspace{10cm} heh
+            \hspace{\mywidth+0.00001pt}
         

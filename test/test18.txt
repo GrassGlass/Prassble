@@ -1,2 +1,2 @@
-            Hello\\ hewwo \hspace{10cm} heh
+            Long short text
         

@@ -1,2 +1,2 @@
-                ⵌ\hspace{\mywidth+0.00001pt}ⵌ
+                ⵌ\hspace{\mywidth}ⵌ
             

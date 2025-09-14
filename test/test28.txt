@@ -1,2 +1,2 @@
-        \hspace{10cm}
+        Long short text
     
