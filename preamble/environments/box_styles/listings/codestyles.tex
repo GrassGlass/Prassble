@@ -77,7 +77,9 @@
             \setbox0 = \hbox
                       {
                         \begin{eqminipage}{codelowerwidth\arabic{code}}
-                          \tcbuselistingtext
+                          \begin{varwidth}{\g__listings_autowidth@core_max_tcb_width_dim}
+                            \tcbuselistingtext
+                          \end{varwidth}
                         \end{eqminipage}
                       }
           }
@@ -86,7 +88,9 @@
             \setbox0 = \hbox
                       {
                         \begin{eqminipage}{codelowerwidth\arabic{code}}
-                          \tcbuselistingcomment
+                          \begin{varwidth}{\g__listings_autowidth@core_max_tcb_width_dim}
+                            \tcbuselistingcomment
+                          \end{varwidth}
                         \end{eqminipage}
                       }
           }
@@ -227,6 +231,22 @@
       {
         ,autowidth@core
       }
+    }
+    ,autowidth/above/.style =
+    {
+      ,autowidth = title
+      ,autowidth = upper
+    }
+    ,autowidth/body/.style =
+    {
+      ,autowidth = upper
+      ,autowidth = lower
+    }
+    ,autowidth/all/.style =
+    {
+      ,autowidth = title
+      ,autowidth = upper
+      ,autowidth = lower
     }
   ,debug/.is~choice
     ,debug/autowidth/.code = 
