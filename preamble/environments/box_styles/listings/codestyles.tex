@@ -402,9 +402,8 @@
 
 % Base listing style, continued
 \renewcommand{\theFancyVerbLine}{
-                \eqparbox[c][][c]{code\arabic{code}}{
-                  \relax\ifvmode\centering\fi
-                  \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
+                \eqmakebox[code\arabic{code}][c]{
+                    \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
                 }
             }
 \renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codeupperwidth\arabic{code}]{#1}#1}
