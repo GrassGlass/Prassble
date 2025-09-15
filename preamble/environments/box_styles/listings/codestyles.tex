@@ -68,31 +68,25 @@
   {
     \bool_if:NT \g__listings_autowidth_lower_bool
       {
-        % \eqminipage isused for width measurement
+        % varwidth used to make a box of natural width; eqsavebox to save this width
           % \eqsavebox does not allow for line breaks
           % \eqparbox allows for line breaks, but does not play well with \centering & friends
         % The \setbox0 = \hbox trick allows us to obtain the same effect as using \savebox, of not having any effect on the typeset output. 
         \bool_if:NT \g__listings_include_codeoutput_bool
           {
-            \setbox0 = \hbox
-                      {
-                        \begin{eqminipage}{codelowerwidth\arabic{code}}
-                          \begin{varwidth}{\g__listings_autowidth@core_max_tcb_width_dim}
-                            \tcbuselistingtext
-                          \end{varwidth}
-                        \end{eqminipage}
-                      }
+            \eqsavebox{\codewidth}[codelowerwidth\arabic{code}]{
+              \begin{varwidth}{\g__listings_autowidth@core_max_tcb_width_dim}
+                \tcbuselistingtext
+              \end{varwidth}
+            }
           }
         \bool_if:NT \g__listings_include_comment_bool
           {
-            \setbox0 = \hbox
-                      {
-                        \begin{eqminipage}{codelowerwidth\arabic{code}}
-                          \begin{varwidth}{\g__listings_autowidth@core_max_tcb_width_dim}
-                            \tcbuselistingcomment
-                          \end{varwidth}
-                        \end{eqminipage}
-                      }
+            \eqsavebox{\codewidth}[codelowerwidth\arabic{code}]{
+              \begin{varwidth}{\g__listings_autowidth@core_max_tcb_width_dim}
+                \tcbuselistingcomment
+              \end{varwidth}
+            }
           }
       }
   }
