@@ -52,13 +52,15 @@
 \tl_new:N \g_Prassble_Input_prepend_tl
 \tl_new:N \g_Prassble_Input_append_tl
 \tl_new:N \g_file_directory_to_be_used_tl
-\tl_new:N \g_Prassble_path_to_Prassble_tl
+\tl_new:N \g_Prassble_path_to_preamble_folder_tl
+\tl_new:N \g_Prassble_path_to_Prassble_folder_tl
 \tl_new:N \l__Prassble_relative_path_to_prepend_tl
 % Set the directory to be the folder 'preamble' in the preamble.
-  \tl_gset:Ne \g_Prassble_path_to_Prassble_tl {\CurrentFilePath}
-  \tl_set_eq:NN \g_file_directory_to_be_used_tl \g_Prassble_path_to_Prassble_tl
+  \tl_gset:Ne \g_Prassble_path_to_preamble_folder_tl {\CurrentFilePath}
+  \tl_gset:Ne \g_Prassble_path_to_Prassble_folder_tl {\g_Prassble_path_to_preamble_folder_tl/../}
+  \tl_set_eq:NN \g_file_directory_to_be_used_tl \g_Prassble_path_to_preamble_folder_tl
 % Set the directory to be '../preamble' in the document body.
-  \AtEndPreamble{\tl_gset:Ne \g_file_directory_to_be_used_tl {\g_Prassble_path_to_Prassble_tl/../}}
+  \AtEndPreamble{\tl_gset_eq:NN \g_file_directory_to_be_used_tl \g_Prassble_path_to_Prassble_folder_tl}
 \NewDocumentCommand{\Input}{ s O{} m }{
   % If the starred variant \Input* is used, go to the directory \CurrentFilePath.
     \bool_if:nT {#1} 
