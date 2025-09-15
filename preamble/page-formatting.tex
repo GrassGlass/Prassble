@@ -17,15 +17,24 @@
 %%
 %% This work consists of all files listed in README
 %%
-% \Pagestyle command to select
 \ExplSyntaxOn
+% \Pagestyle command to select a pagestyle and store it's name
 \tl_new:N \SelectedPagestyle
 \NewDocumentCommand{\Pagestyle}{ m }
 {
   \tl_gset:Nn \SelectedPagestyle {#1}
   \pagestyle{#1}
 }
+  % \ColorTheme command to select a colour theme and store it's name
+  \tl_new:N \SelectedColourTheme
+  \NewDocumentCommand{\ColorTheme}{ m }{
+    \tl_gset:Nn \SelectedColourTheme {#1}
+  }
 \ExplSyntaxOff
+
+  % default colour theme
+  \ColorTheme{colourful}
+
 
 % pagestyles
   % main pagestyle

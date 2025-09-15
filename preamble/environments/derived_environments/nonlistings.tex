@@ -17,50 +17,56 @@
 %%
 %% This work consists of all files listed in README
 %%
-%! Must be loaded after page-formatting.tex; the \Pagestyle invocation affects the behavior of the boxes
-\newkeytheorem{proof*}[
-    ,name = Proof
-    ,style = proofbox]
-\renewenvironment{proof}
-{\vspace{-\vlengthBetweenColoredBoxes}\begin{proof*}}{\end{proof*}}
-
-\newkeytheorem{answer*}[
-    ,name = Answer
-    ,style = proofbox]
-\newenvironment{answer}
-{\vspace{-\vlengthBetweenColoredBoxes}\begin{answer*}}{\end{answer*}}
-
 \AtEndPreamble{
-% Keys whose values depend on the current boxstyle (which, by default, is the pagestyle)
+% Keys whose values depend on the current pagestyle
     % parent
-    \StyleDependentValue[Parent]{Definition}{main,hw-in-main,hw}{chapter,section,}{\SelectedPagestyle}
-    \StyleDependentValue[Parent]{Problem}{main,hw-in-main,hw}{chapter,section,}{\SelectedPagestyle}
+    \StyleDependentValue[Parent]{Definition}{main,hw}{chapter,}{\SelectedPagestyle}
+    \StyleDependentValue[Parent]{Problem}{main,hw}{chapter,}{\SelectedPagestyle}
+% Keys that enable coloured boxes iff 
+    \StyleDependentValue{proofbox}{colourful,BnW}{proofbox,}{\SelectedColourTheme} 
+    \StyleDependentValue{greenbox}{colourful,BnW}{greenbox,}{\SelectedColourTheme}
+    \StyleDependentValue{redbox}{colourful,BnW}{redbox,}{\SelectedColourTheme}
+    \StyleDependentValue{bluebox}{colourful,BnW}{bluebox}{\SelectedColourTheme}
+    \StyleDependentValue{purplebox}{colourful,BnW}{purplebox}{\SelectedColourTheme}
+
+    % Proof/Answer environments
+    \newkeytheorem{proof*}[
+        ,name = Proof
+        ,style:V = \proofbox]
+    \renewenvironment{proof}
+    {\vspace{-\vlengthBetweenColoredBoxes}\begin{proof*}}{\end{proof*}}
+
+    \newkeytheorem{answer*}[
+        ,name = Answer
+        ,style:V = \proofbox]
+    \newenvironment{answer}
+    {\vspace{-\vlengthBetweenColoredBoxes}\begin{answer*}}{\end{answer*}}
 
 % Numbered
     % Family of environments with chapter as parent
         % greenboxes: definition, notation, motivation, recall
         \modifednewkeytheorem{definition}
         [
-            ,style = greenbox
+            ,style:V = \greenbox
             ,parent:V = \DefinitionParent
         ]
         \modifednewkeytheorem{notation,motivation,recall}
         [
-            ,style = greenbox
+            ,style:V = \greenbox
             ,sibling = definition
         ]
 
         % redboxes: claim, proposition, lemma, theorem, corollary
         \modifednewkeytheorem{claim,proposition,lemma,theorem,corollary}
         [
-            ,style = redbox
+            ,style:V = \redbox
             ,sibling = definition
         ]
 
         % blueboxes: observation, example, remark, note
         \modifednewkeytheorem{observation,example,remark,note}
         [
-            ,style = bluebox
+            ,style:V = \bluebox
             ,sibling = definition
         ]
 
@@ -68,12 +74,12 @@
         % purpleboxes: problem, question, exercise, hw
         \modifednewkeytheorem{problem}
         [
-            ,style = purplebox
+            ,style:V = \purplebox
             ,parent:V = \ProblemParent
         ]
         \modifednewkeytheorem{question,exercise}
         [
-            ,style = purplebox
+            ,style:V = \purplebox
             ,sibling = problem
         ]
 
@@ -83,25 +89,25 @@
         \newkeytheorem{definition*}
         [
             ,name = Definition
-            ,style = greenbox
+            ,style:V = \greenbox
             ,numbered = false
         ]
         \newkeytheorem{notation*}
         [
             ,name = Notation
-            ,style = greenbox
+            ,style:V = \greenbox
             ,numbered = false
         ]
         \newkeytheorem{motivation*}
         [
             ,name = Motivation
-            ,style = greenbox
+            ,style:V = \greenbox
             ,numbered = false
         ]
         \newkeytheorem{recall*}
         [
             ,name = Recall
-            ,style = greenbox
+            ,style:V = \greenbox
             ,numbered = false
         ]
 
@@ -109,31 +115,31 @@
         \newkeytheorem{claim*}
         [
             ,name = Claim
-            ,style = redbox
+            ,style:V = \redbox
             ,numbered = false
         ]
         \newkeytheorem{proposition*}
         [
             ,name = Proposition
-            ,style = redbox
+            ,style:V = \redbox
             ,numbered = false
         ]
         \newkeytheorem{lemma*}
         [
             ,name = Lemma
-            ,style = redbox
+            ,style:V = \redbox
             ,numbered = false
         ]
         \newkeytheorem{theorem*}
         [
             ,name = Theorem
-            ,style = redbox
+            ,style:V = \redbox
             ,numbered = false
         ]
         \newkeytheorem{corollary*}
         [
             ,name = Corollary
-            ,style = redbox
+            ,style:V = \redbox
             ,numbered = false
         ]
 
@@ -141,25 +147,25 @@
         \newkeytheorem{observation*}
         [
             ,name = Observation
-            ,style = bluebox
+            ,style:V = \bluebox
             ,numbered = false
         ]
         \newkeytheorem{example*}
         [
             ,name = Example
-            ,style = bluebox
+            ,style:V = \bluebox
             ,numbered = false
         ]
         \newkeytheorem{remark*}
         [
             ,name = Remark
-            ,style = bluebox
+            ,style:V = \bluebox
             ,numbered = false
         ]
         \newkeytheorem{note*}
         [
             ,name = Note
-            ,style = bluebox
+            ,style:V = \bluebox
             ,numbered = false
         ]
 
@@ -168,19 +174,19 @@
         \newkeytheorem{problem*}
         [
             ,name = Problem
-            ,style = purplebox
+            ,style:V = \purplebox
             ,numbered = false
         ]
         \newkeytheorem{question*}
         [
             ,name = Question
-            ,style = purplebox
+            ,style:V = \purplebox
             ,numbered = false
         ]
         \newkeytheorem{exercise*}
         [
             ,name = Exercise
-            ,style = purplebox
+            ,style:V = \purplebox
             ,numbered = false
         ]
 
