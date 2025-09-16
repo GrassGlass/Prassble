@@ -17,54 +17,50 @@
 %%
 %% This work consists of all files listed in README
 %%
-\ExplSyntaxOn
-% \Pagestyle command to select a pagestyle and store it's name
-\tl_new:N \SelectedPagestyle
-\NewDocumentCommand{\Pagestyle}{ m }
-{
-  \tl_gset:Nn \SelectedPagestyle {#1}
-  \pagestyle{#1}
-}
-  % \ColorTheme command to select a colour theme and store it's name
-  \tl_new:N \SelectedColourTheme
-  \NewDocumentCommand{\ColorTheme}{ m }{
-    \tl_gset:Nn \SelectedColourTheme {#1}
-  }
-\ExplSyntaxOff
+% pagestyles
+
+  % default pagestyle
+  \ifundef{\Pagestyle}{\def\Pagestyle{main}}{}
 
   % default colour theme
-  \ColorTheme{colourful}
+  \ifundef{\ColourTheme}{\def\ColourTheme{colourful}}{}
 
+  % \HeaderColour
+  \ifdefstring{\ColourTheme}{colourful}{\gdef\HeaderColour{HeaderColour}}{}
+  \ifdefstring{\ColourTheme}{BnW}{\gdef\HeaderColour{black}}{}
 
-% pagestyles
+  % change the color of \headrule to HeaderColour
+  \makeatletter
+    \renewcommand{\setheadrule}[1]{\ifdim #1=\z@ \let \makeheadrule \@empty \else \def \makeheadrule{\color{\HeaderColour}\rule[-.3\baselineskip]{\linewidth }{#1}}\fi}
+  \makeatother
+
   % main pagestyle
     % source1: https://tex.stackexchange.com/a/311505/383565
     % source2: https://sg.mirrors.cicku.me/ctan/macros/latex/contrib/titlesec/titlesec.pdf
-  \newpagestyle{main}[\sffamily\color{HeaderColor}]
+  \newpagestyle{main}[\sffamily\color{\HeaderColour}]
   {
     \sethead[\thepage][\chaptertitle][\thesection] % even
     {\thesection}{\sectiontitle}{\thepage}         % odd
+    \headrule
   } 
 
   % hw pagestyle
   \makeatletter
-    \newpagestyle{hw}[\sffamily\color{HeaderColor}]
+    \newpagestyle{hw}[\sffamily\color{\HeaderColour}]
     {
     \sethead{\@author}{\CourseName\ Homework \#\theHWNumber}{\thepage}
-    \color{HeaderColor}\headrule
+    \headrule
     }
   \makeatother
     % external referencing setup which allows the contents of main.tex to be referenced in hw documents
     \ExplSyntaxOn
-      \AtEndPreamble{
-        \tl_if_eq:NnT \SelectedPagestyle {hw} {
-          \zexternaldocument{\g_Prassble_path_to_Prassble_folder_tl/main}
-        }
+      \tl_if_eq:NnT \Pagestyle {hw} {
+        \zexternaldocument{\g_Prassble_path_to_Prassble_folder_tl/main}
       }
     \ExplSyntaxOff
 
-  % default pagestyle
-  \Pagestyle{main}
+% Select the pagestyle based on \Pagestyle
+\pagestyle{\Pagestyle}
 
 % page foot: remove page number from the bottom of chapter pages
   \assignpagestyle{\chapter}{empty}
@@ -72,14 +68,14 @@
 % chapter
   % Source: https://tex.stackexchange.com/a/169435
   \titleformat{\chapter}[display]
-    {\normalfont\bfseries\color{HeaderColor}}
+    {\normalfont\bfseries\color{\HeaderColour}}
     {\filleft\hspace*{-60pt}%
       \rotatebox[origin=c]{90}{%
         \normalfont\color{black}\Large%
           \textls[180]{\textsc{\chaptertitlename}}%
       }\hspace{10pt}%
       {\setlength\fboxsep{0pt}%
-      \colorbox{HeaderColor}{\parbox[c][3cm][c]{2.5cm}{%
+      \colorbox{\HeaderColour}{\parbox[c][3cm][c]{2.5cm}{%
         \centering\color{white}\fontsize{80}{90}\selectfont\thechapter}%
       }}%
     }
@@ -89,11 +85,11 @@
 % section
   % Source: https://tex.stackexchange.com/a/738974/383565
   \titleformat{\section}[hang]
-    {\normalfont\Large\bfseries\color{HeaderColor}}
+    {\normalfont\Large\bfseries\color{\HeaderColour}}
     {%
     \begingroup
     \setlength\fboxsep{3.5pt}%
-    \colorbox{HeaderColor}{\color{white}\thesection}%
+    \colorbox{\HeaderColour}{\color{white}\thesection}%
     \endgroup
     }
     {5pt}
@@ -101,7 +97,7 @@
 
 % subsection
   \titleformat{\subsection}[hang]
-    {\normalfont\Large\bfseries\color{HeaderColor}}
+    {\normalfont\Large\bfseries\color{\HeaderColour}}
     {%
     \begingroup
     \setlength\fboxsep{3pt}%

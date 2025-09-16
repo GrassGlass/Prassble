@@ -80,7 +80,7 @@
     }
 }
 
-\newkeytheoremstyle{proofbox}{
+\newkeytheoremstyle{proofbox-colourful}{
     headfont	            = {\sffamily\bfseries\color{RawSienna!70!black}},
     bodyfont	            = {\normalfont},
     numbered	            = no,
@@ -96,6 +96,18 @@
     }
 }
 
+\newkeytheoremstyle{BnW}{
+    headfont	            = {\sffamily\bfseries},
+    bodyfont	            = {\normalfont},
+}
+
+\newkeytheoremstyle{proofbox-BnW}{
+    headfont	            = {\sffamily\bfseries},
+    bodyfont	            = {\normalfont},
+    numbered	            = no,
+    qed = \eeveeKawaii,
+}
+
 \ExplSyntaxOn
     % The command \modifiednewkeytheorem that saves the name of the environemnt into \g__Prassble_environments_used_in_HWs_clist
         % Declaring variables
@@ -109,7 +121,7 @@
     \NewDocumentCommand{\AddToHWEnvList}{ m }{
         \clist_gput_right:Nn \g__Prassble_environments_used_in_HWs_clist {#1}
     }
-    % The command \StyleDependentValue{ name }{ clist of BoxStyles }{ clist of corresponding values for a key=value <key>} that defines a macro \<name><key>, such that '<key> = \<name><key>' automatically adapts to the current boxstyle.
+    % The command \StyleDependentValue[ <key> ]{ <name> }{ <clist of BoxStyles> }{ <clist of corresponding values for a key=value <key>> }{ <style macro> } that defines a macro \<name><key>, such that '<key> = \<name><key>' automatically adapts to the value of the <style macro>.
         % Declaring variables
         \int_new:N \l__Prassble_StyleDependentValue_number_in_boxstyles_int
         \tl_new:N \l__Prassble_StyleDependentValue_stylemacro_tl

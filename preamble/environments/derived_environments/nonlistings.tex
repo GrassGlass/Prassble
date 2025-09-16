@@ -17,17 +17,22 @@
 %%
 %% This work consists of all files listed in README
 %%
-\AtEndPreamble{
+%! Must be loaded after page-formatting.tex; the \Pagestyle invocation affects the behavior of the boxes
+\ExplSyntaxOn
+    \tl_if_eq:NnT \ColourTheme {BnW} {
+        \setlength{\vlengthBetweenColoredBoxes}{0.0pt}
+    }
+\ExplSyntaxOff
 % Keys whose values depend on the current pagestyle
     % parent
-    \StyleDependentValue[Parent]{Definition}{main,hw}{chapter,}{\SelectedPagestyle}
-    \StyleDependentValue[Parent]{Problem}{main,hw}{chapter,}{\SelectedPagestyle}
+    \StyleDependentValue[Parent]{Definition}{main,hw}{chapter,}{\Pagestyle}
+    \StyleDependentValue[Parent]{Problem}{main,hw}{chapter,}{\Pagestyle}
 % Keys that enable coloured boxes iff 
-    \StyleDependentValue{proofbox}{colourful,BnW}{proofbox,}{\SelectedColourTheme} 
-    \StyleDependentValue{greenbox}{colourful,BnW}{greenbox,}{\SelectedColourTheme}
-    \StyleDependentValue{redbox}{colourful,BnW}{redbox,}{\SelectedColourTheme}
-    \StyleDependentValue{bluebox}{colourful,BnW}{bluebox}{\SelectedColourTheme}
-    \StyleDependentValue{purplebox}{colourful,BnW}{purplebox}{\SelectedColourTheme}
+    \StyleDependentValue{proofbox}{colourful,BnW}{proofbox-colourful,proofbox-BnW}{\ColourTheme} 
+    \StyleDependentValue{greenbox}{colourful,BnW}{greenbox,BnW}{\ColourTheme}
+    \StyleDependentValue{redbox}{colourful,BnW}{redbox,BnW}{\ColourTheme}
+    \StyleDependentValue{bluebox}{colourful,BnW}{bluebox,BnW}{\ColourTheme}
+    \StyleDependentValue{purplebox}{colourful,BnW}{purplebox,BnW}{\ColourTheme}
 
     % Proof/Answer environments
     \newkeytheorem{proof*}[
@@ -312,4 +317,3 @@
 %             ,sibling = myproblem
 %             ,counter-format = \arabic{chapter}.\Alph{myexercise}
 %         ]
-}
