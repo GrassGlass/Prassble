@@ -68,21 +68,25 @@
   \usepackage{setspaceenhanced, parskip}
   \onehalfspacing
 
-  % Colored boxes
-  \usepackage[skins, breakable, minted]{tcolorbox}
-    % Required for autowidth = lower 
-    \usepackage{varwidth}
-  \usepackage{keytheorems}
-  \setminted{%
-    ,escapeinside = ⵌⵌ
-    % The characters afterwhich a linebreak can occur:
-      % The backslashes are there only to escape the square brackets; the symbols "[" and "]" are the ones afterwhich a linebreak can occur. The \[\] is not indicating display mathmode.
-      ,breakafter = \[\]()
-  }
-
   % Page formatting
   \usepackage[pagestyles]{titlesec}
   \usepackage{lmodern, microtype}
+    % default colour theme
+    \ifundef{\ColourTheme}{\gdef\ColourTheme{colourful}}{}
+
+  % Colored boxes
+  \ifdefstring{\ColourTheme}{colourful}{
+    \usepackage[skins, breakable, minted]{tcolorbox}
+      % Required for autowidth = lower 
+      \usepackage{varwidth}
+    \setminted{%
+      ,escapeinside = ⵌⵌ
+      % The characters afterwhich a linebreak can occur:
+        % The backslashes are there only to escape the square brackets; the symbols "[" and "]" are the ones afterwhich a linebreak can occur. The \[\] is not indicating display mathmode.
+        ,breakafter = \[\]()
+    }
+  }{}
+  \usepackage{keytheorems}
 
   % Refer
   \usepackage{soul} % for special underlining of hyperlinks --- descenders are omitted
@@ -107,9 +111,6 @@
   % enumeration
   \Input{enumeration.tex}
 
-  % Other
-  \Input{other.tex}
-
   % Custom symbols (\eeveeKawaii, \TikZ, etc)
   \Input{custom-symbols.tex}
   
@@ -121,27 +122,29 @@
   \Input{page-formatting.tex}
 
   % Colored boxes
-  \Input[environments/box_styles/listings/commands/newcommands]{%
-    ,all_short_names.tex%
-    ,new_variables.tex%
-    ,name_converters.tex%
-  }
-  \Input[environments/box_styles]{
-    ,listings/codestyles.tex%
-    ,nonlistings.tex%
-    ,lengths_and_counters.tex%
-  }
-  \Input[environments/box_styles/listings/commands/modified_commands]{%
-    ,NewInputListing.tex%
-    ,NewListing.tex%
-  }
-  \Input[environments/derived_environments]{%
-    ,lengths.tex%
-    ,listings.tex%
-    ,nonlistings.tex%
-  }
-  \AddToHWEnvList{table,figure}                       %*
-  \newcommand{\HWInMainHeader}{\subsection{Homework \#\arabic{HWNumber}}}                                        %*
+    % Nonlistings
+    \Input[environments/box_styles]{%
+      ,nonlistings.tex%
+      ,lengths_and_counters.tex%
+    }
+    \Input[environments/derived_environments]{%
+      ,lengths.tex%
+      ,nonlistings.tex%
+    }
+    % Listings
+    \ifdefstring{\ColourTheme}{colourful}{
+      \Input[environments/box_styles/listings/colourful/commands/newcommands]{%
+        ,all_short_names.tex%
+        ,new_variables.tex%
+        ,name_converters.tex%
+      }
+      \Input[environments/box_styles/listings/colourful/commands/modified_commands]{%
+        ,../../codestyles.tex%
+        ,NewInputListing.tex%
+        ,NewListing.tex%
+      }
+      \Input{environments/derived_environments/listings/listings-colourful.tex}
+    }{}
 
   % Refer
   \Input{external_hyperlink_format.tex}
@@ -151,3 +154,8 @@
     filecolor=magenta,      
     urlcolor=cyan,
     }
+
+  % Other
+  \Input{other.tex}
+  \AddToHWEnvList{table,figure}                       %*
+  \newcommand{\HWInMainHeader}{\subsection{Homework \#\arabic{HWNumber}}}                                        %*

@@ -17,11 +17,7 @@
 %%
 %% This work consists of all files listed in README
 %%
-%! Must be loaded after page-formatting.tex; the \Pagestyle invocation affects the behavior of the boxes
-\ExplSyntaxOn
-    \tl_if_eq:NnT \ColourTheme {BnW} {
-        \setlength{\vlengthBetweenColoredBoxes}{0.0pt}
-    }
+\ifdefstring{\ColourTheme}{BnW}{\setlength{\vlengthBetweenColoredBoxes}{0.0pt}}{}
 \ExplSyntaxOff
 % Keys whose values depend on the current pagestyle
     % parent

@@ -24,46 +24,47 @@
 
 \theoremstyle{definition}
 
-\newkeytheoremstyle{greenbox}{
-    headfont	            = {\sffamily\bfseries\color{ForestGreen!70!black}},
-    bodyfont	            = {\normalfont},
-    tcolorbox-no-titlebar	= {
-        breakable,
-        skin    = enhanced jigsaw,
-        boxsep  = \boxsep,
-        boxrule = \boxrule,
-        colback = ForestGreen!5,
-        borderline west ={\BorderlineWestThickness}{0pt}{ForestGreen},
-        before upper={\parindent=\myparindent},
+\ifdefstring{\ColourTheme}{colourful}{
+    \newkeytheoremstyle{greenbox}{
+        headfont	            = {\sffamily\bfseries\color{ForestGreen!70!black}},
+        bodyfont	            = {\normalfont},
+        tcolorbox-no-titlebar	= {
+            breakable,
+            skin    = enhanced jigsaw,
+            boxsep  = \boxsep,
+            boxrule = \boxrule,
+            colback = ForestGreen!5,
+            borderline west ={\BorderlineWestThickness}{0pt}{ForestGreen},
+            before upper={\parindent=\myparindent},
+        }
     }
-}
 
-\newkeytheoremstyle{bluebox}{
-    headfont	            = {\sffamily\bfseries\color{NavyBlue!70!black}},
-    bodyfont	            = {\normalfont},
-    tcolorbox-no-titlebar	= {
-        breakable,
-        skin    = enhanced jigsaw,
-        boxsep  = \boxsep,
-        boxrule = \boxrule,
-        colback = NavyBlue!5,
-        borderline west ={\BorderlineWestThickness}{0pt}{NavyBlue},
-        before upper={\parindent=\myparindent},
+    \newkeytheoremstyle{bluebox}{
+        headfont	            = {\sffamily\bfseries\color{NavyBlue!70!black}},
+        bodyfont	            = {\normalfont},
+        tcolorbox-no-titlebar	= {
+            breakable,
+            skin    = enhanced jigsaw,
+            boxsep  = \boxsep,
+            boxrule = \boxrule,
+            colback = NavyBlue!5,
+            borderline west ={\BorderlineWestThickness}{0pt}{NavyBlue},
+            before upper={\parindent=\myparindent},
+        }
     }
-}
 
-\newkeytheoremstyle{purplebox}{
-    headfont	            = {\sffamily\bfseries\color{Mulberry!70!black}},
-    bodyfont	            = {\normalfont},
-    tcolorbox-no-titlebar	= {
-        breakable,
-        skin    = enhanced jigsaw,
-        boxsep  = \boxsep,
-        boxrule = \boxrule,
-        colback = Mulberry!5,
-        borderline west ={\BorderlineWestThickness}{0pt}{Mulberry},
-        before upper={\parindent=\myparindent},
-    }
+    \newkeytheoremstyle{purplebox}{
+        headfont	            = {\sffamily\bfseries\color{Mulberry!70!black}},
+        bodyfont	            = {\normalfont},
+        tcolorbox-no-titlebar	= {
+            breakable,
+            skin    = enhanced jigsaw,
+            boxsep  = \boxsep,
+            boxrule = \boxrule,
+            colback = Mulberry!5,
+            borderline west ={\BorderlineWestThickness}{0pt}{Mulberry},
+            before upper={\parindent=\myparindent},
+        }
 }
 
 \newkeytheoremstyle{redbox}{
@@ -95,18 +96,21 @@
         before upper={\parindent=\myparindent},
     }
 }
+}{}
 
-\newkeytheoremstyle{BnW}{
-    headfont	            = {\sffamily\bfseries},
-    bodyfont	            = {\normalfont},
-}
+\ifdefstring{\ColourTheme}{BnW}{
+    \newkeytheoremstyle{BnW}{
+        headfont	            = {\sffamily\bfseries},
+        bodyfont	            = {\normalfont},
+    }
 
-\newkeytheoremstyle{proofbox-BnW}{
-    headfont	            = {\sffamily\bfseries},
-    bodyfont	            = {\normalfont},
-    numbered	            = no,
-    qed = \eeveeKawaii,
-}
+    \newkeytheoremstyle{proofbox-BnW}{
+        headfont	            = {\sffamily\bfseries},
+        bodyfont	            = {\normalfont},
+        numbered	            = no,
+        qed = \eeveeKawaii,
+} 
+}{}
 
 \ExplSyntaxOn
     % The command \modifiednewkeytheorem that saves the name of the environemnt into \g__Prassble_environments_used_in_HWs_clist
