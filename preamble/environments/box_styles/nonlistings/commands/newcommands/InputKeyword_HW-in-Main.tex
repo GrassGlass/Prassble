@@ -1,0 +1,41 @@
+\ExplSyntaxOn
+\makeatletter
+    % HW-In-Main Input keyword
+    \KeywordForInput{HW-In-Main}{files/homework}
+    [
+        % Header for hw
+        % This is a new hw subsection, so raise the hw count
+            \stepcounter{HWNumber}
+        % The header
+            \HWInMainHeader
+        % Redefinition of \the<environment> to distinguish environments (e.g. exercise) used in hw subsections vs the environments natively belonging to the lecture notes/reference text.
+            \clist_map_inline:Nn \g__Prassble_environments_used_in_HWs_clist 
+            {
+                % Save the current counter value \the#1 for the environment #1 before the hw subsection
+                \int_new:c {g__Prassble_HW_In_Main_inital_#1_value_int}
+                \int_set_eq:cc {g__Prassble_HW_In_Main_inital_#1_value_int} {c@#1}
+            }
+            \clist_map_inline:Nn \g__Prassble_environments_used_in_HWs_clist 
+            {
+                % Reset \the#1 for the hw subsection
+                \setcounter{#1}{0}
+                % Save the current definition of the#1 (the typeset counter) and theH#1.
+                \cs_set_eq:cc {g__Prassble_pagestyle_main_the#1} {the#1}
+                \cs_set_eq:cc {g__Prassble_pagestyle_main_theH#1} {theH#1}
+                % Redefine the#1 in our custom HW-in-Main style (again, this is to distinguish hw content from the contents of the main material).
+                \cs_set:cpn {the#1} {H.\arabic{HWNumber}.\arabic{#1}}
+                % Redefine theH#1 to ensure hyperref works correctly
+                \cs_set_eq:cc {theH#1} {the#1}
+            }
+    ]
+    [
+        % Restore the main pagestyle now that the hw subsection has ended
+        \clist_map_inline:Nn \g__Prassble_environments_used_in_HWs_clist
+            {
+            \cs_set_eq:cc {the#1} {g__Prassble_pagestyle_main_the#1}
+            \cs_set_eq:cc {theH#1} {g__Prassble_pagestyle_main_theH#1}
+            \expandafter\setcounter{#1}{\csname g__Prassble_HW_In_Main_inital_#1_value_int\endcsname}
+            }
+    ]
+\makeatother
+\ExplSyntaxOff

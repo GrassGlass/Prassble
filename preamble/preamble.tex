@@ -54,8 +54,9 @@
   % \usepackage{siunitx}
 
   % Diagrams
-  \usepackage{tikz}
+  \usepackage{tikz, pgfplots}
   \usetikzlibrary{cd}
+  \pgfplotsset{compat=1.18}
 
   % enumeration
   \usepackage[shortlabels,inline]{enumitem}
@@ -87,6 +88,9 @@
     }
   }{}
   \usepackage{keytheorems}
+
+  % Externalisation 
+  \usepackage{robust-externalize}
 
   % Refer
   \usepackage{soul} % for special underlining of hyperlinks --- descenders are omitted
@@ -123,9 +127,11 @@
 
   % Colored boxes
     % Nonlistings
-    \Input[environments/box_styles]{%
-      ,nonlistings.tex%
-      ,lengths_and_counters.tex%
+    \Input[environments/box_styles/nonlistings]{%
+      ,theoremstyles.tex%
+      ,commands/modified_commands/newkeytheorem.tex
+      ,commands/newcommands/InputKeyword_HW-in-Main.tex
+      ,../lengths_and_counters.tex%
     }
     \Input[environments/derived_environments]{%
       ,lengths.tex%
