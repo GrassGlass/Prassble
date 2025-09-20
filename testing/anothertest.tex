@@ -1,7 +1,58 @@
 \documentclass[a4paper, 11pt]{book}
-\input{../preamble/preamble.tex}
+\usepackage[skins, breakable]{tcolorbox}
+\usepackage{keytheorems}
+
+\makeatletter
+\newcounter{calc}
+
+\newkeytheoremstyle{calc@style@first}{
+    tcolorbox-no-titlebar   = {
+        skin    = enhanced jigsaw,
+        after skip balanced = 0pt,
+    }
+}
+\newkeytheoremstyle{calc@style@last}{
+    tcolorbox-no-titlebar   = {
+        skin    = enhanced jigsaw,
+        before skip balanced = 0pt,
+    }
+}
+
+\newkeytheoremstyle{calc@style@first-x}{
+    tcolorbox-no-titlebar   = {
+        skin    = enhanced jigsaw,
+        sharp corners = south,
+        after skip balanced = 0pt,
+    }
+}
+\newkeytheoremstyle{calc@style@last-x}{
+    tcolorbox-no-titlebar   = {
+        skin    = enhancedlast jigsaw,
+        before skip balanced = 0pt,
+    }
+}
+
+\newkeytheorem{calcFirst}[name=Calc, numberlike=calc, style=calc@style@first]
+\newkeytheorem{calcLast}[name=Calc, numberlike=calc, style=calc@style@last]
+
+\newkeytheorem{calcFirstX}[name=Calc, numberlike=calc, style=calc@style@first-x]
+\newkeytheorem{calcLastX}[name=Calc, numberlike=calc, style=calc@style@last-x]
+\makeatother
+
 \begin{document}
-\begin{theorem}
-    test
-\end{theorem}
+\begin{calcFirst}
+    one
+\end{calcFirst}
+
+\begin{calcLast}
+    two
+\end{calcLast}
+
+\begin{calcFirstX}
+    one
+\end{calcFirstX}
+
+\begin{calcLastX}
+    two
+\end{calcLastX}
 \end{document}

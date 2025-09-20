@@ -21,11 +21,14 @@
 \newcommand{\correct}{\textcolor{green!70!black}{\checkmark}}
 \newcommand{\wrong}[1][]{\textcolor{red}{\(\times\) #1}}
 
+% \eeveeKawaii
 \newbox\eeveebox
 \setbox\eeveebox\hbox{%
 \raisebox{-5pt}{\includegraphics[height=3ex]{\CurrentFilePath/../figures/iibui.pdf}}%
 }
 \def\eeveeKawaii{\copy\eeveebox}
+    % QED variant with zero TeX height
+    \def\eeveeKawaiiQED{\raisebox{0pt}[0pt][0pt]{\eeveeKawaii}}
 
 % Asymptote symbol
 \newbox\asybox
