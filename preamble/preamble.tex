@@ -76,21 +76,19 @@
     \ifundef{\ColourTheme}{\gdef\ColourTheme{colourful}}{}
 
   % Colored boxes
-  \ifdefstring{\ColourTheme}{colourful}{
-    \usepackage[skins, breakable, minted]{tcolorbox}
-      % Required for autowidth = lower 
-      \usepackage{varwidth}
-    \setminted{%
-      ,escapeinside = ⵌⵌ
-      % The characters afterwhich a linebreak can occur:
-        % The backslashes are there only to escape the square brackets; the symbols "[" and "]" are the ones afterwhich a linebreak can occur. The \[\] is not indicating display mathmode.
-        ,breakafter = \[\]()
-    }
-  }{}
+  \usepackage[skins, breakable, minted]{tcolorbox}
+    % Required for autowidth = lower 
+    \usepackage{varwidth}
+  \setminted{%
+    ,escapeinside = ⵌⵌ
+    % The characters afterwhich a linebreak can occur:
+      % The backslashes are there only to escape the square brackets; the symbols "[" and "]" are the ones afterwhich a linebreak can occur. The \[\] is not indicating display mathmode.
+      ,breakafter = \[\]()
+  }
   \usepackage{keytheorems}
 
   % Externalisation 
-  \usepackage{robust-externalize}
+  % \usepackage{robust-externalize}
 
   % Refer
   \usepackage{soul} % for special underlining of hyperlinks --- descenders are omitted
@@ -138,19 +136,17 @@
       ,nonlistings.tex%
     }
     % Listings
-    \ifdefstring{\ColourTheme}{colourful}{
-      \Input[environments/box_styles/listings/colourful/commands/newcommands]{%
-        ,all_short_names.tex%
-        ,new_variables.tex%
-        ,name_converters.tex%
-      }
-      \Input[environments/box_styles/listings/colourful/commands/modified_commands]{%
-        ,../../codestyles.tex%
-        ,NewInputListing.tex%
-        ,NewListing.tex%
-      }
-      \Input{environments/derived_environments/listings/listings-colourful.tex}
-    }{}
+    \Input[environments/box_styles/listings/colourful/commands/newcommands]{%
+      ,all_short_names.tex%
+      ,new_variables.tex%
+      ,name_converters.tex%
+    }
+    \Input[environments/box_styles/listings/colourful/commands/modified_commands]{%
+      ,../../codestyles.tex%
+      ,NewInputListing.tex%
+      ,NewListing.tex%
+    }
+    \Input{environments/derived_environments/listings/listings-colourful.tex}
 
   % Refer
   \Input{external_hyperlink_format.tex}

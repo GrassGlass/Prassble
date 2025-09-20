@@ -69,4 +69,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 ```
-are produced. Interestingly, `$...$` works, though.
+are produced. Interestingly, `$...$` works, though, and this bug does not affect the `tcbkey` `listing and text`.
+
+## Known bugfixes
+1. Wrap such macros `\hspace{<dim>}` and `\(...\)` with `\unexpanded{<angry macros>}`. (Or wrap the entire `comment` in `\unexpanded`; i.e. `comment = \unexpanded{<comment>}`.)

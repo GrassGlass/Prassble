@@ -21,7 +21,12 @@
 \ExplSyntaxOn
 
 % Colors
-\def\ColorCodeBase{Maroon}
+\ifdefstring{\ColourTheme}{colourful}{
+  \def\ColorCodeBase{Maroon}
+}{}
+\ifdefstring{\ColourTheme}{BnW}{
+  \def\ColorCodeBase{black}
+}{}
 \def\ColorCodeColback{\ColorCodeBase!5}
 \def\ColorCodeColbacktitle{\ColorCodeBase!5}
 \def\ColorCodeTitle{\ColorCodeBase!70!black}
