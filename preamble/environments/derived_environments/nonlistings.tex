@@ -30,34 +30,32 @@
     \StyleDependentValue{purplebox}{colourful,BnW}{purplebox,BnW}{\ColourTheme}
 
     % Proof/Answer environments
-    \newkeytheorem{proof*}[
-        ,name = Proof
-        ,style:V = \proofbox]
-    \renewenvironment{proof}
-    {\begin{proof*}}{\end{proof*}}
-
-    \newkeytheorem{answer*}[
-        ,name = Answer
-        ,style:V = \proofbox]
-    \newenvironment{answer}
-    {\vspace{-\vlengthBetweenColoredBoxes}\begin{answer*}}{\end{answer*}}
+    \modifiedrenewkeytheorem*{proof}
+    (last)
+    [style:V = \redbox]
+    \modifiednewkeytheorem*{answer}
+    (last)
+    [style:V = \redbox]
 
 % Numbered
     % Family of environments with chapter as parent
         % greenboxes: definition, notation, motivation, recall
         \modifiednewkeytheorem{definition}
+        (standalone)
         [
             ,style:V = \greenbox
             ,parent:V = \DefinitionParent
         ]
         \modifiednewkeytheorem{notation,motivation,recall}
+        (standalone)
         [
             ,style:V = \greenbox
             ,sibling = definition
         ]
 
         % redboxes: claim, proposition, lemma, theorem, corollary
-        \modifiednewkeytheorem{theorem}
+        \modifiednewkeytheorem{claim,proposition,lemma,theorem,corollary}
+        (first)
         [
             ,style:V = \redbox
             ,sibling = definition
@@ -65,6 +63,7 @@
 
         % blueboxes: observation, example, remark, note
         \modifiednewkeytheorem{observation,example,remark,note}
+        (standalone)
         [
             ,style:V = \bluebox
             ,sibling = definition
@@ -73,11 +72,13 @@
     % Family of environments with section as parent, and a separate hw environment
         % purpleboxes: problem, question, exercise, hw
         \modifiednewkeytheorem{problem}
+        (first)
         [
             ,style:V = \purplebox
             ,parent:V = \ProblemParent
         ]
         \modifiednewkeytheorem{question,exercise}
+        (first)
         [
             ,style:V = \purplebox
             ,sibling = problem
