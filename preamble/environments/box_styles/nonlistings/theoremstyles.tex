@@ -22,7 +22,41 @@
     % "before upper={\parindent15pt\noindent}":
     %  https://tex.stackexchange.com/a/200654/383565
 
-\theoremstyle{definition}
+\tcbset{
+    ,Prassble keytheorems           /.style = {}
+    ,type in thmgroup               /.is choice
+        ,type in thmgroup/first     /.style = {
+            ,sharp corners
+            ,rounded corners = northeast
+            ,after skip balanced = 0pt
+        }
+        ,type in thmgroup/middle    /.style = {
+            ,sharp corners
+            ,before skip balanced = 0pt
+            ,after skip balanced = 0pt
+        }
+        ,type in thmgroup/last      /.style = {
+            ,sharp corners
+            ,rounded corners = southeast
+            ,before skip balanced = 0pt
+        }
+        ,type in thmgroup/standalone/.style = {
+            ,rounded corners
+            ,before skip balanced = 0pt
+        }
+}
+
+\ExplSyntaxOn
+\keys_define:nn { keytheorems/thmuse }
+    {
+        ,tcb-add                    .code:n     = {
+            \tcbset{mystyle/.append~style={#1}}
+        }
+        ,tcb-append                 .meta:n     = {
+            tcb-add = {#1}
+        }
+    }
+\ExplSyntaxOff
 
 \ifdefstring{\ColourTheme}{colourful}{
     \newkeytheoremstyle{greenbox}{

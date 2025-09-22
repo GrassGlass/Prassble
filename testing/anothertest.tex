@@ -2,57 +2,84 @@
 \usepackage[skins, breakable]{tcolorbox}
 \usepackage{keytheorems}
 
+\tcbset{
+    ,mystyle/.style = {}
+    ,type in thmgroup/.is choice
+        ,type in thmgroup/first/.style = {
+            ,sharp corners
+            ,rounded corners = northeast
+            ,after skip balanced = 0pt
+        }
+        ,type in thmgroup/middle/.style = {
+            ,sharp corners
+            ,before skip balanced = 0pt
+            ,after skip balanced = 0pt
+        }
+        ,type in thmgroup/last/.style = {
+            ,sharp corners
+            ,rounded corners = southeast
+            ,before skip balanced = 0pt
+        }
+        ,type in thmgroup/standalone/.style = {
+            ,rounded corners
+            ,before skip balanced = 0pt
+        }
+}
+
+\ExplSyntaxOn
+\keys_define:nn { keytheorems/thmuse }
+    {
+        ,tcb-add                    .code:n     = {
+            \tcbset{mystyle/.append~style={#1}}
+        }
+        ,tcb-append                 .meta:n     = {
+            tcb-add = {#1}
+        }
+    }
+\ExplSyntaxOff
+
+\newkeytheoremstyle{foo}{
+    tcolorbox-no-titlebar   = {
+        skin    = enhanced jigsaw,
+        mystyle,
+    }
+}
+
+\newkeytheorem{definition@inner}
+  [
+    ,style = foo
+    ,name = Definition,
+  ]
+\NewDocumentEnvironment{definition}{d()O{}}
+  {%
+    \IfNoValueF{#1}{\tcbset{mystyle/.append style={type in thmgroup=#1}}}%
+    \begin{definition@inner}[#2]%
+  }
+  {\end{definition@inner}}
+
 \makeatletter
-\newcounter{calc}
-
-\newkeytheoremstyle{calc@style@first}{
-    tcolorbox-no-titlebar   = {
-        skin    = enhanced jigsaw,
-        after skip balanced = 0pt,
-    }
-}
-\newkeytheoremstyle{calc@style@last}{
-    tcolorbox-no-titlebar   = {
-        skin    = enhanced jigsaw,
-        before skip balanced = 0pt,
-    }
-}
-
-\newkeytheoremstyle{calc@style@first-x}{
-    tcolorbox-no-titlebar   = {
-        skin    = enhanced jigsaw,
-        sharp corners = south,
-        after skip balanced = 0pt,
-    }
-}
-\newkeytheoremstyle{calc@style@last-x}{
-    tcolorbox-no-titlebar   = {
-        skin    = enhancedlast jigsaw,
-        before skip balanced = 0pt,
-    }
-}
-
-\newkeytheorem{calcFirst}[name=Calc, numberlike=calc, style=calc@style@first]
-\newkeytheorem{calcLast}[name=Calc, numberlike=calc, style=calc@style@last]
-
-\newkeytheorem{calcFirstX}[name=Calc, numberlike=calc, style=calc@style@first-x]
-\newkeytheorem{calcLastX}[name=Calc, numberlike=calc, style=calc@style@last-x]
+\newkeytheorem{theorem@inner}
+  [
+    ,style = foo
+    ,name = Theorem,
+    ,sibling = definition@inner,
+  ]
 \makeatother
+\NewDocumentEnvironment{theorem}{d()O{}}
+  {%
+    \IfNoValueF{#1}{\tcbset{mystyle/.append style={type in thmgroup=#1}}}%
+    \begin{theorem@inner}[#2]%
+  }
+  {\end{theorem@inner}}
 
 \begin{document}
-\begin{calcFirst}
-    one
-\end{calcFirst}
-
-\begin{calcLast}
-    two
-\end{calcLast}
-
-\begin{calcFirstX}
-    one
-\end{calcFirstX}
-
-\begin{calcLastX}
-    two
-\end{calcLastX}
+\begin{definition}(first)
+    First box
+\end{definition}
+\begin{definition}(middle)[tcb-add={colframe=red}]
+    Second box
+\end{definition}
+\begin{definition}(last)[note=blub]
+    Third box
+\end{definition}
 \end{document}

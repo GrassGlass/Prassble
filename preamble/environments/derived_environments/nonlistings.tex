@@ -45,26 +45,26 @@
 % Numbered
     % Family of environments with chapter as parent
         % greenboxes: definition, notation, motivation, recall
-        \modifednewkeytheorem{definition}
+        \modifiednewkeytheorem{definition}
         [
             ,style:V = \greenbox
             ,parent:V = \DefinitionParent
         ]
-        \modifednewkeytheorem{notation,motivation,recall}
+        \modifiednewkeytheorem{notation,motivation,recall}
         [
             ,style:V = \greenbox
             ,sibling = definition
         ]
 
         % redboxes: claim, proposition, lemma, theorem, corollary
-        \modifednewkeytheorem{claim,proposition,lemma,theorem,corollary}
+        \modifiednewkeytheorem{theorem}
         [
             ,style:V = \redbox
             ,sibling = definition
         ]
 
         % blueboxes: observation, example, remark, note
-        \modifednewkeytheorem{observation,example,remark,note}
+        \modifiednewkeytheorem{observation,example,remark,note}
         [
             ,style:V = \bluebox
             ,sibling = definition
@@ -72,123 +72,123 @@
 
     % Family of environments with section as parent, and a separate hw environment
         % purpleboxes: problem, question, exercise, hw
-        \modifednewkeytheorem{problem}
+        \modifiednewkeytheorem{problem}
         [
             ,style:V = \purplebox
             ,parent:V = \ProblemParent
         ]
-        \modifednewkeytheorem{question,exercise}
+        \modifiednewkeytheorem{question,exercise}
         [
             ,style:V = \purplebox
             ,sibling = problem
         ]
 
-% No number
-    % Family of environments with chapter as parent
-        % greenboxes: definition, notation, motivation, recall
-        \newkeytheorem{definition*}
-        [
-            ,name = Definition
-            ,style:V = \greenbox
-            ,numbered = false
-        ]
-        \newkeytheorem{notation*}
-        [
-            ,name = Notation
-            ,style:V = \greenbox
-            ,numbered = false
-        ]
-        \newkeytheorem{motivation*}
-        [
-            ,name = Motivation
-            ,style:V = \greenbox
-            ,numbered = false
-        ]
-        \newkeytheorem{recall*}
-        [
-            ,name = Recall
-            ,style:V = \greenbox
-            ,numbered = false
-        ]
+% % No number
+%     % Family of environments with chapter as parent
+%         % greenboxes: definition, notation, motivation, recall
+%         \newkeytheorem{definition*}
+%         [
+%             ,name = Definition
+%             ,style:V = \greenbox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{notation*}
+%         [
+%             ,name = Notation
+%             ,style:V = \greenbox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{motivation*}
+%         [
+%             ,name = Motivation
+%             ,style:V = \greenbox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{recall*}
+%         [
+%             ,name = Recall
+%             ,style:V = \greenbox
+%             ,numbered = false
+%         ]
 
-        % redboxes: claim, proposition, lemma, theorem, corollary
-        \newkeytheorem{claim*}
-        [
-            ,name = Claim
-            ,style:V = \redbox
-            ,numbered = false
-        ]
-        \newkeytheorem{proposition*}
-        [
-            ,name = Proposition
-            ,style:V = \redbox
-            ,numbered = false
-        ]
-        \newkeytheorem{lemma*}
-        [
-            ,name = Lemma
-            ,style:V = \redbox
-            ,numbered = false
-        ]
-        \newkeytheorem{theorem*}
-        [
-            ,name = Theorem
-            ,style:V = \redbox
-            ,numbered = false
-        ]
-        \newkeytheorem{corollary*}
-        [
-            ,name = Corollary
-            ,style:V = \redbox
-            ,numbered = false
-        ]
+%         % redboxes: claim, proposition, lemma, theorem, corollary
+%         \newkeytheorem{claim*}
+%         [
+%             ,name = Claim
+%             ,style:V = \redbox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{proposition*}
+%         [
+%             ,name = Proposition
+%             ,style:V = \redbox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{lemma*}
+%         [
+%             ,name = Lemma
+%             ,style:V = \redbox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{theorem*}
+%         [
+%             ,name = Theorem
+%             ,style:V = \redbox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{corollary*}
+%         [
+%             ,name = Corollary
+%             ,style:V = \redbox
+%             ,numbered = false
+%         ]
 
-        % blueboxes: observation, example, remark, note
-        \newkeytheorem{observation*}
-        [
-            ,name = Observation
-            ,style:V = \bluebox
-            ,numbered = false
-        ]
-        \newkeytheorem{example*}
-        [
-            ,name = Example
-            ,style:V = \bluebox
-            ,numbered = false
-        ]
-        \newkeytheorem{remark*}
-        [
-            ,name = Remark
-            ,style:V = \bluebox
-            ,numbered = false
-        ]
-        \newkeytheorem{note*}
-        [
-            ,name = Note
-            ,style:V = \bluebox
-            ,numbered = false
-        ]
+%         % blueboxes: observation, example, remark, note
+%         \newkeytheorem{observation*}
+%         [
+%             ,name = Observation
+%             ,style:V = \bluebox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{example*}
+%         [
+%             ,name = Example
+%             ,style:V = \bluebox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{remark*}
+%         [
+%             ,name = Remark
+%             ,style:V = \bluebox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{note*}
+%         [
+%             ,name = Note
+%             ,style:V = \bluebox
+%             ,numbered = false
+%         ]
 
-    % Family of environments with section as parent
-        % purpleboxes: problem, question, exercise
-        \newkeytheorem{problem*}
-        [
-            ,name = Problem
-            ,style:V = \purplebox
-            ,numbered = false
-        ]
-        \newkeytheorem{question*}
-        [
-            ,name = Question
-            ,style:V = \purplebox
-            ,numbered = false
-        ]
-        \newkeytheorem{exercise*}
-        [
-            ,name = Exercise
-            ,style:V = \purplebox
-            ,numbered = false
-        ]
+%     % Family of environments with section as parent
+%         % purpleboxes: problem, question, exercise
+%         \newkeytheorem{problem*}
+%         [
+%             ,name = Problem
+%             ,style:V = \purplebox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{question*}
+%         [
+%             ,name = Question
+%             ,style:V = \purplebox
+%             ,numbered = false
+%         ]
+%         \newkeytheorem{exercise*}
+%         [
+%             ,name = Exercise
+%             ,style:V = \purplebox
+%             ,numbered = false
+%         ]
 
 % % Self-⟨env-name⟩ environments
 %     % Family of environments with chapter as parent

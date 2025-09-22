@@ -2,11 +2,26 @@
     % The command \modifiednewkeytheorem that saves the name of the environemnt into \g__Prassble_environments_used_in_HWs_clist
         % Declaring variables
         \clist_new:N \g__Prassble_environments_used_in_HWs_clist
-    \NewDocumentCommand{\modifednewkeytheorem}{ m +O{} }
-    {
-        \clist_gput_right:Nn \g__Prassble_environments_used_in_HWs_clist {#1}
-        \newkeytheorem{#1}[#2]
-    } 
+        \NewDocumentCommand{\modifiednewkeytheorem}{ m +O{} }
+        {
+            \clist_map_inline:nn {#1} {
+            % Save the environment name 
+                \clist_gput_right:Nn \g__Prassble_environments_used_in_HWs_clist {##1}
+            % Create the newkeytheorem with name ##1
+                \newkeytheorem{##1}[#2]
+            % Copy the newkeytheorem ##1 under another name Prassble_nonlisting_##1@core 
+                % This allows us to modify the arg-spec of ##1 whilst preserving the name of \thetheorem, \theHtheorem, etc (rather than having \thePrassble_nonlisting_##1@core, etc).
+                \NewEnvironmentCopy{Prassble_nonlisting_##1@core}{##1}
+            % Re-define ##1 with our custom arg-spec
+            \RenewDocumentEnvironment{##1}{ d() +O{} }
+                {\tl_if_empty:nF {####1} {
+                    \tcbset{Prassble~keytheorems/.append~style = {type~in~thmgroup = ####1}}
+                }%
+                \begin{Prassble_nonlisting_##1@core}[####2]}
+                {\end{Prassble_nonlisting_##1@core}}
+            }
+
+        } 
     % The command \AddToHWEnvList
     \NewDocumentCommand{\AddToHWEnvList}{ m }{
         \clist_gput_right:Nn \g__Prassble_environments_used_in_HWs_clist {#1}
