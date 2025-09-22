@@ -1,4 +1,40 @@
+% 'type in thmgroup' tcbkeys that change which corners are rounded or sharp 
+\tcbset{
+    ,Prassble keytheorems/.style = {}
+    ,type in thmgroup/.is choice
+        ,type in thmgroup/first/.style = {
+            ,sharp corners
+            ,rounded corners = northeast
+            ,after skip balanced = 0pt
+        }
+        ,type in thmgroup/middle/.style = {
+            ,sharp corners
+            ,before skip balanced = 0pt
+            ,after skip balanced = 0pt
+        }
+        ,type in thmgroup/last/.style = {
+            ,sharp corners
+            ,rounded corners = southeast
+            ,before skip balanced = 0pt
+        }
+        ,type in thmgroup/standalone/.style = {
+            ,sharp corners
+            ,rounded corners = east
+        }
+}
+
 \ExplSyntaxOn
+    \keys_define:nn { keytheorems/thmuse }
+        {
+            ,tcb-add    .code:n = {
+                \tcbset{
+                    Prassble~keytheorems/.append~style = {#1}
+                }
+            }
+            ,tcb-append .meta:n = {
+                tcb-add = {#1}
+            }
+        }
     % The command \modifiedXkeytheorem{\Xkeytheorem} that creates an \Xkeytheorem (e.g. \newkeytheorem) that optionally saves the name of the environemnt into \g__Prassble_environments_used_in_HWs_clist and 
         % Declaring variables
         \clist_new:N \g__Prassble_environments_used_in_HWs_clist
