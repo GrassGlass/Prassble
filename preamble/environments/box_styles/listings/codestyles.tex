@@ -23,16 +23,22 @@
 % Colors
 \ifdefstring{\ColourTheme}{colourful}{
   \def\ColorCodeBase{Maroon}
+  \def\ColorCodeColback{\ColorCodeBase!5}
+  \def\ColorCodeColbacktitle{\ColorCodeBase!5}
+  \def\ColorCodeTitle{\ColorCodeBase!70!black}
+  \def\ColorCodeBorderline{\ColorCodeBase}
+  \def\ColorCodeLineNumber{\ColorCodeBase}
+  \def\ColorCodeLineNumberBackground{\ColorCodeBase!20}
 }{}
 \ifdefstring{\ColourTheme}{BnW}{
   \def\ColorCodeBase{black}
+  \def\ColorCodeColback{white}
+  \def\ColorCodeColbacktitle{white}
+  \def\ColorCodeTitle{\ColorCodeBase!70!black}
+  \def\ColorCodeBorderline{white}
+  \def\ColorCodeLineNumber{\ColorCodeBase}
+  \def\ColorCodeLineNumberBackground{\ColorCodeBase!20}
 }{}
-\def\ColorCodeColback{\ColorCodeBase!5}
-\def\ColorCodeColbacktitle{\ColorCodeBase!5}
-\def\ColorCodeTitle{\ColorCodeBase!70!black}
-\def\ColorCodeBorderline{\ColorCodeBase}
-\def\ColorCodeLineNumber{\ColorCodeBase}
-\def\ColorCodeLineNumberBackground{\ColorCodeBase!20}
 
 % Variables
   % Definitions
@@ -124,6 +130,10 @@
         \rule{\textwidth}{0.75pt}
         }
   }
+  % Borderline west of \BorderlineWestThickness thickness
+  \cs_new:Npn \__listings_codestylecore@borderlinewest: {
+      \fill[\ColorCodeBorderline] (frame.south~west)
+      rectangle ([xshift=\BorderlineWestThickness]frame.north~west);}
   \bool_new:N \g__listings_autowidth_title_bool
   \bool_new:N \g__listings_autowidth_upper_bool
   \bool_new:N \g__listings_autowidth_lower_bool
@@ -292,15 +302,31 @@
   ,OTitle/.code = {
     \tl_if_empty:nF {#1} {\tl_set:Nn \g__listings_OTitle_tl {~(#1)}}
   }
-  ,vflush/.style = {before~skip = -\vlengthbeforelisting}
-  ,vnormal/.style = {before~skip = \vlengthbetweencorrector}
 % Base listing style
     % Help sourced from https://tex.stackexchange.com/a/748148/383565
     % codestylebase = { <Unparenthesized Title> }
+  ,left@codestylebase/.code =
+  {
+    \tl_if_eq:NnT \ColourTheme {colourful} 
+    {
+      \pgfkeysalso 
+      {
+        lefttitle = {\g__listings_autowidth_true_left_hspace_dim}
+      }
+    }
+    \tl_if_eq:NnT \ColourTheme {BnW} 
+    {
+      \pgfkeysalso 
+      {
+        lefttitle = {3mm}
+      }
+    }
+    \pgfkeysalso
+    {,leftupper                       = {\g__listings_autowidth_true_left_hspace_dim}}
+  }
   ,codestylebase/.style =
   {
-    ,lefttitle                       = {\g__listings_autowidth_true_left_hspace_dim}
-    ,leftupper                       = {\g__listings_autowidth_true_left_hspace_dim}
+    ,left@codestylebase
     ,listing~engine                  = minted
     ,minted~style                    = staroffice
     ,minted~options                  = 
@@ -343,8 +369,7 @@
           (segmentation.west);
         }
       % Borderline west of \BorderlineWestThickness thickness
-      \fill[\ColorCodeBorderline] (frame.south~west)
-      rectangle ([xshift=\BorderlineWestThickness]frame.north~west);
+      \__listings_codestylecore@borderlinewest:
     }
     ,overlay~first                   = {
       % Background for the code line numbers
@@ -355,16 +380,14 @@
       ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west) --
       (frame.south~west);
       % Borderline west of \BorderlineWestThickness thickness
-      \fill[\ColorCodeBorderline] (frame.south~west)
-      rectangle ([xshift=\BorderlineWestThickness]frame.north~west);
+      \__listings_codestylecore@borderlinewest:
     }
     ,overlay~middle                  = {
       % Background for the code line numbers
       \fill[\ColorCodeLineNumberBackground] (frame.south~west)
       rectangle ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.north~west);
       % Borderline west of \BorderlineWestThickness thickness
-      \fill[\ColorCodeBorderline] (frame.south~west)
-      rectangle ([xshift=\BorderlineWestThickness]frame.north~west);
+      \__listings_codestylecore@borderlinewest:
     }
     ,overlay~last                    = {
       % Background for the code line numbers
@@ -387,8 +410,7 @@
           (segmentation.west);
         }
       % Borderline west of \BorderlineWestThickness thickness
-      \fill[\ColorCodeBorderline] (frame.south~west)
-      rectangle ([xshift=\BorderlineWestThickness]frame.north~west);
+      \__listings_codestylecore@borderlinewest:
     }
   }
 % listing environment style
