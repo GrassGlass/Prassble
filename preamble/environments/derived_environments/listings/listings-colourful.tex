@@ -30,25 +30,15 @@
             % #1    [ <OTitle/pgfkeys> ]
             % #2    { <Displayed language> }
         
-        \ModifiedNewTCBListing{code}{ ={OTitle}  O{} m }{
-            ,vflush
-            ,codestyleenvironment = {#2}{#2}
-            ,#1
+        \ModifiedNewTCBListing{code}{ D(){middle} ={OTitle}  O{} m }{
+            ,type in thmgroup = {#1*}
+            ,codestyleenvironment = {#3}{#3}
+            ,#2
         }
-        \ModifiedNewTCBListing{code*}{ ={OTitle}  O{} m }{
-            ,vnormal
-            ,codestyleenvironment = {#2}{#2}
-            ,#1
-        }
-        \ModifiedNewTCBListing{codeoutput}{ ={OTitle}  O{} m }{
-            ,vflush
-            ,codestyleenvironment = {#2}{Output}
-            ,#1
-        }
-        \ModifiedNewTCBListing{codeoutput*}{ ={OTitle}  O{} m }{
-            ,vnormal
-            ,codestyleenvironment = {#2}{Output}
-            ,#1
+        \ModifiedNewTCBListing{codeoutput}{ D(){middle} ={OTitle}  O{} m }{
+            ,type in thmgroup = {#1*}
+            ,codestyleenvironment = {#3}{Output}
+            ,#2
         }
 
     % Input commands
@@ -62,21 +52,21 @@
             % #2    [ <OTitle/pgfkeys> ]
             % #3    { <Listing file> }
         
-        \ModifiedNewTCBInputListing{\inputcode}{ s ={OTitle} O{} m }{
-            ,IfBooleanTF = {#1}{vnormal}{vflush}
-            ,codestyleinput = {#3}{\displayedname}
-            ,#2
+        \ModifiedNewTCBInputListing{\inputcode}{ D(){middle} s ={OTitle} O{} m }{
+            ,type in thmgroup = {#1*}
+            ,codestyleinput = {#4}{\displayedname}
+            ,#3
         }
 
-        \ModifiedNewTCBInputListing{\inputcodeoutput}{ s ={OTitle} O{} m }{
-            ,IfBooleanTF = {#1}{vnormal}{vflush}
-            ,codestyleinput = {#3}{Output}
-            ,#2
+        \ModifiedNewTCBInputListing{\inputcodeoutput}{ D(){middle} s ={OTitle} O{} m }{
+            ,type in thmgroup = {#1*}
+            ,codestyleinput = {#4}{Output}
+            ,#3
         }
 
 % Inline listing
-\NewDocumentCommand{\codeinline}{  O{} m }{\mintinline[#1]{#2}}
-\NewDocumentCommand{\TeXinline}{  O{} }{\mintinline[#1]{TeX}}
+\NewDocumentCommand{\codeinline}{ O{} m }{\mintinline[#1]{#2}}
+\NewDocumentCommand{\TeXinline}{ O{} }{\mintinline[#1]{TeX}}
 
 % Define what displayed langage and Pygments language is to be converted from each file extension
 \AddFileExtensionLanguageTriple{jl,txt,tex,tex}{julia,text,tex,latex}{Julia,Text,\TeX,\LaTeX}
