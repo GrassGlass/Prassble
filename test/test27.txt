@@ -1,2 +1,7 @@
-            Hello\\ hewwo\\ heh
-        
+            ,Title=smol
+            ,autowidth = title
+            ,autowidth = upper
+            ,autowidth = lower
+        ]{\TeX}
+        Long short text
+    

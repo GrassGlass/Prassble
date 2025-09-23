@@ -1,3 +1,6 @@
-                \xdef\mywidth{\the\linewidth}\mywidth ⵌ\xdef\mywidth{\the\linewidth}ⵌ
-                \mywidth = ⵌ\mywidthⵌ
+                    ,Title=This should have breaklines disabled
+                    ,autowidth = title
+                    ,autowidth = upper
+                ]{Julia}
+                ⵌ\hspace{\mywidth}ⵌ
             

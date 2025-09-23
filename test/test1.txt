@@ -1,2 +1,6 @@
+                % ,Title={\footnotesize smol}
+                ,Title=smol
+                ,autowidth = title
+            ]{\TeX}
             Long short text
         

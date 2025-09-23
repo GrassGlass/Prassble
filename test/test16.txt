@@ -1,2 +1,7 @@
-                ⵌ\hspace{\mywidth+0.00001pt}ⵌ
-            
+                % ,Title={\footnotesize smol}
+                ,Title=smol
+                ,autowidth = title
+                ,autowidth = upper
+            ]{\TeX}
+            Long short text
+        

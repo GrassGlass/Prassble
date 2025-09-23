@@ -1,2 +1,8 @@
-        \hspace{10cm}
+            ,Title=Super long long long long long long long long long long long title
+            ,autowidth = title
+            ,autowidth = upper
+            ,autowidth = lower
+        ]{\TeX}
+        Long short text\\
+        Test \hspace{8.5cm} testo
     

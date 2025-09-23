@@ -1,4 +1,7 @@
-            \centering
-            Hello \hspace{5cm} there\\
-            I
+                % ,Title={\footnotesize smol}
+                ,Title=smol
+                ,autowidth = title
+                ,autowidth = upper
+            ]{\TeX}
+            Long short text
         

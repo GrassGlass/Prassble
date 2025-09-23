@@ -1,2 +1,6 @@
+            ,autowidth = lower
+            ,no number
+            ,listing and text
+        ]{\TeX}
             Hello\\ hewwo\\ heh
         
