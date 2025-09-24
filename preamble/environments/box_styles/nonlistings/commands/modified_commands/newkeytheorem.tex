@@ -20,31 +20,6 @@
             ,sharp corners
             ,rounded corners = east
         }
-        % starred variants for listing boxes to look correct given the 'type in thmgroup' option in use
-            % using 'type in thmgroup = middle' listing causes a subsequent 'type in thmgroup = last' box to overlap with the listing
-            % using 'type in thmgroup = last' listing has the intended effect of a 'type in thmgroup = middle' listing
-            % To be clear, only 'after skip balanced' seems to behave unexpectedly; `before skip balanced' seems to work as expected.
-        ,type in thmgroup/first*/.style = {
-            ,sharp corners
-            ,rounded corners = northeast
-            ,after skip balanced = 0.5\baselineskip % I think there should be no stretchable part here, lest there is space between a first* and a middle/last box
-        }
-         ,type in thmgroup/middle*/.style = {
-            ,sharp corners
-            ,before skip balanced = 0pt
-            ,after skip balanced = 0.5\baselineskip % I think there should be no stretchable part here, lest there is space between a middle* and last box
-        }
-        ,type in thmgroup/last*/.style = {
-            ,sharp corners
-            ,rounded corners = southeast
-            ,before skip balanced = 0pt
-            ,after skip balanced = 1\baselineskip plus 2pt % the non-stretchable part 1\baselineskip is twice the default value of 0.5\baselineskip
-        }
-        ,type in thmgroup/standalone*/.style = {
-            ,sharp corners
-            ,rounded corners = east
-            ,after skip balanced = 1\baselineskip plus 2pt % the non-stretchable part 1\baselineskip is twice the default value of 0.5\baselineskip
-        }
 }
 
 \ExplSyntaxOn

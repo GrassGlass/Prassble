@@ -1,9 +1,120 @@
 \documentclass{book}
-\begin{document}
-\begin{titlepage}
-    Titlepage
-\end{titlepage}
-\tableofcontents
+\usepackage[minted]{tcolorbox}
+% Counters
+    % Listings
+    \newcounter{code}
+    \setcounter{code}{1}
 
-\chapter{First chapter}
+% Lengths
+    % Non-listings
+    \newlength{\BorderlineWestThickness}
+    \newlength{\boxsep}
+    \newlength{\boxrule}
+
+    \setlength{\boxsep}{1pt}
+    \setlength{\boxrule}{0pt}
+    \setlength{\BorderlineWestThickness}{2pt}
+    \setlength{\numbersep}{0.2474691189148802em}
+    \setlength{\linenumberpadding}{0.2474691189148802em}
+    \setlength{\lefthspace}{8.5pt}
+    \setlength{\titleleft}{1.1pt}
+
+\ExplSyntaxOn
+\__listings_codestylecore@borderlinewest: {
+      \fill[\ColorCodeBorderline] (frame.south~west)
+      rectangle ([xshift=\BorderlineWestThickness]frame.north~west);}
+\tcbset{
+    codestylebase/.style =
+  {
+    ,left@codestylebase
+    ,listing~engine                  = minted
+    ,minted~style                    = staroffice
+    ,minted~options                  = 
+      {
+      \g__listings_breaklines_tl,
+      autogobble,
+      \g__listings_linenos_tl,
+      numbersep = \numbersep
+      }
+    ,listing~only
+    ,breakable
+    ,enhanced
+    ,skin                            = enhanced~jigsaw
+    ,boxsep                          = \boxsep
+    ,boxrule                         = \boxrule
+    ,colback                         = \ColorCodeColback 
+    ,Title                           = {#1}
+    ,toptitle                        = 2mm
+    ,bottomtitle                     = 2mm
+    ,colbacktitle                    = \ColorCodeColbacktitle,
+    ,borderline~west                 = {\BorderlineWestThickness}{0pt}{\ColorCodeBorderline}
+    ,overlay~unbroken                = {
+      % Background for the code line numbers
+        % Case 1: The current (partial) box contains only an upper part.
+        \int_compare:nNnT {\tcbsegmentstate}={0} {
+          \filldraw[\ColorCodeLineNumberBackground] 
+          (frame.south~west) --
+          (interior.north~west) {[rounded~corners=4] --
+          ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) --
+          ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west)} --
+          (frame.south~west);
+        }
+        % Case 2: The current (partial) box contains an upper and a lower part. The segmentation node can be used for positioning.
+        \int_compare:nNnT {\tcbsegmentstate}={1} {
+          \filldraw[\ColorCodeLineNumberBackground] 
+          (segmentation.west) --
+          (interior.north~west) {[rounded~corners=4] --
+          ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) --
+          ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]segmentation.west)} --
+          (segmentation.west);
+        }
+      % Borderline west of \BorderlineWestThickness thickness
+      \__listings_codestylecore@borderlinewest:
+    }
+    ,overlay~first                   = {
+      % Background for the code line numbers
+      \filldraw[\ColorCodeLineNumberBackground] 
+      (frame.south~west) --
+      (interior.north~west) {[rounded~corners=4] --
+      ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0)} --
+      ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west) --
+      (frame.south~west);
+      % Borderline west of \BorderlineWestThickness thickness
+      \__listings_codestylecore@borderlinewest:
+    }
+    ,overlay~middle                  = {
+      % Background for the code line numbers
+      \fill[\ColorCodeLineNumberBackground] (frame.south~west)
+      rectangle ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.north~west);
+      % Borderline west of \BorderlineWestThickness thickness
+      \__listings_codestylecore@borderlinewest:
+    }
+    ,overlay~last                    = {
+      % Background for the code line numbers
+        % Case 1: The current (partial) box contains only an upper part.
+        \int_compare:nNnT {\tcbsegmentstate}={0} {
+          \filldraw[\ColorCodeLineNumberBackground] 
+          (frame.south~west) --
+          (frame.north~west) --
+          ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) {[rounded~corners=4] --
+          ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west)} --
+          (frame.south~west);
+        }
+        % Case 2: The current (partial) box contains an upper and a lower part. The segmentation node can be used for positioning.
+        \int_compare:nNnT {\tcbsegmentstate}={1} {
+          \filldraw[\ColorCodeLineNumberBackground] 
+          (segmentation.west) --
+          (frame.north~west) --
+          ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) {[rounded~corners=4] --
+          ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]segmentation.west)} --
+          (segmentation.west);
+        }
+      % Borderline west of \BorderlineWestThickness thickness
+      \__listings_codestylecore@borderlinewest:
+    }
+  }
+}
+\ExplSyntaxOff
+\begin{document}
+Hi
 \end{document}
