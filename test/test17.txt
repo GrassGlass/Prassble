@@ -1,6 +1,2 @@
-                ,Title=Super long long long long long long long long long long long long long long long long long long long long title
-                ,autowidth = title
-                ,autowidth = upper
-            ]{\TeX}
             Long short text
         

@@ -5,7 +5,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_title_dim <= \linewidthoutside}
         
         This box should be of width \codeinline{TeX}{\l__listings_autowidth_title_dim}
-        \begin{code}(standalone)
+        \begin{code}
             [
                 % ,Title={\footnotesize smol}
                 ,Title=smol
@@ -16,7 +16,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_title_dim > \linewidthoutside}
         
         This title should break and be of width \codeinline{TeX}{\linewidthoutside}
-        \begin{code}(standalone)
+        \begin{code}
             [
                 ,Title=Super long long long long long long long long long long long long long long long long long long long long title
                 ,autowidth = title
@@ -26,12 +26,12 @@
     \end{enumerate}
     \item \codeinline{TeX}{autowidth = upper}
     \begin{enumerate}
-        \begin{code}(standalone){Julia}
+        \begin{code}{Julia}
             \xdef\mywidth{\the\linewidth}\mywidth ⵌ\xdef\mywidth{\the\linewidth}ⵌ 
             \mywidth = ⵌ\mywidthⵌ 
         \end{code}
         \item ~
-        \begin{code}(standalone)
+        \begin{code}
             [
                 ,Title=This should have breaklines disabled
                 ,autowidth = upper
@@ -39,7 +39,7 @@
             ⵌ\hspace{\mywidth}ⵌ
         \end{code}
         \item ~
-        \begin{code}(standalone)
+        \begin{code}
             [
                 ,Title=This should have breaklines enabled
                 ,autowidth = upper
@@ -52,7 +52,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
         
         The following box should have width equal to the linewidth.
-        \begin{code}(standalone)
+        \begin{code}
         [=
             ,width=346.68253pt
             ,autowidth = lower
@@ -64,7 +64,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
         
         The following box should have width equal to the width of the \codeinline{TeX}{\tcblower}
-        \begin{code}(standalone)
+        \begin{code}
         [=
             ,Title=Long long long long long long long long long long long title 
             ,width=346.68253pt
@@ -77,7 +77,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_lower_dim < \eqboxwidth{codeupperwidth\arabic{code}}}
         
         The following box should have width equal to that of the \codeinline{TeX}{\tcblower}.
-        \begin{code}(standalone)
+        \begin{code}
         [=
             ,autowidth = lower
             ,no number
@@ -95,7 +95,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_title_dim <= \linewidthoutside}
         
         This box should be of width \codeinline{TeX}{\l__listings_autowidth_title_dim}
-        \begin{code}(standalone)
+        \begin{code}
             [
                 % ,Title={\footnotesize smol}
                 ,Title=smol
@@ -107,7 +107,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_title_dim > \linewidthoutside}
         
         This title should break and be of width \codeinline{TeX}{\linewidthoutside}
-        \begin{code}(standalone)
+        \begin{code}
             [
                 ,Title=Super long long long long long long long long long long long long long long long long long long long long title
                 ,autowidth = title
@@ -118,12 +118,12 @@
         \item 
         \begin{enumerate}
             \item ~
-            \begin{code}(standalone){Julia}
+            \begin{code}{Julia}
                 \xdef\mywidth{\the\linewidth}\mywidth ⵌ\xdef\mywidth{\the\linewidth}ⵌ 
                 \mywidth = ⵌ\mywidthⵌ 
             \end{code}
             \item ~
-            \begin{code}(standalone)
+            \begin{code}
                 [
                     ,Title=This should have breaklines disabled
                     ,autowidth = title
@@ -131,7 +131,7 @@
                 ]{Julia}
                 ⵌ\hspace{\mywidth}ⵌ
             \end{code}
-            \begin{code}(standalone)
+            \begin{code}
                 [
                     ,Title=This should also have breaklines disabled
                     ,OTitle=But the title should break
@@ -141,7 +141,7 @@
                 ⵌ\hspace{\mywidth}ⵌ
             \end{code}
             \item ~
-            \begin{code}(standalone)
+            \begin{code}
                 [
                     ,Title=This should have breaklines enabled
                     ,autowidth = title
@@ -150,7 +150,7 @@
                 ⵌ\hspace{\mywidth+0.00001pt}ⵌ
             \end{code}
 
-            \begin{code}(standalone)
+            \begin{code}
                 [
                     ,Title=This should also have breaklines disabled
                     ,OTitle=But the title should break
@@ -166,7 +166,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_title_dim <= \linewidthoutside}
         
         This box should be of width \codeinline{TeX}{\l__listings_autowidth_title_dim}
-        \begin{code}(standalone)
+        \begin{code}
             [
                 % ,Title={\footnotesize smol}
                 ,Title=smol
@@ -178,7 +178,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_title_dim > \linewidthoutside}
         
         This title should break and be of width \codeinline{TeX}{\linewidthoutside}
-        \begin{code}(standalone)
+        \begin{code}
             [
                 ,Title=Super long long long long long long long long long long long long long long long long long long long long title
                 ,autowidth = title
@@ -189,7 +189,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
         
         The following box should have width equal to the linewidth.
-        \begin{code}(standalone)
+        \begin{code}
         [=
             ,width=346.68253pt
             ,autowidth = title
@@ -205,7 +205,7 @@
         \end{tabular}
         
         The following box should have width equal to the width of the title
-        \begin{code}(standalone)
+        \begin{code}
         [=
             ,Title=Long long long long long long long long long title 
             ,width=346.68253pt
@@ -218,7 +218,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_lower_dim < \eqboxwidth{codeupperwidth\arabic{code}}}
         
         The following box should have width equal to that of the \codeinline{TeX}{\tcblower}.
-        \begin{code}(standalone)
+        \begin{code}
         [=
             ,autowidth = title
             ,autowidth = lower
@@ -230,12 +230,12 @@
     \end{enumerate}
     \item \codeinline{TeX}{autowidth = upper + lower}
     \begin{enumerate}
-        \begin{code}(standalone){Julia}
+        \begin{code}{Julia}
             \xdef\mywidth{\the\linewidth}\mywidth ⵌ\xdef\mywidth{\the\linewidth}ⵌ 
             \mywidth = ⵌ\mywidthⵌ 
         \end{code}
         \item ~
-        \begin{code}(standalone)
+        \begin{code}
             [
                 ,Title=This should have breaklines disabled
                 ,autowidth = upper
@@ -244,7 +244,7 @@
             \hspace{\mywidth}
         \end{code}
         \item ~
-        \begin{code}(standalone)
+        \begin{code}
             [
                 ,Title=This should have breaklines enabled
                 ,autowidth = upper
@@ -255,7 +255,7 @@
                 \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \l__listings_autowidth_upper_dim}
         
         The following box should have width equal to the linewidth.
-        \begin{code}(standalone)
+        \begin{code}
         [=
             ,width=346.68253pt
             ,autowidth = upper
@@ -267,7 +267,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \l__listings_autowidth_upper_dim}
         
         The following box should have width equal to the width of the \codeinline{TeX}{\tcblower}
-        \begin{code}(standalone)
+        \begin{code}
         [=
             ,Title=Long long long long long long long long long long long title 
             ,width=346.68253pt
@@ -280,7 +280,7 @@
         \item \codeinline{TeX}{\l__listings_autowidth_lower_dim < \l__listings_autowidth_upper_dim}
         
         The following box should have width equal to that of the the width of the upper.
-        \begin{code}(standalone)
+        \begin{code}
         [=
             ,autowidth = upper
             ,autowidth = lower
@@ -297,7 +297,7 @@
     \item \codeinline{TeX}{\l__listings_autowidth_upper_dim >= \l__listings_autowidth_ⵌ\textlangle title, lower\textrangleⵌ_dim}
     
     This box should be of width \codeinline{TeX}{\l__listings_autowidth_upper_dim}
-    \begin{code}(standalone)
+    \begin{code}
         [
             ,Title=smol
             ,autowidth = title
@@ -309,7 +309,7 @@
     \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \l__listings_autowidth_ⵌ\textlangle title, upper\textrangleⵌ_dim}
     
     This box should be of width \codeinline{TeX}{\l__listings_autowidth_lower_dim}
-    \begin{code}(standalone)
+    \begin{code}
         [
             ,Title=smol
             ,autowidth = title
@@ -321,7 +321,7 @@
     \item \codeinline{TeX}{\l__listings_autowidth_title_dim >= \l__listings_autowidth_ⵌ\textlangle upper, lower\textrangleⵌ_dim}
     
     This title should break and be of width \codeinline{TeX}{\linewidthoutside}
-    \begin{code}(standalone)
+    \begin{code}
         [
             ,Title=Super long long long long long long long long long long long title
             ,autowidth = title
@@ -334,7 +334,7 @@
     \item \codeinline{TeX}{\l__listings_autowidth_title_dim > \linewidthoutside}
     
     This title should break and be of width \codeinline{TeX}{\linewidthoutside}
-    \begin{code}(standalone)
+    \begin{code}
         [
             ,Title=Super long long long long long long long long long long long long long long long long long long long long title
             ,autowidth = title
@@ -345,11 +345,11 @@
         Test \hspace{10cm} testo
     \end{code}
     \item ~
-    \begin{code}(standalone){Julia}
+    \begin{code}{Julia}
         \xdef\mywidth{\the\linewidth}\mywidth ⵌ\xdef\mywidth{\the\linewidth}ⵌ 
         \mywidth = ⵌ\mywidthⵌ 
     \end{code}
-    \begin{code}(standalone)
+    \begin{code}
         [
             ,Title=This should have breaklines disabled
             ,autowidth = title
@@ -359,7 +359,7 @@
         \hspace{\mywidth}
     \end{code}
     \item ~
-    \begin{code}(standalone)
+    \begin{code}
         [
             ,Title=This should have breaklines enabled
             ,autowidth = title

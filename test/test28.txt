@@ -1,7 +1,2 @@
-            ,Title=smol
-            ,autowidth = title
-            ,autowidth = upper
-            ,autowidth = lower
-        ]{\TeX}
         \hspace{10cm}
     

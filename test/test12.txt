@@ -1,6 +1,2 @@
-                    ,Title=This should have breaklines disabled
-                    ,autowidth = title
-                    ,autowidth = upper
-                ]{Julia}
                 ⵌ\hspace{\mywidth}ⵌ
             

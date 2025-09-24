@@ -45,17 +45,17 @@
 \section*{Last successful compile: \DTMnow}
 
 This file is a compilation of various uses of the listing boxes generated with \codeinline{TeX}{\ModifiedNewTCBListing} and \codeinline{TeX}{\ModifiedNewTCBInputListing}. In this way, robustness checks are performed to ensure they function correctly---as bug-free as possible.
-\begin{code}(standalone)[debug=autowidth]{Text}
+\begin{code}[debug=autowidth]{Text}
     Hello
 \end{code}
 \chapter{ModifiedNewTCBListing}
 \input{test_ModifiedNewTCBListing.tex}
-\begin{code}(standalone)[autowidth = upper, debug = autowidth]{Text}
+\begin{code}[autowidth = upper, debug = autowidth]{Text}
     test
 \end{code}
 
 \chapter{ModifiedNewTCBInputListing}
-\RenewDocumentEnvironment{code}{ D(){} O{} m c }{
+\RenewDocumentEnvironment{code}{ D(){standalone} ={OTitle} O{} m c}{
     \stepcounter{codeinput}%
     \def\tmpfilename{\jobname\arabic{codeinput}.txt}%
     \immediate\openout\tmptextfile=\tmpfilename%
@@ -65,7 +65,5 @@ This file is a compilation of various uses of the listing boxes generated with \
     \inputcode(#1)[#2]{\tmpfilename}
 }{}
 \input{test_ModifiedNewTCBListing.tex}
-
-
 
 \end{document}

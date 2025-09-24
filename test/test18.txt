@@ -1,7 +1,2 @@
-            ,width=346.68253pt
-            ,autowidth = title
-            ,autowidth = lower
-            ,listing and text
-        ]{\TeX}
             Hello\\ hewwo \hspace{10cm} heh
         

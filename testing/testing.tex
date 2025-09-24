@@ -1,22 +1,36 @@
-\documentclass[11pt]{book}
-\input{../preamble/preamble.tex}
-
-\NewDocumentEnvironment{foo}{ m }{#1 a}{b}
+\documentclass{book}
+\usepackage{xcolor}
+\NewDocumentEnvironment{foo}{ D(){} O{} m }{start \fbox{#1, #2, #3}}{ end}
 \begin{document}
-\begin{code}[autowidth = lower, listing and text]{\TeX}
-    \centering
-    Hello \hspace{5cm} there\\
-    I
-\end{code}
-\begin{code}[autowidth = lower, use comment = {Comment!}]{\TeX}
-    Hello
-\end{code}
+\chapter{Example}
+\begin{foo}(optional parenthesised argument)
+    [
+        standard optional argument
+    ]{m}
+    test
+\end{foo}
 
-\begin{code}(standalone)
-[=
-,use comment = {Comment \unexpanded{\hspace{5cm}} hey\\ hey \unexpanded{\(\int_{a}^{b}f(x)\,dx\)} hey\\ hey}
-,autowidth = lower
-]{\TeX}
-Comment\\ hewwo \hspace{10cm} heh
-\end{code}
+\RenewDocumentEnvironment{foo}{ D(){} O{} m c }{start \fbox{#1, #2, #3} \colorbox{\mycolor}{#4}}{ end}
+
+\section{Without the optional argument \textup{\texttt{D()\{\}}} being invoked, the intended effect is produced.}
+\def\mycolor{green}
+\begin{foo}
+    [
+        standard optional argument
+    ]{m}
+    test
+\end{foo}
+
+\section{When the optional arguments \textup{\texttt{D()\{\}}} and \textup{\texttt{O\{\}}} are invoked consecutively (without any extraneous characters), the intended effect is produced.}
+\begin{foo}(optional parenthesised argument)[standard optional argument]{m}
+    test
+\end{foo}
+\section{When the optional arguments \textup{\texttt{D()\{\}}} and \textup{\texttt{O\{\}}} are invoked with separating spaces, the intended effect is \emph{not} produced.}
+\def\mycolor{yellow}
+\begin{foo}(optional parenthesised argument)
+    [
+        standard optional argument
+    ]{m}
+    test
+\end{foo}
 \end{document}

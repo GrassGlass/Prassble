@@ -30,12 +30,12 @@
             % #1    [ <OTitle/pgfkeys> ]
             % #2    { <Displayed language> }
         
-        \ModifiedNewTCBListing{code}{ D(){middle} ={OTitle}  O{} m }{
+        \ModifiedNewTCBListing{code}{ D(){middle} ={OTitle} O{} m }{
             ,type in thmgroup = {#1*}
             ,codestyleenvironment = {#3}{#3}
             ,#2
         }
-        \ModifiedNewTCBListing{codeoutput}{ D(){middle} ={OTitle}  O{} m }{
+        \ModifiedNewTCBListing{codeoutput}{ D(){middle} ={OTitle} O{} m }{
             ,type in thmgroup = {#1*}
             ,codestyleenvironment = {#3}{Output}
             ,#2
@@ -52,16 +52,16 @@
             % #2    [ <OTitle/pgfkeys> ]
             % #3    { <Listing file> }
         
-        \ModifiedNewTCBInputListing{\inputcode}{ D(){middle} s ={OTitle} O{} m }{
+        \ModifiedNewTCBInputListing{\inputcode}{ D(){middle} ={OTitle} O{} m }{
             ,type in thmgroup = {#1*}
-            ,codestyleinput = {#4}{\displayedname}
-            ,#3
+            ,codestyleinput = {#3}{\displayedname}
+            ,#2
         }
 
-        \ModifiedNewTCBInputListing{\inputcodeoutput}{ D(){middle} s ={OTitle} O{} m }{
+        \ModifiedNewTCBInputListing{\inputcodeoutput}{ D(){middle} ={OTitle} O{} m }{
             ,type in thmgroup = {#1*}
-            ,codestyleinput = {#4}{Output}
-            ,#3
+            ,codestyleinput = {#3}{Output}
+            ,#2
         }
 
 % Inline listing

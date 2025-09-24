@@ -1,7 +1,2 @@
-                    ,Title=This should also have breaklines disabled
-                    ,OTitle=But the title should break
-                    ,autowidth = title
-                    ,autowidth = upper
-                ]{Julia}
                 ⵌ\hspace{\mywidth+0.00001pt}ⵌ
             
