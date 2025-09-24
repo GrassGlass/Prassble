@@ -36,8 +36,8 @@
     % source2: https://sg.mirrors.cicku.me/ctan/macros/latex/contrib/titlesec/titlesec.pdf
   \newpagestyle{main}[\sffamily\color{\HeaderColour}]
   {
-    \sethead[\thepage][\chaptertitle][\thesection] % even
-    {\thesection}{\sectiontitle}{\thepage}         % odd
+    \sethead[p.\ \thepage][\chaptertitle][\S\ \thesection] % even
+    {\S\ \thesection}{\sectiontitle}{p.\ \thepage}         % odd
     \headrule
   } 
 
@@ -45,7 +45,7 @@
   \makeatletter
     \newpagestyle{hw}[\sffamily\color{\HeaderColour}]
     {
-    \sethead{\@author}{\CourseName\ Homework \#\theHWNumber}{\thepage}
+    \sethead{\@author}{\CourseName\ Homework \#\theHWNumber}{p.\ \thepage\ of\ \makeatletter\@abspage@last\makeatother}
     \headrule
     }
   \makeatother
