@@ -79,25 +79,27 @@
   }
   \makeatother
   % href with underline and an external link symbol
-    % modified from the source code of hyperref's \href
-  \makeatletter
-  \DeclareRobustCommand*{\extref}[1][]{%
-    \begingroup
-    \setkeys{extref}{#1}%
-    \@ifnextchar\bgroup\Hy@extref{\hyper@normalise\extref@}%
-  }
-  %
-  %
-  \def\Hy@extref#{%
-    \hyper@normalise\extref@
-  }
-  \begingroup
-    \catcode`\$=6 %
-    \catcode`\#=12 %
-    \gdef\extref@$1{\expandafter\extref@split$1##\\}%
-    \gdef\extref@split$1#$2#$3\\$4{%
-      \hyper@@link{$1}{$2}{\xunderline{$4}\:\ExternalLink}%
-      \endgroup
-    }%
-  \endgroup
-  \makeatother
+    % Implementation 1: using ltcmd's v-type verbatim arg-spec 
+    \NewDocumentCommand{\extref}{ v m }{\href{#1}{\xunderline{#2}\:\ExternalLink}}
+    % Implementation 2: modifying the source code of hyperref's \href
+    % \makeatletter
+    %   \DeclareRobustCommand*{\extref}[1][]{%
+    %     \begingroup
+    %     \setkeys{extref}{#1}%
+    %     \@ifnextchar\bgroup\Hy@extref{\hyper@normalise\extref@}%
+    %   }
+    %   %
+    %   %
+    %   \def\Hy@extref#{%
+    %     \hyper@normalise\extref@
+    %   }
+    %   \begingroup
+    %     \catcode`\$=6 %
+    %     \catcode`\#=12 %
+    %     \gdef\extref@$1{\expandafter\extref@split$1##\\}%
+    %     \gdef\extref@split$1#$2#$3\\$4{%
+    %       \hyper@@link{$1}{$2}{\xunderline{$4}\:\ExternalLink}%
+    %       \endgroup
+    %     }%
+    %   \endgroup
+    % \makeatother
