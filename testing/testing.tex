@@ -45,14 +45,14 @@
     {
       \sffamily\bfseries\color{\ColorCodeTitle}
         {
-          \hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}
+          % \hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}
           #1
         }
       }
   }
   ,codestylebase/.style =
   {
-    ,lefttitle                       = \eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding
+    % ,lefttitle                       = \eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding
     ,leftupper                       = \eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding
     ,listing~engine                  = minted
     ,minted~style                    = staroffice
@@ -70,7 +70,7 @@
     ,boxsep                          = \boxsep
     ,boxrule                         = \boxrule
     ,colback                         = \ColorCodeColback 
-    % ,Title                           = Name
+    ,Title                           = Name
     ,toptitle                        = 2mm
     ,bottomtitle                     = 2mm
     ,colbacktitle                    = \ColorCodeColbacktitle,
@@ -142,7 +142,7 @@
   }
 }
 \renewcommand{\theFancyVerbLine}{
-                \eqmakebox[code\arabic{code}][c]{
+                \eqframebox[code\arabic{code}][c]{
                     \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
                 }
             }

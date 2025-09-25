@@ -293,7 +293,6 @@
     {
       \sffamily\bfseries\color{\ColorCodeTitle}
         {
-          \hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}
           \__listings_autowidth_title:n {#1}
           \__listings_title_contents:n {#1}
         }
@@ -305,28 +304,9 @@
 % Base listing style
     % Help sourced from https://tex.stackexchange.com/a/748148/383565
     % codestylebase = { <Unparenthesized Title> }
-  ,left@codestylebase/.code =
-  {
-    \tl_if_eq:NnT \ColourTheme {colourful} 
-    {
-      \pgfkeysalso 
-      {
-        lefttitle = {\g__listings_autowidth_true_left_hspace_dim}
-      }
-    }
-    \tl_if_eq:NnT \ColourTheme {BnW} 
-    {
-      \pgfkeysalso 
-      {
-        lefttitle = {3mm}
-      }
-    }
-    \pgfkeysalso
-    {,leftupper                       = {\g__listings_autowidth_true_left_hspace_dim}}
-  }
   ,codestylebase/.style =
   {
-    ,left@codestylebase
+    ,leftupper                       = \g__listings_autowidth_true_left_hspace_dim
     ,listing~engine                  = minted
     ,minted~style                    = staroffice
     ,minted~options                  = 
