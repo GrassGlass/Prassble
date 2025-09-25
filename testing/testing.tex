@@ -1,15 +1,21 @@
 \documentclass{book}
-\usepackage[minted]{tcolorbox}
+\usepackage{eqparbox}
+\usepackage[skins, breakable, minted]{tcolorbox}
+% Savebox
+\newsavebox{\codewidth}
+
 % Counters
-    % Listings
-    \newcounter{code}
-    \setcounter{code}{1}
+  \newcounter{code}
+  \setcounter{code}{1}
 
 % Lengths
-    % Non-listings
     \newlength{\BorderlineWestThickness}
     \newlength{\boxsep}
     \newlength{\boxrule}
+    \newlength{\numbersep}
+    \newlength{\linenumberpadding}
+    \newlength{\titleleft}
+    \newlength{\lefthspace}
 
     \setlength{\boxsep}{1pt}
     \setlength{\boxrule}{0pt}
@@ -19,22 +25,43 @@
     \setlength{\lefthspace}{8.5pt}
     \setlength{\titleleft}{1.1pt}
 
+% Colours
+\def\ColorCodeBase{black}
+\def\ColorCodeColback{\ColorCodeBase!5}
+\def\ColorCodeColbacktitle{\ColorCodeBase!5}
+\def\ColorCodeTitle{\ColorCodeBase!70!black}
+\def\ColorCodeBorderline{\ColorCodeBase}
+\def\ColorCodeLineNumber{\ColorCodeBase}
+\def\ColorCodeLineNumberBackground{\ColorCodeBase!20}
+
 \ExplSyntaxOn
-\__listings_codestylecore@borderlinewest: {
+\cs_new:Npn \__listings_codestylecore@borderlinewest: {
       \fill[\ColorCodeBorderline] (frame.south~west)
       rectangle ([xshift=\BorderlineWestThickness]frame.north~west);}
 \tcbset{
-    codestylebase/.style =
+  ,Title/.style = 
   {
-    ,left@codestylebase
+    title   = 
+    {
+      \sffamily\bfseries\color{\ColorCodeTitle}
+        {
+          \hspace{-\eqboxwidth{code\arabic{code}}+\titleleft}
+          #1
+        }
+      }
+  }
+  ,codestylebase/.style =
+  {
+    ,lefttitle                       = \eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding
+    ,leftupper                       = \eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding
     ,listing~engine                  = minted
     ,minted~style                    = staroffice
     ,minted~options                  = 
       {
-      \g__listings_breaklines_tl,
-      autogobble,
-      \g__listings_linenos_tl,
-      numbersep = \numbersep
+        ,breaklines
+        ,autogobble
+        ,linenos
+        ,numbersep = \numbersep
       }
     ,listing~only
     ,breakable
@@ -43,7 +70,7 @@
     ,boxsep                          = \boxsep
     ,boxrule                         = \boxrule
     ,colback                         = \ColorCodeColback 
-    ,Title                           = {#1}
+    % ,Title                           = Name
     ,toptitle                        = 2mm
     ,bottomtitle                     = 2mm
     ,colbacktitle                    = \ColorCodeColbacktitle,
@@ -114,7 +141,23 @@
     }
   }
 }
+\renewcommand{\theFancyVerbLine}{
+                \eqmakebox[code\arabic{code}][c]{
+                    \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
+                }
+            }
 \ExplSyntaxOff
+\NewTCBListing{code}{ }{
+    ,codestylebase
+    ,minted language = text
+}
 \begin{document}
-Hi
+\begin{code}
+    Test
+\end{code}
+\eqboxwidth{code\arabic{code}}
+
+\eqframebox[code]{Hi}
+
+\eqframebox[code]{Hello}
 \end{document}

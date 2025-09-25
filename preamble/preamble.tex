@@ -35,7 +35,16 @@
     % The table option of xcolor loads the colortbl package, in order to use the tools for coloring rows, columns, and cells within tables.
 
   % Tables
-  \usepackage{array, booktabs, multirow, cellspace}
+    % Set-up 1: LaTeX2e tabular-style tables
+    % \usepackage{array, booktabs, multirow, cellspace}
+
+    % Set-up 2 (recommended): LaTeX3 tabularray tables
+    \usepackage{tabularray}
+    \UseTblrLibrary{booktabs, zref}
+      % Other useful tabularray libraries: 
+        % amsmath: matrix, cases, and array environments with tabularray key=value options
+        % diagbox: diagonal cells
+        % siunitx: siunitx package loading + compatibility with tabularray
 
   % Figures
   \usepackage{graphicx}
@@ -51,7 +60,8 @@
     \usepackage{verbatimbox} % For \addvbuffer
 
   % % Sciences
-  % \usepackage{siunitx}
+  % Add siunitx to \UseTblrLibrary{ <clist of libraries> } in the "Tables/Set-up 2" section of this file (preamble.tex)
+  % For Chemical structure diagrams, check out the METAPOST package mcf2graph https://ctan.org/pkg/mcf2graph or the LaTeX package chemfig https://ctan.org/pkg/chemfig?lang=en
 
   % Diagrams
   \usepackage{tikz, pgfplots}

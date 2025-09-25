@@ -1,0 +1,12 @@
+\documentclass[a4paper, 11pt]{book}
+
+\begin{document}
+\ExplSyntaxOn
+    \dim_new:N \dim_a
+    \dim_new:N \dim_b
+    \dim_set:Nn \dim_a {\dim_b}
+
+    \dim_set:Nn \dim_b {10pt}
+    \dim_use:N \dim_a
+\ExplSyntaxOff
+\end{document}
