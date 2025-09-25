@@ -79,27 +79,45 @@
   }
   \makeatother
   % href with underline and an external link symbol
-    % Implementation 1: using ltcmd's v-type verbatim arg-spec 
-    \NewDocumentCommand{\extref}{ v m }{\href{#1}{\xunderline{#2}\:\ExternalLink}}
-    % Implementation 2: modifying the source code of hyperref's \href
-    % \makeatletter
-    %   \DeclareRobustCommand*{\extref}[1][]{%
-    %     \begingroup
-    %     \setkeys{extref}{#1}%
-    %     \@ifnextchar\bgroup\Hy@extref{\hyper@normalise\extref@}%
-    %   }
-    %   %
-    %   %
-    %   \def\Hy@extref#{%
-    %     \hyper@normalise\extref@
-    %   }
-    %   \begingroup
-    %     \catcode`\$=6 %
-    %     \catcode`\#=12 %
-    %     \gdef\extref@$1{\expandafter\extref@split$1##\\}%
-    %     \gdef\extref@split$1#$2#$3\\$4{%
-    %       \hyper@@link{$1}{$2}{\xunderline{$4}\:\ExternalLink}%
-    %       \endgroup
-    %     }%
-    %   \endgroup
-    % \makeatother
+    % % Implementation 1: using ltcmd's v-type verbatim arg-spec (NOT recommended as \macro{\extref{ <URL> }{ <link name> }} doesn't work)
+    % \NewDocumentCommand{\extref}{ v m }{\href{#1}{\xunderline{#2}\:\ExternalLink}}
+  % Implementation 2: https://tex.stackexchange.com/a/448977/383565
+  % \NewDocumentCommand{\blink}{ O{} }{%
+  %   %% We want the #-sign only to be a letter (catcode 11) temporarily, so begin the scope group
+  %   \bgroup%
+  %   % Below, # is made a letter until \egroup is called
+  %   \catcode`\#=11\relax%
+  %   % Trigger the URL-reader
+  %   \makeblinkurl%
+  % }
+  % \NewDocumentCommand{\makeblinkurl}{ m m }{%
+  %   % This will read the link and link description
+  %   % after the # is made a letter by the \blink macro
+  %   \href{#1}{\xunderline{#2}\:\ExternalLink}%
+  %   % We want the #-sign only to be a letter up til here, so we group it.
+  %   % the broup will start in the below \blink macro,
+  %   % and we wnd it here:
+  %   \egroup%
+  % }
+    % Implementation 3: modifying the source code of hyperref's \href
+    \makeatletter
+      \DeclareRobustCommand*{\extref}[1][]{%
+        \begingroup
+        \setkeys{extref}{#1}%
+        \@ifnextchar\bgroup\Hy@extref{\hyper@normalise\extref@}%
+      }
+      %
+      %
+      \def\Hy@extref#{%
+        \hyper@normalise\extref@
+      }
+      \begingroup
+        \catcode`\$=6 %
+        \catcode`\#=12 %
+        \gdef\extref@$1{\expandafter\extref@split$1##\\}%
+        \gdef\extref@split$1#$2#$3\\$4{%
+          \hyper@@link{$1}{$2}{\xunderline{$4}\:\ExternalLink}%
+          \endgroup
+        }%
+      \endgroup
+    \makeatother

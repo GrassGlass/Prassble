@@ -1,12 +1,93 @@
 \documentclass[a4paper, 11pt]{book}
+\usepackage{tikz, soul, hyperref}
+% External hyperlink special formatting
+  % External link symbol
+  % source: https://tex.stackexchange.com/a/294990/383565
+  \newcommand{\ExternalLink}{%
+      \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{% 
+          \begin{scope}[x=1ex, y=1ex]
+              \clip (-0.1,-0.1) 
+                  --++ (-0, 1.2) 
+                  --++ (0.6, 0) 
+                  --++ (0, -0.6) 
+                  --++ (0.6, 0) 
+                  --++ (0, -1);
+              \path[draw, 
+                  line width = 0.5, 
+                  rounded corners=0.5] 
+                  (0,0) rectangle (1,1);
+          \end{scope}
+          \path[draw, line width = 0.5] (0.5, 0.5) 
+              -- (1, 1);
+          \path[draw, line width = 0.5] (0.6, 1) 
+              -- (1, 1) -- (1, 0.6);
+          }%
+      }
+  % xunderline
+  % source: https://tex.stackexchange.com/a/67008/383565
+  \makeatletter
+  \ExplSyntaxOn
+  \cs_new:Npn \white_text:n #1
+    {
+      \fp_set:Nn \l_tmpa_fp {#1 * .01}
+      \llap{\textcolor{white}{\the\SOUL@syllable}\hspace{\fp_to_decimal:N \l_tmpa_fp em}}
+      \llap{\textcolor{white}{\the\SOUL@syllable}\hspace{-\fp_to_decimal:N \l_tmpa_fp em}}
+    }
+  \NewDocumentCommand{\whiten}{ m }
+      {
+        \int_step_function:nnnN {1}{1}{#1} \white_text:n
+      }
+  \ExplSyntaxOff
 
+  \NewDocumentCommand{ \xunderline }{ D<>{5} O{0.2ex} O{0.1ex} +m } {%
+  \begingroup
+  \setul{#2}{#3}%
+  \def\SOUL@uleverysyllable{%
+    \setbox0=\hbox{\the\SOUL@syllable}%
+    \ifdim\dp0>\z@
+        \SOUL@ulunderline{\phantom{\the\SOUL@syllable}}%
+        \whiten{#1}%
+        \llap{%
+          \the\SOUL@syllable
+          \SOUL@setkern\SOUL@charkern
+        }%
+    \else
+        \SOUL@ulunderline{%
+          \the\SOUL@syllable
+          \SOUL@setkern\SOUL@charkern
+        }%
+    \fi}%
+      \ul{#4}%
+  \endgroup
+  }
+  \makeatother
+  % ======================================== %
+  %* ===== MOST IMPORTANT PART OF MWE ===== *%
+  % ======================================== %
+  % href with underline and an external link symbol
+  \NewDocumentCommand{\blink}{ O{} }{%
+    %% We want the #-sign only to be a letter (catcode 11) temporarily, so begin the scope group
+    \bgroup%
+    % Below, # is made a letter until \egroup is called
+    \catcode`\#=11\relax%
+    % Trigger the URL-reader
+    \makeblinkurl%
+  }
+  \NewDocumentCommand{\makeblinkurl}{ m m }{%
+    % This will read the link and link description
+    % after the # is made a letter by the \blink macro
+    \href{#1}{\xunderline{#2}\:\ExternalLink}%
+    % We want the #-sign only to be a letter up til here, so we group it.
+    % the broup will start in the below \blink macro,
+    % and we wnd it here:
+    \egroup%
+  }
 \begin{document}
-\ExplSyntaxOn
-    \dim_new:N \dim_a
-    \dim_new:N \dim_b
-    \dim_set:Nn \dim_a {\dim_b}
+This compiles: \blink{https://docs.python.org/3.7/library/stdtypes.html#string-methods}{string methods}
 
-    \dim_set:Nn \dim_b {10pt}
-    \dim_use:N \dim_a
-\ExplSyntaxOff
+% \begin{figure}[htbp]
+%     \caption{This doesn't compile \blink{https://docs.python.org/3.7/library/stdtypes.html#string-methods}{string methods}.}
+% \end{figure}
+
+\section{This also doesn't compile: \blink{https://docs.python.org/3.7/library/stdtypes.html#string-methods}{string methods}}
 \end{document}
