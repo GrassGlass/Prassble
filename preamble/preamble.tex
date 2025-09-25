@@ -48,13 +48,18 @@
 
   % Figures
   \usepackage{graphicx}
-  \graphicspath{{\CurrentFilePath/../figures/}} 
+  \ExplSyntaxOn
+    \graphicspath{{\g_Prassble_path_to_Prassble_folder_tl/figures/}} 
+  \ExplSyntaxOff
   \usepackage{caption, subcaption, float}
 
   % Math stuff
   \usepackage{amssymb, mathrsfs}
   \usepackage{mathtools, mleftright, nicematrix}
   \usepackage{intexgral}
+    % prerequisites for \hatt command
+    \usepackage{stackengine}
+    \usepackage{verbatimbox} % For \addvbuffer
 
   % % Sciences
   % Add siunitx to \UseTblrLibrary{ <clist of libraries> } in the "Tables/Set-up 2" section of this file (preamble.tex)
