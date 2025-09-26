@@ -49,7 +49,6 @@
   \dim_new:N \l__listings_autowidth_title_dim
   \dim_new:N \l__listings_autowidth_upper_dim
   \dim_new:N \l__listings_autowidth_lower_dim
-  \dim_new:N \g__listings_autowidth_true_left_hspace_dim
   \dim_new:N \g__listings_autowidth@core_measured_text_width_dim
   \dim_new:N \g__listings_autowidth@core_measured_width_dim
   \dim_new:N \g__listings_autowidth@core_text_width_dim
@@ -306,7 +305,7 @@
     % codestylebase = { <Unparenthesized Title> }
   ,codestylebase/.style =
   {
-    ,leftupper                       = \g__listings_autowidth_true_left_hspace_dim
+    ,leftupper                       = \eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding
     ,listing~engine                  = minted
     ,minted~style                    = staroffice
     ,minted~options                  = 
@@ -423,7 +422,7 @@
 
 % Base listing style, continued
 \renewcommand{\theFancyVerbLine}{
-                \eqframebox[code\arabic{code}][c]{
+                \eqmakebox[code\arabic{code}][c]{
                     \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
                 }
             }
