@@ -19,43 +19,24 @@
 %%
 \makeatletter
 \ExplSyntaxOn
-  \newenvironment{modifiedtcblisting}[1]{%
-  % Before the tcblisting environment
-      % The value of \linewidth where the corresponding listing environment is located
-        % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
-        \dim_set:Nn \g__listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
-    % Centering the tcblisting environment
-    \par%
-    \begingroup%=====%
-      \centering%
-  % The tcblisting environment 
-      \stepcounter{tcblisting}\edef\thetcblistingcount{\thetcblisting}%
-      \tcb@layer@pushup%
-      \tcb@apply@box@options{capture=minipage,#1}%
-      \begingroup\tcbverbatimwrite{\kvtcb@listingfile}%
+  \NewDocumentCommand{\ModifiedNewTCBListing}{ m m m }{
+    \NewTCBListing{ #1 }{ #2 }{ #3 }
+    \BeforeBeginEnvironment{#1}{
+      % Before the listing
+        % The value of \linewidth where the corresponding listing environment is located
+          % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
+          \dim_set:Nn \g__listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
+        % Centering the listing
+        \par%
+        \begingroup%=====%
+          \centering%
+    }
+    \AfterEndEnvironment{#1}{
+      % After the listing
+          \__listings_debug_autowidth:
+          \stepcounter{code}%
+        \endgroup%=====%
+    }
   }
-  {\endtcbverbatimwrite\endgroup%
-    \tcbinputlisting@core%
-  % After the tcblisting environment
-      \__listings_autowidth_lower_savewidth:%
-      \__listings_debug_autowidth:%
-      \stepcounter{code}%
-    \endgroup%=====%
-  }
-  %
-  %
-    \NewDocumentCommand \__tcobox_new_modified_TCBListing:w { m +O{} >{\TrimSpaces} m +m +m }
-      {
-        \__tcobox_process_newtcolorbox:nn { #2 }{ #3 }
-        #1 { #3 }{ #4 }{%
-        \filename@parse{#5}%
-        \edef\MyFileExt{\filename@ext}%
-        \modifiedtcblisting{#5,options@for=#3} }{ \endmodifiedtcblisting }
-      }
-    \NewDocumentCommand \ModifiedNewTCBListing { }
-      {
-        \bool_set_true:N \l__tcobox_prevent_init_overwrite_bool
-        \__tcobox_new_modified_TCBListing:w \NewDocumentEnvironment
-      }
 \ExplSyntaxOff
 \makeatother
