@@ -180,7 +180,7 @@
             {\l__listings_autowidth_lower_dim}
           }
         }
-      \dim_set:Nn \g__listings_autowidth@core_text_width_vs_width_difference_dim  {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
+      \dim_set:Nn \g__listings_autowidth@core_text_width_vs_width_difference_dim {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
       \dim_set:Nn \g__listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\g__listings_autowidth@core_max_tcb_width_dim}}
       \dim_set:Nn \g__listings_autowidth@core_measured_width_dim {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_measured_text_width_dim}}
       % The default tcb text width the box should be set to have, in the first compilation where eqparbox is still calculating the required widths.  
@@ -423,7 +423,7 @@
 
 % Base listing style, continued
 \renewcommand{\theFancyVerbLine}{
-                \eqmakebox[code\arabic{code}][c]{
+                \eqframebox[code\arabic{code}][c]{
                     \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
                 }
             }

@@ -63,6 +63,10 @@
         \NewDocumentCommand{\modifiednewkeytheorem}{ }{\modifiedXkeytheorem{\newkeytheorem}}
         % Xkeytheorem = \renewkeytheorem
         \NewDocumentCommand{\modifiedrenewkeytheorem}{ }{\modifiedXkeytheorem{\renewkeytheorem}}
+        % Xkeytheorem = \providekeytheorem
+        \NewDocumentCommand{\modifiedprovidekeytheorem}{ }{\modifiedXkeytheorem{\providekeytheorem}}
+        % Xkeytheorem = \declarekeytheorem
+        \NewDocumentCommand{\modifieddeclarekeytheorem}{ }{\modifiedXkeytheorem{\declarekeytheorem}}
     % The command \AddToHWEnvList
     \NewDocumentCommand{\AddToHWEnvList}{ m }{
         \clist_gput_right:Nn \g__Prassble_environments_used_in_HWs_clist {#1}
