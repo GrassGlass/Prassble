@@ -54,6 +54,7 @@
   \dim_new:N \g__listings_autowidth@core_text_width_dim
   \dim_new:N \g__listings_autowidth@core_text_width_vs_width_difference_dim 
   \dim_new:N \g__listings_autowidth@core_max_tcb_text_width_dim
+  \dim_new:N \g__listings_Leftupper_dim
   \dim_new:N \g__listings_autowidth@core_max_tcb_width_dim
   \cs_new:Npn \__tcb_text_width_to_width:n #1
   {
@@ -152,7 +153,7 @@
       {
         \dim_set:Nn \l__listings_autowidth_title_dim 
         {
-          \eqboxwidth{codetitlewidth\arabic{code}}
+          \eqboxwidth{codetitlewidth\arabic{code}}-\g__listings_Leftupper_dim
         }
       }
       \bool_if:NT \g__listings_autowidth_upper_bool
@@ -166,7 +167,7 @@
       {
         \dim_set:Nn \l__listings_autowidth_lower_dim
         {
-          \eqboxwidth{codelowerwidth\arabic{code}}
+          \eqboxwidth{codelowerwidth\arabic{code}}-\g__listings_Leftupper_dim
         }
       }
       \dim_set:Nn \g__listings_autowidth@core_measured_text_width_dim 
@@ -300,12 +301,18 @@
   ,OTitle/.code = {
     \tl_if_empty:nF {#1} {\tl_set:Nn \g__listings_OTitle_tl {~(#1)}}
   }
+  ,Leftupper/.code = {
+    \dim_set:Nn \g__listings_Leftupper_dim {\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}
+    \pgfkeysalso{
+      leftupper = \g__listings_Leftupper_dim
+    }
+  }
 % Base listing style
     % Help sourced from https://tex.stackexchange.com/a/748148/383565
     % codestylebase = { <Unparenthesized Title> }
   ,codestylebase/.style =
   {
-    ,leftupper                       = \eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding
+    ,Leftupper
     ,listing~engine                  = minted
     ,minted~style                    = staroffice
     ,minted~options                  = 
