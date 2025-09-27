@@ -33,7 +33,7 @@
         \item ~
         \begin{code}
             [
-                ,Title=This should have breaklines disabled
+                ,Title=This should have no broken line
                 ,autowidth = upper
             ]{Julia}
             ⵌ\hspace{\mywidth}ⵌ
@@ -41,7 +41,7 @@
         \item ~
         \begin{code}
             [
-                ,Title=This should have breaklines enabled
+                ,Title=This should have a broken line
                 ,autowidth = upper
             ]{Julia}
             ⵌ\hspace{\mywidth+0.00001pt}ⵌ
@@ -125,7 +125,7 @@
             \item ~
             \begin{code}
                 [
-                    ,Title=This should have breaklines disabled
+                    ,Title=This should have no broken line
                     ,autowidth = title
                     ,autowidth = upper
                 ]{Julia}
@@ -133,7 +133,7 @@
             \end{code}
             \begin{code}
                 [
-                    ,Title=This should also have breaklines disabled
+                    ,Title=This should also have no broken line
                     ,OTitle=But the title should break
                     ,autowidth = title
                     ,autowidth = upper
@@ -143,7 +143,7 @@
             \item ~
             \begin{code}
                 [
-                    ,Title=This should have breaklines enabled
+                    ,Title=This should have a broken line
                     ,autowidth = title
                     ,autowidth = upper
                 ]{Julia}
@@ -152,7 +152,7 @@
 
             \begin{code}
                 [
-                    ,Title=This should also have breaklines disabled
+                    ,Title=This should also have a broken line
                     ,OTitle=But the title should break
                     ,autowidth = title
                     ,autowidth = upper
@@ -237,22 +237,22 @@
         \item ~
         \begin{code}
             [
-                ,Title=This should have breaklines disabled
+                ,Title=This should have no broken line
                 ,autowidth = upper
                 ,autowidth = lower
             ]{Julia}
-            \hspace{\mywidth}
+            ⵌ\hspace{\mywidth}ⵌ
         \end{code}
         \item ~
         \begin{code}
             [
-                ,Title=This should have breaklines enabled
+                ,Title=This should have a broken line
                 ,autowidth = upper
                 ,autowidth = lower
             ]{Julia}
-            \hspace{\mywidth+0.00001pt}
+            ⵌ\hspace{\mywidth+0.00001pt}ⵌ
         \end{code}
-                \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \l__listings_autowidth_upper_dim}
+        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \l__listings_autowidth_upper_dim}
         
         The following box should have width equal to the linewidth.
         \begin{code}
@@ -302,6 +302,7 @@
             ,Title=smol
             ,autowidth = title
             ,autowidth = upper
+            ,listing and text
             ,autowidth = lower
         ]{\TeX}
         Long short text
@@ -314,6 +315,7 @@
             ,Title=smol
             ,autowidth = title
             ,autowidth = upper
+            ,listing and text
             ,autowidth = lower
         ]{\TeX}
         \hspace{10cm}
@@ -326,6 +328,7 @@
             ,Title=Super long long long long long long long long long long long title
             ,autowidth = title
             ,autowidth = upper
+            ,listing and text
             ,autowidth = lower
         ]{\TeX}
         Long short text\\
@@ -339,6 +342,7 @@
             ,Title=Super long long long long long long long long long long long long long long long long long long long long title
             ,autowidth = title
             ,autowidth = upper
+            ,listing and text
             ,autowidth = lower
         ]{\TeX}
         Long short text\\
@@ -351,21 +355,53 @@
     \end{code}
     \begin{code}
         [
-            ,Title=This should have breaklines disabled
+            ,Title=This should have no broken line
             ,autowidth = title
             ,autowidth = upper
             ,autowidth = lower
         ]{Julia}
-        \hspace{\mywidth}
+        (Without listing and text)
+        ⵌ\hspace{\mywidth}ⵌ
     \end{code}
     \item ~
     \begin{code}
         [
-            ,Title=This should have breaklines enabled
+            ,Title=This should have a broken line
             ,autowidth = title
             ,autowidth = upper
             ,autowidth = lower
         ]{Julia}
-        \hspace{\mywidth+0.00001pt}
+        (Without listing and text)
+        ⵌ\hspace{\mywidth+0.00001pt}ⵌ
     \end{code}
+    % \item ~
+    % \begin{code}[=,listing and text]{Julia}
+    %     \xdef\mylowerwidth{\linewidth}
+
+    %     \setbox0=\hbox{a\ a}
+    %     \xdef\aSpaceaWidth{\wd0}
+    % \end{code}
+    % \begin{code}
+    %     [
+    %         ,Title=This should have breaklines disabled
+    %         ,autowidth = title
+    %         ,autowidth = upper
+    %         ,listing and text
+    %         ,autowidth = lower
+    %     ]{Julia}
+    %     \hspace{\mylowerwidth-\aSpaceaWidth}
+    %     a\ a
+    % \end{code}
+    % \item ~
+    % \begin{code}
+    %     [
+    %         ,Title=This should have breaklines disabled
+    %         ,autowidth = title
+    %         ,autowidth = upper
+    %         ,listing and text
+    %         ,autowidth = lower
+    %     ]{Julia}
+    %     \hspace{\mylowerwidth-\aSpaceaWidth}
+    %     a\ a
+    % \end{code}
 \end{enumerate}

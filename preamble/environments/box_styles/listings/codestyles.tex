@@ -302,7 +302,7 @@
     \tl_if_empty:nF {#1} {\tl_set:Nn \g__listings_OTitle_tl {~(#1)}}
   }
   ,Leftupper/.code = {
-    \dim_set:Nn \g__listings_Leftupper_dim {\eqboxwidth{code\arabic{code}}+\lefthspace+0.5\linenumberpadding}
+    \dim_set:Nn \g__listings_Leftupper_dim {4mm+\numbersep-\kvtcb@boxsep} % 4mm is the initial leftupper
     \pgfkeysalso{
       leftupper = \g__listings_Leftupper_dim
     }
@@ -429,9 +429,9 @@
 \makeatother
 
 % Base listing style, continued
-\renewcommand{\theFancyVerbLine}{
-                \eqmakebox[code\arabic{code}][c]{
-                    \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}
-                }
+\renewcommand{\theFancyVerbLine}{%
+                \eqmakebox[code\arabic{code}][c]{%
+                    \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}%
+                }%
             }
 \renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codeupperwidth\arabic{code}]{#1}#1}

@@ -29,11 +29,11 @@
 % The distance between each code line number and the verbatim code on the same line 
     % More accurately, in this case, rather than ``the number'', it is 
     % \eqmakebox[code\arabic{code}][c]{\textcolor{Maroon}{\scriptsize\arabic{FancyVerbLine}}})
-    \setlength{\numbersep}{0.2474691189148802em}
+    \setlength{\numbersep}{11pt}
 
 % Controls the length of the code line number backgrounds
-    % The code line number overlays have a background whose color is darker than the rest of the listing box, but lighter than the borderline to the left. This background has horizontal width \eqboxwidth{code\arabic{code}} + \linenumberpadding
-    \setlength{\linenumberpadding}{0.2474691189148802em}
+    % The code line number overlays have a background whose color is darker than the rest of the listing box, but lighter than the borderline to the left. This background has horizontal width \eqboxwidth{code\arabic{code}} + \linenumberpadding (including the \BorderlineWestThickness overlap with the borderline)
+    \setlength{\linenumberpadding}{8.6pt}
 
 % The length to move the code line numbers right by, such that they are horizontally centered on their background.
 \setlength{\lefthspace}{8.5pt}
