@@ -2,9 +2,9 @@
 \begin{enumerate}
     \item \codeinline{TeX}{autowidth = title}
     \begin{enumerate}
-        \item \codeinline{TeX}{\l__listings_autowidth_title_dim <= \linewidthoutside}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim <= \linewidthoutside}
         
-        This box should be of width \codeinline{TeX}{\l__listings_autowidth_title_dim}
+        This box should be of width \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim}
         \begin{code}
             [
                 % ,Title={\footnotesize smol}
@@ -13,7 +13,7 @@
             ]{\TeX}
             Long short text
         \end{code}
-        \item \codeinline{TeX}{\l__listings_autowidth_title_dim > \linewidthoutside}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim > \linewidthoutside}
         
         This title should break and be of width \codeinline{TeX}{\linewidthoutside}
         \begin{code}
@@ -49,7 +49,7 @@
     \end{enumerate}
     \item \codeinline{TeX}{autowidth = lower}
     \begin{enumerate}
-        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
         
         The following box should have width equal to the linewidth.
         \begin{code}
@@ -61,7 +61,7 @@
         ]{\TeX}
             Hello\\ hewwo \hspace{10cm} heh
         \end{code}
-        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
         
         The following box should have width equal to the width of the \codeinline{TeX}{\tcblower}
         \begin{code}
@@ -74,7 +74,7 @@
         ]{\TeX}
             Hello\\ hewwo \hspace{5cm} heh
         \end{code}
-        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim < \eqboxwidth{codeupperwidth\arabic{code}}}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim < \eqboxwidth{codeupperwidth\arabic{code}}}
         
         The following box should have width equal to that of the \codeinline{TeX}{\tcblower}.
         \begin{code}
@@ -92,9 +92,9 @@
 \begin{enumerate}
     \item \codeinline{TeX}{autowidth = title + upper}
     \begin{enumerate}
-        \item \codeinline{TeX}{\l__listings_autowidth_title_dim <= \linewidthoutside}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim <= \linewidthoutside}
         
-        This box should be of width \codeinline{TeX}{\l__listings_autowidth_title_dim}
+        This box should be of width \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim}
         \begin{code}
             [
                 % ,Title={\footnotesize smol}
@@ -104,7 +104,7 @@
             ]{\TeX}
             Long short text
         \end{code}
-        \item \codeinline{TeX}{\l__listings_autowidth_title_dim > \linewidthoutside}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim > \linewidthoutside}
         
         This title should break and be of width \codeinline{TeX}{\linewidthoutside}
         \begin{code}
@@ -163,9 +163,9 @@
     \end{enumerate}
     \item \codeinline{TeX}{autowidth = title + lower}
     \begin{enumerate}
-        \item \codeinline{TeX}{\l__listings_autowidth_title_dim <= \linewidthoutside}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim <= \linewidthoutside}
         
-        This box should be of width \codeinline{TeX}{\l__listings_autowidth_title_dim}
+        This box should be of width \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim}
         \begin{code}
             [
                 % ,Title={\footnotesize smol}
@@ -175,7 +175,7 @@
             ]{\TeX}
             Long short text
         \end{code}
-        \item \codeinline{TeX}{\l__listings_autowidth_title_dim > \linewidthoutside}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim > \linewidthoutside}
         
         This title should break and be of width \codeinline{TeX}{\linewidthoutside}
         \begin{code}
@@ -186,7 +186,7 @@
             ]{\TeX}
             Long short text
         \end{code}
-        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim >= \eqboxwidth{codeupperwidth\arabic{code}}}
         
         The following box should have width equal to the linewidth.
         \begin{code}
@@ -200,7 +200,7 @@
         \end{code}
         \item 
         \begin{tabular}[t]{rcl}
-            \codeinline{TeX}{\l__listings_autowidth_title_dim} &\codeinline{TeX}{>=} & \codeinline{TeX}{\l__listings_autowidth_lower_dim}\\
+            \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim} &\codeinline{TeX}{>=} & \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim}\\
             &\codeinline{TeX}{>=} & \codeinline{TeX}{\eqboxwidth{codeupperwidth\arabic{code}}}
         \end{tabular}
         
@@ -215,7 +215,7 @@
         ]{\TeX}
             Hello\\ hewwo \hspace{5cm} heh
         \end{code}
-        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim < \eqboxwidth{codeupperwidth\arabic{code}}}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim < \eqboxwidth{codeupperwidth\arabic{code}}}
         
         The following box should have width equal to that of the \codeinline{TeX}{\tcblower}.
         \begin{code}
@@ -252,7 +252,7 @@
             ]{Julia}
             ⵌ\hspace{\mywidth+0.00001pt}ⵌ
         \end{code}
-        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \l__listings_autowidth_upper_dim}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim >= \l__Prassble_listings_autowidth_upper_dim}
         
         The following box should have width equal to the linewidth.
         \begin{code}
@@ -264,7 +264,7 @@
         ]{\TeX}
             Hello\\ hewwo \hspace{10cm} heh
         \end{code}
-        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \l__listings_autowidth_upper_dim}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim >= \l__Prassble_listings_autowidth_upper_dim}
         
         The following box should have width equal to the width of the \codeinline{TeX}{\tcblower}
         \begin{code}
@@ -277,7 +277,7 @@
         ]{\TeX}
             Hello\\ hewwo \hspace{5cm} heh
         \end{code}
-        \item \codeinline{TeX}{\l__listings_autowidth_lower_dim < \l__listings_autowidth_upper_dim}
+        \item \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim < \l__Prassble_listings_autowidth_upper_dim}
         
         The following box should have width equal to that of the the width of the upper.
         \begin{code}
@@ -294,9 +294,9 @@
 % 
 \section{(All) Three Autowidth Options Selected}
 \begin{enumerate}
-    \item \codeinline{TeX}{\l__listings_autowidth_upper_dim >= \l__listings_autowidth_ⵌ\textlangle title, lower\textrangleⵌ_dim}
+    \item \codeinline{TeX}{\l__Prassble_listings_autowidth_upper_dim >= \l__Prassble_listings_autowidth_ⵌ\textlangle title, lower\textrangleⵌ_dim}
     
-    This box should be of width \codeinline{TeX}{\l__listings_autowidth_upper_dim}
+    This box should be of width \codeinline{TeX}{\l__Prassble_listings_autowidth_upper_dim}
     \begin{code}
         [
             ,Title=smol
@@ -307,9 +307,9 @@
         ]{\TeX}
         Long short text
     \end{code}
-    \item \codeinline{TeX}{\l__listings_autowidth_lower_dim >= \l__listings_autowidth_ⵌ\textlangle title, upper\textrangleⵌ_dim}
+    \item \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim >= \l__Prassble_listings_autowidth_ⵌ\textlangle title, upper\textrangleⵌ_dim}
     
-    This box should be of width \codeinline{TeX}{\l__listings_autowidth_lower_dim}
+    This box should be of width \codeinline{TeX}{\l__Prassble_listings_autowidth_lower_dim}
     \begin{code}
         [
             ,Title=smol
@@ -320,7 +320,7 @@
         ]{\TeX}
         \hspace{10cm}
     \end{code}
-    \item \codeinline{TeX}{\l__listings_autowidth_title_dim >= \l__listings_autowidth_ⵌ\textlangle upper, lower\textrangleⵌ_dim}
+    \item \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim >= \l__Prassble_listings_autowidth_ⵌ\textlangle upper, lower\textrangleⵌ_dim}
     
     This title should break and be of width \codeinline{TeX}{\linewidthoutside}
     \begin{code}
@@ -334,7 +334,7 @@
         Long short text\\
         Test \hspace{8.5cm} testo
     \end{code}
-    \item \codeinline{TeX}{\l__listings_autowidth_title_dim > \linewidthoutside}
+    \item \codeinline{TeX}{\l__Prassble_listings_autowidth_title_dim > \linewidthoutside}
     
     This title should break and be of width \codeinline{TeX}{\linewidthoutside}
     \begin{code}

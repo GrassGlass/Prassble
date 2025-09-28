@@ -23,16 +23,16 @@
 
 \makeatletter
 \ExplSyntaxOn
-  \dim_new:N \g__listings_Leftupper_dim
-  \cs_new:Npn \__listings_codestylecore@borderlinewest: {
+  \dim_new:N \g__Prassble_listings_Leftupper_dim
+  \cs_new:Npn \__Prassble_listings_codestylecore@borderlinewest: {
       \fill[blue] (frame.south~west)
       rectangle ([xshift=\BorderlineWestThickness]frame.north~west);}
 
   \tcbset{
     ,Leftupper/.code = {
-        \dim_set:Nn \g__listings_Leftupper_dim {\numbersep-\boxsep+\eqboxwidth{code\arabic{code}}+(\linenumberpadding+\BorderlineWestThickness)/2} % 4mm is the initial leftupper
+        \dim_set:Nn \g__Prassble_listings_Leftupper_dim {\numbersep-\boxsep+\eqboxwidth{code\arabic{code}}+(\linenumberpadding+\BorderlineWestThickness)/2} % 4mm is the initial leftupper
         \pgfkeysalso{
-        leftupper = \g__listings_Leftupper_dim
+        leftupper = \g__Prassble_listings_Leftupper_dim
         }
     }
     ,codestylebase/.style =
@@ -75,7 +75,7 @@
             (segmentation.west);
             }
         % Borderline west of \BorderlineWestThickness thickness
-        \__listings_codestylecore@borderlinewest:
+        \__Prassble_listings_codestylecore@borderlinewest:
         }
         ,overlay~first                   = {
         % Background for the code line numbers
@@ -86,14 +86,14 @@
         ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west) --
         (frame.south~west);
         % Borderline west of \BorderlineWestThickness thickness
-        \__listings_codestylecore@borderlinewest:
+        \__Prassble_listings_codestylecore@borderlinewest:
         }
         ,overlay~middle                  = {
         % Background for the code line numbers
         \fill[black!20] (frame.south~west)
         rectangle ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.north~west);
         % Borderline west of \BorderlineWestThickness thickness
-        \__listings_codestylecore@borderlinewest:
+        \__Prassble_listings_codestylecore@borderlinewest:
         }
         ,overlay~last                    = {
         % Background for the code line numbers
@@ -116,7 +116,7 @@
             (segmentation.west);
             }
         % Borderline west of \BorderlineWestThickness thickness
-        \__listings_codestylecore@borderlinewest:
+        \__Prassble_listings_codestylecore@borderlinewest:
         }
     }
   }
