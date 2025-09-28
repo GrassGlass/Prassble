@@ -40,44 +40,6 @@
               -- (1, 1) -- (1, 0.6);
           }%
       }
-  % xunderline
-  % source: https://tex.stackexchange.com/a/67008/383565
-  \makeatletter
-  \ExplSyntaxOn
-  \cs_new:Npn \white_text:n #1
-    {
-      \fp_set:Nn \l_tmpa_fp {#1 * .01}
-      \llap{\textcolor{white}{\the\SOUL@syllable}\hspace{\fp_to_decimal:N \l_tmpa_fp em}}
-      \llap{\textcolor{white}{\the\SOUL@syllable}\hspace{-\fp_to_decimal:N \l_tmpa_fp em}}
-    }
-  \NewDocumentCommand{\whiten}{ m }
-      {
-        \int_step_function:nnnN {1}{1}{#1} \white_text:n
-      }
-  \ExplSyntaxOff
-
-  \NewDocumentCommand{ \xunderline }{ D<>{5} O{0.2ex} O{0.1ex} +m } {%
-  \begingroup
-  \setul{#2}{#3}%
-  \def\SOUL@uleverysyllable{%
-    \setbox0=\hbox{\the\SOUL@syllable}%
-    \ifdim\dp0>\z@
-        \SOUL@ulunderline{\phantom{\the\SOUL@syllable}}%
-        \whiten{#1}%
-        \llap{%
-          \the\SOUL@syllable
-          \SOUL@setkern\SOUL@charkern
-        }%
-    \else
-        \SOUL@ulunderline{%
-          \the\SOUL@syllable
-          \SOUL@setkern\SOUL@charkern
-        }%
-    \fi}%
-      \ul{#4}%
-  \endgroup
-  }
-  \makeatother
   % href with underline and an external link symbol
     % % Implementation 1: using ltcmd's v-type verbatim arg-spec (NOT recommended as \macro{\extref{ <URL> }{ <link name> }} doesn't work)
     % \NewDocumentCommand{\extref}{ v m }{\href{#1}{\xunderline{#2}\:\ExternalLink}}
@@ -116,7 +78,7 @@
         \catcode`\#=12 %
         \gdef\extref@$1{\expandafter\extref@split$1##\\}%
         \gdef\extref@split$1#$2#$3\\$4{%
-          \hyper@@link{$1}{$2}{\xunderline{$4}\:\ExternalLink}%
+          \hyper@@link{$1}{$2}{$4\:\ExternalLink}%
           \endgroup
         }%
       \endgroup

@@ -302,7 +302,7 @@
     \tl_if_empty:nF {#1} {\tl_set:Nn \g__listings_OTitle_tl {~(#1)}}
   }
   ,Leftupper/.code = {
-    \dim_set:Nn \g__listings_Leftupper_dim {4mm+\numbersep-\kvtcb@boxsep} % 4mm is the initial leftupper
+    \dim_set:Nn \g__listings_Leftupper_dim {\numbersep-\boxsep+\eqboxwidth{code\arabic{code}}+(\linenumberpadding+\BorderlineWestThickness)/2} % 4mm is the initial leftupper
     \pgfkeysalso{
       leftupper = \g__listings_Leftupper_dim
     }

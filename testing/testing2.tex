@@ -25,12 +25,12 @@
 \ExplSyntaxOn
   \dim_new:N \g__listings_Leftupper_dim
   \cs_new:Npn \__listings_codestylecore@borderlinewest: {
-      \fill[black] (frame.south~west)
+      \fill[blue] (frame.south~west)
       rectangle ([xshift=\BorderlineWestThickness]frame.north~west);}
 
   \tcbset{
     ,Leftupper/.code = {
-        \dim_set:Nn \g__listings_Leftupper_dim {-\kvtcb@left@rule+\kvtcb@leftupper+\kvtcb@boxsep+(\linenumberpadding+\BorderlineWestThickness)/2} % 4mm is the initial leftupper
+        \dim_set:Nn \g__listings_Leftupper_dim {\numbersep-\boxsep+\eqboxwidth{code\arabic{code}}+(\linenumberpadding+\BorderlineWestThickness)/2} % 4mm is the initial leftupper
         \pgfkeysalso{
         leftupper = \g__listings_Leftupper_dim
         }
@@ -143,4 +143,9 @@
 
     ~
 \end{code}
+\ExplSyntaxOn
+\dim_new:N \debug
+\dim_set:Nn \debug {(\eqboxwidth{code\arabic{code}}+\linenumberpadding)/2}
+\ExplSyntaxOff
+\rule{\debug}{1pt}
 \end{document}
