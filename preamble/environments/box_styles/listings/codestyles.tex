@@ -20,26 +20,6 @@
 \makeatletter
 \ExplSyntaxOn
 
-% Colors
-\ifdefstring{\ColourTheme}{colourful}{
-  \def\ColorCodeBase{Maroon}
-  \def\ColorCodeColback{\ColorCodeBase!5}
-  \def\ColorCodeColbacktitle{\ColorCodeBase!5}
-  \def\ColorCodeTitle{\ColorCodeBase!70!black}
-  \def\ColorCodeBorderline{\ColorCodeBase}
-  \def\ColorCodeLineNumber{\ColorCodeBase}
-  \def\ColorCodeLineNumberBackground{\ColorCodeBase!20}
-}{}
-\ifdefstring{\ColourTheme}{BnW}{
-  \def\ColorCodeBase{black}
-  \def\ColorCodeColback{white}
-  \def\ColorCodeColbacktitle{white}
-  \def\ColorCodeTitle{\ColorCodeBase!70!black}
-  \def\ColorCodeBorderline{white}
-  \def\ColorCodeLineNumber{\ColorCodeBase}
-  \def\ColorCodeLineNumberBackground{\ColorCodeBase!20}
-}{}
-
 % Variables
   % Definitions
   \tl_new:N \g__listings_linenos_tl
