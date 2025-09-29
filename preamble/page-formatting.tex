@@ -22,19 +22,19 @@
   % default pagestyle
   \ifundef{\Pagestyle}{\gdef\Pagestyle{main}}{}
 
-  % \HeaderColour
-  \ifdefstring{\ColourTheme}{colourful}{\gdef\HeaderColour{HeaderColour}}{}
-  \ifdefstring{\ColourTheme}{BnW}{\gdef\HeaderColour{black}}{}
+  % \HeaderColor
+  \ifdefstring{\ColorTheme}{colourful}{\gdef\HeaderColor{HeaderColor}}{}
+  \ifdefstring{\ColorTheme}{BnW}{\gdef\HeaderColor{black}}{}
 
-  % change the color of \headrule to HeaderColour
+  % change the color of \headrule to HeaderColor
   \makeatletter
-    \renewcommand{\setheadrule}[1]{\ifdim #1=\z@ \let \makeheadrule \@empty \else \def \makeheadrule{\color{\HeaderColour}\rule[-.3\baselineskip]{\linewidth }{#1}}\fi}
+    \renewcommand{\setheadrule}[1]{\ifdim #1=\z@ \let \makeheadrule \@empty \else \def \makeheadrule{\color{\HeaderColor}\rule[-.3\baselineskip]{\linewidth }{#1}}\fi}
   \makeatother
 
   % main pagestyle
     % source1: https://tex.stackexchange.com/a/311505/383565
     % source2: https://sg.mirrors.cicku.me/ctan/macros/latex/contrib/titlesec/titlesec.pdf
-  \newpagestyle{main}[\sffamily\color{\HeaderColour}]
+  \newpagestyle{main}[\sffamily\color{\HeaderColor}]
   {
     \sethead[\thepage][\chaptertitle][\S\,\thesection] % even
     {\S\,\thesection}{\sectiontitle}{\thepage}         % odd
@@ -43,7 +43,7 @@
 
   % hw pagestyle
   \makeatletter
-    \newpagestyle{hw}[\sffamily\color{\HeaderColour}]
+    \newpagestyle{hw}[\sffamily\color{\HeaderColor}]
     {
     \sethead{\@author}{\CourseName\ Homework \#\theHWNumber}{\thepage\ of\ \makeatletter\@abspage@last\makeatother}
     \headrule
@@ -75,14 +75,14 @@
 % chapter
   % Source: https://tex.stackexchange.com/a/169435
   \titleformat{\chapter}[display]
-    {\normalfont\bfseries\color{\HeaderColour}}
+    {\normalfont\bfseries\color{\HeaderColor}}
     {\filleft\hspace*{-60pt}%
       \rotatebox[origin=c]{90}{%
         \normalfont\color{black}\Large%
           \textls[180]{\textsc{\chaptertitlename}}%
       }\hspace{10pt}%
       {\setlength\fboxsep{0pt}%
-      \colorbox{\HeaderColour}{\parbox[c][3cm][c]{2.5cm}{%
+      \colorbox{\HeaderColor}{\parbox[c][3cm][c]{2.5cm}{%
         \centering\color{white}\fontsize{80}{90}\selectfont\thechapter}%
       }}%
     }
@@ -92,11 +92,11 @@
 % section
   % Source: https://tex.stackexchange.com/a/738974/383565
   \titleformat{\section}[hang]
-    {\normalfont\Large\bfseries\color{\HeaderColour}}
+    {\normalfont\Large\bfseries\color{\HeaderColor}}
     {%
     \begingroup
     \setlength\fboxsep{3.5pt}%
-    \colorbox{\HeaderColour}{\color{white}\thesection}%
+    \colorbox{\HeaderColor}{\color{white}\thesection}%
     \endgroup
     }
     {5pt}
@@ -104,7 +104,7 @@
 
 % subsection
   \titleformat{\subsection}[hang]
-    {\normalfont\Large\bfseries\color{\HeaderColour}}
+    {\normalfont\Large\bfseries\color{\HeaderColor}}
     {%
     \begingroup
     \setlength\fboxsep{3pt}%
