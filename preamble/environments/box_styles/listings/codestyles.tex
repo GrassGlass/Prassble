@@ -287,12 +287,23 @@
       leftupper = \g__Prassble_listings_Leftupper_dim
     }
   }
+  ,Append~if~BnW/.code = {
+    \tl_if_eq:NnT \ColourTheme {BnW} 
+    {
+      \pgfkeysalso{
+        ,lefttitle        = 0pt
+        ,leftlower        = 0pt
+        ,lower~separated  = false
+      }
+    }
+  }
 % Base listing style
     % Help sourced from https://tex.stackexchange.com/a/748148/383565
     % codestylebase = { <Unparenthesized Title> }
   ,codestylebase/.style =
   {
     ,Leftupper
+    ,Append~if~BnW
     ,listing~engine                  = minted
     ,minted~style                    = staroffice
     ,minted~options                  = 

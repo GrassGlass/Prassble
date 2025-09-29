@@ -1,14 +1,11 @@
 \documentclass{book}
-\usepackage{eqparbox}
-\usepackage[skins, breakable, minted]{tcolorbox}
-\newcounter{code}
-\renewcommand{\theFancyVerbLine}{
-                \eqframebox[code\arabic{code}][c]{
-                    \textcolor{black}{\scriptsize\arabic{FancyVerbLine}}
-                }
-            }
+\def\ColourTheme{BnW}
+\input{../preamble/preamble.tex}
 \begin{document}
-\begin{minted}[linenos]{TeX}
-  Test
-\end{minted}
+\begin{theorem}
+  This is the first theorem in here.
+\end{theorem}
+\begin{code}[=,listing and text]{Text}
+  Hello this is my beautiful code listing.
+\end{code}
 \end{document}
