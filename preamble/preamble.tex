@@ -112,8 +112,10 @@
 % Custom setup
 
   % Easy input of files
-  \input{\CurrentFilePath/Input_macro.tex}
+  \input{\CurrentFilePath/commands/newcommands/Input_macro.tex}
+  \Input{commands/modified_commands/Chapter_and_Section.tex}
   \KeywordForInput{HW}{files/homework}                %*
+  \KeywordForInput{Ch}{files/chapters}                %*
   
   % Math stuff
   \Input[math]{%
@@ -133,13 +135,13 @@
   \def\CourseName{\textlangle Course Name\textrangle} %*
   \newcounter{HWNumber}                               %*
   \Input{page-formatting.tex}
+  \AddToHWEnvList{table,figure}                       %*
 
   % Colored boxes
     % Nonlistings
     \Input[environments/box_styles/nonlistings]{%
       ,theoremstyles.tex%
       ,commands/modified_commands/newkeytheorem.tex
-      ,commands/newcommands/InputKeyword_HW-in-Main.tex
       ,../lengths_and_counters.tex%
     }
     \Input[environments/derived_environments]{%
@@ -158,6 +160,7 @@
       ,NewListing.tex%
     }
     \Input{environments/derived_environments/listings.tex}
+    \Input{environments/box_styles/nonlistings/commands/newcommands/InputKeyword_HW-in-Main.tex}
 
   % Refer
   \Input{external_hyperlink_format.tex}
@@ -170,5 +173,4 @@
 
   % Other
   \Input{other.tex}
-  \AddToHWEnvList{table,figure}                       %*
   \newcommand{\HWInMainHeader}{\subsection{Homework \#\arabic{HWNumber}}}                                        %*

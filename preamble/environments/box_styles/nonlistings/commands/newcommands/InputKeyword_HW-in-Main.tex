@@ -1,6 +1,11 @@
 \ExplSyntaxOn
 \makeatletter
     % HW-In-Main Input keyword
+        % Integer \g__Prassble_HW_In_Main_inital_#1_value_int whose purpose is to store the current counter value \the#1 for the environment #1 before the HW-In-Main subsection begins, so that it can be restored after it ends.
+        \clist_map_inline:Nn \g__Prassble_environments_used_in_HWs_clist 
+        {
+            \int_new:c {g__Prassble_HW_In_Main_inital_#1_value_int}
+        }
     \KeywordForInput{HW-In-Main}{files/homework}
     [
         % Header for hw
@@ -12,7 +17,6 @@
             \clist_map_inline:Nn \g__Prassble_environments_used_in_HWs_clist 
             {
                 % Save the current counter value \the#1 for the environment #1 before the hw subsection
-                \int_new:c {g__Prassble_HW_In_Main_inital_#1_value_int}
                 \int_set_eq:cc {g__Prassble_HW_In_Main_inital_#1_value_int} {c@#1}
             }
             \clist_map_inline:Nn \g__Prassble_environments_used_in_HWs_clist 

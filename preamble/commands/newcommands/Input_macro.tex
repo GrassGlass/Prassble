@@ -20,14 +20,17 @@
 \ExplSyntaxOn
 % Command \KeywordForInput{ <keyword> }{ <file path to prepend, corresponding to <keyword> > }[ <code to prepend to \Input> ][ <code to append to \Input> ]
   % Defines a new <keyword> for \Input 
-\seq_new:N \g__preable_Input_keywords_seq
+  \seq_new:N \g__Prassble_Input_keywords_seq
+  % Warning
+  \msg_new:nnn {Prassble} {keyword~already~defined} {The~Input~keyword~#1~has~already~been~defined.}
 \NewDocumentCommand{\KeywordForInput}{ m m +O{} +O{} }{
-  \seq_if_in:NeTF \g__preable_Input_keywords_seq {#1}
+  \seq_if_in:NeTF \g__Prassble_Input_keywords_seq {#1}
     {
       % Issue warning if <keyword> has already been defined
+      \msg_warning:nnn {Prassble} {keyword~already~defined} {#1}
     }
     {
-      \seq_gput_right:Nn \g__preable_Input_keywords_seq {#1}
+      \seq_gput_right:Nn \g__Prassble_Input_keywords_seq {#1}
       % Declaring the token lists to be used in 
         % <file path to prepend, corresponding to <keyword> >
         \tl_new:c {g__Prassble_Input_relative_path_to_prepend_#1_tl}
@@ -56,7 +59,7 @@
 \tl_new:N \g_Prassble_path_to_Prassble_folder_tl
 \tl_new:N \l__Prassble_relative_path_to_prepend_tl
 % Set the directory to be the folder 'preamble' in the preamble.
-  \tl_gset:Ne \g_Prassble_path_to_preamble_folder_tl {\CurrentFilePath}
+  \tl_gset:Ne \g_Prassble_path_to_preamble_folder_tl {\CurrentFilePath/../../} %* The number of /../ here depends on where Input_macro.tex is placed inside the folder preamble
   \tl_gset:Ne \g_Prassble_path_to_Prassble_folder_tl {\g_Prassble_path_to_preamble_folder_tl/../}
   \tl_set_eq:NN \g_file_directory_to_be_used_tl \g_Prassble_path_to_preamble_folder_tl
 % Set the directory to be '../preamble' in the document body.
@@ -68,7 +71,7 @@
         \tl_set:Nn \g_file_directory_to_be_used_tl {\CurrentFilePath}
       }
   % Test whether #2 is a keyword
-    \seq_if_in:NeTF \g__preable_Input_keywords_seq {#2} 
+    \seq_if_in:NeTF \g__Prassble_Input_keywords_seq {#2} 
       {
         % If so, set the corresponding 
             % path to prepend
@@ -92,5 +95,9 @@
         }
   % Reset the path to prepend
     \tl_clear:N \l__Prassble_relative_path_to_prepend_tl
+  % Reset the keyword
+  \tl_clear:N \l__Prassble_relative_path_to_prepend_tl
+  \tl_clear:N \g_Prassble_Input_prepend_tl
+  \tl_clear:N \g_Prassble_Input_append_tl
 }
 \ExplSyntaxOff

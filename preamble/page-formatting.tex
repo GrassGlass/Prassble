@@ -56,6 +56,16 @@
       }
     \ExplSyntaxOff
 
+    % Hw-In-Main input keyword (continued in InputKeyword_Hw-In-Main.tex)
+      % The command \AddToHWEnvList
+      \ExplSyntaxOn
+        % The clist of environments used in the homework TeX files
+        \clist_new:N \g__Prassble_environments_used_in_HWs_clist
+        \NewDocumentCommand{\AddToHWEnvList}{ m }{
+            \clist_gput_right:Nn \g__Prassble_environments_used_in_HWs_clist {#1}
+        }
+      \ExplSyntaxOff
+
 % Select the pagestyle based on \Pagestyle
 \pagestyle{\Pagestyle}
 
