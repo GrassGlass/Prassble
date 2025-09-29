@@ -25,7 +25,7 @@
       % Before the listing
         % The value of \linewidth where the corresponding listing environment is located
           % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
-          \dim_set:Nn \g__listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
+          \dim_set:Nn \g__Prassble_listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
         % Centering the listing
         \par%
         \begingroup%=====%
@@ -33,7 +33,7 @@
     }
     \AfterEndEnvironment{#1}{
       % After the listing
-          \__listings_debug_autowidth:
+          \__Prassble_listings_debug_autowidth:
           \stepcounter{code}%
         \endgroup%=====%
     }

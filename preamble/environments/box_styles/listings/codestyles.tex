@@ -20,90 +20,70 @@
 \makeatletter
 \ExplSyntaxOn
 
-% Colors
-\ifdefstring{\ColourTheme}{colourful}{
-  \def\ColorCodeBase{Maroon}
-  \def\ColorCodeColback{\ColorCodeBase!5}
-  \def\ColorCodeColbacktitle{\ColorCodeBase!5}
-  \def\ColorCodeTitle{\ColorCodeBase!70!black}
-  \def\ColorCodeBorderline{\ColorCodeBase}
-  \def\ColorCodeLineNumber{\ColorCodeBase}
-  \def\ColorCodeLineNumberBackground{\ColorCodeBase!20}
-}{}
-\ifdefstring{\ColourTheme}{BnW}{
-  \def\ColorCodeBase{black}
-  \def\ColorCodeColback{white}
-  \def\ColorCodeColbacktitle{white}
-  \def\ColorCodeTitle{\ColorCodeBase!70!black}
-  \def\ColorCodeBorderline{white}
-  \def\ColorCodeLineNumber{\ColorCodeBase}
-  \def\ColorCodeLineNumberBackground{\ColorCodeBase!20}
-}{}
-
 % Variables
   % Definitions
-  \tl_new:N \g__listings_linenos_tl
-  \tl_new:N \g__listings_breaklines_tl
-  \cs_new:Npn \__listings_title_contents:n #1 {#1 \g__listings_OTitle_tl.}
-  \tl_new:N \g__listings_OTitle_tl
-  \dim_new:N \l__listings_autowidth_title_dim
-  \dim_new:N \l__listings_autowidth_upper_dim
-  \dim_new:N \l__listings_autowidth_lower_dim
-  \dim_new:N \g__listings_autowidth@core_measured_text_width_dim
-  \dim_new:N \g__listings_autowidth@core_measured_width_dim
-  \dim_new:N \g__listings_autowidth@core_text_width_dim
-  \dim_new:N \g__listings_autowidth@core_text_width_vs_width_difference_dim 
-  \dim_new:N \g__listings_autowidth@core_max_tcb_text_width_dim
-  \dim_new:N \g__listings_Leftupper_dim
-  \dim_new:N \g__listings_autowidth@core_max_tcb_width_dim
+  \tl_new:N \g__Prassble_listings_linenos_tl
+  \tl_new:N \g__Prassble_listings_breaklines_tl
+  \cs_new:Npn \__Prassble_listings_title_contents:n #1 {#1 \g__Prassble_listings_OTitle_tl.}
+  \tl_new:N \g__Prassble_listings_OTitle_tl
+  \dim_new:N \l__Prassble_listings_autowidth_title_dim
+  \dim_new:N \l__Prassble_listings_autowidth_upper_dim
+  \dim_new:N \l__Prassble_listings_autowidth_lower_dim
+  \dim_new:N \g__Prassble_listings_autowidth@core_measured_text_width_dim
+  \dim_new:N \g__Prassble_listings_autowidth@core_measured_width_dim
+  \dim_new:N \g__Prassble_listings_autowidth@core_text_width_dim
+  \dim_new:N \g__Prassble_listings_autowidth@core_text_width_vs_width_difference_dim 
+  \dim_new:N \g__Prassble_listings_autowidth@core_max_tcb_text_width_dim
+  \dim_new:N \g__Prassble_listings_Leftupper_dim
+  \dim_new:N \g__Prassble_listings_autowidth@core_max_tcb_width_dim
   \cs_new:Npn \__tcb_text_width_to_width:n #1
   {
-    #1+\g__listings_autowidth@core_text_width_vs_width_difference_dim
+    #1+\g__Prassble_listings_autowidth@core_text_width_vs_width_difference_dim
   }
   \cs_new:Npn \__tcb_width_to_text_width:n #1
   {
-    #1-\g__listings_autowidth@core_text_width_vs_width_difference_dim
+    #1-\g__Prassble_listings_autowidth@core_text_width_vs_width_difference_dim
   }
-  \cs_new:Npn \__listings_autowidth_title:n #1
+  \cs_new:Npn \__Prassble_listings_autowidth_title:n #1
   {
     \bool_if:NT 
-      {\g__listings_autowidth_title_bool} 
+      {\g__Prassble_listings_autowidth_title_bool} 
       {
         \eqsavebox{\codewidth}[codetitlewidth\arabic{code}]
         {
-          \__listings_title_contents:n {#1}
+          \__Prassble_listings_title_contents:n {#1}
         }
       }
   }
-  \cs_new:Npn \__listings_autowidth_lower_savewidth:
+  \cs_new:Npn \__Prassble_listings_autowidth_lower_savewidth:
   {
-    \bool_if:NT \g__listings_autowidth_lower_bool
+    \bool_if:NT \g__Prassble_listings_autowidth_lower_bool
       {
         % varwidth used to make a box of natural width; eqsavebox to save this width
           % \eqsavebox does not allow for line breaks
           % \eqparbox allows for line breaks, but does not play well with \centering & friends
         % The \setbox0 = \hbox trick allows us to obtain the same effect as using \savebox, of not having any effect on the typeset output. 
-        \bool_if:NT \g__listings_include_codeoutput_bool
+        \bool_if:NT \g__Prassble_listings_include_codeoutput_bool
           {
             \eqsavebox{\codewidth}[codelowerwidth\arabic{code}]{
-              \begin{varwidth}{\g__listings_autowidth@core_max_tcb_width_dim}
+              \begin{varwidth}{\g__Prassble_listings_autowidth@core_max_tcb_width_dim}
                 \tcbuselistingtext
               \end{varwidth}
             }
           }
-        \bool_if:NT \g__listings_include_comment_bool
+        \bool_if:NT \g__Prassble_listings_include_comment_bool
           {
             \eqsavebox{\codewidth}[codelowerwidth\arabic{code}]{
-              \begin{varwidth}{\g__listings_autowidth@core_max_tcb_width_dim}
+              \begin{varwidth}{\g__Prassble_listings_autowidth@core_max_tcb_width_dim}
                 \tcbuselistingcomment
               \end{varwidth}
             }
           }
       }
   }
-  \cs_new:Npn \__listings_debug_autowidth:
+  \cs_new:Npn \__Prassble_listings_debug_autowidth:
   {
-    \bool_if:NT \g__listings_debug_autowidth_bool
+    \bool_if:NT \g__Prassble_listings_debug_autowidth_bool
         { 
           \renewcommand{\labelalignment}{c}
           \begin{enumerate}
@@ -115,74 +95,74 @@
                 \item[\codeinline{TeX}{codeupperwidth}:] \eqboxwidth{codeupperwidth\arabic{code}}\ \rule{\eqboxwidth{codeupperwidth\arabic{code}}}{1pt}
                 \item[\codeinline{TeX}{codelowerwidth}:] \eqboxwidth{codelowerewidth\arabic{code}}\ \rule{\eqboxwidth{codelowerwidth\arabic{code}}}{1pt}
               \end{enumerate}
-            \item \codeinline{TeX}{\l__listings_autowidth_ⵌ\textlangle component\textrangleⵌ_dim}
+            \item \codeinline{TeX}{\l__Prassble_listings_autowidth_ⵌ\textlangle component\textrangleⵌ_dim}
               \begin{enumerate}
                 \item[\underline{\codeinline{TeX}{ⵌ\textlangle component\textrangleⵌ}}]
-                \item[\codeinline{TeX}{title}:] \dim_use:N \l__listings_autowidth_title_dim \ \rule{\l__listings_autowidth_title_dim}{1pt}
-                \item[\codeinline{TeX}{upper}:] \dim_use:N \l__listings_autowidth_upper_dim \ \rule{\l__listings_autowidth_upper_dim}{1pt}
-                \item[\codeinline{TeX}{lower}:] \dim_use:N \l__listings_autowidth_lower_dim \ \rule{\l__listings_autowidth_lower_dim}{1pt}
+                \item[\codeinline{TeX}{title}:] \dim_use:N \l__Prassble_listings_autowidth_title_dim \ \rule{\l__Prassble_listings_autowidth_title_dim}{1pt}
+                \item[\codeinline{TeX}{upper}:] \dim_use:N \l__Prassble_listings_autowidth_upper_dim \ \rule{\l__Prassble_listings_autowidth_upper_dim}{1pt}
+                \item[\codeinline{TeX}{lower}:] \dim_use:N \l__Prassble_listings_autowidth_lower_dim \ \rule{\l__Prassble_listings_autowidth_lower_dim}{1pt}
               \end{enumerate}
-          \item \codeinline{TeX}{\g__listings_autowidth@core_measured_text_width_dim}:\ \dim_use:N \g__listings_autowidth@core_measured_text_width_dim 
-          \item \codeinline{TeX}{\g__listings_autowidth@core_measured_width_dim}:\ \dim_use:N \g__listings_autowidth@core_measured_width_dim
-          \item \codeinline{TeX}{\g__listings_autowidth@core_max_tcb_text_width_dim}:\ \dim_use:N \g__listings_autowidth@core_max_tcb_text_width_dim
-          \item \codeinline{TeX}{\g__listings_autowidth@core_max_tcb_width_dim}:\  \dim_use:N \g__listings_autowidth@core_max_tcb_width_dim
+          \item \codeinline{TeX}{\g__Prassble_listings_autowidth@core_measured_text_width_dim}:\ \dim_use:N \g__Prassble_listings_autowidth@core_measured_text_width_dim 
+          \item \codeinline{TeX}{\g__Prassble_listings_autowidth@core_measured_width_dim}:\ \dim_use:N \g__Prassble_listings_autowidth@core_measured_width_dim
+          \item \codeinline{TeX}{\g__Prassble_listings_autowidth@core_max_tcb_text_width_dim}:\ \dim_use:N \g__Prassble_listings_autowidth@core_max_tcb_text_width_dim
+          \item \codeinline{TeX}{\g__Prassble_listings_autowidth@core_max_tcb_width_dim}:\  \dim_use:N \g__Prassble_listings_autowidth@core_max_tcb_width_dim
         \end{enumerate}
         \rule{\textwidth}{0.75pt}
         }
   }
   % Borderline west of \BorderlineWestThickness thickness
-  \cs_new:Npn \__listings_codestylecore@borderlinewest: {
+  \cs_new:Npn \__Prassble_listings_codestylecore@borderlinewest: {
       \fill[\ColorCodeBorderline] (frame.south~west)
       rectangle ([xshift=\BorderlineWestThickness]frame.north~west);}
-  \bool_new:N \g__listings_autowidth_title_bool
-  \bool_new:N \g__listings_autowidth_upper_bool
-  \bool_new:N \g__listings_autowidth_lower_bool
-  \bool_new:N \g__listings_debug_autowidth_bool
-  \bool_new:N \g__listings_include_codeoutput_bool
-  \bool_new:N \g__listings_include_comment_bool
+  \bool_new:N \g__Prassble_listings_autowidth_title_bool
+  \bool_new:N \g__Prassble_listings_autowidth_upper_bool
+  \bool_new:N \g__Prassble_listings_autowidth_lower_bool
+  \bool_new:N \g__Prassble_listings_debug_autowidth_bool
+  \bool_new:N \g__Prassble_listings_include_codeoutput_bool
+  \bool_new:N \g__Prassble_listings_include_comment_bool
   % Values
-  \tl_set:Nn \g__listings_linenos_tl {linenos}
-  \tl_set:Nn \g__listings_breaklines_tl {breaklines}
+  \tl_set:Nn \g__Prassble_listings_linenos_tl {linenos}
+  \tl_set:Nn \g__Prassble_listings_breaklines_tl {breaklines}
 
 \tcbset{
-  ,no~number/.code = {\tl_clear:N \g__listings_linenos_tl}
+  ,no~number/.code = {\tl_clear:N \g__Prassble_listings_linenos_tl}
   ,autowidth@core/.code = 
   {
-    % The line width \g__listings_autowidth@core_measured_text_width_dim the box should be set to have (given this width is less than \g__listings_autowidth@core_max_tcb_width_dim, i.e. doesn't overflow into the margins)
-      \bool_if:NT \g__listings_autowidth_title_bool
+    % The line width \g__Prassble_listings_autowidth@core_measured_text_width_dim the box should be set to have (given this width is less than \g__Prassble_listings_autowidth@core_max_tcb_width_dim, i.e. doesn't overflow into the margins)
+      \bool_if:NT \g__Prassble_listings_autowidth_title_bool
       {
-        \dim_set:Nn \l__listings_autowidth_title_dim 
+        \dim_set:Nn \l__Prassble_listings_autowidth_title_dim 
         {
-          \eqboxwidth{codetitlewidth\arabic{code}}-\g__listings_Leftupper_dim
+          \eqboxwidth{codetitlewidth\arabic{code}}-\g__Prassble_listings_Leftupper_dim
         }
       }
-      \bool_if:NT \g__listings_autowidth_upper_bool
+      \bool_if:NT \g__Prassble_listings_autowidth_upper_bool
       {
-        \dim_set:Nn \l__listings_autowidth_upper_dim
+        \dim_set:Nn \l__Prassble_listings_autowidth_upper_dim
         {
           \eqboxwidth{codeupperwidth\arabic{code}}
         }
       }
-      \bool_if:NT \g__listings_autowidth_lower_bool
+      \bool_if:NT \g__Prassble_listings_autowidth_lower_bool
       {
-        \dim_set:Nn \l__listings_autowidth_lower_dim
+        \dim_set:Nn \l__Prassble_listings_autowidth_lower_dim
         {
-          \eqboxwidth{codelowerwidth\arabic{code}}-\g__listings_Leftupper_dim
+          \eqboxwidth{codelowerwidth\arabic{code}}-\g__Prassble_listings_Leftupper_dim
         }
       }
-      \dim_set:Nn \g__listings_autowidth@core_measured_text_width_dim 
+      \dim_set:Nn \g__Prassble_listings_autowidth@core_measured_text_width_dim 
         {
           \dim_max:nn 
-          {\l__listings_autowidth_title_dim} 
+          {\l__Prassble_listings_autowidth_title_dim} 
           {
             \dim_max:nn
-            {\l__listings_autowidth_upper_dim}
-            {\l__listings_autowidth_lower_dim}
+            {\l__Prassble_listings_autowidth_upper_dim}
+            {\l__Prassble_listings_autowidth_lower_dim}
           }
         }
-      \dim_set:Nn \g__listings_autowidth@core_text_width_vs_width_difference_dim {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
-      \dim_set:Nn \g__listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\g__listings_autowidth@core_max_tcb_width_dim}}
-      \dim_set:Nn \g__listings_autowidth@core_measured_width_dim {\__tcb_text_width_to_width:n {\g__listings_autowidth@core_measured_text_width_dim}}
+      \dim_set:Nn \g__Prassble_listings_autowidth@core_text_width_vs_width_difference_dim {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
+      \dim_set:Nn \g__Prassble_listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\g__Prassble_listings_autowidth@core_max_tcb_width_dim}}
+      \dim_set:Nn \g__Prassble_listings_autowidth@core_measured_width_dim {\__tcb_text_width_to_width:n {\g__Prassble_listings_autowidth@core_measured_text_width_dim}}
       % The default tcb text width the box should be set to have, in the first compilation where eqparbox is still calculating the required widths.  
       \dim_compare:nNnTF 
       {\eqboxwidth{codeupperwidth\arabic{code}}}
@@ -190,52 +170,52 @@
       {0pt}
       {
         %* Potentially fragile code
-        \dim_set:Nn \g__listings_autowidth@core_text_width_dim {\g__listings_autowidth@core_max_tcb_width_dim}
+        \dim_set:Nn \g__Prassble_listings_autowidth@core_text_width_dim {\g__Prassble_listings_autowidth@core_max_tcb_width_dim}
       }
       {
-        \dim_set:Nn \g__listings_autowidth@core_text_width_dim
+        \dim_set:Nn \g__Prassble_listings_autowidth@core_text_width_dim
         {
           \dim_min:nn 
-            {\g__listings_autowidth@core_max_tcb_text_width_dim} {\g__listings_autowidth@core_measured_text_width_dim} 
+            {\g__Prassble_listings_autowidth@core_max_tcb_text_width_dim} {\g__Prassble_listings_autowidth@core_measured_text_width_dim} 
         } 
       }
       \bool_if:nTF 
         {
-          \g__listings_autowidth_upper_bool || {\g__listings_autowidth_lower_bool && ! \dim_compare_p:nNn {\eqboxwidth{codeupperwidth\arabic{code}}}>{\l__listings_autowidth_lower_dim}}
+          \g__Prassble_listings_autowidth_upper_bool || {\g__Prassble_listings_autowidth_lower_bool && ! \dim_compare_p:nNn {\eqboxwidth{codeupperwidth\arabic{code}}}>{\l__Prassble_listings_autowidth_lower_dim}}
         } 
         {
           % Autowidth = upper: Disable breaklines to allow \eqboxwidth{codeupperwidth\arabic{code}} to correctly measure the greatest line width. Enable breaklines if the line width overflows into the margins---autowidth ceases to work (the listing behaves as if autowidth wasn't used). (Why? I'm not sure; this is just the behavior I observed and wrote my code around.) 
           \dim_compare:nNnTF
             % Relationship to compare 
-            {\g__listings_autowidth@core_max_tcb_text_width_dim} 
+            {\g__Prassble_listings_autowidth@core_max_tcb_text_width_dim} 
             < 
-            {\g__listings_autowidth@core_measured_text_width_dim}
+            {\g__Prassble_listings_autowidth@core_measured_text_width_dim}
             % TF code execution
-            {\tl_set:Nn \g__listings_breaklines_tl {breaklines}}
-            {\tl_clear:N \g__listings_breaklines_tl }
+            {\tl_set:Nn \g__Prassble_listings_breaklines_tl {breaklines}}
+            {\tl_clear:N \g__Prassble_listings_breaklines_tl }
         }
         {
           % Autowidth = title: the title might be smaller (in width) than the body (upper and lower parts). So, breaklines needs to be enabled to avoid overflowing contents. Why doesn't breaklines essentially disable autowidth in this case (unlike for autowidth = upper)? Breaklines is a minted key that affects only the minted environment---the upper part of the box. 
-          % If autowidth = lower wants to set the text width to something smaller than \l__listings_autowidth_upper_dim, then breaklines must be enabled. Why not just always have breaklines enabled? We may want autowidth = upper and lower. 
-          \tl_set:Nn \g__listings_breaklines_tl {breaklines}
+          % If autowidth = lower wants to set the text width to something smaller than \l__Prassble_listings_autowidth_upper_dim, then breaklines must be enabled. Why not just always have breaklines enabled? We may want autowidth = upper and lower. 
+          \tl_set:Nn \g__Prassble_listings_breaklines_tl {breaklines}
         }
     % autowidth functionality: setting the tcbkey 'text width'
-      \pgfkeysalso{text~width = \g__listings_autowidth@core_text_width_dim}
+      \pgfkeysalso{text~width = \g__Prassble_listings_autowidth@core_text_width_dim}
   }
   ,autowidth/.is~choice
     ,autowidth/title/.code = 
     {
-      \bool_set_true:N \g__listings_autowidth_title_bool
+      \bool_set_true:N \g__Prassble_listings_autowidth_title_bool
       \pgfkeysalso{autowidth@core}
     } 
     ,autowidth/upper/.code = 
     {
-      \bool_set_true:N \g__listings_autowidth_upper_bool
+      \bool_set_true:N \g__Prassble_listings_autowidth_upper_bool
       \pgfkeysalso{autowidth@core}
     }
     ,autowidth/lower/.code = 
     {
-      \bool_set_true:N \g__listings_autowidth_lower_bool
+      \bool_set_true:N \g__Prassble_listings_autowidth_lower_bool
       \pgfkeysalso
       {
         ,autowidth@core
@@ -260,28 +240,28 @@
   ,debug/.is~choice
     ,debug/autowidth/.code = 
     {
-      \bool_set_true:N \g__listings_debug_autowidth_bool
+      \bool_set_true:N \g__Prassble_listings_debug_autowidth_bool
     } 
   ,text~only/.prefix~code = {
-    \bool_set_true:N \g__listings_include_codeoutput_bool
+    \bool_set_true:N \g__Prassble_listings_include_codeoutput_bool
   }
   ,listing~and~text/.prefix~code = {
-    \bool_set_true:N \g__listings_include_codeoutput_bool
+    \bool_set_true:N \g__Prassble_listings_include_codeoutput_bool
   }
   ,text~and~listing/.prefix~code = {
-    \bool_set_true:N \g__listings_include_codeoutput_bool
+    \bool_set_true:N \g__Prassble_listings_include_codeoutput_bool
   }
   ,listing~only/.prefix~code = {
-    \bool_set_false:N \g__listings_include_codeoutput_bool
+    \bool_set_false:N \g__Prassble_listings_include_codeoutput_bool
   }
   ,comment~only/.prefix~code = {
-    \bool_set_true:N \g__listings_include_comment_bool
+    \bool_set_true:N \g__Prassble_listings_include_comment_bool
   }
   ,listing~and~comment/.prefix~code = {
-    \bool_set_true:N \g__listings_include_comment_bool
+    \bool_set_true:N \g__Prassble_listings_include_comment_bool
   }
   ,comment~and~listing/.prefix~code = {
-    \bool_set_true:N \g__listings_include_comment_bool
+    \bool_set_true:N \g__Prassble_listings_include_comment_bool
   }
   ,use~comment/.style = {
     ,comment = {#1}
@@ -293,18 +273,18 @@
     {
       \sffamily\bfseries\color{\ColorCodeTitle}
         {
-          \__listings_autowidth_title:n {#1}
-          \__listings_title_contents:n {#1}
+          \__Prassble_listings_autowidth_title:n {#1}
+          \__Prassble_listings_title_contents:n {#1}
         }
       }
   }
   ,OTitle/.code = {
-    \tl_if_empty:nF {#1} {\tl_set:Nn \g__listings_OTitle_tl {~(#1)}}
+    \tl_if_empty:nF {#1} {\tl_set:Nn \g__Prassble_listings_OTitle_tl {~(#1)}}
   }
   ,Leftupper/.code = {
-    \dim_set:Nn \g__listings_Leftupper_dim {4mm+\numbersep-\kvtcb@boxsep} % 4mm is the initial leftupper
+    \dim_set:Nn \g__Prassble_listings_Leftupper_dim {\numbersep-\boxsep+\eqboxwidth{code\arabic{code}}+(\linenumberpadding+\BorderlineWestThickness)/2} % 4mm is the initial leftupper
     \pgfkeysalso{
-      leftupper = \g__listings_Leftupper_dim
+      leftupper = \g__Prassble_listings_Leftupper_dim
     }
   }
 % Base listing style
@@ -317,9 +297,9 @@
     ,minted~style                    = staroffice
     ,minted~options                  = 
       {
-      \g__listings_breaklines_tl,
+      \g__Prassble_listings_breaklines_tl,
       autogobble,
-      \g__listings_linenos_tl,
+      \g__Prassble_listings_linenos_tl,
       numbersep = \numbersep
       }
     ,listing~only
@@ -334,7 +314,7 @@
     ,bottomtitle                     = 2mm
     ,colbacktitle                    = \ColorCodeColbacktitle,
     ,borderline~west                 = {\BorderlineWestThickness}{0pt}{\ColorCodeBorderline}
-    ,after~lower                            = \__listings_autowidth_lower_savewidth: 
+    ,after~lower                            = \__Prassble_listings_autowidth_lower_savewidth: 
     ,overlay~unbroken                = {
       % Background for the code line numbers
         % Case 1: The current (partial) box contains only an upper part.
@@ -356,7 +336,7 @@
           (segmentation.west);
         }
       % Borderline west of \BorderlineWestThickness thickness
-      \__listings_codestylecore@borderlinewest:
+      \__Prassble_listings_codestylecore@borderlinewest:
     }
     ,overlay~first                   = {
       % Background for the code line numbers
@@ -367,14 +347,14 @@
       ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west) --
       (frame.south~west);
       % Borderline west of \BorderlineWestThickness thickness
-      \__listings_codestylecore@borderlinewest:
+      \__Prassble_listings_codestylecore@borderlinewest:
     }
     ,overlay~middle                  = {
       % Background for the code line numbers
       \fill[\ColorCodeLineNumberBackground] (frame.south~west)
       rectangle ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.north~west);
       % Borderline west of \BorderlineWestThickness thickness
-      \__listings_codestylecore@borderlinewest:
+      \__Prassble_listings_codestylecore@borderlinewest:
     }
     ,overlay~last                    = {
       % Background for the code line numbers
@@ -397,7 +377,7 @@
           (segmentation.west);
         }
       % Borderline west of \BorderlineWestThickness thickness
-      \__listings_codestylecore@borderlinewest:
+      \__Prassble_listings_codestylecore@borderlinewest:
     }
   }
 % listing environment style

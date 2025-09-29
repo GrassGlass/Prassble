@@ -34,10 +34,10 @@
   % Map the clist #1's items in the natural indexing, of left to right
   \clist_map_inline:Nn #1 {
     % Defining the token lists that are to be compared
-    \tl_set:Ne \l__listings_NumberInClist_item_from_clist_tl {##1}
-    \tl_set:Ne \l__listings_NumberInClist_item_of_interest_tl {#2}
+    \tl_set:Ne \l__Prassble_listings_NumberInClist_item_from_clist_tl {##1}
+    \tl_set:Ne \l__Prassble_listings_NumberInClist_item_of_interest_tl {#2}
     % If the current item ##1 of the clist being mapped, #1, is the item #2 we are looking for,
-    \tl_if_eq:NNTF \l__listings_NumberInClist_item_from_clist_tl \l__listings_NumberInClist_item_of_interest_tl
+    \tl_if_eq:NNTF \l__Prassble_listings_NumberInClist_item_from_clist_tl \l__Prassble_listings_NumberInClist_item_of_interest_tl
       %  Then terminate the mapping \clist_map_inline:Nn and output the location \numberinclist of the item #2
       {\clist_map_break:n {}} 
       % Otherwise, continue the mapping
@@ -66,17 +66,17 @@
   % The command \AddFileExtensionLanguageTriple that adds 
   % Syntax: \AddFileExtensionLanguageTriple{⟨file extension 1⟩,⟨file extension 2⟩,...,⟨file extension n⟩}{⟨pygments language 1⟩,⟨⟨pygments language 2⟩,...,⟨⟨pygments language n⟩}{⟨displayed language 1⟩,⟨displayed language 2⟩,...,⟨displayed language n⟩}
   \NewDocumentCommand{\AddFileExtensionLanguageTriple}{ m m m }{
-    % Expand all elements of the local private clist #1 = \l__listings_AddFileExtensionLanguageTriple_new_file_extensions_clist and store all its entries under the global public clist \\g_listings_NameConverters_file_extensions_clist of all file extensions
+    % Expand all elements of the local private clist #1 = \l__Prassble_listings_AddFileExtensionLanguageTriple_new_file_extensions_clist and store all its entries under the global public clist \\g_Prassble_listings_NameConverters_file_extensions_clist of all file extensions
       % The expansion is to avoid cases such as where \foo={foo} and #1={\foo}, but \clist_if_in:NnTF #1 {foo} {T} {F} = F
-      \clist_set:Ne \l__listings_AddFileExtensionLanguageTriple_new_file_extensions_clist {#1}
-      \clist_map_inline:Nn \l__listings_AddFileExtensionLanguageTriple_new_file_extensions_clist {
-        \clist_put_right:Ne \g_listings_NameConverters_file_extensions_clist {##1}
+      \clist_set:Ne \l__Prassble_listings_AddFileExtensionLanguageTriple_new_file_extensions_clist {#1}
+      \clist_map_inline:Nn \l__Prassble_listings_AddFileExtensionLanguageTriple_new_file_extensions_clist {
+        \clist_put_right:Ne \g_Prassble_listings_NameConverters_file_extensions_clist {##1}
       }    
-    % Expand all elements of the local private clist #1 = \l__listings_AddFileExtensionLanguageTriple_new_Pygments_languages_clist and store all its entries under the global public clist \\g_listings_NameConverters_Pygments_languages_clist of all Pygments-understood languages
+    % Expand all elements of the local private clist #1 = \l__Prassble_listings_AddFileExtensionLanguageTriple_new_Pygments_languages_clist and store all its entries under the global public clist \\g_Prassble_listings_NameConverters_Pygments_languages_clist of all Pygments-understood languages
       % The expansion is to avoid cases such as where \foo={foo} and #1={\foo}, but \clist_if_in:NnTF #1 {foo} {T} {F} = F
-      \clist_set:Ne \l__listings_AddFileExtensionLanguageTriple_new_Pygments_languages_clist {#2}
-      \clist_map_inline:Nn \l__listings_AddFileExtensionLanguageTriple_new_Pygments_languages_clist {
-        \clist_put_right:Ne \g_listings_NameConverters_Pygments_languages_clist {##1}
+      \clist_set:Ne \l__Prassble_listings_AddFileExtensionLanguageTriple_new_Pygments_languages_clist {#2}
+      \clist_map_inline:Nn \l__Prassble_listings_AddFileExtensionLanguageTriple_new_Pygments_languages_clist {
+        \clist_put_right:Ne \g_Prassble_listings_NameConverters_Pygments_languages_clist {##1}
         % Error message
           % The \pygmentsname is not recognised at all
           \clist_if_in:NnF \clist_all_pygments_understood_language_names {##1} 
@@ -84,11 +84,11 @@
             \msg_error:nn {Listings} {invalid pygments short name}
           }
       }
-    % Expand all elements of the local private clist #1 = \l__listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist and store all its entries under the global public clist \\g_listings_NameConverters_displayed_languages_clist of all displayed languages
+    % Expand all elements of the local private clist #1 = \l__Prassble_listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist and store all its entries under the global public clist \\g_Prassble_listings_NameConverters_displayed_languages_clist of all displayed languages
       % The expansion is to avoid cases such as where \foo={foo} and #1={\foo}, but \clist_if_in:NnTF #1 {foo} {T} {F} = F
-      \clist_set:Nn \l__listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist {#3}
-      \clist_map_inline:Nn \l__listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist {
-        \clist_put_right:Nn \g_listings_NameConverters_displayed_languages_clist {##1}
+      \clist_set:Nn \l__Prassble_listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist {#3}
+      \clist_map_inline:Nn \l__Prassble_listings_AddFileExtensionLanguageTriple_new_displayed_languages_clist {
+        \clist_put_right:Nn \g_Prassble_listings_NameConverters_displayed_languages_clist {##1}
       }
     }
 %
@@ -96,25 +96,25 @@
   \NewDocumentCommand{\FileExtensionToLanguage}{ m }{
     % Defining the item #1 as a token list
       % Using \tl_set:Ne with \clist_if_in:NVT avoids expansion issues that occur with \clist_if_in:NnT
-      \tl_set:Ne \l__listings_FileExtensionToLanguage_citem_file_extension_tl {\text_lowercase:n {#1}}
-    % If the file extension is in the clist \g_listings_NameConverters_file_extensions_clist of file extensions we want to convert,
-    \clist_if_in:NVTF \g_listings_NameConverters_file_extensions_clist \l__listings_FileExtensionToLanguage_citem_file_extension_tl
+      \tl_set:Ne \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl {\text_lowercase:n {#1}}
+    % If the file extension is in the clist \g_Prassble_listings_NameConverters_file_extensions_clist of file extensions we want to convert,
+    \clist_if_in:NVTF \g_Prassble_listings_NameConverters_file_extensions_clist \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl
       % Then select and store the corresponding displayed language name and pygments-understood language name
       {
         % Displayed language name \displayedname
-        \NumberInClist{\g_listings_NameConverters_file_extensions_clist}{\l__listings_FileExtensionToLanguage_citem_file_extension_tl}
-        \tl_set:Nn \displayedname {\clist_item:Nn \g_listings_NameConverters_displayed_languages_clist {\numberinclist}}
+        \NumberInClist{\g_Prassble_listings_NameConverters_file_extensions_clist}{\l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl}
+        \tl_set:Nn \displayedname {\clist_item:Nn \g_Prassble_listings_NameConverters_displayed_languages_clist {\numberinclist}}
         % Pygments-understood language name \pygmentsname
-        \NumberInClist{\g_listings_NameConverters_file_extensions_clist}{\l__listings_FileExtensionToLanguage_citem_file_extension_tl}
-        \tl_set:Ne \pygmentsname {\clist_item:Nn \g_listings_NameConverters_Pygments_languages_clist {\numberinclist}}
+        \NumberInClist{\g_Prassble_listings_NameConverters_file_extensions_clist}{\l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl}
+        \tl_set:Ne \pygmentsname {\clist_item:Nn \g_Prassble_listings_NameConverters_Pygments_languages_clist {\numberinclist}}
       }
     % Otherwise, use the file extension as both the displayed language name and pygments-understood langauge name
       {
-        \tl_set_eq:NN \displayedname \l__listings_FileExtensionToLanguage_citem_file_extension_tl
-        \tl_set_eq:NN \pygmentsname \l__listings_FileExtensionToLanguage_citem_file_extension_tl
+        \tl_set_eq:NN \displayedname \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl
+        \tl_set_eq:NN \pygmentsname \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl
         % Error messages
           % The corresponding displayed name and pygments name was not found, for the given file extension
-          \msg_note:nne {Listings} {FileExtensionToLanguage: no corresponding displayed and pygments names} {\l__listings_FileExtensionToLanguage_citem_file_extension_tl}
+          \msg_note:nne {Listings} {FileExtensionToLanguage: no corresponding displayed and pygments names} {\l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl}
           % The \pygmentsname is not recognised at all
           \clist_if_in:NVF \clist_all_pygments_understood_language_names \pygmentsname 
           {
@@ -127,21 +127,21 @@
   \NewDocumentCommand{\DisplayedToPygments}{ m }{
     % Defining the item #1 as a token list
       % Using \tl_set:Ne with \clist_if_in:NVT avoids expansion issues that occur with \clist_if_in:NnT
-      \tl_set:Nn \l__listings_DisplayedToPygments_citem_displayed_tl {#1}
-    % If the displayed language #1 is in the clist \g_listings_NameConverters_displayed_languages_clist of displayed languages we want to convert,
-    \clist_if_in:NVTF \g_listings_NameConverters_displayed_languages_clist \l__listings_DisplayedToPygments_citem_displayed_tl
+      \tl_set:Nn \l__Prassble_listings_DisplayedToPygments_citem_displayed_tl {#1}
+    % If the displayed language #1 is in the clist \g_Prassble_listings_NameConverters_displayed_languages_clist of displayed languages we want to convert,
+    \clist_if_in:NVTF \g_Prassble_listings_NameConverters_displayed_languages_clist \l__Prassble_listings_DisplayedToPygments_citem_displayed_tl
       % Then select and store the corresponding pygments-understood language name \pygmentsname
       {
-        \NumberInClist{\g_listings_NameConverters_displayed_languages_clist}{\l__listings_DisplayedToPygments_citem_displayed_tl}
-        \tl_set:Ne \pygmentsname {\clist_item:Nn \g_listings_NameConverters_Pygments_languages_clist {\numberinclist}}
+        \NumberInClist{\g_Prassble_listings_NameConverters_displayed_languages_clist}{\l__Prassble_listings_DisplayedToPygments_citem_displayed_tl}
+        \tl_set:Ne \pygmentsname {\clist_item:Nn \g_Prassble_listings_NameConverters_Pygments_languages_clist {\numberinclist}}
       }
     % Otherwise, use the displayed language name as the pygments-understood language name
       % Set to be lowercase so that we can test whether it is a Pygments-recognised name
       {
-        \tl_set:Ne \pygmentsname {\text_lowercase:n {\l__listings_DisplayedToPygments_citem_displayed_tl}}
+        \tl_set:Ne \pygmentsname {\text_lowercase:n {\l__Prassble_listings_DisplayedToPygments_citem_displayed_tl}}
         % Error messages
           % The corresponding displayed name and pygments name was not found, for the given file extension
-          \msg_note:nne {Listings} {DisplayedToPygments: no corresponding Pygments name} {\l__listings_DisplayedToPygments_citem_displayed_tl}
+          \msg_note:nne {Listings} {DisplayedToPygments: no corresponding Pygments name} {\l__Prassble_listings_DisplayedToPygments_citem_displayed_tl}
           % The \pygmentsname is not recognised at all
           \clist_if_in:NVF \clist_all_pygments_understood_language_names \pygmentsname 
           {
