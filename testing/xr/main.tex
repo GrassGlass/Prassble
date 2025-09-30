@@ -1,0 +1,17 @@
+\documentclass{book}
+\usepackage{zref-xr}
+\usepackage{zref-clever}
+\begin{document}
+\chapter{Some chapter of some book}
+\section{Some section of the book}
+\begin{figure}[htbp]
+    \centering
+    
+    \caption{Some figure in \texttt{main.tex} that we want to reference in \texttt{1.tex}.}
+    \label{fig:main}
+\end{figure}
+The references works without warnings: \zcref{fig:main} and \zcref{fig:1}
+\section{Homework \#1}
+This could be a homework that is assigned when the lecturer finishes covering this chapter.
+\input{1.tex}
+\end{document}
