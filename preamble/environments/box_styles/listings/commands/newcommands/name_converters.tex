@@ -24,24 +24,20 @@
 %
 % ================================================== %
 \ExplSyntaxOn
-% The command \NumberInClist that tells gives the location of a item #2 in the corresponding clist #1
-  % If the item #2 appears multiple times in the clist #1 = {x1, x2, ... ,xn}, then \numberinclist is the least integer i such that xi is contained in the clist #1.
-\NewDocumentCommand{\NumberInClist}{ m m }{
-  % Define a zero integer \numberinclist which we use for subsequent calculations
-  \int_zero:N \numberinclist
+% The command \__Prassble_number_in_clist:NV that tells gives the location of a item #2 in the corresponding clist #1
+  % If the item #2 appears multiple times in the clist #1 = {x1, x2, ... ,xn}, then \l__Prassble_number_in_clist_int is the least integer i such that xi is contained in the clist #1.
+\cs_new:Npn \__Prassble_number_in_clist:NV #1#2 {
+  % Define a zero integer \l__Prassble_number_in_clist_int which we use for subsequent calculations
+  \int_zero:N \l__Prassble_number_in_clist_int
   % Set the integer's value to one
-  \int_incr:N \numberinclist
+  \int_incr:N \l__Prassble_number_in_clist_int
   % Map the clist #1's items in the natural indexing, of left to right
   \clist_map_inline:Nn #1 {
-    % Defining the token lists that are to be compared
-    \tl_set:Ne \l__Prassble_listings_NumberInClist_item_from_clist_tl {##1}
-    \tl_set:Ne \l__Prassble_listings_NumberInClist_item_of_interest_tl {#2}
-    % If the current item ##1 of the clist being mapped, #1, is the item #2 we are looking for,
-    \tl_if_eq:NNTF \l__Prassble_listings_NumberInClist_item_from_clist_tl \l__Prassble_listings_NumberInClist_item_of_interest_tl
-      %  Then terminate the mapping \clist_map_inline:Nn and output the location \numberinclist of the item #2
+    \tl_if_eq:nVTF {##1} #2
+      %  Then terminate the mapping \clist_map_inline:Nn and output the location \l__Prassble_number_in_clist_int of the item #2
       {\clist_map_break:n {}} 
       % Otherwise, continue the mapping
-      {\int_incr:N \numberinclist}
+      {\int_incr:N \l__Prassble_number_in_clist_int}
   }
 }
 %
@@ -102,11 +98,11 @@
       % Then select and store the corresponding displayed language name and pygments-understood language name
       {
         % Displayed language name \displayedname
-        \NumberInClist{\g_Prassble_listings_NameConverters_file_extensions_clist}{\l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl}
-        \tl_set:Nn \displayedname {\clist_item:Nn \g_Prassble_listings_NameConverters_displayed_languages_clist {\numberinclist}}
+        \__Prassble_number_in_clist:NV{\g_Prassble_listings_NameConverters_file_extensions_clist}{\l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl}
+        \tl_set:Nn \displayedname {\clist_item:Nn \g_Prassble_listings_NameConverters_displayed_languages_clist {\l__Prassble_number_in_clist_int}}
         % Pygments-understood language name \pygmentsname
-        \NumberInClist{\g_Prassble_listings_NameConverters_file_extensions_clist}{\l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl}
-        \tl_set:Ne \pygmentsname {\clist_item:Nn \g_Prassble_listings_NameConverters_Pygments_languages_clist {\numberinclist}}
+        \__Prassble_number_in_clist:NV{\g_Prassble_listings_NameConverters_file_extensions_clist}{\l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl}
+        \tl_set:Ne \pygmentsname {\clist_item:Nn \g_Prassble_listings_NameConverters_Pygments_languages_clist {\l__Prassble_number_in_clist_int}}
       }
     % Otherwise, use the file extension as both the displayed language name and pygments-understood langauge name
       {
@@ -132,8 +128,8 @@
     \clist_if_in:NVTF \g_Prassble_listings_NameConverters_displayed_languages_clist \l__Prassble_listings_DisplayedToPygments_citem_displayed_tl
       % Then select and store the corresponding pygments-understood language name \pygmentsname
       {
-        \NumberInClist{\g_Prassble_listings_NameConverters_displayed_languages_clist}{\l__Prassble_listings_DisplayedToPygments_citem_displayed_tl}
-        \tl_set:Ne \pygmentsname {\clist_item:Nn \g_Prassble_listings_NameConverters_Pygments_languages_clist {\numberinclist}}
+        \__Prassble_number_in_clist:NV{\g_Prassble_listings_NameConverters_displayed_languages_clist}{\l__Prassble_listings_DisplayedToPygments_citem_displayed_tl}
+        \tl_set:Ne \pygmentsname {\clist_item:Nn \g_Prassble_listings_NameConverters_Pygments_languages_clist {\l__Prassble_number_in_clist_int}}
       }
     % Otherwise, use the displayed language name as the pygments-understood language name
       % Set to be lowercase so that we can test whether it is a Pygments-recognised name

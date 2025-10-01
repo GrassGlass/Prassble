@@ -19,20 +19,15 @@
 %%
 \ExplSyntaxOn
 % All new variables for name_converters.tex, which include the functions 
-% 1. \NumberInClist{ item }{ clist }
+% 1. \__Prassble_number_in_clist:NV{ item }{ clist }
 % 2. \AddFileExtensionLanguageTriple{ file extension }{ pygments language }{ displayed language }
 % 3. \FileExtensionToLanguage{ file extension }
 % 4. \DisplayedToPygments{ displayed language }
   % Integers
-    % The integer output by \NumberInClist{ item }{ clist } --- the position of an item in a clist, counting from the left.
-      % If the item #2 appears multiple times in the clist #1 = {x1, x2, ... ,xn}, then \numberinclist is the least integer i such that xi is contained in the clist #1.
-    \int_new:N \numberinclist
+    % The integer output by \__Prassble_number_in_clist:NV{ item }{ clist } --- the position of an item in a clist, counting from the left.
+      % If the item #2 appears multiple times in the clist #1 = {x1, x2, ... ,xn}, then \l__Prassble_number_in_clist_int is the least integer i such that xi is contained in the clist #1.
+    \int_new:N \l__Prassble_number_in_clist_int
   % Token lists
-    % \NumberInClist{ item }{ clist }
-      % An arbitrary item from the clist in \NumberInClist{ item }{ clist }, which we use to iteratively match again item = \l__Prassble_listings_NumberInClist_item_of_interest_tl
-      \tl_new:N \l__Prassble_listings_NumberInClist_item_from_clist_tl
-      % The item we want to find the location of in \NumberInClist{ item }{ clist }
-      \tl_new:N \l__Prassble_listings_NumberInClist_item_of_interest_tl
     % \FileExtensionToLanguage{ file extension }
       % The displayed name from \l__Prassble_listings_NameConverters_displayed_languages_clist corresponding to the given file extension 
       \tl_new:N \displayedname
