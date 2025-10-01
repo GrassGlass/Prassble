@@ -60,57 +60,49 @@
 \tl_new:N \l__Prassble_relative_path_to_prepend_tl
 % Set the directory to be the folder 'preamble' in the preamble.
   \tl_gset:Ne \g_Prassble_path_to_preamble_folder_tl {\CurrentFilePath/../../} %* The number of /../ here depends on where Input_macro.tex is placed inside the folder preamble
-  \tl_gset:Ne \g_Prassble_path_to_Prassble_folder_tl {\g_Prassble_path_to_preamble_folder_tl/../}
+  \tl_gset:Ne \g_Prassble_path_to_Prassble_folder_tl {\g_Prassble_path_to_preamble_folder_tl../}
   \tl_set_eq:NN \g_file_directory_to_be_used_tl \g_Prassble_path_to_preamble_folder_tl
 % Set the directory to be '../preamble' in the document body.
   \AtEndPreamble{\tl_gset_eq:NN \g_file_directory_to_be_used_tl \g_Prassble_path_to_Prassble_folder_tl}
-% We define a function \_Prassble_Input@core:nnnn for core code of \Input, so that it can be reused for \Import easily and automatically.
-\makeatletter
-  \cs_new:Npn \_Prassble_Input@core:nnnn #1#2#3#4 {
-  % If the starred variant \Input* is used, go to the directory \CurrentFilePath.
-      \bool_if:nT {#1} 
-        {
-          \tl_set:Nn \g_file_directory_to_be_used_tl {\CurrentFilePath}
-        }
-    % Test whether #2 is a keyword
-      \seq_if_in:NeTF \g__Prassble_Input_keywords_seq {#2} 
-        {
-          % If so, set the corresponding 
-              % path to prepend
-              % code to prepend
-              % code to append
-          \tl_set_eq:Nc \l__Prassble_relative_path_to_prepend_tl {g__Prassble_Input_relative_path_to_prepend_#2_tl}
-          \tl_set_eq:Nc \g_Prassble_Input_prepend_tl {g_Prassble_Input_prepend_#2_tl}
-          \tl_set_eq:Nc \g_Prassble_Input_append_tl {g_Prassble_Input_append_#2_tl}
-        } 
-        {
-          % Otherwise, #2 is a file path that is to prepended as-is
-          \tl_set:Nn \l__Prassble_relative_path_to_prepend_tl {#2}
-        }
-      % \input the files approperiately
-      \clist_set:Nn \l__Prassble_files_to_be_input_clist {#3} 
-      \clist_map_inline:Nn \l__Prassble_files_to_be_input_clist 
-          {
-              \tl_use:N \g_Prassble_Input_prepend_tl
-              #4{\g_file_directory_to_be_used_tl/\l__Prassble_relative_path_to_prepend_tl/##1}
-              \tl_use:N \g_Prassble_Input_append_tl
-          }
-    % Reset the path to prepend
-      \tl_clear:N \l__Prassble_relative_path_to_prepend_tl
-    % Reset the keyword
-    \tl_clear:N \l__Prassble_relative_path_to_prepend_tl
-    \tl_clear:N \g_Prassble_Input_prepend_tl
-    \tl_clear:N \g_Prassble_Input_append_tl
-  }
-% The \Input command itself
 \NewDocumentCommand{\Input}{ s O{} m }{
-\_Prassble_Input@core:nnnn { #1 } { #2 } { #3 } {\input}
+  % If the starred variant \Input* is used, go to the directory \CurrentFilePath.
+    \bool_if:nT {#1} 
+      {
+        \tl_set:Nn \g_file_directory_to_be_used_tl {\CurrentFilePath}
+      }
+  % Test whether #2 is a keyword
+    \seq_if_in:NeTF \g__Prassble_Input_keywords_seq {#2} 
+      {
+        % If so, set the corresponding 
+            % path to prepend
+            % code to prepend
+            % code to append
+        \tl_if_empty:cF {g__Prassble_Input_relative_path_to_prepend_#2_tl} {
+          \tl_put_right:cn {g__Prassble_Input_relative_path_to_prepend_#2_tl} {/}
+        }
+        \tl_set_eq:Nc \l__Prassble_relative_path_to_prepend_tl {g__Prassble_Input_relative_path_to_prepend_#2_tl}
+        \tl_set_eq:Nc \g_Prassble_Input_prepend_tl {g_Prassble_Input_prepend_#2_tl}
+        \tl_set_eq:Nc \g_Prassble_Input_append_tl {g_Prassble_Input_append_#2_tl}
+      } 
+      {
+        % Otherwise, #2 is a file path that is to prepended as-is
+        \tl_if_empty:nF {#2} {
+          \tl_set:Nn \l__Prassble_relative_path_to_prepend_tl {#2/}
+        }
+      }
+    % \input the files approperiately
+    \clist_set:Nn \l__Prassble_files_to_be_input_clist {#3} 
+    \clist_map_inline:Nn \l__Prassble_files_to_be_input_clist 
+        {
+            \tl_use:N \g_Prassble_Input_prepend_tl
+            \input{\g_file_directory_to_be_used_tl\l__Prassble_relative_path_to_prepend_tl##1}
+            \tl_use:N \g_Prassble_Input_append_tl
+        }
+  % Reset the path to prepend
+    \tl_clear:N \l__Prassble_relative_path_to_prepend_tl
+  % Reset the keyword
+  \tl_clear:N \l__Prassble_relative_path_to_prepend_tl
+  \tl_clear:N \g_Prassble_Input_prepend_tl
+  \tl_clear:N \g_Prassble_Input_append_tl
 }
-%
-%
-% Easy include of files; \Include works in the exact same way as \Input, except that, expectedly, it does \include instead of \input.
-\NewDocumentCommand{\Include}{ s O{} m }{
-\_Prassble_Input@core:nnnn { #1 } { #2 } { #3 } {\include}
-}
-\makeatother
 \ExplSyntaxOff
