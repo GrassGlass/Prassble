@@ -18,33 +18,6 @@
 %% This work consists of all files listed in README
 %%
 \ExplSyntaxOn
-% Command \KeywordForInput{ <keyword> }{ <file path to prepend, corresponding to <keyword> > }[ <code to prepend to \Input> ][ <code to append to \Input> ]
-  % Defines a new <keyword> for \Input 
-  \seq_new:N \g__Prassble_Input_keywords_seq
-  % Warning
-  \msg_new:nnn {Prassble} {keyword~already~defined} {The~Input~keyword~#1~has~already~been~defined.}
-\NewDocumentCommand{\KeywordForInput}{ m m +O{} +O{} }{
-  \seq_if_in:NeTF \g__Prassble_Input_keywords_seq {#1}
-    {
-      % Issue warning if <keyword> has already been defined
-      \msg_warning:nnn {Prassble} {keyword~already~defined} {#1}
-    }
-    {
-      \seq_gput_right:Nn \g__Prassble_Input_keywords_seq {#1}
-      % Declaring the token lists to be used in 
-        % <file path to prepend, corresponding to <keyword> >
-        \tl_new:c {g__Prassble_Input_relative_path_to_prepend_#1_tl}
-        \tl_gset:cn {g__Prassble_Input_relative_path_to_prepend_#1_tl} {#2}
-        % <code to prepend to \Input>
-        \tl_new:c {g_Prassble_Input_prepend_#1_tl} 
-        \tl_gset:cn {g_Prassble_Input_prepend_#1_tl} {#3}
-        % <code to append to \Input>
-        \tl_new:c {g_Prassble_Input_append_#1_tl} 
-        \tl_gset:cn {g_Prassble_Input_append_#1_tl} {#4}
-    }
-}
-%
-%
 % Easy input of files; \Input{#2} is \input{#2} but with the file path taken relative to
   % 1. the directory preamble, if \Input is used before \begin{document}
   % 2. the parent directory of the folder preamble (which in this case is the directory Prassble), if \Input is used after \begin{document}
@@ -52,6 +25,7 @@
 % \Input[#1]{#2} has the optional argument #1, which can prepend a file path #1 (folder_1/folder_2/.../folder_n) to the file path #2. That is, \Input[#1]{#2} = \input{#1#2}. But, #1 can also be a 'keyword' that causes the corresponding file path (defined with \KeywordforInput) to be prepended (instead of #1 itself), as well as cause some code (stored in \g_Prassble_Input_prepend_#1_tl and \g_Prassble_Input_append_#1_tl) to be possibly executed.
 %* TLDR: \Input[ <keyword / file path to prepend> ]{ <file path relative to directory 'preamble' or '../preamble'> }
 \clist_new:N \l__Prassble_files_to_be_input_clist
+\seq_new:N \g__Prassble_Input_keywords_seq
 \tl_new:N \g_Prassble_Input_prepend_tl
 \tl_new:N \g_Prassble_Input_append_tl
 \tl_new:N \g_file_directory_to_be_used_tl

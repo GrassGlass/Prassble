@@ -1,0 +1,25 @@
+\ExplSyntaxOn
+% Command \KeywordForInput{ <keyword> }{ <file path to prepend, corresponding to <keyword> > }[ <code to prepend to \Input> ][ <code to append to \Input> ]
+  % Warning
+  \msg_new:nnn {Prassble} {keyword~already~defined} {The~Input~keyword~#1~has~already~been~defined.}
+\NewDocumentCommand{\KeywordForInput}{ m m +O{} +O{} }{
+  \seq_if_in:NeTF \g__Prassble_Input_keywords_seq {#1}
+    {
+      % Issue warning if <keyword> has already been defined
+      \msg_warning:nnn {Prassble} {keyword~already~defined} {#1}
+    }
+    {
+      \seq_gput_right:Nn \g__Prassble_Input_keywords_seq {#1}
+      % Declaring the token lists to be used in 
+        % <file path to prepend, corresponding to <keyword> >
+        \tl_new:c {g__Prassble_Input_relative_path_to_prepend_#1_tl}
+        \tl_gset:cn {g__Prassble_Input_relative_path_to_prepend_#1_tl} {#2}
+        % <code to prepend to \Input>
+        \tl_new:c {g_Prassble_Input_prepend_#1_tl} 
+        \tl_gset:cn {g_Prassble_Input_prepend_#1_tl} {#3}
+        % <code to append to \Input>
+        \tl_new:c {g_Prassble_Input_append_#1_tl} 
+        \tl_gset:cn {g_Prassble_Input_append_#1_tl} {#4}
+    }
+}
+\ExplSyntaxOff
