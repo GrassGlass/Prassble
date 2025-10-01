@@ -56,7 +56,7 @@
     \msg_new:nnn {Listings} {FileExtensionToLanguage: no corresponding displayed and pygments names} {(line~\msg_line_number:)~no~displayed~name~and~Pygments-name~corresponding~to~the~file~extension~#1}
     % The correpsonding pygments name was not found, for the given display name
     \msg_new:nnn {Listings} {DisplayedToPygments: no corresponding Pygments name} {(line~\msg_line_number:)~no~Pygments-name~corresponding~to~the~displayed~name~#1}
-    % The \pygmentsname is not recognised at all
+    % The \l_Prassble_listings_pygments_name_tl is not recognised at all
     \msg_new:nnn {Listings} {invalid pygments short name} {(line~\msg_line_number:)~invalid~Pygments~short-name} 
 %
   % The command \AddFileExtensionLanguageTriple that adds 
@@ -74,8 +74,8 @@
       \clist_map_inline:Nn \l__Prassble_listings_AddFileExtensionLanguageTriple_new_Pygments_languages_clist {
         \clist_put_right:Ne \g_Prassble_listings_NameConverters_Pygments_languages_clist {##1}
         % Error message
-          % The \pygmentsname is not recognised at all
-          \clist_if_in:NnF \clist_all_pygments_understood_language_names {##1} 
+          % The \l_Prassble_listings_pygments_name_tl is not recognised at all
+          \clist_if_in:NnF \g__Prassble_listings_all_pygments_understood_language_names_clist {##1} 
           {
             \msg_error:nn {Listings} {invalid pygments short name}
           }
@@ -88,8 +88,8 @@
       }
     }
 %
-  % The command \FileExtensionToLanguage that converts file extensions (e.g. txt) to the corresponding displayed language name in the title, and Pygments-understood language name (e.g. text).
-  \NewDocumentCommand{\FileExtensionToLanguage}{ m }{
+  % The command \_Prassble_listings_file_extension_to_language:n that converts file extensions (e.g. txt) to the corresponding displayed language name in the title, and Pygments-understood language name (e.g. text).
+  \cs_new:Npn \_Prassble_listings_file_extension_to_language:n #1 {
     % Defining the item #1 as a token list
       % Using \tl_set:Ne with \clist_if_in:NVT avoids expansion issues that occur with \clist_if_in:NnT
       \tl_set:Ne \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl {\text_lowercase:n {#1}}
@@ -97,49 +97,49 @@
     \clist_if_in:NVTF \g_Prassble_listings_NameConverters_file_extensions_clist \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl
       % Then select and store the corresponding displayed language name and pygments-understood language name
       {
-        % Displayed language name \displayedname
+        % Displayed language name \l_Prassble_listings_displayed_name_tl
         \__Prassble_number_in_clist:NV{\g_Prassble_listings_NameConverters_file_extensions_clist}{\l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl}
-        \tl_set:Nn \displayedname {\clist_item:Nn \g_Prassble_listings_NameConverters_displayed_languages_clist {\l__Prassble_number_in_clist_int}}
-        % Pygments-understood language name \pygmentsname
+        \tl_set:Nn \l_Prassble_listings_displayed_name_tl {\clist_item:Nn \g_Prassble_listings_NameConverters_displayed_languages_clist {\l__Prassble_number_in_clist_int}}
+        % Pygments-understood language name \l_Prassble_listings_pygments_name_tl
         \__Prassble_number_in_clist:NV{\g_Prassble_listings_NameConverters_file_extensions_clist}{\l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl}
-        \tl_set:Ne \pygmentsname {\clist_item:Nn \g_Prassble_listings_NameConverters_Pygments_languages_clist {\l__Prassble_number_in_clist_int}}
+        \tl_set:Ne \l_Prassble_listings_pygments_name_tl {\clist_item:Nn \g_Prassble_listings_NameConverters_Pygments_languages_clist {\l__Prassble_number_in_clist_int}}
       }
     % Otherwise, use the file extension as both the displayed language name and pygments-understood langauge name
       {
-        \tl_set_eq:NN \displayedname \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl
-        \tl_set_eq:NN \pygmentsname \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl
+        \tl_set_eq:NN \l_Prassble_listings_displayed_name_tl \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl
+        \tl_set_eq:NN \l_Prassble_listings_pygments_name_tl \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl
         % Error messages
           % The corresponding displayed name and pygments name was not found, for the given file extension
           \msg_note:nne {Listings} {FileExtensionToLanguage: no corresponding displayed and pygments names} {\l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl}
-          % The \pygmentsname is not recognised at all
-          \clist_if_in:NVF \clist_all_pygments_understood_language_names \pygmentsname 
+          % The \l_Prassble_listings_pygments_name_tl is not recognised at all
+          \clist_if_in:NVF \g__Prassble_listings_all_pygments_understood_language_names_clist \l_Prassble_listings_pygments_name_tl 
           {
             \msg_error:nn {Listings} {invalid pygments short name}
           }
       }
   }
 %
-  % The command \DisplayedToPygments that converts displayed names to the corresponding language name that is understood by Pygments.
-  \NewDocumentCommand{\DisplayedToPygments}{ m }{
+  % The command \__Prassble_listings_displayed_to_pygments:n that converts displayed names to the corresponding language name that is understood by Pygments.
+  \cs_new:Npn \__Prassble_listings_displayed_to_pygments:n #1 {
     % Defining the item #1 as a token list
       % Using \tl_set:Ne with \clist_if_in:NVT avoids expansion issues that occur with \clist_if_in:NnT
       \tl_set:Nn \l__Prassble_listings_DisplayedToPygments_citem_displayed_tl {#1}
     % If the displayed language #1 is in the clist \g_Prassble_listings_NameConverters_displayed_languages_clist of displayed languages we want to convert,
     \clist_if_in:NVTF \g_Prassble_listings_NameConverters_displayed_languages_clist \l__Prassble_listings_DisplayedToPygments_citem_displayed_tl
-      % Then select and store the corresponding pygments-understood language name \pygmentsname
+      % Then select and store the corresponding pygments-understood language name \l_Prassble_listings_pygments_name_tl
       {
         \__Prassble_number_in_clist:NV{\g_Prassble_listings_NameConverters_displayed_languages_clist}{\l__Prassble_listings_DisplayedToPygments_citem_displayed_tl}
-        \tl_set:Ne \pygmentsname {\clist_item:Nn \g_Prassble_listings_NameConverters_Pygments_languages_clist {\l__Prassble_number_in_clist_int}}
+        \tl_set:Ne \l_Prassble_listings_pygments_name_tl {\clist_item:Nn \g_Prassble_listings_NameConverters_Pygments_languages_clist {\l__Prassble_number_in_clist_int}}
       }
     % Otherwise, use the displayed language name as the pygments-understood language name
       % Set to be lowercase so that we can test whether it is a Pygments-recognised name
       {
-        \tl_set:Ne \pygmentsname {\text_lowercase:n {\l__Prassble_listings_DisplayedToPygments_citem_displayed_tl}}
+        \tl_set:Ne \l_Prassble_listings_pygments_name_tl {\text_lowercase:n {\l__Prassble_listings_DisplayedToPygments_citem_displayed_tl}}
         % Error messages
           % The corresponding displayed name and pygments name was not found, for the given file extension
           \msg_note:nne {Listings} {DisplayedToPygments: no corresponding Pygments name} {\l__Prassble_listings_DisplayedToPygments_citem_displayed_tl}
-          % The \pygmentsname is not recognised at all
-          \clist_if_in:NVF \clist_all_pygments_understood_language_names \pygmentsname 
+          % The \l_Prassble_listings_pygments_name_tl is not recognised at all
+          \clist_if_in:NVF \g__Prassble_listings_all_pygments_understood_language_names_clist \l_Prassble_listings_pygments_name_tl 
           {
             \msg_error:nn {Listings} {invalid pygments short name}
           }

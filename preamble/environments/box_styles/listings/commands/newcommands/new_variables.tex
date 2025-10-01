@@ -21,25 +21,25 @@
 % All new variables for name_converters.tex, which include the functions 
 % 1. \__Prassble_number_in_clist:NV{ item }{ clist }
 % 2. \AddFileExtensionLanguageTriple{ file extension }{ pygments language }{ displayed language }
-% 3. \FileExtensionToLanguage{ file extension }
-% 4. \DisplayedToPygments{ displayed language }
+% 3. \_Prassble_listings_file_extension_to_language:n{ file extension }
+% 4. \__Prassble_listings_displayed_to_pygments:n{ displayed language }
   % Integers
     % The integer output by \__Prassble_number_in_clist:NV{ item }{ clist } --- the position of an item in a clist, counting from the left.
       % If the item #2 appears multiple times in the clist #1 = {x1, x2, ... ,xn}, then \l__Prassble_number_in_clist_int is the least integer i such that xi is contained in the clist #1.
     \int_new:N \l__Prassble_number_in_clist_int
   % Token lists
-    % \FileExtensionToLanguage{ file extension }
+    % \_Prassble_listings_file_extension_to_language:n{ file extension }
       % The displayed name from \l__Prassble_listings_NameConverters_displayed_languages_clist corresponding to the given file extension 
-      \tl_new:N \displayedname
+      \tl_new:N \l_Prassble_listings_displayed_name_tl
       % The (Pygments-understood) language name from \l__Prassble_listings_NameConverters_Pygments_languages_clist that corresponds to the given file extension
-      \tl_new:N \pygmentsname
+      \tl_new:N \l_Prassble_listings_pygments_name_tl
       % Storing the file extension in a token list 
       \tl_new:N \l__Prassble_listings_FileExtensionToLanguage_citem_file_extension_tl
-    % \DisplayedToPygments{ displayed language }
+    % \__Prassble_listings_displayed_to_pygments:n{ displayed language }
       % Storing the displayed language in a token list
       \tl_new:N \l__Prassble_listings_DisplayedToPygments_citem_displayed_tl
   % Clists
-    % \AddFileExtensionLanguageTriple{ file extension }{ pygments language }{ displayed language } & \FileExtensionToLanguage{ file extension } & \DisplayedToPygments{ displayed language }
+    % \AddFileExtensionLanguageTriple{ file extension }{ pygments language }{ displayed language } & \_Prassble_listings_file_extension_to_language:n{ file extension } & \__Prassble_listings_displayed_to_pygments:n{ displayed language }
       % Global
         % The clist of all file extensions that we will convert from
         \clist_new:N \g_Prassble_listings_NameConverters_file_extensions_clist
