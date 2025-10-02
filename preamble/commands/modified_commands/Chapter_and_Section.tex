@@ -1,24 +1,24 @@
 \ExplSyntaxOn
-    % Store the chapter/section numbers as text integers.
-        \tl_new:N \g__prassble_chapter_text_number_tl
     % Command \Chapter that inserts a \chapter header and automatically creates the corresponding keyword for input Ch\arabic{chapter}, that changes the directory to that of the current chapter --- the subdirectory chapters/ch\arabic{chapter} of Prassble/files.
         \NewDocumentCommand{\Chapter}{ m }{
             % Usual chapter header
                 \chapter{#1}
             % Change the directory to that of the current chapter (Prassble/files/chapters/ch\arabic{chapter})
-                % \tl_set:Ne is used to expand \arabic{chapter} into text form.
-                    \tl_set:Ne \g__prassble_chapter_text_number_tl {\arabic{chapter}}
-                % \tl_map_inline is used to extract the value of \arabic{chapter} in text form so that the keyword is Ch1 (or Ch2, etc) instead of literally "Ch\arabic{chapter}"
-                    \tl_map_inline:Nn \g__prassble_chapter_text_number_tl {\KeywordForInput{Ch##1}{files/chapters/ch##1}}
+                % \seq_set:Ne is used to expand \arabic{chapter} into text form.
+                    \seq_clear:N \l_tmpa_seq
+                    \seq_put_right:Ne \l_tmpa_seq {\arabic{chapter}}
+                % \seq_map_inline is used to extract the value of \arabic{chapter} in text form so that the keyword is Ch1 (or Ch2, etc) instead of literally "Ch\arabic{chapter}"
+                    \seq_map_inline:Nn \l_tmpa_seq {\KeywordForInput{Ch##1}{files/chapters/ch##1}}
         }
     % Comamnd \Section that inserts a \section header, and then, automatically \Input's the corresponding sec\arabic{section}.tex file immediately after.
         \NewDocumentCommand{\Section}{ m }{
         % Usual section header
                 \section{#1}
             % Change the directory to that of the current chapter (Prassble/files/chapters/ch\arabic{chapter})
-                % \tl_set:Ne is used to expand \arabic{chapter} into text form.
-                    \tl_set:Ne \g__prassble_chapter_text_number_tl {\arabic{chapter}}
-                % \tl_map_inline is used to extract the value of \arabic{chapter} in text form so that the keyword is Ch1 (or Ch2, etc) instead of literally "Ch\arabic{chapter}"
-                    \tl_map_inline:Nn \g__prassble_chapter_text_number_tl {\Input[Ch##1]{sec\arabic{section}.tex}}
+                % \seq_set:Ne is used to expand \arabic{chapter} into text form.
+                    \seq_clear:N \l_tmpa_seq
+                    \seq_put_right:Ne \l_tmpa_seq {\arabic{chapter}}
+                % \seq_map_inline is used to extract the value of \arabic{chapter} in text form so that the keyword is Ch1 (or Ch2, etc) instead of literally "Ch\arabic{chapter}"
+                    \seq_map_inline:Nn \l_tmpa_seq {\Input[Ch##1]{sec\arabic{section}.tex}}
         }
 \ExplSyntaxOff

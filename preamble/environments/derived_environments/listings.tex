@@ -72,10 +72,26 @@
             % #2    [ <OTitle/pgfkeys> ]
             % #3    { <Listing file> }
 
+        \ModifiedNewTCBInputListing{\InputCode}{ D(){middle} ={OTitle} O{} m }{
+            ,type in thmgroup = {#1}
+            ,codestyleinput* = {#3}{\displayedname}
+            ,#2
+            ,Inputify = {#3}
+            ,listing file = {\inputPath}
+        }
+
         \ModifiedNewTCBInputListing{\inputcode}{ D(){middle} ={OTitle} O{} m }{
             ,type in thmgroup = {#1}
             ,codestyleinput = {#3}{\displayedname}
             ,#2
+        }
+
+        \ModifiedNewTCBInputListing{\InputCodeOutput}{ D(){middle} ={OTitle} O{} m }{
+            ,type in thmgroup = {#1}
+            ,codestyleinput* = {#3}{Output}
+            ,#2
+            ,Inputify = {#3}
+            ,listing file = {\inputPath}
         }
 
         \ModifiedNewTCBInputListing{\inputcodeoutput}{ D(){middle} ={OTitle} O{} m }{

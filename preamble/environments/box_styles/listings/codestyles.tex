@@ -25,6 +25,8 @@
   \tl_new:N \g__Prassble_listings_linenos_tl
   \tl_new:N \g__Prassble_listings_breaklines_tl
   \tl_new:N \g__Prassble_listings_minted_add_tl
+  \tl_new:N \g__Prassble_listings_Input_prepended_path_or_keyword_tl
+  \tl_new:N \inputPath
   \cs_new:Npn \__Prassble_listings_title_contents:n #1 {#1 \g__Prassble_listings_OTitle_tl.}
   \tl_new:N \g__Prassble_listings_OTitle_tl
   \dim_new:N \l__Prassble_listings_autowidth_title_dim
@@ -121,6 +123,7 @@
   \bool_new:N \g__Prassble_listings_debug_autowidth_bool
   \bool_new:N \g__Prassble_listings_include_codeoutput_bool
   \bool_new:N \g__Prassble_listings_include_comment_bool
+  \bool_new:N \g__Prassble_listings_Input_bool
   % Values
   \tl_set:Nn \g__Prassble_listings_linenos_tl {linenos}
   \tl_set:Nn \g__Prassble_listings_breaklines_tl {breaklines}
@@ -410,15 +413,32 @@
     % codestyleinput = 
     % #1  { <Listing file> }
     % #2  { <Unparentisized Title> }
-  ,codestyleinput/.style~2~args =
+    % The starred variant doesn't set the 'listing file' first. This allows the Input-related keys (such as 'pwd') to work correctly --- the 'listing file' key seems to take use its first invocation, and cannot be overriden.
+  ,codestyleinput*/.style~2~args =
   {
-    ,listing~file   = {#1}
     ,code           = {\storefileextension{#1}
-    \_Prassble_listings_file_extension_to_language:n{\fileextension}}
+    \_Prassble_listings_file_extension_to_language:n { \fileextension }}
     ,minted~language = {\l_Prassble_listings_pygments_name_tl}
     ,codestylebase  = {#2}
   },
-  ,
+  ,codestyleinput/.style~2~args =
+  {
+    ,listing~file   = {#1}
+    ,codestyleinput* = {#1}{#2}
+  },
+  % Input-related keys
+  ,pwd/.code = { \bool_set_true:N \g__Prassble_listings_Input_bool }
+  ,prepend~path~or~key/.code = { \tl_set:Nn \g__Prassble_listings_Input_prepended_path_or_keyword_tl {#1} }
+  ,prepend/.style = {prepend~path~or~key = {#1}}
+  ,key/.style = {prepend~path~or~key = {#1}}
+  ,Inputify/.code = 
+  {
+    \seq_clear:N \l_tmpa_seq
+    \seq_put_right:Ne \l_tmpa_seq {\g__Prassble_listings_Input_prepended_path_or_keyword_tl}
+    \seq_map_inline:Nn \l_tmpa_seq {
+      \__Prassble_Input@core:nnnn { \g__Prassble_listings_Input_bool } { ##1 } { #1 } { \tl_gset:Ne \inputPath } 
+    }
+  }
 }
 \ExplSyntaxOff
 \makeatother
