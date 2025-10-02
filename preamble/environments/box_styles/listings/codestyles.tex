@@ -24,6 +24,7 @@
   % Definitions
   \tl_new:N \g__Prassble_listings_linenos_tl
   \tl_new:N \g__Prassble_listings_breaklines_tl
+  \tl_new:N \g__Prassble_listings_minted_add_tl
   \cs_new:Npn \__Prassble_listings_title_contents:n #1 {#1 \g__Prassble_listings_OTitle_tl.}
   \tl_new:N \g__Prassble_listings_OTitle_tl
   \dim_new:N \l__Prassble_listings_autowidth_title_dim
@@ -126,6 +127,7 @@
 
 \tcbset{
   ,no~number/.code = {\tl_clear:N \g__Prassble_listings_linenos_tl}
+  ,minted~add/.code = {\tl_set:Nn \g__Prassble_listings_minted_add_tl {#1}}
   ,autowidth@core/.code = 
   {
     % The line width \g__Prassble_listings_autowidth@core_measured_text_width_dim the box should be set to have (given this width is less than \g__Prassble_listings_autowidth@core_max_tcb_width_dim, i.e. doesn't overflow into the margins)
@@ -308,10 +310,11 @@
     ,minted~style                    = staroffice
     ,minted~options                  = 
       {
-      \g__Prassble_listings_breaklines_tl,
-      autogobble,
-      \g__Prassble_listings_linenos_tl,
-      numbersep = \numbersep
+      ,\g__Prassble_listings_breaklines_tl
+      ,autogobble
+      ,\g__Prassble_listings_linenos_tl
+      ,numbersep = \numbersep
+      ,\g__Prassble_listings_minted_add_tl
       }
     ,listing~only
     ,breakable
@@ -415,6 +418,7 @@
     ,minted~language = {\l_Prassble_listings_pygments_name_tl}
     ,codestylebase  = {#2}
   },
+  ,
 }
 \ExplSyntaxOff
 \makeatother

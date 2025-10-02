@@ -7,10 +7,11 @@
     \noindent
     \large
     \color{textcolor}
+    {\RenewDocumentCommand{\thetheorem}{}{1}
     \begin{theorem}
     \end{theorem}
     \begin{proof}
-    \end{proof}\leavevmode\\[-\baselineskip]
+    \end{proof}}\leavevmode\\[-\baselineskip]
     \makebox[0pt][l]{\rule{1.3\textwidth}{1pt}}
     \par
     \noindent
@@ -20,12 +21,13 @@
     \makeatother
     % @ revert
     \vfill
-    \begin{exercise}
-        Recreate this cover page in \LaTeX.
-    \end{exercise}
-    \begin{code}{\LaTeX}
-        
-    \end{code}
+    \scalebox{0.5}{
+        \inputcode(standalone)[
+            ,Title=\LaTeX
+            ,OTitle=source code of this titlepage
+            ,minted add=breakanywhere]
+            {Doc_Titlepage.tex}
+    }
     \vfill
     \noindent
     {\huge\textsf{Prassble: User Guide}}

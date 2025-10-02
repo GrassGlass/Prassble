@@ -38,7 +38,10 @@
   \tl_set_eq:NN \g_file_directory_to_be_used_tl \g_Prassble_path_to_preamble_folder_tl
 % Set the directory to be '../preamble' in the document body.
   \AtEndPreamble{\tl_gset_eq:NN \g_file_directory_to_be_used_tl \g_Prassble_path_to_Prassble_folder_tl}
-\NewDocumentCommand{\Input}{ s O{} m }{
+
+\makeatletter
+% Putting the core \Input code in a general function \__Prassble_Input@core:nnnn so that other commands similar to \input (e.g. \inputcode) can also be transformed accordingly (e.g. to \InputCode).
+\cs_new:Npn \__Prassble_Input@core:nnnn #1#2#3#4 {
   % If the starred variant \Input* is used, go to the directory \CurrentFilePath.
     \bool_if:nT {#1} 
       {
@@ -69,7 +72,7 @@
     \clist_map_inline:Nn \l__Prassble_files_to_be_input_clist 
         {
             \tl_use:N \g_Prassble_Input_prepend_tl
-            \input{\g_file_directory_to_be_used_tl\l__Prassble_relative_path_to_prepend_tl##1}
+            #4{\g_file_directory_to_be_used_tl\l__Prassble_relative_path_to_prepend_tl##1}
             \tl_use:N \g_Prassble_Input_append_tl
         }
   % Reset the path to prepend
@@ -79,4 +82,8 @@
   \tl_clear:N \g_Prassble_Input_prepend_tl
   \tl_clear:N \g_Prassble_Input_append_tl
 }
+\NewDocumentCommand{\Input}{ s O{} m }{
+  \__Prassble_Input@core:nnnn { #1 } { #2 } { #3 } { \input }
+}
+\makeatother
 \ExplSyntaxOff

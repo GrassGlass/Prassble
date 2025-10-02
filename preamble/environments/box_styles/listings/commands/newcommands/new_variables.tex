@@ -31,6 +31,8 @@
     % \_Prassble_listings_file_extension_to_language:n{ file extension }
       % The displayed name from \l__Prassble_listings_NameConverters_displayed_languages_clist corresponding to the given file extension 
       \tl_new:N \l_Prassble_listings_displayed_name_tl
+      \tl_new:N \displayedname
+      \tl_gset:Nn \displayedname {\l_Prassble_listings_displayed_name_tl}
       % The (Pygments-understood) language name from \l__Prassble_listings_NameConverters_Pygments_languages_clist that corresponds to the given file extension
       \tl_new:N \l_Prassble_listings_pygments_name_tl
       % Storing the file extension in a token list 

@@ -5,5 +5,26 @@
 \ExplSyntaxOn
     \tl_gset:Ne \g_file_directory_to_be_used_tl {}
 \ExplSyntaxOff
+\frontmatter
 \Input{Doc_Titlepage.tex}
+\thispagestyle{empty} 
+%
+\chapter{Preface: What Is This Project?}
+This aims to be a beautiful coloured {\LaTeX} template for everyone to enjoy, for taking notes, writing a book, and more. 
+
+But there are so many {\LaTeX} templates available online already, why another? This started as a personal project to revise my {\LaTeX} setup, to make it more convenient and hassle free, as well as to improve the aesthetics of my documents. Over time, I refined this template to what it is today and wanted everyone to be able to enjoy its use; naturally, I'm releasing it under the \extref{https://www.latex-project.org/lppl/}{LPPL 1.3}. (Moreover, coloured templates seem unfortunately rare?)
+
+I have learnt a bit more about {\LaTeX} programming over the course of this project, but I'm still a mere amateur. So, while feedback is greatly appreciated, please don't be too harsh on me when you spot some abominable code --- I try to write decent {\TeX} and update it when I find out bad practices I engage in.
+%
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+%
+\mainmatter
+\Chapter{The Contents of This Template}
+While the \extref{https://github.com/GrassGlass/Prassble}{GitHub repository} of Prassble contains other files/folders for development purposes, the user only needs the following:
+%
+\backmatter
 \end{document}

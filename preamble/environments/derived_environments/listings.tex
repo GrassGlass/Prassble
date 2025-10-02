@@ -71,10 +71,10 @@
             % #1    { <vertical space correction, depending on the presence of an asterisk * > }
             % #2    [ <OTitle/pgfkeys> ]
             % #3    { <Listing file> }
-        
+
         \ModifiedNewTCBInputListing{\inputcode}{ D(){middle} ={OTitle} O{} m }{
             ,type in thmgroup = {#1}
-            ,codestyleinput = {#3}{\l_Prassble_listings_displayed_name_tl}
+            ,codestyleinput = {#3}{\displayedname}
             ,#2
         }
 
