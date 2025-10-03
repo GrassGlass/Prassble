@@ -1,0 +1,48 @@
+\documentclass[11pt, a4paper]{book}
+\usepackage{zref-xr}
+\usepackage{zref-clever}
+\zexternaldocument{main}
+
+\ExplSyntaxOn
+%* Here we want to extract all labels in \jobname.aux (where \jobname.tex should be a homework-type file.). Then, we undefine these labels from \zexternaldocument{main} so that unwanted warnings of multiply defined labels don't haunt us --- when main.aux and \jobname.aux share common labels --- while still allowing us to check for actual multiply defined labels inside \jobname.aux. 
+    % Label extraction
+        % New variables
+            % The sequence of all labels in \jobname.aux
+            \seq_new:N \g__Prassble_all_labels_seq
+            % The io-read stream we want to use
+            \ior_new:N \l__Prassble_hw_aux_ior
+        % Open the stream \jobname.aux 
+        \ior_open:Nn \l__Prassble_hw_aux_ior {\jobname.aux}
+        \ior_map_inline:Nn \l__Prassble_hw_aux_ior 
+        {
+            % If \newlabel{ <label name> }... is present, extract <label name> under the second item of the sequence \t_tmpa_seq. Otherwise, do nothing.
+            \regex_extract_once:nnN 
+            { \c{newlabel} \cB. (\c[^BE].*) \cE. } 
+            { #1 }
+            \l_tmpa_seq
+            % Store the <label name> inside the sequence \g__Prassble_all_labels_seq of all labels in \jobname.aux.
+            \seq_gput_right:Ne \g__Prassble_all_labels_seq { \seq_item:Nn \l_tmpa_seq { 2 } }
+        }
+        % We are done with reading \jobname.aux, so we close the corresponding ior stream.
+        \ior_close:N \l__Prassble_hw_aux_ior
+        % Remove all empty items from the sequence \g__Prassble_all_labels_seq of all labels in \jobname.aux.
+        \seq_gremove_all:Nn \g__Prassble_all_labels_seq {}
+    % Undefine external labels
+    \seq_map_inline:Nn \g__Prassble_all_labels_seq {\cs_undefine:c{Z@R@#1}}
+\ExplSyntaxOff
+
+\begin{document}
+\ExplSyntaxOn
+\fbox{ \seq_use:Nn \g__Prassble_all_labels_seq { , } }
+\ExplSyntaxOff
+\begin{figure}[htbp]
+    \centering
+    \caption{}
+    \label{fig:1}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \caption{}
+    \label{fig:2}
+\end{figure}
+\end{document}

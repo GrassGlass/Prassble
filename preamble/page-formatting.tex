@@ -49,12 +49,6 @@
     \headrule
     }
   \makeatother
-    % external referencing setup which allows the contents of main.tex to be referenced in hw documents
-    \ExplSyntaxOn
-      \tl_if_eq:NnT \Pagestyle {hw} {
-        \zexternaldocument{\g_Prassble_path_to_Prassble_folder_tl/main}
-      }
-    \ExplSyntaxOff
 
     % Hw-In-Main input keyword (continued in InputKeyword_Hw-In-Main.tex)
       % The command \AddToHWEnvList

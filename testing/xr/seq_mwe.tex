@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{zref-xr}
+\usepackage{zref-clever}
+\ExplSyntaxOn
+\makeatletter
+% We put all labels from hw1.aux inside the sequence \g__Prassble_all_labels_in_hw_doc_seq
+    \seq_new:N \g__Prassble_all_labels_in_hw_doc_seq
+    %* Using ltcmdhooks doesn't work here 
+        % \AddToHookWithArguments{cmd/newlabel/after}{
+        %     \seq_gpush:Ne \g__Prassble_all_labels_in_hw_doc_seq { \tl_to_str:n { #1 } }
+        % }
+    % So we use \NewCommandCopy with \RenewDocumentCommand
+    \NewCommandCopy{\newlabel@core}{\newlabel}
+    \RenewDocumentCommand \newlabel { m }
+    {
+        \seq_gput_right:Ne \g__Prassble_all_labels_in_hw_doc_seq { #1 }
+        \newlabel@core {#1}
+    }
+\makeatother
+    \tl_new:N \g__Prassble_all_labels_tl 
+    %* NOTE THIS LINE:
+    \tl_set:Ne \g__Prassble_all_labels_tl { \seq_use:Nn \g__Prassble_all_labels_in_hw_doc_seq {,} }
+    % ======================================= %
+\ExplSyntaxOff
+\begin{document}
+\ExplSyntaxOn
+\fbox{\tl_use:N \g__Prassble_all_labels_tl }
+\ExplSyntaxOff
+\begin{figure}[htbp]
+    \centering
+    \caption{Some figure in \texttt{1.tex} that we want to include and reference in both \texttt{main.tex} and \texttt{hw1.tex}.}
+    \label{fig:1}
+\end{figure}
+\end{document}

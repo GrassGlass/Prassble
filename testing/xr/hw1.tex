@@ -1,22 +1,37 @@
-\documentclass{article}
+\documentclass[11pt, a4paper]{book}
 \usepackage{hyperref}
 \usepackage{zref-xr}
 \usepackage{zref-clever}
 \zexternaldocument{main}
-\ExplSyntaxOn\cs_undefine:c{Z@R@fig:1}\ExplSyntaxOff
-\AddToHookWithArguments{cmd/label/after}{(#1)}
-% \ExplSyntaxOn
-%     \iow_new:N \l__Prassble_external_ref_warning_correction_ior
-%     \iow_open:Nn \l__Prassble_external_ref_warning_correction_ior {\c_sys_jobname_str _ref_warning_correction.tmp}
-% \ExplSyntaxOff
-%
+
+\ExplSyntaxOn
+\seq_new:N \g__Prassble_label_regex_seq
+\ior_new:N \l__Prassble_hw_aux_ior
+\ior_open:Nn \l__Prassble_hw_aux_ior {\jobname.aux}
+\ior_map_inline:Nn \l__Prassble_hw_aux_ior 
+{
+    \regex_extract_once:nnN 
+    { \c{newlabel} \cB. (\c[^BE].*) \cE. } 
+    { 
+        \newlabel{fig:1}{{1}{2}{Some figure in \texttt {1.tex} that we want to include and reference in both \texttt {main.tex} and \texttt {hw1.tex}}{figure.1}{}}
+    }
+    \l_tmpa_seq
+    \seq_gput_right:Ne \g__Prassble_label_regex_seq { \seq_item:Nn \l_tmpa_seq { 2 } }
+}
+\ior_close:N \l__Prassble_hw_aux_ior
+\ExplSyntaxOff
+
 \begin{document}
+\ExplSyntaxOn
+\fbox{ \seq_use:Nn \g__Prassble_label_regex_seq { , } }
+\ExplSyntaxOff
 \section{Homework \#1}
 This external reference is fine: \zcref{fig:main}. The warning about the label \verb|fig:1| being multiply defined is issued: \zcref{fig:1}
+\newpage
 \input{1.tex}
-\begin{figure}[htbp]
-    \centering
-    \caption{A duplicate of the label \texttt{fig:1} which should cause a warning.}
-    \label{fig:1}
-\end{figure}
+% \begin{figure}[htbp]
+%     \centering
+%     \caption{A duplicate of the label \texttt{fig:1} which should cause a warning.}
+%     \label{fig:1}
+% \end{figure}
 \end{document}
