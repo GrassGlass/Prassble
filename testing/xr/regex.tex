@@ -1,7 +1,5 @@
 \documentclass[11pt, a4paper]{book}
-\usepackage{zref-xr}
 \usepackage{zref-clever}
-\zexternaldocument{main}
 
 \ExplSyntaxOn
 %* Here we want to extract all labels in \jobname.aux (where \jobname.tex should be a homework-type file.). Then, we undefine these labels from \zexternaldocument{main} so that unwanted warnings of multiply defined labels don't haunt us --- when main.aux and \jobname.aux share common labels --- while still allowing us to check for actual multiply defined labels inside \jobname.aux. 
@@ -27,8 +25,6 @@
         \ior_close:N \l__Prassble_hw_aux_ior
         % Remove all empty items from the sequence \g__Prassble_all_labels_seq of all labels in \jobname.aux.
         \seq_gremove_all:Nn \g__Prassble_all_labels_seq {}
-    % Undefine external labels
-    \seq_map_inline:Nn \g__Prassble_all_labels_seq {\cs_undefine:c{Z@R@#1}}
 \ExplSyntaxOff
 
 \begin{document}
