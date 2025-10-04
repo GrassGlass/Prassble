@@ -69,6 +69,7 @@
   \usepackage{tikz, pgfplots}
   \usetikzlibrary{cd}
   \pgfplotsset{compat=1.18}
+  % \usepackage{asymptote}
 
   % enumeration
   \usepackage[shortlabels,inline]{enumitem}
@@ -84,11 +85,22 @@
   % Page formatting
   \usepackage[pagestyles]{titlesec}
   \usepackage{lmodern, microtype}
-    % default colour theme
-    \ifundef{\ColorTheme}{\gdef\ColorTheme{colourful}}{}
+    % default color theme
+    \ifundef{\ColorTheme}{
+      \gdef\ColorTheme{colourful}
+    }{}
+    % 'documentation' page style -> use 'main' page style with some extra options (detected by defining \PrassbleDocumentationStyle)
+    \ifdefstring{\Pagestyle}{documentation}{
+      \gdef\Pagestyle{main}
+      \gdef\PrassbleDocumentationStyle{}
+    }{}
 
   % Colored boxes
   \usepackage[skins, breakable, minted]{tcolorbox}
+  \ifdef{\PrassbleDocumentationStyle}{
+    \tcbuselibrary{documentation}
+    \tcbset{listing engine=minted}
+  }{}
     % Required for autowidth = lower 
     \usepackage{varwidth}
   \setminted{%
