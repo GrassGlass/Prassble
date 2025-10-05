@@ -1,9 +1,9 @@
-%     `# Generate the file tree` \
+    `# Generate the file tree` \
     tree \
         `# Exclude the folder "some_folder", "another_folder", all files starting with "ignore_this", and all files with extension .log, .out, etc` \
         -I 'some_folder|another_folder|minted|ignore_this*|*.log|*.out|*.synctex(busy)|*.listing|*.pre|*.aux|*.auxlock|*.toc|*.config.minted' \
         `# Print out an XML representation of the tree.` \
-        -X \
+        -X \ 
         `# Turn off file/directory count at end of tree listing.` \
         --noreport \
     `# Pass the output of tree to the input of sed` \

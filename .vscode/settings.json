@@ -293,5 +293,8 @@
     }
 ],
 "workbench.editor.empty.hint": "hidden",
-"remote.autoForwardPortsSource": "hybrid"
+"remote.autoForwardPortsSource": "hybrid",
+"cSpell.words": [
+  "nonmatching"
+]
 }

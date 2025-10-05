@@ -7,7 +7,6 @@
 *.listing
 *.pre
 *.aux
-!1.aux
 *.auxlock
 *.toc
 *.config.minted
