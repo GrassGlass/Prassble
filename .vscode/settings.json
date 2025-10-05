@@ -1,3 +1,297 @@
 {
-    "remote.autoForwardPortsFallback": 0
+// VSCode Colour Theme
+"workbench.colorTheme": "Default Dark Modern",
+
+// Telemetry 
+"telemetry.telemetryLevel": "off",
+"docker.lsp.telemetry": "off",
+
+// TeX & Friends
+"latex-workshop.latex.tools": [
+    // Compilation tools and commands
+    {
+        "name": "pdflatex",
+        "command": "pdflatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "bibtex",
+        "command": "bibtex",
+        "args": [
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "lualatex",
+        "command": "lualatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-pdf",
+            "%DOC%"
+        ]
+    },
+    {
+        "name": "pythontex",
+        "command": "pythontex",
+        "args": [
+            "%DOC%"
+        ]
+    },
+    {
+        "name": "pdflatex-shell-escape",
+        "command": "pdflatex",
+        "args": [
+            "--shell-escape",
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOC%"
+        ]
+    },
+],
+"editor.guides.bracketPairs": true,
+"latex-workshop.latex.rootFile.doNotPrompt":true,
+"latex-workshop.latex.autoBuild.run":"never",
+"latex-workshop.latex.recipes": [
+    {
+        "name": "pdflatex 🔃",
+        "tools": [
+            "pdflatex"
+        ],
+    },
+    {
+        "name": "pdflatex➞bibtex➞pdflatex.2x 🔃",
+        "tools": [
+            "pdflatex",
+            "bibtex",
+            "pdflatex",
+            "pdflatex"
+        ]
+    },
+    {
+        "name": "lualatex",
+        "tools": [
+            "lualatex"
+        ]
+    },
+    {
+        "name": "pdflatex➞pythontex➞pdflatex",
+        "tools": [
+            "pdflatex-shell-escape",
+            "pythontex",
+            "pdflatex-shell-escape"
+        ]
+    },
+    {
+        "name": "pdflatex-shell-escape",
+        "tools": [
+            "pdflatex-shell-escape"
+        ]
+    },
+],
+"workbench.editorAssociations": {
+    "*.pdf": "latex-workshop-pdf-hook",
+},
+// Git
+"git.autofetch": true,
+"git.enableSmartCommit": true,
+"git.confirmSync": false,
+"explorer.confirmDragAndDrop": false,
+"git.openRepositoryInParentFolders": "always",
+
+// Code Spell Check
+"cSpell.language": "en,en-GB",
+"cSpell.userWords": [
+    "abelian",
+    "biconditional",
+    "bijectivity",
+    "Cesaro",
+    "Choiceless",
+    "eigenbasis",
+    "greenwashing",
+    "infimum",
+    "injectivity",
+    "invertibility",
+    "nondecreasing",
+    "nonincreasing",
+    "nonnegativity",
+    "nullspace",
+    "Rouché",
+    "Schwarz",
+    "Stolz",
+    "subcover",
+    "Submonoids",
+    "supremal",
+    "supremum",
+    "unpolarised",
+    "wlog"
+],
+"editor.suggest.showWords": false,
+
+// Julia
+"terminal.integrated.commandsToSkipShell": [
+    "language-julia.interrupt"
+],
+"julia.symbolCacheDownload": true,
+"julia.enableCrashReporter": false,
+"julia.enableTelemetry": false,
+"github.copilot.chat.agent.autoFix": false,
+"github.copilot.chat.agent.runTasks": false,
+"github.copilot.chat.codeGeneration.useInstructionFiles": false,
+"github.copilot.editor.enableCodeActions": false,
+"github.copilot.chat.useProjectTemplates": false,
+"github.copilot.renameSuggestions.triggerAutomatically": false,
+"github.copilot.chat.reviewSelection.enabled": false,
+"github.copilot.chat.copilotDebugCommand.enabled": false,
+"github.copilot.chat.startDebugging.enabled": false,
+"github.copilot.chat.agent.currentEditorContext.enabled": false,
+"github.copilot.chat.edits.newNotebook.enabled": false,
+"github.copilot.chat.edits.suggestRelatedFilesForTests": false,
+"github.copilot.chat.edits.suggestRelatedFilesFromGitHistory": false,
+"github.copilot.chat.newWorkspaceCreation.enabled": false,
+"github.copilot.enable": {
+    "*": false
+},
+// "settingsSync.ignoredSettings": [
+//     "-julia.executablePath"
+// ],
+
+// Better Comments
+"better-comments.tags": [
+    {
+      "tag": "- [x]",
+      "color": "#6a6758",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "[x]",
+      "color": "#6a6758",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "[ ] todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "- [ ] todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "bug",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "[ ] bug",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "- [ ] bug",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "fix",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "[ ] fix",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "- [ ] fix",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+],
+"workbench.editor.empty.hint": "hidden",
+"remote.autoForwardPortsSource": "hybrid"
 }

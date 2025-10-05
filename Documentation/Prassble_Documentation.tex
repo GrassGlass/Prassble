@@ -36,7 +36,7 @@ While the \extref{https://github.com/GrassGlass/Prassble}{GitHub repository} of 
     \filldraw [draw=folderborder, top color=folderbg!50, bottom color=folderbg] (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
   },
   file/.pic={%
-    \filldraw [draw=folderborder, top color=folderbg!5, bottom color=folderbg!10] (-\Size,.4*\Size+5pt) coordinate (a) |- (\Size,-1.2*\Size) coordinate (b) -- ++(0,1.6*\Size) coordinate (c) -- ++(-5pt,5pt) coordinate (d) -- cycle (d) |- (c) ;
+    \filldraw [draw=folderborder, top color=folderbg!5, bottom color=folderbg!10] (-\Size,.4*\Size+5pt) coordinate (a) |- (\Size,-1.2*\Size) coordinate (b) -- ++(0,1.6*\Size) coordinate (c) -- ++(-4pt,5pt) coordinate (d) -- cycle (d) |- (c) ;
   },
 }
 \forestset{%
@@ -46,7 +46,7 @@ While the \extref{https://github.com/GrassGlass/Prassble}{GitHub repository} of 
   pic dir tree/.style={%
     for tree={%
       folder,
-      font=\ttfamily,
+      font=\sffamily,
       grow'=0,
     },
     before typesetting nodes={%
@@ -77,22 +77,22 @@ While the \extref{https://github.com/GrassGlass/Prassble}{GitHub repository} of 
   pic dir tree,
   pic root,
   for tree={% folder icons by default; override using file for file icons
-    directory,
+    ,directory
+    ,fit = band
+    ,l = 0pt
+    ,s sep = 0pt
   },
-  [system
-    [config
+  [Prassble
+    [.devcontainer
+      [devcontainer.json, file]
+      [Dockerfile       , file]
+      [LICENSE          , file]
     ]
-    [lib
-      [Access
-      ]
-      [Plugin
-      ]
-      [file.txt, file
-      ]
+    [.vscode
+      [settings.json    , file]    
     ]
-    [templates
-    ]
-    [tests
+    [preamble,
+      []
     ]
   ]
 \end{forest}
