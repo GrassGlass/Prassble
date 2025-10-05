@@ -1,0 +1,1 @@
+% tree -X --noreport | sed -e "s/<tree>/\\\begin{forest}for tree={folder,grow\'=0}/" -e 's/<\/tree>/\\end{forest}/' -e 's/\(<directory name=\)\|\(<file name=\)/[/' -e's/\"\([^\"]*\)\">/\1/' -e 's/<\/directory>/]/' -e 's/<\/file>/]/' -e '/^<?xml version/d' -e 's/_/\\_/g'
