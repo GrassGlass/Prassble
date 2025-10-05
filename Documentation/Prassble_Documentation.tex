@@ -69,19 +69,22 @@ While the \extref{https://github.com/GrassGlass/Prassble}{GitHub repository} of 
       }
     }
   },
-  pic me set={directory}{folder},
-  pic me set={file}{file},
+  ,file tree/.style = {
+    ,pic me set={directory}{folder}
+    ,pic me set={file}{file}
+    ,pic dir tree
+    ,pic root
+    ,for tree={% folder icons by default; override using file for file icons
+      ,directory
+      ,fit = band
+      ,l = 0pt
+      ,s sep = 0pt
+    }
+  }
 }
 \begin{center}
 \begin{forest}
-  pic dir tree,
-  pic root,
-  for tree={% folder icons by default; override using file for file icons
-    ,directory
-    ,fit = band
-    ,l = 0pt
-    ,s sep = 0pt
-  },
+  ,file tree
   [Prassble
     [.devcontainer
       [devcontainer.json, file]
