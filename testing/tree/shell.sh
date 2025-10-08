@@ -1,4 +1,9 @@
+    # Store the name of the PWD as $PWD_name
+        # Source: https://stackoverflow.com/a/1371283/31298396
+    PWD_name=${PWD##*/}
+    PWD_name=${PWD_name:-/}
     `# Generate the file tree` \
+        `# Source: https://tex.stackexchange.com/q/515582/383565` \
     tree \
         `# Exclude the folder "some_folder", "another_folder", all files starting with "ignore_this", and all files with extension .log, .out, etc` \
         -I 'some_folder|another_folder|minted|ignore_this*|*.log|*.out|*.synctex(busy)|*.listing|*.pre|*.aux|*.auxlock|*.toc|*.config.minted' \
@@ -11,8 +16,10 @@
     `# Text manipulation, for us to convert the XML output format to a TikZ forest one. The option "-e [command]" adds [command] to the list of commands that sed executes. ` \
         `# syntax of the s command: 's/regexp/replacement/flags'` \
     sed \
+        `# Replace "<directory name=".">" by "<directory name=#PWD_name>"` \
+        -e "s/<directory name=\".\">/<directory name=\"$PWD_name\">/" \
         `# Replace "<tree>" by "\begin{forest}for tree={folder,grow\'=0}/"` \
-        -e "s/<tree>/\\\begin{forest}for tree={folder,grow\'=0}/" \
+        -e "s/<tree>/\\\begin{forest}\n file tree,/" \
         `# Replace "</tree>" by "\end{forest}"` \
         -e 's/<\/tree>/\\end{forest}/' \
         `# Replace "<directory name=" and "<file name=" by an opening square bracket [ (escaped to make it an actual square bracket)` \
@@ -36,8 +43,8 @@
         -e 's/\"\([^\"]*\)\">/\1/' \
         `# Replace "</directory> by a closing square bracket "]"` \
         -e 's/<\/directory>/]/' \
-        `# Delete "</file>` \
-        -e 's/<\/file>/]/' \
+        `# Replace "</directory> by a closing square bracket "]"` \
+        -e 's/<\/file>/, file]/' \
         `# Delete any string that starts with "<?xml version"` \
         -e '/^<?xml version/d' \
         `# Replace the character "_" by its escaped LaTeX counterpart "\_".` \

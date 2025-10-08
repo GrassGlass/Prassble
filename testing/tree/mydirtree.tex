@@ -1,15 +1,19 @@
-\begin{forest}for tree={folder,grow'=0}
-  [.
-    [bash.exitCode]
-    [bash.pdf]
-    [bash.sh]
-    [bash.stderr]
-    [bash.stdout]
-    [bash.synctex.gz]
-    [bash.tex]
-    [bash\_test.tex]
-    [debug.sh]
-    [mydirtree.tex]
-    [shell.sh]
+\begin{forest}
+ file tree,
+  [tree
+    [bash.exitCode, file]
+    [bash.pdf, file]
+    [bash.sh, file]
+    [bash.stderr, file]
+    [bash.stdout, file]
+    [bash.synctex.gz, file]
+    [bash.tex, file]
+    [bash.tmp, file]
+    [bash\_test.tex, file]
+    [include\_this
+      [include\_this.tex, file]
+    ]
+    [mydirtree.tex, file]
+    [shell.sh, file]
   ]
 \end{forest}
