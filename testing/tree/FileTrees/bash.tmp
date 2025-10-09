@@ -1,6 +1,9 @@
 \begin{forest}
  file tree,
-  [tree
+  [./
+    [FileTrees
+      [bash.tmp, file]
+    ]
     [bash.exitCode, file]
     [bash.pdf, file]
     [bash.sh, file]

@@ -3,7 +3,7 @@
     # Source: https://stackoverflow.com/a/1371283/31298396
 PWD_name=${PWD##*/}
 PWD_name=${PWD_name:-/}
-`# Generate the file tree` \
+`# Generate the file tree for the directory $1` \
     `# Source: https://tex.stackexchange.com/q/515582/383565` \
 tree \
     `# Exclude the folder "some_folder", "another_folder", all files starting with "ignore_this", and all files with extension .log, .out, etc` \
@@ -12,6 +12,8 @@ tree \
     -X \
     `# Turn off file/directory count at end of tree listing.` \
     --noreport \
+    `# The directory $1` \
+    $1 \
 `# Pass the output of tree to the input of sed` \
 | \
 `# Text manipulation, for us to convert the XML output format to a TikZ forest one. The option "-e [command]" adds [command] to the list of commands that sed executes. ` \
@@ -49,4 +51,9 @@ sed \
     `# Delete any string that starts with "<?xml version"` \
     -e '/^<?xml version/d' \
     `# Replace the character "_" by its escaped LaTeX counterpart "\_".` \
-    -e 's/_/\\_/g'
+    -e 's/_/\\_/g' \
+    `# Pass the output of sed to the input of install` \
+    | \
+    `# Create the directory FileTrees and the file tree_$2. if necessary. Then, write the output of sed to tree_$2.` \
+        `# Source: https://stackoverflow.com/a/21053077/31298396` \
+    install -D /dev/stdin FileTrees/bash.tmp
