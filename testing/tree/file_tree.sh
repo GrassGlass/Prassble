@@ -1,13 +1,15 @@
 #!/bin/bash
-# Store the name of the PWD as $PWD_name
+# Store the name of the target directory as $directory_name
     # Source: https://stackoverflow.com/a/1371283/31298396
-PWD_name=${PWD##*/}
-PWD_name=${PWD_name:-/}
+directory_name=$(basename "$(realpath "$1")")
+# Escape $1 
+    # Source: https://stackoverflow.com/a/29613573/31298396
+directory_path_escaped=$(sed 's/[^^]/[&]/g; s/\^/\\^/g' <<< "$1") # escape it.
 `# Generate the file tree for the directory $1` \
     `# Source: https://tex.stackexchange.com/q/515582/383565` \
 tree \
     `# Exclude the folder "some_folder", "another_folder", all files starting with "ignore_this", and all files with extension .log, .out, etc` \
-    -I 'some_folder|another_folder|minted|ignore_this*|*.log|*.out|*.synctex(busy)|*.listing|*.pre|*.aux|*.auxlock|*.toc|*.config.minted' \
+    -I 'FileTrees*|_minted*|ignore_this*|*.log|*.out|*.tmp|*.synctex(busy)|*.listing|*.pre|*.aux|*.auxlock|*.toc|*.config.minted' \
     `# Print out an XML representation of the tree.` \
     -X \
     `# Turn off file/directory count at end of tree listing.` \
@@ -19,8 +21,10 @@ tree \
 `# Text manipulation, for us to convert the XML output format to a TikZ forest one. The option "-e [command]" adds [command] to the list of commands that sed executes. ` \
     `# syntax of the s command: 's/regexp/replacement/flags'` \
 sed \
-    `# Replace "<directory name=".">" by "<directory name=#PWD_name>"` \
-    -e "s/<directory name=\".\">/<directory name=\"$PWD_name\">/" \
+    `# Replace "<directory name=".">" by "<directory name=#directory_name>"` \
+    -e "s/<directory name=\".\">/<directory name=\"$directory_name\">/" \
+    `# Replace "<directory name="$1">" by "<directory name=#directory_name>"` \
+    -e "s/<directory name=\"$directory_path_escaped\">/<directory name=\"$directory_name\">/" \
     `# Replace "<tree>" by "\begin{forest}for tree={folder,grow\'=0}/"` \
     -e "s/<tree>/\\\begin{forest}\n file tree,/" \
     `# Replace "</tree>" by "\end{forest}"` \

@@ -1,4 +1,5 @@
-\documentclass{article}
+\documentclass{book}
+% \input{../../preamble/preamble.tex}
 \usepackage[edges]{forest}
 \definecolor{folderbg}{RGB}{124,166,198}
 \definecolor{folderborder}{RGB}{110,144,169}
@@ -58,13 +59,37 @@
 \begin{document}
 Hi
 \ExplSyntaxOn
-\int_new:N \g__Prassble_FileTree_current_tree_number_int
-\NewDocumentCommand{\FileTree}{ m }{
-  \int_incr:N \g__Prassble_FileTree_current_tree_number_int
-  \sys_shell_now:e {
-    bash~file_tree.sh~#1~1}
-} 
+  \int_new:N \g__Prassble_filetree_current_tree_number_int
+  \tl_new:N \g_Prassble_filetree_file_path_tl
+  \tl_new:N \g_Prassble_filetree_full_shell_input_tl
+  \NewDocumentCommand{\filetree}{ m }{
+    \int_incr:N \g__Prassble_filetree_current_tree_number_int
+    \tl_set:Ne \g_Prassble_filetree_file_path_tl {
+      \tl_if_empty:nTF { #1 }
+        { '' }
+        { #1 }
+    }
+    \sys_shell_now:e {bash~file_tree.sh~\tl_if_empty:eTF { \g_Prassble_filetree_file_path_tl } { '' } { \g_Prassble_filetree_file_path_tl }~\int_use:N \g__Prassble_filetree_current_tree_number_int}
+    \input{FileTrees/tree_\int_use:N \g__Prassble_filetree_current_tree_number_int.tmp}
+  } 
+
+% \makeatletter
+%   \NewDocumentCommand{\FileTree}{ s O{} m }{
+%     \__Prassble_Input@core:nnnn { #1 } { #2 } { #3 } { \filetree }
+%   }
+% \makeatother
 \ExplSyntaxOff
-\FileTree{./}
+\begin{center}
+  \filetree{some_folder}
+  \filetree{../tree}
+  \filetree{../../preamble/commands/modified_commands/../../../}
+\end{center}
+% Here: \CurrentFilePath\\
+% \ExplSyntaxOn
+% \tl_use:N \g_Prassble_path_to_Prassble_folder_tl
+% \ExplSyntaxOff
+% \begin{center}
+%   \FileTree*{}
+% \end{center}
 
 \end{document}

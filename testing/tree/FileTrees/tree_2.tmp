@@ -1,22 +1,20 @@
 \begin{forest}
  file tree,
-  [./
-    [FileTrees
-      [bash.tmp, file]
-    ]
-    [bash.exitCode, file]
+  [tree
+    [another\_folder]
+    [basename, file]
     [bash.pdf, file]
-    [bash.sh, file]
-    [bash.stderr, file]
-    [bash.stdout, file]
     [bash.synctex.gz, file]
     [bash.tex, file]
     [bash\_test.tex, file]
     [file\_tree.sh, file]
     [include\_this
+      [folder1]
       [include\_this.tex, file]
     ]
     [mydirtree.tex, file]
-    [tst.tmp, file]
+    [some\_folder
+      [tmp.tex, file]
+    ]
   ]
 \end{forest}
