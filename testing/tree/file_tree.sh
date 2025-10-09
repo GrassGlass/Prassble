@@ -56,4 +56,4 @@ sed \
     | \
     `# Create the directory FileTrees and the file tree_$2. if necessary. Then, write the output of sed to tree_$2.` \
         `# Source: https://stackoverflow.com/a/21053077/31298396` \
-    install -D /dev/stdin FileTrees/bash.tmp
+    install -D /dev/stdin FileTrees/tree_$2.tmp
