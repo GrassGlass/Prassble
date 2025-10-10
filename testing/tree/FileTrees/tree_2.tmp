@@ -1,20 +1,21 @@
 \begin{forest}
  file tree,
-  [tree
-    [another\_folder]
-    [basename, file]
-    [bash.pdf, file]
-    [bash.synctex.gz, file]
-    [bash.tex, file]
-    [bash\_test.tex, file]
-    [file\_tree.sh, file]
-    [include\_this
-      [folder1]
-      [include\_this.tex, file]
+  [{tree}
+    [{a\_folder\_with\_'\_and\_"\_yes}, file]
+    [{another\_folder}]
+    [{basename}, file]
+    [{bash.pdf}, file]
+    [{bash.synctex.gz}, file]
+    [{bash.tex}, file]
+    [{bash\_test.tex}, file]
+    [{file\_tree.sh}, file]
+    [{include\_this}
+      [{folder1}]
+      [{include\_this.tex}, file]
     ]
-    [mydirtree.tex, file]
-    [some\_folder
-      [tmp.tex, file]
+    [{mydirtree.tex}, file]
+    [{some\_folder}
+      [{tmp.tex}, file]
     ]
   ]
 \end{forest}

@@ -1,6 +1,6 @@
 \begin{forest}
  file tree,
-  [some\_folder
-    [tmp.tex, file]
+  [{some\_folder}
+    [{tmp.tex}, file]
   ]
 \end{forest}

@@ -23,8 +23,10 @@ tree \
 sed \
     `# Replace "<directory name=".">" by "<directory name=#directory_name>"` \
     -e "s/<directory name=\".\">/<directory name=\"$directory_name\">/" \
-    `# Replace "<directory name="$1">" by "<directory name=#directory_name>"` \
+    `# Replace "<directory name="$1">" by "<directory name=$directory_name>"` \
     -e "s/<directory name=\"$directory_path_escaped\">/<directory name=\"$directory_name\">/" \
+    `# Replace "<name>" by "{<name>}" for robustness --- this allows square brackets to be used in directory/file names.` \
+    -e 's/\"\(.*\)\"/\"{\1}\"/' \
     `# Replace "<tree>" by "\begin{forest}for tree={folder,grow\'=0}/"` \
     -e "s/<tree>/\\\begin{forest}\n file tree,/" \
     `# Replace "</tree>" by "\end{forest}"` \
@@ -54,8 +56,17 @@ sed \
     -e 's/<\/file>/, file]/' \
     `# Delete any string that starts with "<?xml version"` \
     -e '/^<?xml version/d' \
-    `# Replace the character "_" by its escaped LaTeX counterpart "\_".` \
+    `# Character replacement to ensure the correct file names are generated.` \
+    `# Replace &quot; (which is produced by passing " into sed) by an actual double-quotation mark.` \
+    -e 's/&quot;/\"/g' \
+    `# Replace characters by their escaped LaTeX counterparts, where necessary.` \
+    -e 's/\$/\\$/g' \
+    -e 's/&/\\&/g' \
+    -e 's/#/\\#/g' \
     -e 's/_/\\_/g' \
+    -e 's/\^/\\^\{\}/g' \
+    -e 's/@/\\@/g' \
+    -e 's/%/\\%/g' \
     `# Pass the output of sed to the input of install` \
     | \
     `# Create the directory FileTrees and the file tree_$2. if necessary. Then, write the output of sed to tree_$2.` \
