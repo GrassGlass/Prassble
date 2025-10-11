@@ -18,8 +18,10 @@
                 "eamodio.gitlens",
                 // // Julia
                 // "julialang.language-julia",
+                // Bash
+                "mads-hartmann.bash-ide-vscode",
                 // Others
-                "aaron-bond.better-comments"
+                "aaron-bond.better-comments",
             ]
         }
     },

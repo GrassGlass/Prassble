@@ -8,7 +8,14 @@ FROM texlive/texlive:latest
 
 # Install Git-LFS to ensure Git source control works 
 RUN <<EOF
-apt-get update
+apt-get update && apt-get upgrade
 apt-get install sudo
 sudo apt-get install git-lfs
+EOF
+
+# Extension Bash IDE: prerequisites
+RUN <<EOF
+apt install shellcheck
+apt install -y golang
+go install mvdan.cc/sh/v3/cmd/shfmt@latest
 EOF
