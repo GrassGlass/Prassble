@@ -1,6 +1,9 @@
 \begin{forest}
  file tree,
   [{tree}
+    [{a\_file\_with\_[}, file]
+    [{a\_file\_with\_]}, file]
+    [{a\_file\_with\_][\_[\_]\_[[[}, file]
     [{a\_folder\_with\_'\_and\_"\_yes}, file]
     [{another\_folder}]
     [{basename}, file]
