@@ -1,9 +1,13 @@
 \begin{forest}
  file tree,
   [{tree}
+    [{\$\&\#{\textbackslash} {\textbar}\_*{\textasciicircum}\@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}, file]
     [{a\_file\_with\_[}, file]
     [{a\_file\_with\_]}, file]
     [{a\_file\_with\_][\_[\_]\_[[[}, file]
+    [{a\_file\_with\_\{}, file]
+    [{a\_file\_with\_\}}, file]
+    [{a\_file\_with\_\}\{\_\{\_\}\_\{\{\{}, file]
     [{a\_folder\_with\_'\_and\_"\_yes}, file]
     [{another\_folder}]
     [{basename}, file]
@@ -11,6 +15,10 @@
     [{bash.synctex.gz}, file]
     [{bash.tex}, file]
     [{bash\_test.tex}, file]
+    [{cursed\_names}
+      ["	
+">, file]
+    ]
     [{file\_tree.sh}, file]
     [{include\_this}
       [{folder1}]

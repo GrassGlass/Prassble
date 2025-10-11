@@ -25,8 +25,13 @@ sed \
     -e "s/<directory name=\".\">/<directory name=\"$directory_name\">/" \
     `# Replace "<directory name="$1">" by "<directory name=$directory_name>"` \
     -e "s/<directory name=\"$directory_path_escaped\">/<directory name=\"$directory_name\">/" \
-    `# Replace "<name>" by "{<name>}" for robustness --- this allows square brackets to be used in directory/file names.` \
-    -e 's/\"\(.*\)\"/\"{\1}\"/' \
+    `# LaTeX-escape backslashes` \
+    -e 's/\\/\\textbackslash/g' \
+    `# Replace curly braces in directory/file names by their LaTeX-escaped variants.` \
+    -e 's/{/\\{/g' \
+    -e 's/}/\\}/g' \
+    `# (cont.) LaTeX-escape backslashes` \
+    -e 's/\\textbackslash/{\\textbackslash}/g' \
     `# Replace "<tree>" by "\begin{forest}for tree={folder,grow\'=0}/"` \
     -e "s/<tree>/\\\begin{forest}\n file tree,/" \
     `# Replace "</tree>" by "\end{forest}"` \
@@ -44,12 +49,14 @@ sed \
             `# <string>*: any string that starts with <string>` \
         `# Breakdown` \
             `# \": a double-quote character` \
-            `# [^\"]: any character that is not a double-quote character` \
-            `# [^\"]*: any string that does not start with a double-quote character` \
-            `# \([^\"]*\): same as before` \
-            `# \"\([^\"]*\)\">: any <string> of the form <string> = "<substring>">, where <substring> (which is just \1) does not contain any double-quote character. ` \
-            `# "\([^\"]*\)\">/\1: replace any <string> --- of the form <string> = "<substring>">>, where <substring> (which is just \1) does not contain any double-quote character --- by \1 = <substring>` \
-    -e 's/\"\([^\"]*\)\">/\1/' \
+            `# [^"]: any character that is not a double-quote character` \
+            `# [^"]*: any string that does not start with a double-quote character` \
+            `# \([^"]*\): same as before` \
+            `# \"\([^"]*\)\">: any <string> of the form <string> = "<substring>">, where <substring> (which is just \1) does not contain any double-quote character. ` \
+            `# "\([^"]*\)\">/\1: replace any <string> --- of the form <string> = "<substring>">>, where <substring> (which is just \1) does not contain any double-quote character --- by \1 = <substring>` \
+            `# "\([^"]*\)\">/\{\1\}: replace any <string> --- of the form <string> = "<substring>">>, where <substring> (which is just \1) does not contain any double-quote character --- by {\1} = {<substring>}` \
+                `# Replace "<name>" by "{<name>}" for robustness --- this allows square brackets to be used in directory/file names.` \
+    -e 's/\"\([^"]*\)\">/\{\1\}/' \
     `# Replace "</directory> by a closing square bracket "]"` \
     -e 's/<\/directory>/]/' \
     `# Replace "</directory> by a closing square bracket "]"` \
@@ -60,13 +67,20 @@ sed \
     `# Replace &quot; (which is produced by passing " into sed) by an actual double-quotation mark.` \
     -e 's/&quot;/\"/g' \
     `# Replace characters by their escaped LaTeX counterparts, where necessary.` \
+        `# {} and \ have been escaped earlier (for ordering requirements).` \
     -e 's/\$/\\$/g' \
-    -e 's/&/\\&/g' \
+    -e 's/\&amp;/\\\&/g' \
     -e 's/#/\\#/g' \
+    -e 's/[|]/{\\textbar}/g' \
     -e 's/_/\\_/g' \
-    -e 's/\^/\\^\{\}/g' \
+    -e 's/\^/{\\textasciicircum}/g' \
     -e 's/@/\\@/g' \
     -e 's/%/\\%/g' \
+    -e 's/\&lt;/{\\textlangle}/g' \
+    -e 's/\&gt;/{\\textrangle}/g' \
+    -e 's/~/\\textasciitilde/g' \
+    -e 's/+/\\(+\\)/g' \
+    -e 's/=/\\(=\\)/g' \
     `# Pass the output of sed to the input of install` \
     | \
     `# Create the directory FileTrees and the file tree_$2. if necessary. Then, write the output of sed to tree_$2.` \
