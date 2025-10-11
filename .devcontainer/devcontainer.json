@@ -20,13 +20,14 @@
                 // "julialang.language-julia",
                 // Bash
                 "mads-hartmann.bash-ide-vscode",
+                "timonwong.shellcheck",
                 // Others
-                "aaron-bond.better-comments",
+                "aaron-bond.better-comments"
             ]
         }
     },
     "features": {
         // // Julia
         // "ghcr.io/julialang/devcontainer-features/julia:1": {}
-    },
+    }
 }

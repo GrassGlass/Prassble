@@ -15,7 +15,6 @@ EOF
 
 # Extension Bash IDE: prerequisites
 RUN <<EOF
-apt install shellcheck
 apt install -y golang
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 EOF
