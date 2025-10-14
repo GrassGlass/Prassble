@@ -1,0 +1,11 @@
+\documentclass{article}
+\begin{document}
+
+Hi 
+
+\ExplSyntaxOn
+\tl_set:Nn \l_tmpa_tl {./}
+\sys_shell_now:e { bash~hello.sh~\tl_use:N \l_tmpa_tl}
+\ExplSyntaxOff
+
+\end{document}

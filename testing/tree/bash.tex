@@ -59,37 +59,103 @@
 \begin{document}
 Hi
 \ExplSyntaxOn
-  \int_new:N \g__Prassble_filetree_current_tree_number_int
-  \tl_new:N \g_Prassble_filetree_file_path_tl
-  \tl_new:N \g_Prassble_filetree_full_shell_input_tl
-  \NewDocumentCommand{\filetree}{ m }{
-    \int_incr:N \g__Prassble_filetree_current_tree_number_int
-    \tl_set:Ne \g_Prassble_filetree_file_path_tl {
-      \tl_if_empty:nTF { #1 }
-        { '' }
-        { #1 }
+  \tl_new:N \g__Prassble_filetree_i_tl
+  \tl_new:N \g__Prassble_filetree_I_only_tl
+  \bool_new:N \g__Prassble_filetree_I_bool
+  \keys_define:nn {Prassble_filetree} {
+    ,i              .tl_set:N = \g__Prassble_filetree_i_tl
+      ,ignore         .meta:n   = { i = #1 }
+
+
+    ,i+             .code:n   = { \tl_put_right:Nn { \g__Prassble_filetree_i_tl } }
+      ,ignore-add     .meta:n   = { i+ = #1 }
+      ,ignore-also    .meta:n   = { i+ = #1 }
+
+
+    ,i-extensions   .code:n   = { 
+      \clist_map_inline:nn { #1 } {
+        % Make sure each item (file extension) of the user's clist is prepended with a dot (if it isn't already there). Save this new clist under \l_tmpa_clist. 
+        \tl_if_eq:nnTF 
+          { \tl_item:nn {##1} {1} } 
+          { . }
+          { \clist_put_right:Nn \l_tmpa_clist { ##1 } }
+          { \clist_put_right:Nn \l_tmpa_clist { .##1 } }
+      }
+      \tl_put_right:Ne \g__Prassble_filetree_i_tl { \clist_use:Nn \l_tmpa_clist { | } }
     }
-    \sys_shell_now:e {bash~file_tree.sh~\tl_if_empty:eTF { \g_Prassble_filetree_file_path_tl } { '' } { \g_Prassble_filetree_file_path_tl }~\int_use:N \g__Prassble_filetree_current_tree_number_int}
-    \input{FileTrees/tree_\int_use:N \g__Prassble_filetree_current_tree_number_int.tmp}
-  } 
+
+
+    ,i-match-name   .code:n   = {
+      \tl_put_right:Ne \g__Prassble_filetree_i_tl { \clist_use:nn { #1 } { | } }
+    }
+      ,i-folders      .meta:n   = { i-match-name = #1 }
+      ,i-files        .meta:n   = { i-match-name = #1 }
+
+
+    ,i-clear        .code:n   = { \tl_clear:N \g__Prassble_filetree_i_tl }
+
+    ,I              .code:n   = {
+      \bool_set_true:N \g__Prassble_filetree_I_bool
+      \tl_set:Nn \g__Prassble_filetree_I_only_tl {#1}
+    }
+      ,Ignore         .meta:n   = { I = #1 }
+      ,Ignore-only    .meta:n   = { I = #1 }
+      ,I-only         .meta:n   = { I = #1 }
+    ,I-clear        .code:n   = { \tl_clear:N \g__Prassble_filetree_I_only_tl }
+  }
+
+  \int_new:N \g__Prassble_filetree_current_tree_number_int
+  \tl_new:N \g__Prassble_filetree_file_path_tl
+  \tl_new:N \g__Prassble_filetree_final_i_tl
+  \tl_new:N \g__Prassble_filetree_final_I_tl
+    \msg_new:nnn {Prassble_filetree} {shell_escape_is_disabled} {(\msg_line_context:)~Unrestricted~shell~escape~is~disabled.~Using~cached~files,~if~they~exist.}
+  \msg_new:nnn {Prassble_filetree} {missing_file_tree_.tex} {The~file~#1~is~not~found~\msg_line_context:;~compile~with~unrestricted~shell~escape~to~generate~it.}
+  \NewDocumentCommand{\filetree}{ O{} m }{
+    \int_incr:N \g__Prassble_filetree_current_tree_number_int
+    \group_begin:
+      \keys_set:nn { Prassble_filetree } { #1 }
+      \tl_if_empty:NF \g__Prassble_filetree_i_tl {
+        \tl_set:Nn \g__Prassble_filetree_final_i_tl { -i~"\g__Prassble_filetree_i_tl" }
+      }
+      \bool_if:NT \g__Prassble_filetree_I_bool {
+        \tl_set:Nn \g__Prassble_filetree_final_I_tl { -I~"\g__Prassble_filetree_I_only_tl"}
+      }
+      \tl_set:Ne \g__Prassble_filetree_file_path_tl {
+        \tl_if_empty:nTF { #2 }
+          { ./ }
+          { #2 }
+      }
+      \sys_shell_now:e {bash~file_tree.sh~\tl_if_empty:NF \g__Prassble_filetree_final_i_tl { \tl_use:N \tl_use:N \g__Prassble_filetree_final_i_tl }~\tl_if_empty:NF \g__Prassble_filetree_final_I_tl { \tl_use:N \tl_use:N \g__Prassble_filetree_final_I_tl }~\tl_if_empty:NF \g__Prassble_filetree_file_path_tl { \tl_use:N \g__Prassble_filetree_file_path_tl }~\int_use:N \g__Prassble_filetree_current_tree_number_int}
+        % The \tl_if_empty:NTF shouldn't be necessary:
+          % \sys_shell_now:e {bash~file_tree.sh~\tl_use:N \g__Prassble_filetree_file_path_tl~\int_use:N \g__Prassble_filetree_current_tree_number_int}
+        % should work. But it doesn't... (???)
+    \group_end:
+    \input{FileTrees/tree_\int_use:N \g__Prassble_filetree_current_tree_number_int.tex}
+  }
 
 % \makeatletter
-%   \NewDocumentCommand{\FileTree}{ s O{} m }{
-%     \__Prassble_Input@core:nnnn { #1 } { #2 } { #3 } { \filetree }
-%   }
+  % \tl_new:N \l__Prassble_FileTree_full_path_tl
+  % \NewDocumentCommand{\FileTree}{ s O{} m }{
+  %   \__Prassble_Input@core:nnnn { #1 } { #2 } { #3 } { \tl_set:Ne \l__Prassble_FileTree_full_path_tl }
+  %   \filetree{\l__Prassble_FileTree_full_path_tl}
+  % }
 % \makeatother
 \ExplSyntaxOff
 \begin{center}
   \filetree{some_folder}
   \filetree{../tree}
+  \filetree[i=folder]{}
   \filetree{../../preamble/commands/modified_commands/../../../}
 \end{center}
-% Here: \CurrentFilePath\\
-% \ExplSyntaxOn
-% \tl_use:N \g_Prassble_path_to_Prassble_folder_tl
-% \ExplSyntaxOff
+\newpage
+\begin{center}
+  \filetree[I=]{./}
+  \filetree{}
+\end{center}
+\newpage
+Here: \CurrentFilePath\\
 % \begin{center}
-%   \FileTree*{}
+%   \FileTree{testing/tree}
 % \end{center}
 \newpage
 

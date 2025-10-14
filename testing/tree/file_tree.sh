@@ -1,4 +1,37 @@
 #!/bin/bash
+# Flags
+    # Source: https://stackoverflow.com/a/7948533/31298396
+TEMP=$(getopt -o i:I: \
+              --long ignore:,ignore-add:,ignore-also:,Ignore:,Ignore-only: \
+              -n 'file_tree' -- "$@")
+
+if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 1 ; fi
+
+# Note the quotes around '$TEMP': they are essential!
+eval set -- "$TEMP"
+
+IGNORE_DEFAULT="FileTrees|_minted|ignore_this*|*.log|*.out|*.tmp|*.synctex(busy)|*.synctex.gz|*.listing|*.pre|*.aux|*.auxlock|*.toc|*.config.minted"
+IGNORE_ALSO=
+while true; do
+  case "$1" in
+    -i | --ignore | --ignore-add | --ignore-also ) IGNORE_ALSO="$2"; shift 2 ;;
+    -I | --Ignore | --Ignore-only ) IGNORE_ONLY="$2"; shift 2 ;;
+    -- ) shift; break ;;
+    * ) break ;;
+  esac
+done
+
+# If $IGNORE_ONLY is undefined, set $IGNORE = $IGNORE_DEFAULT|$IGNORE_ALSO. Or if, simultaneously, $IGNORE_ALSO is empty, set $IGNORE = $IGNORE_DEFAULT (no vertical bar).
+if [ -z ${IGNORE_ONLY+x} ]; \
+  then \
+    if [ -z "${IGNORE_ALSO}" ]; \
+      then IGNORE="$IGNORE_DEFAULT"; \
+      else IGNORE="$IGNORE_DEFAULT|$IGNORE_ALSO";\
+    fi \
+  # If $IGNORE_ONLY is defined, set $IGNORE = $IGNORE_ONLY
+  else IGNORE="$IGNORE_ONLY"; \
+fi
+
 # Store the name of the target directory as $directory_name
     # Source: https://stackoverflow.com/a/1371283/31298396
 directory_name=$(basename "$(realpath "$1")")
@@ -9,7 +42,7 @@ directory_path_escaped=$(sed 's/[^^]/[&]/g; s/\^/\\^/g' <<< "$1") # escape it.
     `# Source: https://tex.stackexchange.com/q/515582/383565` \
 tree \
     `# Exclude the folder "some_folder", "another_folder", all files starting with "ignore_this", and all files with extension .log, .out, etc` \
-    -I 'FileTrees*|_minted*|ignore_this*|*.log|*.out|*.tmp|*.synctex(busy)|*.listing|*.pre|*.aux|*.auxlock|*.toc|*.config.minted' \
+    -I "$IGNORE" \
     `# Print out an XML representation of the tree.` \
     -X \
     `# Turn off file/directory count at end of tree listing.` \
@@ -85,4 +118,4 @@ sed \
     | \
     `# Create the directory FileTrees and the file tree_$2. if necessary. Then, write the output of sed to tree_$2.` \
         `# Source: https://stackoverflow.com/a/21053077/31298396` \
-    install -D /dev/stdin FileTrees/tree_$2.tmp
+    install -D /dev/stdin FileTrees/tree_$2.tex

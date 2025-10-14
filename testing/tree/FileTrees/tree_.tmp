@@ -1,5 +1,0 @@
-\begin{forest}
- file tree,
-  [folder1
-  ]
-\end{forest}
