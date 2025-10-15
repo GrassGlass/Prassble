@@ -1,7 +1,7 @@
 #!/bin/bash
 # Flags
     # Source: https://stackoverflow.com/a/7948533/31298396
-TEMP=$(getopt -o i:I: \
+TEMP=$(getopt -o i:I:O: \
               --long ignore:,ignore-add:,ignore-also:,Ignore:,Ignore-only: \
               -n 'file_tree' -- "$@")
 
@@ -16,6 +16,7 @@ while true; do
   case "$1" in
     -i | --ignore | --ignore-add | --ignore-also ) IGNORE_ALSO="$2"; shift 2 ;;
     -I | --Ignore | --Ignore-only ) IGNORE_ONLY="$2"; shift 2 ;;
+    -O ) OUTPUT_TO="$2"; shift 2 ;;
     -- ) shift; break ;;
     * ) break ;;
   esac
@@ -30,6 +31,11 @@ if [ -z ${IGNORE_ONLY+x} ]; \
     fi \
   # If $IGNORE_ONLY is defined, set $IGNORE = $IGNORE_ONLY
   else IGNORE="$IGNORE_ONLY"; \
+fi
+
+# If $OUTPUT_TO is empty, set $OUTPUT_TO = "filetree.tmp". Otherwise, use its current value.
+if [ -z "${OUTPUT_TO}" ]; \
+    then OUTPUT_TO="filetree.tmp";\
 fi
 
 # Store the name of the target directory as $directory_name
@@ -118,4 +124,4 @@ sed \
     | \
     `# Create the directory FileTrees and the file tree_$2. if necessary. Then, write the output of sed to tree_$2.` \
         `# Source: https://stackoverflow.com/a/21053077/31298396` \
-    install -D /dev/stdin FileTrees/tree_$2.tex
+    install -D /dev/stdin "$OUTPUT_TO"

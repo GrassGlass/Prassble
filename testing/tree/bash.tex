@@ -59,15 +59,23 @@
 \begin{document}
 Hi
 \ExplSyntaxOn
-  \tl_new:N \g__Prassble_filetree_i_tl
-  \tl_new:N \g__Prassble_filetree_I_only_tl
+  \str_new:N \g__Prassble_filetree_i_str
+  \str_new:N \g__Prassble_filetree_I_only_str
+  \str_new:N \g__Prassble_filetree_file_path_str
+  \str_new:N \g__Prassble_filetree_final_i_str
+  \str_new:N \g__Prassble_filetree_final_I_str
+  \str_new:N \g__Prassble_filetree_Output_To_str
+  \str_new:N \g__Prassble_filetree_final_Output_To_str
+  \int_new:N \g__Prassble_filetree_current_tree_number_int
   \bool_new:N \g__Prassble_filetree_I_bool
+    \msg_new:nnn {Prassble_filetree} {shell_escape_is_disabled} {(\msg_line_context:)~Unrestricted~shell~escape~is~disabled.~Using~cached~files,~if~they~exist.}
+  \msg_new:nnn {Prassble_filetree} {missing_file_tree_.tex} {The~file~#1~is~not~found~\msg_line_context:;~compile~with~unrestricted~shell~escape~to~generate~it.}
   \keys_define:nn {Prassble_filetree} {
-    ,i              .tl_set:N = \g__Prassble_filetree_i_tl
+    ,i              .str_set:N = \g__Prassble_filetree_i_str
       ,ignore         .meta:n   = { i = #1 }
 
 
-    ,i+             .code:n   = { \tl_put_right:Nn { \g__Prassble_filetree_i_tl } }
+    ,i+             .code:n   = { \str_put_right:Nn { \g__Prassble_filetree_i_str } }
       ,ignore-add     .meta:n   = { i+ = #1 }
       ,ignore-also    .meta:n   = { i+ = #1 }
 
@@ -75,69 +83,78 @@ Hi
     ,i-extensions   .code:n   = { 
       \clist_map_inline:nn { #1 } {
         % Make sure each item (file extension) of the user's clist is prepended with a dot (if it isn't already there). Save this new clist under \l_tmpa_clist. 
-        \tl_if_eq:nnTF 
-          { \tl_item:nn {##1} {1} } 
+        \str_if_eq:nnTF 
+          { \str_item:nn {##1} {1} } 
           { . }
           { \clist_put_right:Nn \l_tmpa_clist { ##1 } }
           { \clist_put_right:Nn \l_tmpa_clist { .##1 } }
       }
-      \tl_put_right:Ne \g__Prassble_filetree_i_tl { \clist_use:Nn \l_tmpa_clist { | } }
+      \str_put_right:Ne \g__Prassble_filetree_i_str { \clist_use:Nn \l_tmpa_clist { | } }
     }
 
 
     ,i-match-name   .code:n   = {
-      \tl_put_right:Ne \g__Prassble_filetree_i_tl { \clist_use:nn { #1 } { | } }
+      \str_put_right:Ne \g__Prassble_filetree_i_str { \clist_use:nn { #1 } { | } }
     }
       ,i-folders      .meta:n   = { i-match-name = #1 }
       ,i-files        .meta:n   = { i-match-name = #1 }
 
 
-    ,i-clear        .code:n   = { \tl_clear:N \g__Prassble_filetree_i_tl }
+    ,i-clear        .code:n   = { \str_clear:N \g__Prassble_filetree_i_str }
 
     ,I              .code:n   = {
       \bool_set_true:N \g__Prassble_filetree_I_bool
-      \tl_set:Nn \g__Prassble_filetree_I_only_tl {#1}
+      \str_set:Nn \g__Prassble_filetree_I_only_str {#1}
     }
       ,Ignore         .meta:n   = { I = #1 }
       ,Ignore-only    .meta:n   = { I = #1 }
       ,I-only         .meta:n   = { I = #1 }
-    ,I-clear        .code:n   = { \tl_clear:N \g__Prassble_filetree_I_only_tl }
-  }
+    ,I-clear        .code:n   = { \str_clear:N \g__Prassble_filetree_I_only_str }
 
-  \int_new:N \g__Prassble_filetree_current_tree_number_int
-  \tl_new:N \g__Prassble_filetree_file_path_tl
-  \tl_new:N \g__Prassble_filetree_final_i_tl
-  \tl_new:N \g__Prassble_filetree_final_I_tl
-    \msg_new:nnn {Prassble_filetree} {shell_escape_is_disabled} {(\msg_line_context:)~Unrestricted~shell~escape~is~disabled.~Using~cached~files,~if~they~exist.}
-  \msg_new:nnn {Prassble_filetree} {missing_file_tree_.tex} {The~file~#1~is~not~found~\msg_line_context:;~compile~with~unrestricted~shell~escape~to~generate~it.}
+    
+    ,O              .str_set:N   = \g__Prassble_filetree_Output_To_str
+      ,output-to      .meta:n   = { O = #1 }
+      ,output-To      .meta:n   = { O = #1 }
+      ,Output-to      .meta:n   = { O = #1 }
+      ,Output-To      .meta:n   = { O = #1 }
+  }
+  
   \NewDocumentCommand{\filetree}{ O{} m }{
+  % Step the counter for the file tree number
     \int_incr:N \g__Prassble_filetree_current_tree_number_int
+  % Default output location
+    \str_set:Ne \g__Prassble_filetree_Output_To_str {FileTrees/tree_\int_use:N \g__Prassble_filetree_current_tree_number_int.tex}
     \group_begin:
       \keys_set:nn { Prassble_filetree } { #1 }
-      \tl_if_empty:NF \g__Prassble_filetree_i_tl {
-        \tl_set:Nn \g__Prassble_filetree_final_i_tl { -i~"\g__Prassble_filetree_i_tl" }
-      }
-      \bool_if:NT \g__Prassble_filetree_I_bool {
-        \tl_set:Nn \g__Prassble_filetree_final_I_tl { -I~"\g__Prassble_filetree_I_only_tl"}
-      }
-      \tl_set:Ne \g__Prassble_filetree_file_path_tl {
-        \tl_if_empty:nTF { #2 }
+      % Final flag processing before parsing to file_tree.sh
+        % -i
+        \str_if_empty:NF \g__Prassble_filetree_i_str {
+          \str_set:Nn \g__Prassble_filetree_final_i_str { -i~"\g__Prassble_filetree_i_str" }
+        }
+      % -I
+        \bool_if:NT \g__Prassble_filetree_I_bool {
+          \str_set:Nn \g__Prassble_filetree_final_I_str { -I~"\g__Prassble_filetree_I_only_str"}
+        }
+      % -O
+        \str_if_empty:NF \g__Prassble_filetree_Output_To_str {
+          \str_set:Ne \g__Prassble_filetree_final_Output_To_str { -O~"\g__Prassble_filetree_Output_To_str" }
+        }
+        
+      \str_set:Ne \g__Prassble_filetree_file_path_str {
+        \str_if_empty:nTF { #2 }
           { ./ }
           { #2 }
       }
-      \sys_shell_now:e {bash~file_tree.sh~\tl_if_empty:NF \g__Prassble_filetree_final_i_tl { \tl_use:N \tl_use:N \g__Prassble_filetree_final_i_tl }~\tl_if_empty:NF \g__Prassble_filetree_final_I_tl { \tl_use:N \tl_use:N \g__Prassble_filetree_final_I_tl }~\tl_if_empty:NF \g__Prassble_filetree_file_path_tl { \tl_use:N \g__Prassble_filetree_file_path_tl }~\int_use:N \g__Prassble_filetree_current_tree_number_int}
-        % The \tl_if_empty:NTF shouldn't be necessary:
-          % \sys_shell_now:e {bash~file_tree.sh~\tl_use:N \g__Prassble_filetree_file_path_tl~\int_use:N \g__Prassble_filetree_current_tree_number_int}
-        % should work. But it doesn't... (???)
+      \sys_shell_now:e {bash~file_tree.sh\space\str_use:N \g__Prassble_filetree_final_i_str\space\str_use:N \g__Prassble_filetree_final_I_str\space\str_use:N \g__Prassble_filetree_final_Output_To_str\space\str_use:N \g__Prassble_filetree_file_path_str}
     \group_end:
     \input{FileTrees/tree_\int_use:N \g__Prassble_filetree_current_tree_number_int.tex}
   }
 
-% \makeatletter
-  % \tl_new:N \l__Prassble_FileTree_full_path_tl
+% \makeastretter
+  % \str_new:N \l__Prassble_FileTree_full_path_str
   % \NewDocumentCommand{\FileTree}{ s O{} m }{
-  %   \__Prassble_Input@core:nnnn { #1 } { #2 } { #3 } { \tl_set:Ne \l__Prassble_FileTree_full_path_tl }
-  %   \filetree{\l__Prassble_FileTree_full_path_tl}
+  %   \__Prassble_Input@core:nnnn { #1 } { #2 } { #3 } { \str_set:Ne \l__Prassble_FileTree_full_path_str }
+  %   \filetree{\l__Prassble_FileTree_full_path_str}
   % }
 % \makeatother
 \ExplSyntaxOff
@@ -153,7 +170,7 @@ Hi
   \filetree{}
 \end{center}
 \newpage
-Here: \CurrentFilePath\\
+% Here: \CurrentFilePath\\
 % \begin{center}
 %   \FileTree{testing/tree}
 % \end{center}
