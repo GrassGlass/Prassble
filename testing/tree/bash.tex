@@ -67,6 +67,7 @@ Hi
   \str_new:N \g__Prassble_filetree_Output_To_str
   \str_new:N \g__Prassble_filetree_final_Output_To_str
   \str_new:N \g__Prassble_filetree_sys_shell_now_str
+  \str_new:N \g__Prassble_FileTree_pathkey_str
   \int_new:N \g__Prassble_filetree_current_tree_number_int
   \bool_new:N \g__Prassble_filetree_I_bool
     \msg_new:nnn {Prassble_filetree} {shell_escape_is_disabled} {(\msg_line_context:)~Unrestricted~shell~escape~is~disabled.~Using~cached~files,~if~they~exist.}
@@ -118,6 +119,8 @@ Hi
       ,output-To      .meta:n   = { O = #1 }
       ,Output-to      .meta:n   = { O = #1 }
       ,Output-To      .meta:n   = { O = #1 }
+
+    ,pathkey        .str_set:N   = \g__Prassble_FileTree_pathkey_str
   }
   
   \NewDocumentCommand{\filetree}{ O{} m }{
@@ -142,8 +145,9 @@ Hi
         }
       
     % File path parsed to file_tree.sh
+      \str_set:Ne \l_tmpa_str {#2}
       \str_set:Ne \g__Prassble_filetree_file_path_str {
-        \str_if_empty:nTF { #2 }
+        \str_if_empty:NTF \l_tmpa_str
           { ./ }
           { #2 }
       }
@@ -171,13 +175,17 @@ Hi
     \group_end:
   }
 
-% \makeatletter
-  % \str_new:N \l__Prassble_FileTree_full_path_str
-  % \NewDocumentCommand{\FileTree}{ s O{} m }{
-  %   \__Prassble_Input@core:nnnn { #1 } { #2 } { #3 } { \str_set:Ne \l__Prassble_FileTree_full_path_str }
-  %   \filetree{\l__Prassble_FileTree_full_path_str}
-  % }
-% \makeatother
+\makeatletter
+  \str_new:N \l__Prassble_FileTree_full_path_str
+  \NewDocumentCommand{\FileTree}{ s O{} m }{
+    \seq_clear:N \l_tmpa_seq 
+    \seq_gput_right:Ne \l_tmpa_seq {\g__Prassble_FileTree_pathkey_str}
+    \seq_map_inline:Nn \g__Prassble_FileTree_pathkey_str {
+      \__Prassble_Input@core:nnnn { #1 } { ##1 } { #3 } { \str_set:Ne \l__Prassble_FileTree_full_path_str }
+    }
+    \filetree{\l__Prassble_FileTree_full_path_str}
+  }
+\makeatother
 \ExplSyntaxOff
 \begin{center}
   \filetree{some_folder}
@@ -186,15 +194,16 @@ Hi
   \filetree{../../preamble/commands/modified_commands/../../../}
 \end{center}
 \newpage
+This should include all files, be it \verb|.aux|, \verb|.log|, etc.
 \begin{center}
   \filetree[I=]{./}
-  \filetree{}
 \end{center}
 \newpage
-% Here: \CurrentFilePath\\
-% \begin{center}
-%   \FileTree{testing/tree}
-% \end{center}
+Here: \CurrentFilePath\\
+\begin{center}
+  \FileTree{testing/tree}
+  \FileTree*{}
+\end{center}
 \newpage
 
 \end{document}
