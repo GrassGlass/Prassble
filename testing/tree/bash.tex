@@ -139,15 +139,18 @@ Hi
         \str_if_empty:NF \g__Prassble_filetree_Output_To_str {
           \str_set:Ne \g__Prassble_filetree_final_Output_To_str { -O~"\g__Prassble_filetree_Output_To_str" }
         }
-        
+      
+    % File path parsed to file_tree.sh
       \str_set:Ne \g__Prassble_filetree_file_path_str {
         \str_if_empty:nTF { #2 }
           { ./ }
           { #2 }
       }
-      \sys_shell_now:e {bash~file_tree.sh\space\str_use:N \g__Prassble_filetree_final_i_str\space\str_use:N \g__Prassble_filetree_final_I_str\space\str_use:N \g__Prassble_filetree_final_Output_To_str\space\str_use:N \g__Prassble_filetree_file_path_str}
+
+      \sys_shell_now:e {bash~file_tree.sh\space\g__Prassble_filetree_final_i_str\space\g__Prassble_filetree_final_I_str\space\g__Prassble_filetree_final_Output_To_str\space\g__Prassble_filetree_file_path_str}
+
+      \file_input:V \g__Prassble_filetree_Output_To_str
     \group_end:
-    \input{FileTrees/tree_\int_use:N \g__Prassble_filetree_current_tree_number_int.tex}
   }
 
 % \makeastretter
@@ -160,7 +163,7 @@ Hi
 \ExplSyntaxOff
 \begin{center}
   \filetree{some_folder}
-  \filetree{../tree}
+  \filetree[O=FileTrees/OutputGoesHere.tex]{../tree}
   \filetree[i=folder]{}
   \filetree{../../preamble/commands/modified_commands/../../../}
 \end{center}
