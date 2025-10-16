@@ -1,192 +1,15 @@
 \documentclass{book}
-% \input{../../preamble/preamble.tex}
-\usepackage[edges]{forest}
-\definecolor{folderbg}{RGB}{124,166,198}
-\definecolor{folderborder}{RGB}{110,144,169}
-\newlength\Size
-\setlength\Size{4pt}
-\tikzset{%
-  folder/.pic={%
-    \filldraw [draw=folderborder, top color=folderbg!50, bottom color=folderbg] (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);
-    \filldraw [draw=folderborder, top color=folderbg!50, bottom color=folderbg] (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
-  },
-  file/.pic={%
-    \filldraw [draw=folderborder, top color=folderbg!5, bottom color=folderbg!10] (-\Size,.4*\Size+5pt) coordinate (a) |- (\Size,-1.2*\Size) coordinate (b) -- ++(0,1.6*\Size) coordinate (c) -- ++(-4pt,5pt) coordinate (d) -- cycle (d) |- (c) ;
-  },
-}
-\forestset{%
-  declare autowrapped toks={pic me}{},
-  declare boolean register={pic root},
-  pic root=0,
-  pic dir tree/.style={%
-    for tree={%
-      folder,
-      font=\ttfamily,
-      grow'=0,
-    },
-    before typesetting nodes={%
-      for tree={%
-        edge label+/.option={pic me},
-      },
-      if pic root={
-        tikz+={
-          \pic at ([xshift=\Size].west) {folder};
-        },
-        align={l}
-      }{},
-    },
-  },
-  pic me set/.code n args=2{%
-    \forestset{%
-      #1/.style={%
-        inner xsep=2\Size,
-        pic me={pic {#2}},
-      }
+\usepackage{filetree}
+\input{../../preamble/commands/modified_commands/Input_macro.tex}
+\NewDocumentCommand{\FileTree}{ s O{} m }{
+    \seq_clear:N \l_tmpa_seq 
+    \seq_gput_right:Ne \l_tmpa_seq {\g__FileTree_pathkey_str}
+    \seq_map_inline:Nn \g__FileTree_pathkey_str {
+        \__Prassble_Input@core:nnnn { #1 } { ##1 } { #3 } { \str_set:Ne \l__FileTree_full_path_str }
     }
-  },
-  ,file tree/.style = {
-    ,pic me set={directory}{folder}
-    ,pic me set={file}{file}
-    ,pic dir tree
-    ,pic root
-    ,for tree={% folder icons by default; override using file for file icons
-      ,directory
-      ,fit = band
-      ,l sep = 2\Size+2mm
-    }
-  }
+    \filetree{\l__FileTree_full_path_str}
 }
 \begin{document}
-Hi
-\ExplSyntaxOn
-  \str_new:N \g__Prassble_filetree_i_str
-  \str_new:N \g__Prassble_filetree_I_only_str
-  \str_new:N \g__Prassble_filetree_file_path_str
-  \str_new:N \g__Prassble_filetree_final_i_str
-  \str_new:N \g__Prassble_filetree_final_I_str
-  \str_new:N \g__Prassble_filetree_Output_To_str
-  \str_new:N \g__Prassble_filetree_final_Output_To_str
-  \str_new:N \g__Prassble_filetree_sys_shell_now_str
-  \str_new:N \g__Prassble_FileTree_pathkey_str
-  \int_new:N \g__Prassble_filetree_current_tree_number_int
-  \bool_new:N \g__Prassble_filetree_I_bool
-    \msg_new:nnn {Prassble_filetree} {shell_escape_is_disabled} {(\msg_line_context:)~Unrestricted~shell~escape~is~disabled.~Using~cached~files,~if~they~exist.}
-  \msg_new:nnn {Prassble_filetree} {missing_file_tree_.tex} {The~file~#1~is~not~found~\msg_line_context:;~compile~with~unrestricted~shell~escape~to~generate~it.}
-  \keys_define:nn {Prassble_filetree} {
-    ,i              .str_set:N = \g__Prassble_filetree_i_str
-      ,ignore         .meta:n   = { i = #1 }
-
-
-    ,i+             .code:n   = { \str_put_right:Nn { \g__Prassble_filetree_i_str } }
-      ,ignore-add     .meta:n   = { i+ = #1 }
-      ,ignore-also    .meta:n   = { i+ = #1 }
-
-
-    ,i-extensions   .code:n   = { 
-      \clist_map_inline:nn { #1 } {
-        % Make sure each item (file extension) of the user's clist is prepended with a dot (if it isn't already there). Save this new clist under \l_tmpa_clist. 
-        \str_if_eq:nnTF 
-          { \str_item:nn {##1} {1} } 
-          { . }
-          { \clist_put_right:Nn \l_tmpa_clist { ##1 } }
-          { \clist_put_right:Nn \l_tmpa_clist { .##1 } }
-      }
-      \str_put_right:Ne \g__Prassble_filetree_i_str { \clist_use:Nn \l_tmpa_clist { | } }
-    }
-
-
-    ,i-match-name   .code:n   = {
-      \str_put_right:Ne \g__Prassble_filetree_i_str { \clist_use:nn { #1 } { | } }
-    }
-      ,i-folders      .meta:n   = { i-match-name = #1 }
-      ,i-files        .meta:n   = { i-match-name = #1 }
-
-
-    ,i-clear        .code:n   = { \str_clear:N \g__Prassble_filetree_i_str }
-
-    ,I              .code:n   = {
-      \bool_set_true:N \g__Prassble_filetree_I_bool
-      \str_set:Nn \g__Prassble_filetree_I_only_str {#1}
-    }
-      ,Ignore         .meta:n   = { I = #1 }
-      ,Ignore-only    .meta:n   = { I = #1 }
-      ,I-only         .meta:n   = { I = #1 }
-    ,I-clear        .code:n   = { \str_clear:N \g__Prassble_filetree_I_only_str }
-
-    
-    ,O              .str_set:N   = \g__Prassble_filetree_Output_To_str
-      ,output-to      .meta:n   = { O = #1 }
-      ,output-To      .meta:n   = { O = #1 }
-      ,Output-to      .meta:n   = { O = #1 }
-      ,Output-To      .meta:n   = { O = #1 }
-
-    ,pathkey        .str_set:N   = \g__Prassble_FileTree_pathkey_str
-  }
-  
-  \NewDocumentCommand{\filetree}{ O{} m }{
-  % Step the counter for the file tree number
-    \int_incr:N \g__Prassble_filetree_current_tree_number_int
-  % Default output location
-    \str_set:Ne \g__Prassble_filetree_Output_To_str {FileTrees/tree_\int_use:N \g__Prassble_filetree_current_tree_number_int.tex}
-    \group_begin:
-      \keys_set:nn { Prassble_filetree } { #1 }
-      % Final flag processing before parsing to file_tree.sh
-        % -i
-        \str_if_empty:NF \g__Prassble_filetree_i_str {
-          \str_set:Nn \g__Prassble_filetree_final_i_str { -i~"\g__Prassble_filetree_i_str" }
-        }
-      % -I
-        \bool_if:NT \g__Prassble_filetree_I_bool {
-          \str_set:Nn \g__Prassble_filetree_final_I_str { -I~"\g__Prassble_filetree_I_only_str"}
-        }
-      % -O
-        \str_if_empty:NF \g__Prassble_filetree_Output_To_str {
-          \str_set:Ne \g__Prassble_filetree_final_Output_To_str { -O~"\g__Prassble_filetree_Output_To_str" }
-        }
-      
-    % File path parsed to file_tree.sh
-      \str_set:Ne \l_tmpa_str {#2}
-      \str_set:Ne \g__Prassble_filetree_file_path_str {
-        \str_if_empty:NTF \l_tmpa_str
-          { ./ }
-          { #2 }
-      }
-
-      \str_set:Ne \g__Prassble_filetree_sys_shell_now_str {
-        % Execute the bash script file_tree.sh
-          bash~file_tree.sh
-        \c_space_tl
-        % -i flag
-          \g__Prassble_filetree_final_i_str
-        \c_space_tl
-        % -I flag (activated only if the string is nonempty)
-          \g__Prassble_filetree_final_I_str
-        \c_space_tl
-        % -O flag
-          \g__Prassble_filetree_final_Output_To_str
-        \c_space_tl
-        % File path parsed to file_tree.sh (the argument of file_tree.sh)
-          \g__Prassble_filetree_file_path_str
-      }
-
-      \sys_shell_now:e {\g__Prassble_filetree_sys_shell_now_str}
-
-      \file_input:V \g__Prassble_filetree_Output_To_str
-    \group_end:
-  }
-
-\makeatletter
-  \str_new:N \l__Prassble_FileTree_full_path_str
-  \NewDocumentCommand{\FileTree}{ s O{} m }{
-    \seq_clear:N \l_tmpa_seq 
-    \seq_gput_right:Ne \l_tmpa_seq {\g__Prassble_FileTree_pathkey_str}
-    \seq_map_inline:Nn \g__Prassble_FileTree_pathkey_str {
-      \__Prassble_Input@core:nnnn { #1 } { ##1 } { #3 } { \str_set:Ne \l__Prassble_FileTree_full_path_str }
-    }
-    \filetree{\l__Prassble_FileTree_full_path_str}
-  }
-\makeatother
-\ExplSyntaxOff
 \begin{center}
   \filetree{some_folder}
   \filetree[O=FileTrees/OutputGoesHere.tex]{../tree}
@@ -199,11 +22,10 @@ This should include all files, be it \verb|.aux|, \verb|.log|, etc.
   \filetree[I=]{./}
 \end{center}
 \newpage
-Here: \CurrentFilePath\\
+Here: what
 \begin{center}
   \FileTree{testing/tree}
-  \FileTree*{}
+  \FileTree*{../../}
 \end{center}
-\newpage
 
 \end{document}
