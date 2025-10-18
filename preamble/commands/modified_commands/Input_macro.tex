@@ -32,6 +32,7 @@
 \tl_new:N \g_Prassble_path_to_preamble_folder_tl
 \tl_new:N \g_Prassble_path_to_Prassble_folder_tl
 \tl_new:N \l__Prassble_relative_path_to_prepend_tl
+\tl_new:N \l__Prassble_full_path_to_parse_tl
 % Set the directory to be the folder 'preamble' in the preamble.
   \tl_gset:Ne \g_Prassble_path_to_preamble_folder_tl {\CurrentFilePath/../../} %* The number of /../ here depends on where Input_macro.tex is placed inside the folder preamble
   \tl_gset:Ne \g_Prassble_path_to_Prassble_folder_tl {\g_Prassble_path_to_preamble_folder_tl../}
@@ -42,6 +43,8 @@
 \makeatletter
 % Putting the core \Input code in a general function \__Prassble_Input@core:nnnn so that other commands similar to \input (e.g. \inputcode) can also be transformed accordingly (e.g. to \InputCode).
 \cs_new:Npn \__Prassble_Input@core:nnnn #1#2#3#4 {
+  % Set the clist of paths to \Input
+  \clist_set:Nn \l__Prassble_files_to_be_input_clist {#3}  
   % If the starred variant \Input* is used, go to the directory \CurrentFilePath.
     \bool_if:nT {#1} 
       {
@@ -54,25 +57,41 @@
           % path to prepend
           % code to prepend
           % code to append
-        \tl_if_empty:cF {g__Prassble_Input_relative_path_to_prepend_#2_tl} {
-          \tl_put_right:cn {g__Prassble_Input_relative_path_to_prepend_#2_tl} {/}
-        }
+
         \tl_set_eq:Nc \l__Prassble_relative_path_to_prepend_tl {g__Prassble_Input_relative_path_to_prepend_#2_tl}
+        
+        % Append a slash so we go inside the corresponding directory. 
+          % For use with \filetree to create \FileTree: if the clist of file paths is empty, we do not prepend a slash (lest it points to an invalid directory).
+        \clist_if_empty:NF \l__Prassble_files_to_be_input_clist {
+          \tl_if_empty:NF \l__Prassble_relative_path_to_prepend_tl {
+            \tl_put_right:Nn \l__Prassble_relative_path_to_prepend_tl {/}
+          }
+        }
+
         \tl_set_eq:Nc \g_Prassble_Input_prepend_tl {g_Prassble_Input_prepend_#2_tl}
         \tl_set_eq:Nc \g_Prassble_Input_append_tl {g_Prassble_Input_append_#2_tl}
       } 
       {
-        % Otherwise, #2 is a file path that is to prepended as-is
-        \tl_if_empty:nF {#2} {
-          \tl_set:Nn \l__Prassble_relative_path_to_prepend_tl {#2/}
+        % Otherwise, #2 is a file path that is to prepended as-is. Append a slash so we go inside the given directory.
+          % For use with \filetree to create \FileTree: if the clist of file paths is empty, we do not append a slash (lest it points to an invalid directory).
+        \clist_if_empty:NF \l__Prassble_files_to_be_input_clist {
+          \tl_if_empty:nF {#2} {
+            \tl_set:Nn \l__Prassble_relative_path_to_prepend_tl {#2/}
+          }
         }
       }
     % \input the files approperiately
-    \clist_set:Nn \l__Prassble_files_to_be_input_clist {#3} 
+    \clist_if_empty:NT \l__Prassble_files_to_be_input_clist {
+      \clist_put_right:Nn \l__Prassble_files_to_be_input_clist {{}}
+    }
     \clist_map_inline:Nn \l__Prassble_files_to_be_input_clist 
         {
             \tl_use:N \g_Prassble_Input_prepend_tl
-            #4{\g_file_directory_to_be_used_tl\l__Prassble_relative_path_to_prepend_tl##1}
+
+            \tl_set:Ne \l__Prassble_full_path_to_parse_tl {\g_file_directory_to_be_used_tl\l__Prassble_relative_path_to_prepend_tl##1}
+
+            #4{\l__Prassble_full_path_to_parse_tl}
+
             \tl_use:N \g_Prassble_Input_append_tl
         }
   % Reset the path to prepend

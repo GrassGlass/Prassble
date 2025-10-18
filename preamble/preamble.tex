@@ -85,21 +85,13 @@
   % Page formatting
   \usepackage[pagestyles]{titlesec}
   \usepackage{lmodern, microtype}
-    % default color theme
-    \ifundef{\ColorTheme}{
-      \gdef\ColorTheme{colourful}
-    }{}
-    % 'documentation' page style -> use 'main' page style with some extra options (detected by defining \PrassbleDocumentationStyle)
-    \ifdefstring{\Pagestyle}{documentation}{
-      \gdef\Pagestyle{main}
-      \gdef\PrassbleDocumentationStyle{}
-    }{}
 
   % Colored boxes
   \usepackage[skins, breakable, minted]{tcolorbox}
-  \ifdef{\PrassbleDocumentationStyle}{
+  \ifdefstring{\PageStyle}{documentation}{
     \tcbuselibrary{documentation}
     \tcbset{listing engine=minted}
+    \usepackage{filetree}
   }{}
     % Required for autowidth = lower 
     \usepackage{varwidth}
@@ -122,6 +114,17 @@
   \usepackage{zref-xr}
 
 % Custom setup
+
+  % Prassble options
+    % default color theme
+    \ifundef{\ColorTheme}{
+      \gdef\ColorTheme{colourful}
+    }{}
+    % 'documentation' page style -> use 'main' page style with some extra options (detected by defining \PrassbleDocumentationStyle)
+    \ifdefstring{\Pagestyle}{documentation}{
+      \gdef\Pagestyle{main}
+      \gdef\PrassbleDocumentationStyle{}
+    }{}
 
   % Easy input of files
   \input{\CurrentFilePath/commands/modified_commands/Input_macro.tex}
@@ -175,6 +178,11 @@
     }
     \Input{environments/derived_environments/listings.tex}
     \Input{environments/box_styles/nonlistings/commands/newcommands/InputKeyword_HW-in-Main.tex}
+
+  % Documentation
+  \ifdef{\PrassbleDocumentationStyle}{}{
+    \Input{commands/modified_commands/FileTree.tex}
+  }
 
   % Refer
   \Input{external_hyperlink_format.tex}

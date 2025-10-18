@@ -1,18 +1,19 @@
 \documentclass{book}
 \usepackage{filetree}
 \input{../../preamble/commands/modified_commands/Input_macro.tex}
+\Input{commands/newcommands/KeywordForInput.tex}
+\KeywordForInput{Ch}{files/chapters}
+\ExplSyntaxOn
+\makeatletter
 \NewDocumentCommand{\FileTree}{ s O{} m }{
-    \seq_clear:N \l_tmpa_seq 
-    \seq_gput_right:Ne \l_tmpa_seq {\g__FileTree_pathkey_str}
-    \seq_map_inline:Nn \g__FileTree_pathkey_str {
-        \__Prassble_Input@core:nnnn { #1 } { ##1 } { #3 } { \str_set:Ne \l__FileTree_full_path_str }
-    }
-    \filetree{\l__FileTree_full_path_str}
+    \filetree[ #2, Inputify={{#1}{#3}} ]{ \l__FileTree_full_path_str }
 }
+\makeatother
+\ExplSyntaxOff
 \begin{document}
 \begin{center}
   \filetree{some_folder}
-  \filetree[O=FileTrees/OutputGoesHere.tex]{../tree}
+  \filetree[O=FileTrees/OutputGoesHere.tex,font=\sffamily]{../tree}
   \filetree[i=folder]{}
   \filetree{../../preamble/commands/modified_commands/../../../}
 \end{center}
@@ -23,9 +24,27 @@ This should include all files, be it \verb|.aux|, \verb|.log|, etc.
 \end{center}
 \newpage
 Here: what
+\ExplSyntaxOn
+% \tl_set:Nn \g__filetree_font_tl {\sffamily}
+\ExplSyntaxOff
 \begin{center}
   \FileTree{testing/tree}
-  \FileTree*{../../}
+  % \FileTree*[pathkey=../,font=\bfseries]{../}
+  \FileTree[pathkey=Ch]{}
 \end{center}
+\newpage
+Yay this now works correctly: 
+\ExplSyntaxOn
+\makeatletter
+\__Prassble_Input@core:nnnn { \BooleanFalse } { Ch } { } { \str_set:Ne \l__FileTree_full_path_str }
+\fbox{\str_use:N \l__FileTree_full_path_str}\\
+
+\__Prassble_Input@core:nnnn { \BooleanFalse } { Ch } { foo } { \str_set:Ne \l__FileTree_full_path_str }
+\fbox{\str_use:N \l__FileTree_full_path_str}\\
+
+\__Prassble_Input@core:nnnn { \BooleanFalse } { Ch } { } { \str_set:Ne \l__FileTree_full_path_str }
+\fbox{\str_use:N \l__FileTree_full_path_str}\\
+
+\ExplSyntaxOff
 
 \end{document}

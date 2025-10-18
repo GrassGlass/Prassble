@@ -12,6 +12,9 @@
 
 % Variables
   % Strings
+  \tl_new:N \g__filetree_font_tl
+    \tl_set:Nn \g__filetree_font_tl {\ttfamily}
+  \tl_new:N \g__FileTree_pathkey_tl
   \str_new:N \g__filetree_i_str
   \str_new:N \g__filetree_I_only_str
   \str_new:N \g__filetree_file_path_str
@@ -21,17 +24,25 @@
   \str_new:N \g__filetree_final_Output_To_str
   \str_new:N \l__FileTree_full_path_str
   \str_new:N \g__filetree_sys_shell_now_str
-  \str_new:N \g__FileTree_pathkey_str
 
   % Integers
   \int_new:N \g__filetree_current_tree_number_int
 
   % Dimensions
   \dim_new:N \g__filetree_pic_size_dim
-  \dim_set:Nn \g__filetree_pic_size_dim {4pt}
+    \dim_set:Nn \g__filetree_pic_size_dim {4pt}
 
   % Booleans
   \bool_new:N \g__filetree_I_bool
+
+  % Control sequences 
+  \cs_new:Npn \__filetree_Inputify:nn #1#2 {
+    \seq_clear:N \l_tmpa_seq 
+    \seq_gput_right:Ne \l_tmpa_seq {\g__FileTree_pathkey_tl}
+    \seq_map_inline:Nn \l_tmpa_seq {
+        \__Prassble_Input@core:nnnn { #1 } { ##1 } { #2 } { \str_set:Ne \l__FileTree_full_path_str }
+    }
+  }
 
   % Messages
   \msg_new:nnn {filetree} {shell_escape_is_disabled} {(\msg_line_context:)~Unrestricted~shell~escape~is~disabled.~Using~cached~files,~if~they~exist.}
@@ -70,7 +81,7 @@
   ,filetree_pic_dir_tree/.style={
     ,for~tree={
       ,folder
-      ,font     = \ttfamily
+      ,font     = \g__filetree_font_tl
       ,grow'    = 0
     }
     ,before~typesetting~nodes = {
@@ -107,6 +118,8 @@
 }
 
 \keys_define:nn {filetree} {
+,font           .tl_set:N = \g__filetree_font_tl
+
 ,i              .str_set:N = \g__filetree_i_str
     ,ignore         .meta:n   = { i = #1 }
 
@@ -154,7 +167,10 @@
     ,Output-to      .meta:n   = { O = #1 }
     ,Output-To      .meta:n   = { O = #1 }
 
-,pathkey        .str_set:N   = \g__FileTree_pathkey_str
+  
+,Inputify           .code:n   = { \__filetree_Inputify:nn #1 } 
+
+,pathkey        .tl_set:N   = \g__FileTree_pathkey_tl
 }
 
 \NewDocumentCommand{\filetree}{ O{} m }{
