@@ -34,6 +34,7 @@
 
   % Booleans
   \bool_new:N \g__filetree_I_bool
+  \bool_new:N \g__filetree_debug_bool
 
   % Control sequences 
   \cs_new:Npn \__filetree_Inputify:nn #1#2 {
@@ -43,10 +44,66 @@
         \__Prassble_Input@core:nnnn { #1 } { ##1 } { #2 } { \str_set:Ne \l__FileTree_full_path_str }
     }
   }
+  \cs_new:Npn \__filetree_paths_and_options_core_processing:nn #1#2 {
+    % Step the counter for the file tree number
+    \int_gincr:N \g__filetree_current_tree_number_int
+    % Default output location
+    \str_gset:Ne \g__filetree_Output_To_str {FileTrees/tree_\int_use:N \g__filetree_current_tree_number_int.tex}
+
+    \keys_set:nn { filetree } { #1 }
+    % Final flag processing before parsing to file_tree.sh
+    %* Even though we use the e-type argument later, it must be used now also.
+        % -i
+        \str_if_empty:NF \g__filetree_i_str {
+            \str_set:Ne \g__filetree_final_i_str { -i~"\g__filetree_i_str" }
+        }
+        % -I
+        \bool_if:NT \g__filetree_I_bool {
+            \str_set:Ne \g__filetree_final_I_str { -I~"\g__filetree_I_only_str"}
+        }
+        % -O
+        \str_if_empty:NF \g__filetree_Output_To_str {
+            \str_set:Ne \g__filetree_final_Output_To_str { -O~"\g__filetree_Output_To_str" }
+        }
+        
+    % File path parsed to file_tree.sh
+        \str_set:Ne \g__filetree_file_path_str {
+          \str_if_empty:nTF { #2 }
+            { "./" }
+            { "#2" }
+        }
+
+    % Flags and argument passed to file_tree.sh
+      \str_set:Ne \g__filetree_sys_shell_now_str {
+      % Execute the bash script file_tree.sh
+          bash~file_tree.sh
+      \c_space_tl
+      % -i flag
+          \g__filetree_final_i_str
+      \c_space_tl
+      % -I flag (activated only if the string is nonempty)
+          \g__filetree_final_I_str
+      \c_space_tl
+      % -O flag
+          \g__filetree_final_Output_To_str
+      \c_space_tl
+      % File path parsed to file_tree.sh (the argument of file_tree.sh)
+          \g__filetree_file_path_str
+      }
+      \bool_if:NT \g__filetree_debug_bool {
+        \begin{center}
+          \fbox{
+            \begin{minipage}{\linewidth}
+              String~passed~to~\texttt{file_tree.sh}:\par
+              \texttt{\str_use:N \g__filetree_sys_shell_now_str}
+            \end{minipage}
+          }
+        \end{center}
+      }
+  }
 
   % Messages
-  \msg_new:nnn {filetree} {shell_escape_is_disabled} {(\msg_line_context:)~Unrestricted~shell~escape~is~disabled.~Using~cached~files,~if~they~exist.}
-  \msg_new:nnn {filetree} {missing_file_tree_.tex} {The~file~#1~is~not~found~\msg_line_context:;~compile~with~unrestricted~shell~escape~to~generate~it.}
+  \msg_new:nnn {filetree} {shell_escape_is_disabled} {Unrestricted~shell~escape~is~disabled.~Using~cached~files~\msg_line_context:,~if~they~exist.}
 
 % Keys
 \tikzset{
@@ -131,14 +188,13 @@
 
 ,i-extensions   .code:n   = { 
     \clist_map_inline:nn { #1 } {
-    % Make sure each item (file extension) of the user's clist is prepended with a dot (if it isn't already there). Save this new clist under \l_tmpa_clist. 
+    % Make sure each item (file extension) of the user's clist is prepended with a dot (if it isn't already there).
     \str_if_eq:nnTF 
         { \str_item:nn {##1} {1} } 
         { . }
-        { \clist_put_right:Nn \l_tmpa_clist { ##1 } }
-        { \clist_put_right:Nn \l_tmpa_clist { .##1 } }
+        { \str_put_right:Ne \g__filetree_i_str { |##1 } }
+        { \str_put_right:Ne \g__filetree_i_str { |.##1 } }
     }
-    \str_put_right:Ne \g__filetree_i_str { \clist_use:Nn \l_tmpa_clist { | } }
 }
 
 
@@ -167,6 +223,8 @@
     ,Output-to      .meta:n   = { O = #1 }
     ,Output-To      .meta:n   = { O = #1 }
 
+,debug          .bool_set:N   = \g__filetree_debug_bool
+,debug          .default:n    = true
   
 ,Inputify           .code:n   = { \__filetree_Inputify:nn #1 } 
 
@@ -174,55 +232,15 @@
 }
 
 \NewDocumentCommand{\filetree}{ O{} m }{
-    % Step the counter for the file tree number
-    \int_incr:N \g__filetree_current_tree_number_int
-    % Default output location
-    \str_set:Ne \g__filetree_Output_To_str {FileTrees/tree_\int_use:N \g__filetree_current_tree_number_int.tex}
-    \group_begin:
-        \keys_set:nn { filetree } { #1 }
-        % Final flag processing before parsing to file_tree.sh
-            % -i
-            \str_if_empty:NF \g__filetree_i_str {
-                \str_set:Nn \g__filetree_final_i_str { -i~"\g__filetree_i_str" }
-            }
-            % -I
-            \bool_if:NT \g__filetree_I_bool {
-                \str_set:Nn \g__filetree_final_I_str { -I~"\g__filetree_I_only_str"}
-            }
-            % -O
-            \str_if_empty:NF \g__filetree_Output_To_str {
-                \str_set:Ne \g__filetree_final_Output_To_str { -O~"\g__filetree_Output_To_str" }
-            }
-        
-    % File path parsed to file_tree.sh
-        \str_set:Ne \l_tmpa_str {#2}
-        \str_set:Ne \g__filetree_file_path_str {
-        \str_if_empty:NTF \l_tmpa_str
-            { ./ }
-            { #2 }
-        }
+\group_begin:
+  \__filetree_paths_and_options_core_processing:nn { #1 } { #2 }
 
-        \str_set:Ne \g__filetree_sys_shell_now_str {
-        % Execute the bash script file_tree.sh
-            bash~file_tree.sh
-        \c_space_tl
-        % -i flag
-            \g__filetree_final_i_str
-        \c_space_tl
-        % -I flag (activated only if the string is nonempty)
-            \g__filetree_final_I_str
-        \c_space_tl
-        % -O flag
-            \g__filetree_final_Output_To_str
-        \c_space_tl
-        % File path parsed to file_tree.sh (the argument of file_tree.sh)
-            \g__filetree_file_path_str
-        }
+  \sys_if_shell_unrestricted:TF 
+    { \sys_shell_now:e {\g__filetree_sys_shell_now_str} }
+    { \msg_note:nn {filetree} {shell_escape_is_disabled} }
 
-        \sys_shell_now:e {\g__filetree_sys_shell_now_str}
-
-        \file_input:V \g__filetree_Output_To_str
-    \group_end:
+  \file_input:V \g__filetree_Output_To_str
+\group_end:
 }
 
 \file_input_stop:
