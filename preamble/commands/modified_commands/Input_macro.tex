@@ -34,7 +34,7 @@
 \tl_new:N \g_Prassble_path_to_Prassble_folder_tl
 \tl_new:N \l__Prassble_relative_path_to_prepend_tl
 \tl_new:N \l__Prassble_full_path_to_parse_tl
-\msg_new:nnn { fakeabs } { FAPath } { \FAPath is returning more than one path. Did you write more than one path to its clist-argument?}
+\msg_new:nnn { fakeabs } { FAPath } { \FAPath~is~returning~more~than~one~path.~Did~you~write~more~than~one~path~to~its~clist-argument?}
 % Set the directory to be the folder 'preamble' in the preamble.
   \tl_gset:Ne \g_Prassble_path_to_preamble_folder_tl {\CurrentFilePath/../../} %* The number of /../ here depends on where Input_macro.tex is placed inside the folder preamble
   \tl_gset:Ne \g_Prassble_path_to_Prassble_folder_tl {\g_Prassble_path_to_preamble_folder_tl../}
@@ -43,88 +43,6 @@
   \AtEndPreamble{\tl_gset_eq:NN \g_file_directory_to_be_used_tl \g_Prassble_path_to_Prassble_folder_tl}
 
 \makeatletter
-
-\cs_new:Npn \_fakeabs_cd:n #1 {
-  \tl_set:Nn \g_file_directory_to_be_used_tl {#1}
-}
-\NewDocumentCommand{\cd}{ m }{
-  \_fakeabs_cd:n { #1 }
-}
-
-\cs_new:Npn \_fakeabs_fapaths_to_rel_paths_seq:nnn #1#2#3 {
-  % Resets
-    % Reset the path to prepend
-    \tl_clear:N \l__Prassble_relative_path_to_prepend_tl
-    % Reset the keyword
-    \tl_clear:N \l__Prassble_relative_path_to_prepend_tl
-    \tl_clear:N \g_Prassble_Input_prepend_tl
-    \tl_clear:N \g_Prassble_Input_append_tl
-    % Reset the seq of final full paths
-    \seq_clear:N \g__Prassble_full_paths_output_seq
-
-  % Set the clist of paths to \Input
-  \clist_set:Nn \l__Prassble_files_to_be_input_clist {#3}  
-  % If the starred variant \Input* is used, go to the directory \CurrentFilePath.
-    \bool_if:nT {#1} 
-      {
-        \tl_set:Nn \g_file_directory_to_be_used_tl {\CurrentFilePath}
-      }
-  % Test whether #2 is a keyword
-    \seq_if_in:NeTF \g__Prassble_Input_keywords_seq {#2} 
-      {
-        % If so, set the corresponding 
-          % path to prepend
-          % code to prepend
-          % code to append
-
-        \tl_set_eq:Nc \l__Prassble_relative_path_to_prepend_tl {g__Prassble_Input_relative_path_to_prepend_#2_tl}
-        
-        % Append a slash so we go inside the corresponding directory. 
-          % For use with \filetree to create \FileTree: if the clist of file paths is empty, we do not prepend a slash (lest it points to an invalid directory).
-        \clist_if_empty:NF \l__Prassble_files_to_be_input_clist {
-          \tl_if_empty:NF \l__Prassble_relative_path_to_prepend_tl {
-            \tl_put_right:Nn \l__Prassble_relative_path_to_prepend_tl {/}
-          }
-        }
-
-        \tl_set_eq:Nc \g_Prassble_Input_prepend_tl {g_Prassble_Input_prepend_#2_tl}
-        \tl_set_eq:Nc \g_Prassble_Input_append_tl {g_Prassble_Input_append_#2_tl}
-      } 
-      {
-        % Otherwise, #2 is a file path that is to prepended as-is. Append a slash so we go inside the given directory.
-          % For use with \filetree to create \FileTree: if the clist of file paths is empty, we do not append a slash (lest it points to an invalid directory).
-        \clist_if_empty:NF \l__Prassble_files_to_be_input_clist {
-          \tl_if_empty:nF {#2} {
-            \tl_set:Nn \l__Prassble_relative_path_to_prepend_tl {#2/}
-          }
-        }
-      }
-    % \input the files approperiately
-    \clist_if_empty:NT \l__Prassble_files_to_be_input_clist {
-      \clist_put_right:Nn \l__Prassble_files_to_be_input_clist {{}}
-    }
-    \clist_map_inline:Nn \l__Prassble_files_to_be_input_clist 
-        {
-            \tl_use:N \g_Prassble_Input_prepend_tl
-
-            \tl_set:Ne \l__Prassble_full_path_to_parse_tl {\g_file_directory_to_be_used_tl\l__Prassble_relative_path_to_prepend_tl##1}
-
-            \seq_put_right:Ne \g__Prassble_full_paths_output_seq {\l__Prassble_full_path_to_parse_tl}
-
-            \tl_use:N \g_Prassble_Input_append_tl
-        }
-}
-\NewDocumentCommand{\FAPath}{ s O{} m }{
-  \_fakeabs_fapaths_to_rel_paths_seq:nnn { #1 } { #2 } { #3 }
-  \int_compare:nNnF 
-    { \seq_count:N \g__Prassble_full_paths_output_seq }
-    >
-    { 1 }
-    {
-      \msg_error:nn { fakeabs } { FAPath } 
-    }
-  \seq_map_inline:Nn \g__Prassble_full_paths_output_seq { ##1 }
-}
 
 % Putting the core \Input code in a general function \__Prassble_Input@core:nnnn so that other commands similar to \input (e.g. \inputcode) can also be transformed accordingly (e.g. to \InputCode).
 \cs_new:Npn \__Prassble_Input@core:nnnn #1#2#3#4 {
@@ -188,6 +106,34 @@
 }
 \NewDocumentCommand{\Input}{ s O{} m }{
   \__Prassble_Input@core:nnnn { #1 } { #2 } { #3 } { \input }
+}
+
+% % %
+
+\cs_new:Npn \_fakeabs_cd:n #1 {
+  \tl_set:Nn \g_file_directory_to_be_used_tl {#1}
+}
+\NewDocumentCommand{\cd}{ m }{
+  \_fakeabs_cd:n { #1 }
+}
+
+\cs_new:Npn \_fakeabs_fapaths_clist_to_rel_paths_seq:nnn #1#2#3 {
+  \__Prassble_Input@core:nnnn { #1 } { #2 } { #3 } { \seq_put_right:Ne \g__Prassble_full_paths_output_seq }
+}
+
+\cs_new:Npn \_fakeabs_fapath_to_rel_path:nnn #1#2#3 {
+  \_fakeabs_fapaths_clist_to_rel_paths_seq:nnn { #1 } { #2 } { {#3} }
+  \int_compare:nNnT 
+    { \seq_count:N \g__Prassble_full_paths_output_seq }
+    >
+    { 1 }
+    {
+      \msg_error:nn { fakeabs } { FAPath } 
+    }
+  \seq_map_inline:Nn \g__Prassble_full_paths_output_seq { ##1 }
+}
+\NewDocumentCommand{\FAPath}{ s O{} m }{
+  \_fakeabs_fapath_to_rel_path:nnn { #1 } { #2 } { #3 }
 }
 \makeatother
 \ExplSyntaxOff

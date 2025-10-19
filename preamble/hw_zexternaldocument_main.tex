@@ -1,9 +1,9 @@
 \ExplSyntaxOn
-\tl_if_eq:NnT \Pagestyle {hw} 
-{
+\tl_if_eq:NnT \Pagestyle {hw} {
     % external referencing which allows the contents of main.tex to be referenced in hw documents
     \zexternaldocument{\g_Prassble_path_to_Prassble_folder_tl/main}
 
+    \file_if_exist:nT {\jobname.aux} {
     %* Here we want to extract all labels in \jobname.aux (where \jobname.tex should be a homework-type file.). Then, we undefine these labels from \zexternaldocument{main} so that unwanted warnings of multiply defined labels don't haunt us --- when main.aux and \jobname.aux share common labels --- while still allowing us to check for actual multiply defined labels inside \jobname.aux. 
         % Label extraction
             % New variables
@@ -29,5 +29,6 @@
             \seq_gremove_all:Nn \g__Prassble_all_labels_seq {}
         % Undefine external labels
         \seq_map_inline:Nn \g__Prassble_all_labels_seq {\cs_undefine:c{Z@R@#1}}
+    }
 }
 \ExplSyntaxOff

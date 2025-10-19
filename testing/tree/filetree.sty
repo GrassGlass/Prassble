@@ -39,10 +39,7 @@
   % Control sequences 
   \cs_new:Npn \__filetree_Inputify:nn #1#2 {
     \seq_clear:N \l_tmpa_seq 
-    \seq_gput_right:Ne \l_tmpa_seq {\g__FileTree_pathkey_tl}
-    \seq_map_inline:Nn \l_tmpa_seq {
-        \__Prassble_Input@core:nnnn { #1 } { ##1 } { #2 } { \str_set:Ne \l__FileTree_full_path_str }
-    }
+    \__Prassble_Input@core:nnnn { #1 } { \g__FileTree_pathkey_tl } { #2 } { \str_set:Ne \l__FileTree_full_path_str }
   }
   \cs_new:Npn \__filetree_paths_and_options_core_processing:nn #1#2 {
     % Step the counter for the file tree number
@@ -189,11 +186,21 @@
 ,i-extensions   .code:n   = { 
     \clist_map_inline:nn { #1 } {
     % Make sure each item (file extension) of the user's clist is prepended with a dot (if it isn't already there).
-    \str_if_eq:nnTF 
+    \str_if_eq:eeTF 
         { \str_item:nn {##1} {1} } 
         { . }
-        { \str_put_right:Ne \g__filetree_i_str { |##1 } }
-        { \str_put_right:Ne \g__filetree_i_str { |.##1 } }
+        { 
+          \str_if_empty:NF \g__filetree_i_str { 
+            \str_put_right:Nn \g__filetree_i_str { | }
+           }
+          \str_put_right:Ne \g__filetree_i_str { *##1 } 
+        }
+        { 
+          \str_if_empty:NF \g__filetree_i_str {
+            \str_put_right:Nn \g__filetree_i_str { | }
+          }
+          \str_put_right:Ne \g__filetree_i_str { *.##1 } 
+        }
     }
 }
 
