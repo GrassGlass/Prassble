@@ -21,6 +21,8 @@
                 // Bash
                 "mads-hartmann.bash-ide-vscode",
                 "timonwong.shellcheck",
+                // Perl
+                "richterger.perl",
                 // Others
                 "aaron-bond.better-comments"
             ]

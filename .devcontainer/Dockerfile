@@ -18,3 +18,12 @@ RUN <<EOF
 apt install -y golang
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 EOF
+
+# Extension Perl: prerequisites
+RUN <<EOF
+sudo apt install libanyevent-perl libclass-refresh-perl libcompiler-lexer-perl \
+    libdata-dump-perl libio-aio-perl libjson-perl libmoose-perl libpadwalker-perl \
+    libscalar-list-utils-perl libcoro-perl
+
+sudo cpan Perl::LanguageServer
+EOF
