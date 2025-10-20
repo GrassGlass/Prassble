@@ -73,7 +73,7 @@
     % Flags and argument passed to file_tree.sh
       \str_set:Ne \g__filetree_sys_shell_now_str {
       % Execute the bash script file_tree.sh
-          bash~file_tree.sh
+          file_tree
       \c_space_tl
       % -i flag
           \g__filetree_final_i_str
@@ -249,5 +249,9 @@
   \file_input:V \g__filetree_Output_To_str
 \group_end:
 }
+
+% Ensure bash script works correctly in PATH (i.e. when it is incorporated into TeXlive)
+% sudo cp -s "/workspaces/Prassble/testing/tree/file_tree.sh" "/usr/local/bin/file_tree"
+% source ~/.bashrc
 
 \file_input_stop:
