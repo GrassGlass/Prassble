@@ -124,4 +124,26 @@ This chapter exists to test whether the positioning of various elements (e.g. th
             % 
         \end{code}
     \end{enumerate}
+    \item Many many lines.
+    \NewCommandCopy{\THEFancyVerbLine}{\theFancyVerbLine}
+    {
+        \def\LineNumberJump{2}
+        \renewcommand\theFancyVerbLine{%
+            \ifnum\value{FancyVerbLine}=2
+                \setcounter{FancyVerbLine}{\LineNumberJump}\THEFancyVerbLine
+            \else
+            \THEFancyVerbLine%
+            \fi
+        }
+        \def\LineNumberJump{10000}
+        \begin{code}(standalone){\TeX}
+            % 
+            % 
+        \end{code}
+        \def\LineNumberJump{10000000}
+        \begin{code}(standalone){\TeX}
+            % 
+            % 
+        \end{code}
+    }
 \end{enumerate}
