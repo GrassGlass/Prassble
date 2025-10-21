@@ -22,9 +22,15 @@
 \benchmark_tic:
 \ExplSyntaxOff
 \documentclass[11pt, titlepage, a4paper, oneside]{book}
+\def\ColorTheme{BnW}
 \input{../preamble/preamble}
 \usepackage{datetime2}
 
+\renewcommand{\theFancyVerbLine}{%
+                \eqframebox[code\arabic{code}][c]{%
+                    \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}%
+                }%
+            }
 \renewcommand{\FancyVerbFormatLine}[1]{\eqsavebox{\codewidth}[codeupperwidth\arabic{code}]{#1}\fbox{#1}}
 
 \def\ColorCodeLineNumber{green!50!black}
@@ -44,19 +50,31 @@
 }{}
 
 \begin{document}
-\section*{Last successful compile: \DTMnow}
+\frontmatter
+\chapter*{Last successful compile: \DTMnow}
 
 This file is a compilation of various uses of the listing boxes generated with \codeinline{TeX}{\ModifiedNewTCBListing} and \codeinline{TeX}{\ModifiedNewTCBInputListing}. In this way, robustness checks are performed to ensure they function correctly---as bug-free as possible.
 \begin{code}[debug=autowidth]{Text}
     Hello
 \end{code}
-\chapter{ModifiedNewTCBListing}
+%
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+%
+\mainmatter
+\chapter{Decorations}
+\input{test_decorations.tex}
+\chapter{Autowidth}
+\section{ModifiedNewTCBListing}
 \input{test_ModifiedNewTCBListing.tex}
 \begin{code}[autowidth = upper, debug = autowidth]{Text}
     test
 \end{code}
 
-\chapter{ModifiedNewTCBInputListing}
+\section{ModifiedNewTCBInputListing}
 \RenewDocumentEnvironment{code}{ D(){standalone} ={OTitle} O{} m c}{
     \stepcounter{codeinput}%
     \def\tmpfilename{\jobname\arabic{codeinput}.txt}%

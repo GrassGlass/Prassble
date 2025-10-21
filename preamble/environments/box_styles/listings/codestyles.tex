@@ -290,8 +290,14 @@
     \tl_if_empty:nF {#1} {\tl_set:Nn \g__Prassble_listings_OTitle_tl {~(#1)}}
   }
   ,Leftupper/.code = {
-    \dim_set:Nn \g__Prassble_listings_Leftupper_dim {\numbersep+\boxsep+(\eqboxwidth{code\arabic{code}}+\linenumberpadding)/2} % 4mm is the initial leftupper
-    % \numbersep-\boxsep+\eqboxwidth{code\arabic{code}}+(\linenumberpadding+\BorderlineWestThickness)/2
+    \dim_set:Nn \g__Prassble_listings_Leftupper_dim {
+      % Make the right edge of the eqsavebox --- which contain the line numbers --- just touch the decoration/line number background. 
+        \numbersep - \boxsep + \BorderlineWestThickness
+      % Make the left edge of the eqsavebox just touch the decoration/line number background. 
+        + \eqboxwidth{code\arabic{code}}
+      % Further move it to the center of the decoration/ line number background.
+        + \linenumberpadding/2
+    }
     \pgfkeysalso{
       leftupper = \g__Prassble_listings_Leftupper_dim
     }
@@ -350,20 +356,23 @@
         % Case 1: The current (partial) box contains only an upper part.
         \int_compare:nNnT {\tcbsegmentstate}={0} {
           \filldraw[\ColorCodeLineNumberBackground] 
-          (frame.south~west) --
-          (interior.north~west) {[rounded~corners=4] --
-          ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) --
-          ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west)} --
-          (frame.south~west);
+            ([xshift=\BorderlineWestThickness]frame.south~west) 
+            -- ([xshift=\BorderlineWestThickness]interior.north~west) 
+            {[rounded~corners=4] 
+              -- ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) 
+              -- ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding+\BorderlineWestThickness]frame.south~west)
+            } 
+            -- cycle;
         }
         % Case 2: The current (partial) box contains an upper and a lower part. The segmentation node can be used for positioning.
         \int_compare:nNnT {\tcbsegmentstate}={1} {
           \filldraw[\ColorCodeLineNumberBackground] 
-          (segmentation.west) --
-          (interior.north~west) {[rounded~corners=4] --
-          ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) --
-          ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]segmentation.west)} --
-          (segmentation.west);
+            ([xshift=\BorderlineWestThickness]segmentation.west) 
+            -- ([xshift=\BorderlineWestThickness]interior.north~west) {[rounded~corners=4] 
+              -- ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) 
+              -- ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding+\BorderlineWestThickness]segmentation.west)
+            }
+            -- cycle;
         }
       % Borderline west of \BorderlineWestThickness thickness
       \__Prassble_listings_codestylecore@borderlinewest:
@@ -371,18 +380,22 @@
     ,overlay~first                   = {
       % Background for the code line numbers
       \filldraw[\ColorCodeLineNumberBackground] 
-      (frame.south~west) --
-      (interior.north~west) {[rounded~corners=4] --
-      ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0)} --
-      ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west) --
-      (frame.south~west);
+        ([xshift=\BorderlineWestThickness]frame.south~west) 
+        -- ([xshift=\BorderlineWestThickness]interior.north~west) 
+        {[rounded~corners=4] 
+          -- ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0)
+        } 
+      -- ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding+\BorderlineWestThickness]frame.south~west) 
+      -- cycle;
       % Borderline west of \BorderlineWestThickness thickness
       \__Prassble_listings_codestylecore@borderlinewest:
     }
     ,overlay~middle                  = {
       % Background for the code line numbers
-      \fill[\ColorCodeLineNumberBackground] (frame.south~west)
-      rectangle ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.north~west);
+      \fill[\ColorCodeLineNumberBackground] 
+        ([xshift=\BorderlineWestThickness]frame.south~west)
+          rectangle 
+        ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding+\BorderlineWestThickness]frame.north~west);
       % Borderline west of \BorderlineWestThickness thickness
       \__Prassble_listings_codestylecore@borderlinewest:
     }
@@ -391,20 +404,23 @@
         % Case 1: The current (partial) box contains only an upper part.
         \int_compare:nNnT {\tcbsegmentstate}={0} {
           \filldraw[\ColorCodeLineNumberBackground] 
-          (frame.south~west) --
-          (frame.north~west) --
-          ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) {[rounded~corners=4] --
-          ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west)} --
-          (frame.south~west);
+            ([xshift=\BorderlineWestThickness]frame.south~west) 
+            -- ([xshift=\BorderlineWestThickness]frame.north~west)
+            -- ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) 
+            {[rounded~corners=4] 
+              -- ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding+\BorderlineWestThickness]frame.south~west)
+            } 
+            -- cycle;
         }
         % Case 2: The current (partial) box contains an upper and a lower part. The segmentation node can be used for positioning.
         \int_compare:nNnT {\tcbsegmentstate}={1} {
           \filldraw[\ColorCodeLineNumberBackground] 
-          (segmentation.west) --
-          (frame.north~west) --
-          ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) {[rounded~corners=4] --
-          ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]segmentation.west)} --
-          (segmentation.west);
+            ([xshift=\BorderlineWestThickness]segmentation.west) 
+            -- ([xshift=\BorderlineWestThickness]frame.north~west) 
+            -- ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) {[rounded~corners=4] 
+              -- ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding+\BorderlineWestThickness]segmentation.west)
+            } 
+            -- cycle;
         }
       % Borderline west of \BorderlineWestThickness thickness
       \__Prassble_listings_codestylecore@borderlinewest:
@@ -458,7 +474,7 @@
 
 % Base listing style, continued
 \renewcommand{\theFancyVerbLine}{%
-                \eqframebox[code\arabic{code}][c]{%
+                \eqmakebox[code\arabic{code}][c]{%
                     \textcolor{\ColorCodeLineNumber}{\scriptsize\arabic{FancyVerbLine}}%
                 }%
             }
