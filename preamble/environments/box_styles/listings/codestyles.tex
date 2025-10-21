@@ -290,7 +290,8 @@
     \tl_if_empty:nF {#1} {\tl_set:Nn \g__Prassble_listings_OTitle_tl {~(#1)}}
   }
   ,Leftupper/.code = {
-    \dim_set:Nn \g__Prassble_listings_Leftupper_dim {\numbersep-\boxsep+\eqboxwidth{code\arabic{code}}+(\linenumberpadding+\BorderlineWestThickness)/2} % 4mm is the initial leftupper
+    \dim_set:Nn \g__Prassble_listings_Leftupper_dim {\numbersep+\boxsep+(\eqboxwidth{code\arabic{code}}+\linenumberpadding)/2} % 4mm is the initial leftupper
+    % \numbersep-\boxsep+\eqboxwidth{code\arabic{code}}+(\linenumberpadding+\BorderlineWestThickness)/2
     \pgfkeysalso{
       leftupper = \g__Prassble_listings_Leftupper_dim
     }
