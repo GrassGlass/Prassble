@@ -12,9 +12,9 @@
 # Ensure this directory "packages" is registered under TeXlive  
     texmf_cnf="$(kpsewhich texmf.cnf)"
     append_texmf_cnf="TEXMFLOCAL = $SELFAUTOPARENT/../texmf-local,/workspaces/Prassble/packages"
-    # If $append_texmf_cnf is not found in $texmf_cnf, then append it to the end of $texmf_cnf
+    # If $append_texmf_cnf is not found in $texmf_cnf, then append it to the end of $texmf_cnf.
         if ! grep -q "$append_texmf_cnf" "$texmf_cnf"; then
-            Some Actions # SomeString was not found
+            printf "$append_texmf_cnf" >> $texmf_cnf
         fi
     # Update stuff for kpsewhich to function correctly
         texhash
