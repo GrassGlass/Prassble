@@ -72,6 +72,20 @@ This file is a compilation of various uses of the listing boxes generated with \
 \section{NewPCBListing}
 \begin{answer}(standalone)
     The first part of our answer.
+    \begin{code}(inner 1){\TeX}
+        The code for our answer.
+    \end{code}
+    \hspace{-\parindent-4mm} The second part of our answer lies here.
+\end{answer}
+\begin{answer}(standalone)
+    The first part of our answer.
+    \begin{code}(inner 2){\TeX}
+        The code for our answer.
+    \end{code}
+    \hspace{-\parindent-4mm} The second part of our answer lies here.
+\end{answer}
+\begin{answer}(standalone)
+    The first part of our answer.
     \begin{code}(inner){\TeX}
         The code for our answer.
     \end{code}
@@ -81,8 +95,18 @@ This file is a compilation of various uses of the listing boxes generated with \
 \section{NewPCBInputListing}
 \begin{answer}(standalone)
     The first part of our answer.
+    \inputcode(inner 1){inner_lorem_ipsum.tex}
+    \noindent The second part of our answer lies here.
+\end{answer}
+\begin{answer}(standalone)
+    The first part of our answer.
+    \inputcode(inner 2){inner_lorem_ipsum.tex}
+    \noindent The second part of our answer lies here.
+\end{answer}
+\begin{answer}(standalone)
+    The first part of our answer.
     \inputcode(inner){inner_lorem_ipsum.tex}
-    \hspace{-\parindent-4mm} The second part of our answer lies here.
+    \noindent The second part of our answer lies here.
 \end{answer}
 
 \chapter{Autowidth}

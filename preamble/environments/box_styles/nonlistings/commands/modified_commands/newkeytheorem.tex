@@ -21,19 +21,46 @@
             ,rounded corners = east
         }
 }
-\makeatletter
+
 \ExplSyntaxOn
+\tl_new:N \g__Prassble_inner_style_tl
+% The default inner style
+    \tl_gset:Nn \g__Prassble_inner_style_tl { inner~1 }
+% The inner type in thmgroup
     \tcbset{
-        ,type~in~thmgroup/inner/.style = {
-            ,type~in~thmgroup   = middle
-            ,opacityfill        = 0.0
-            ,grow~to~left~by    = \g__Prassble_listings_type_in_thmgroup_inner_left_growth_dim
-            ,grow~to~right~by   = \g__Prassble_listings_type_in_thmgroup_inner_right_growth_dim
-            ,notitle
-        }
+        % The core code that stretches the box appropriately 
+            ,type~in~thmgroup/inner~core/.style = {
+                ,grow~to~left~by    = \g__Prassble_listings_type_in_thmgroup_inner_left_growth_dim
+                ,grow~to~right~by   = \g__Prassble_listings_type_in_thmgroup_inner_right_growth_dim
+            }
+        % Predefined inner style 1
+            ,type~in~thmgroup/inner~1/.style = {
+                ,type~in~thmgroup   = middle
+                ,opacityfill        = 0.0
+                ,grow~to~left~by    = \g__Prassble_listings_type_in_thmgroup_inner_left_growth_dim
+                ,grow~to~right~by   = \g__Prassble_listings_type_in_thmgroup_inner_right_growth_dim
+                ,notitle
+            }
+        % Predefined inner style 2
+            ,type~in~thmgroup/inner~2/.style = {
+                ,type in thmgroup/middle/.style = {
+                    ,beforeafter skip balanced = \baselineskip plus 4pt
+                }
+                % ,opacityfill        = 0.0
+                ,grow~to~left~by    = \g__Prassble_listings_type_in_thmgroup_inner_left_growth_dim
+                ,grow~to~right~by   = \g__Prassble_listings_type_in_thmgroup_inner_right_growth_dim
+                ,notitle
+            }
+        % Key that allows users to easily choose the inner style they want
+            ,inner~style/.code = {
+                \tl_set:Nn \g__Prassble_inner_style_tl
+            }
+        % The inner style
+            ,type~in~thmgroup/inner/.style = {
+                type~in~thmgroup = \g__Prassble_inner_style_tl
+            }
     }
 \ExplSyntaxOff
-\makeatother
 
 \ExplSyntaxOn
     \keys_define:nn { keytheorems/thmuse }
