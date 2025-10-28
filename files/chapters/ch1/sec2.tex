@@ -35,7 +35,19 @@
 \begin{answer}
     The answer to \zcref{ex:1.2}.
 \end{answer}
+
 These are some hyperlinks with \TeXinline{zref-clever}: \zcref{ex:1.1}, \zcref{ex:1.2}, \zcref{ex:H.1.1}, \zcref{ex:H.1.2}, \zcref{ex:H.1.3}. We can also reference theorems: \zcref{thm:1.1}. Furthermore, \extref{https://www.google.com/search?q=external+link}{external links} are nicely formatted with the \TeXinline{\extref{ⵌ\textlangleⵌURLⵌ\textrangleⵌ}{ⵌ\textlangleⵌlink nameⵌ\textrangleⵌ}} command.
+
+\begin{exercise}
+    Show that we can nest a listing inside an answer box, in an aesthetic way. 
+\end{exercise}
+\begin{answer}
+    The first part of our answer.
+    \begin{code}(inner){\TeX}
+        The code for our answer
+    \end{code}
+    \hspace{-\parindent-4mm} The second part of our answer lies here.
+\end{answer}
 \newpage
 This is the second page.
 

@@ -17,26 +17,26 @@
 %%
 %% This work consists of all files listed in README
 %%
+\makeatletter
 \ExplSyntaxOn
-  % Add \centering, approperiate line breaks, and define some important lengths, for listing environments and input listings. 
-    \NewDocumentCommand{\ModifiedNewTCBInputListing}{ O{} m m m }{
-      \NewTCBInputListing[ #1 ]{ #2 }{ #3 }{ #4 }
-      \AddToHook{cmd/\cs_to_str:N #1/before}{
-        % Before \tcbinputlisting
-            % The value of \linewidth where the corresponding listing environment is located
-              % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
-              \dim_set:Nn \g__Prassble_listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
-          % Centering the \tcbinputlisting
-          \par%
-          \begingroup%
-            \centering%
-      }
-      \AddToHook{cmd/\cs_to_str:N #1/after}{
-        % After \tcbinputlisting
-            \__Prassble_listings_autowidth_lower_savewidth:%
-            \__Prassble_listings_debug_autowidth:%
-            \stepcounter{code}%
-          \endgroup%
-      }
+  \NewDocumentCommand{\NewPCBInputListing}{ O{} m m m }{
+    \NewTCBInputListing[ #1 ]{ #2 }{ #3 }{ #4 }
+    \AddToHook{cmd/\cs_to_str:N #2/before}{
+      % Before \tcbinputlisting
+          % The value of \linewidth where the corresponding listing environment is located
+            % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
+            \dim_set:Nn \g__Prassble_listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
+      % The dimensions to 'grow to left/right' (<- tcbkey) by
+        % These dimensions are set before the tcblisting starts, because we want the, e.g. \kvtcb@left@rule, of the previous/outer tcolorbox (that this tcblisting is to be nested in). 
+        \dim_set:Nn \g__Prassble_listings_type_in_thmgroup_inner_left_growth_dim {\kvtcb@left@rule+\kvtcb@boxsep+\kvtcb@leftupper}
+        \dim_set:Nn \g__Prassble_listings_type_in_thmgroup_inner_right_growth_dim {\kvtcb@right@rule+\kvtcb@boxsep+\kvtcb@rightupper}
     }
+    \AddToHook{cmd/\cs_to_str:N #2/after}{
+      % After \tcbinputlisting
+        \__Prassble_listings_autowidth_lower_savewidth:%
+        \__Prassble_listings_debug_autowidth:%
+        \stepcounter{code}%
+    }
+  }
 \ExplSyntaxOff
+\makeatother

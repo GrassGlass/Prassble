@@ -19,23 +19,22 @@
 %%
 \makeatletter
 \ExplSyntaxOn
-  \NewDocumentCommand{\ModifiedNewTCBListing}{ m m m }{
-    \NewTCBListing{ #1 }{ #2 }{ #3 }
-    \BeforeBeginEnvironment{#1}{
+  \NewDocumentCommand{\NewPCBListing}{ O{} m m m }{
+    \NewTCBListing{ #2 }{ #3 }{ #4 }
+    \BeforeBeginEnvironment{#2}{
       % Before the listing
         % The value of \linewidth where the corresponding listing environment is located
           % The name is \linewidth*outside* precisely because its the \linewidth (immediately) outside the listing environment
           \dim_set:Nn \g__Prassble_listings_autowidth@core_max_tcb_width_dim {\the\linewidth}%
-        % Centering the listing
-        \par%
-        \begingroup%=====%
-          \centering%
+        % The dimensions to 'grow to left/right' (<- tcbkey) by
+          % These dimensions are set before the tcblisting starts, because we want the, e.g. \kvtcb@left@rule, of the previous/outer tcolorbox (that this tcblisting is to be nested in). 
+          \dim_set:Nn \g__Prassble_listings_type_in_thmgroup_inner_left_growth_dim {\kvtcb@left@rule+\kvtcb@boxsep+\kvtcb@leftupper}
+          \dim_set:Nn \g__Prassble_listings_type_in_thmgroup_inner_right_growth_dim {\kvtcb@right@rule+\kvtcb@boxsep+\kvtcb@rightupper}
     }
-    \AfterEndEnvironment{#1}{
+    \AfterEndEnvironment{#2}{
       % After the listing
-          \__Prassble_listings_debug_autowidth:
-          \stepcounter{code}%
-        \endgroup%=====%
+        \__Prassble_listings_debug_autowidth:
+        \stepcounter{code}%
     }
   }
 \ExplSyntaxOff

@@ -22,6 +22,8 @@
 
 % Variables
   % Definitions
+  \tl_new:N \g__Prassble_before_add_tl
+  \tl_new:N \g__Prassble_after_add_tl
   \tl_new:N \g__Prassble_listings_linenos_tl
   \tl_new:N \g__Prassble_listings_breaklines_tl
   \tl_new:N \g__Prassble_listings_minted_add_tl
@@ -39,6 +41,8 @@
   \dim_new:N \g__Prassble_listings_autowidth@core_max_tcb_text_width_dim
   \dim_new:N \g__Prassble_listings_Leftupper_dim
   \dim_new:N \g__Prassble_listings_autowidth@core_max_tcb_width_dim
+  \dim_new:N \g__Prassble_listings_type_in_thmgroup_inner_left_growth_dim
+  \dim_new:N \g__Prassble_listings_type_in_thmgroup_inner_right_growth_dim
   \cs_new:Npn \__tcb_text_width_to_width:n #1
   {
     #1+\g__Prassble_listings_autowidth@core_text_width_vs_width_difference_dim
@@ -132,83 +136,93 @@
   \tl_set:Nn \g__Prassble_listings_breaklines_tl {breaklines}
 
 \tcbset{
+  ,before~add/.code = {
+    \tl_put_right:Nn \g__Prassble_before_add_tl { #1~ }
+    \pgfkeysalso{before = \g__Prassble_before_add_tl}
+  }
+  ,after~add/.code = {
+    \tl_put_right:Nn \g__Prassble_after_add_tl { #1~ }
+    \pgfkeysalso{after = \g__Prassble_after_add_tl}
+  }
   ,no~number/.code = {\tl_clear:N \g__Prassble_listings_linenos_tl}
   ,minted~add/.code = {\tl_set:Nn \g__Prassble_listings_minted_add_tl {#1}}
   ,autowidth@core/.code = 
   {
-    % The line width \g__Prassble_listings_autowidth@core_measured_text_width_dim the box should be set to have (given this width is less than \g__Prassble_listings_autowidth@core_max_tcb_width_dim, i.e. doesn't overflow into the margins)
-      \bool_if:NT \g__Prassble_listings_autowidth_title_bool
+    % Center the box
+      \pgfkeysalso{center}
+
+    \bool_if:NT \g__Prassble_listings_autowidth_title_bool
+    {
+      \dim_set:Nn \l__Prassble_listings_autowidth_title_dim 
       {
-        \dim_set:Nn \l__Prassble_listings_autowidth_title_dim 
+        \eqboxwidth{codetitlewidth\arabic{code}}-\g__Prassble_listings_Leftupper_dim
+      }
+    }
+    \bool_if:NT \g__Prassble_listings_autowidth_upper_bool
+    {
+      \dim_set:Nn \l__Prassble_listings_autowidth_upper_dim
+      {
+        \eqboxwidth{codeupperwidth\arabic{code}}
+      }
+    }
+    \bool_if:NT \g__Prassble_listings_autowidth_lower_bool
+    {
+      \dim_set:Nn \l__Prassble_listings_autowidth_lower_dim
+      {
+        \eqboxwidth{codelowerwidth\arabic{code}}-\g__Prassble_listings_Leftupper_dim
+      }
+    }
+    \dim_set:Nn \g__Prassble_listings_autowidth@core_measured_text_width_dim 
+      {
+        \dim_max:nn 
+        {\l__Prassble_listings_autowidth_title_dim} 
         {
-          \eqboxwidth{codetitlewidth\arabic{code}}-\g__Prassble_listings_Leftupper_dim
+          \dim_max:nn
+          {\l__Prassble_listings_autowidth_upper_dim}
+          {\l__Prassble_listings_autowidth_lower_dim}
         }
       }
-      \bool_if:NT \g__Prassble_listings_autowidth_upper_bool
+    \dim_set:Nn \g__Prassble_listings_autowidth@core_text_width_vs_width_difference_dim {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
+    \dim_set:Nn \g__Prassble_listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\g__Prassble_listings_autowidth@core_max_tcb_width_dim}}
+    \dim_set:Nn \g__Prassble_listings_autowidth@core_measured_width_dim {\__tcb_text_width_to_width:n {\g__Prassble_listings_autowidth@core_measured_text_width_dim}}
+    % The default tcb text width the box should be set to have, in the first compilation where eqparbox is still calculating the required widths.  
+    \dim_compare:nNnTF 
+    {\eqboxwidth{codeupperwidth\arabic{code}}}
+      =
+    {0pt}
+    {
+      %* Potentially fragile code
+      \dim_set:Nn \g__Prassble_listings_autowidth@core_text_width_dim {\g__Prassble_listings_autowidth@core_max_tcb_width_dim}
+    }
+    {
+      \dim_set:Nn \g__Prassble_listings_autowidth@core_text_width_dim
       {
-        \dim_set:Nn \l__Prassble_listings_autowidth_upper_dim
-        {
-          \eqboxwidth{codeupperwidth\arabic{code}}
-        }
-      }
-      \bool_if:NT \g__Prassble_listings_autowidth_lower_bool
+        \dim_min:nn 
+          {\g__Prassble_listings_autowidth@core_max_tcb_text_width_dim} {\g__Prassble_listings_autowidth@core_measured_text_width_dim} 
+      } 
+    }
+    \bool_if:nTF 
       {
-        \dim_set:Nn \l__Prassble_listings_autowidth_lower_dim
-        {
-          \eqboxwidth{codelowerwidth\arabic{code}}-\g__Prassble_listings_Leftupper_dim
-        }
-      }
-      \dim_set:Nn \g__Prassble_listings_autowidth@core_measured_text_width_dim 
-        {
-          \dim_max:nn 
-          {\l__Prassble_listings_autowidth_title_dim} 
-          {
-            \dim_max:nn
-            {\l__Prassble_listings_autowidth_upper_dim}
-            {\l__Prassble_listings_autowidth_lower_dim}
-          }
-        }
-      \dim_set:Nn \g__Prassble_listings_autowidth@core_text_width_vs_width_difference_dim {\kvtcb@left@rule+\kvtcb@right@rule+\kvtcb@boxsep*2+\kvtcb@leftupper+\kvtcb@rightupper}
-      \dim_set:Nn \g__Prassble_listings_autowidth@core_max_tcb_text_width_dim {\__tcb_width_to_text_width:n {\g__Prassble_listings_autowidth@core_max_tcb_width_dim}}
-      \dim_set:Nn \g__Prassble_listings_autowidth@core_measured_width_dim {\__tcb_text_width_to_width:n {\g__Prassble_listings_autowidth@core_measured_text_width_dim}}
-      % The default tcb text width the box should be set to have, in the first compilation where eqparbox is still calculating the required widths.  
-      \dim_compare:nNnTF 
-      {\eqboxwidth{codeupperwidth\arabic{code}}}
-       =
-      {0pt}
+        \g__Prassble_listings_autowidth_upper_bool || {\g__Prassble_listings_autowidth_lower_bool && ! \dim_compare_p:nNn {\eqboxwidth{codeupperwidth\arabic{code}}}>{\l__Prassble_listings_autowidth_lower_dim}}
+      } 
       {
-        %* Potentially fragile code
-        \dim_set:Nn \g__Prassble_listings_autowidth@core_text_width_dim {\g__Prassble_listings_autowidth@core_max_tcb_width_dim}
+        % Autowidth = upper: Disable breaklines to allow \eqboxwidth{codeupperwidth\arabic{code}} to correctly measure the greatest line width. Enable breaklines if the line width overflows into the margins---autowidth ceases to work (the listing behaves as if autowidth wasn't used). (Why? I'm not sure; this is just the behavior I observed and wrote my code around.) 
+        \dim_compare:nNnTF
+          % Relationship to compare 
+          {\g__Prassble_listings_autowidth@core_max_tcb_text_width_dim} 
+          < 
+          {\g__Prassble_listings_autowidth@core_measured_text_width_dim}
+          % TF code execution
+          {\tl_set:Nn \g__Prassble_listings_breaklines_tl {breaklines}}
+          {\tl_clear:N \g__Prassble_listings_breaklines_tl }
       }
       {
-        \dim_set:Nn \g__Prassble_listings_autowidth@core_text_width_dim
-        {
-          \dim_min:nn 
-            {\g__Prassble_listings_autowidth@core_max_tcb_text_width_dim} {\g__Prassble_listings_autowidth@core_measured_text_width_dim} 
-        } 
+        % Autowidth = title: the title might be smaller (in width) than the body (upper and lower parts). So, breaklines needs to be enabled to avoid overflowing contents. Why doesn't breaklines essentially disable autowidth in this case (unlike for autowidth = upper)? Breaklines is a minted key that affects only the minted environment---the upper part of the box. 
+        % If autowidth = lower wants to set the text width to something smaller than \l__Prassble_listings_autowidth_upper_dim, then breaklines must be enabled. Why not just always have breaklines enabled? We may want autowidth = upper and lower. 
+        \tl_set:Nn \g__Prassble_listings_breaklines_tl {breaklines}
       }
-      \bool_if:nTF 
-        {
-          \g__Prassble_listings_autowidth_upper_bool || {\g__Prassble_listings_autowidth_lower_bool && ! \dim_compare_p:nNn {\eqboxwidth{codeupperwidth\arabic{code}}}>{\l__Prassble_listings_autowidth_lower_dim}}
-        } 
-        {
-          % Autowidth = upper: Disable breaklines to allow \eqboxwidth{codeupperwidth\arabic{code}} to correctly measure the greatest line width. Enable breaklines if the line width overflows into the margins---autowidth ceases to work (the listing behaves as if autowidth wasn't used). (Why? I'm not sure; this is just the behavior I observed and wrote my code around.) 
-          \dim_compare:nNnTF
-            % Relationship to compare 
-            {\g__Prassble_listings_autowidth@core_max_tcb_text_width_dim} 
-            < 
-            {\g__Prassble_listings_autowidth@core_measured_text_width_dim}
-            % TF code execution
-            {\tl_set:Nn \g__Prassble_listings_breaklines_tl {breaklines}}
-            {\tl_clear:N \g__Prassble_listings_breaklines_tl }
-        }
-        {
-          % Autowidth = title: the title might be smaller (in width) than the body (upper and lower parts). So, breaklines needs to be enabled to avoid overflowing contents. Why doesn't breaklines essentially disable autowidth in this case (unlike for autowidth = upper)? Breaklines is a minted key that affects only the minted environment---the upper part of the box. 
-          % If autowidth = lower wants to set the text width to something smaller than \l__Prassble_listings_autowidth_upper_dim, then breaklines must be enabled. Why not just always have breaklines enabled? We may want autowidth = upper and lower. 
-          \tl_set:Nn \g__Prassble_listings_breaklines_tl {breaklines}
-        }
-    % autowidth functionality: setting the tcbkey 'text width'
-      \pgfkeysalso{text~width = \g__Prassble_listings_autowidth@core_text_width_dim}
+  % autowidth functionality: setting the tcbkey 'text width'
+    \pgfkeysalso{text~width = \g__Prassble_listings_autowidth@core_text_width_dim}
   }
   ,autowidth/.is~choice
     ,autowidth/title/.code = 
@@ -309,7 +323,7 @@
         ,lefttitle        = 0pt
         ,leftlower        = 0pt
         ,lower~separated  = false
-        ,opacityfill=0.0
+        ,opacityfill      = 0.0
       }
     }
   }

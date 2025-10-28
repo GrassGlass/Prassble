@@ -50,14 +50,14 @@
             % #1    [ <OTitle/pgfkeys> ]
             % #2    { <Displayed language> }
         
-        \ModifiedNewTCBListing{code}{ D(){middle} ={OTitle} O{} m }{
-            ,type in thmgroup = {#1}
+        \NewPCBListing{code}{ D(){middle} ={OTitle} O{} m }{
             ,codestyleenvironment = {#3}{#3}
+            ,type in thmgroup = {#1}
             ,#2
         }
-        \ModifiedNewTCBListing{codeoutput}{ D(){middle} ={OTitle} O{} m }{
-            ,type in thmgroup = {#1}
+        \NewPCBListing{codeoutput}{ D(){middle} ={OTitle} O{} m }{
             ,codestyleenvironment = {#3}{Output}
+            ,type in thmgroup = {#1}
             ,#2
         }
 
@@ -72,31 +72,31 @@
             % #2    [ <OTitle/pgfkeys> ]
             % #3    { <Listing file> }
 
-        \ModifiedNewTCBInputListing{\InputCode}{ D(){middle} ={OTitle} O{} m }{
-            ,type in thmgroup = {#1}
+        \NewPCBInputListing{\InputCode}{ D(){middle} ={OTitle} O{} m }{
             ,codestyleinput* = {#3}{\displayedname}
+            ,type in thmgroup = {#1}
             ,#2
             ,Inputify = {#3}
             ,listing file = {\inputPath}
         }
 
-        \ModifiedNewTCBInputListing{\inputcode}{ D(){middle} ={OTitle} O{} m }{
-            ,type in thmgroup = {#1}
+        \NewPCBInputListing{\inputcode}{ D(){middle} ={OTitle} O{} m }{
             ,codestyleinput = {#3}{\displayedname}
+            ,type in thmgroup = {#1}
             ,#2
         }
 
-        \ModifiedNewTCBInputListing{\InputCodeOutput}{ D(){middle} ={OTitle} O{} m }{
-            ,type in thmgroup = {#1}
+        \NewPCBInputListing{\InputCodeOutput}{ D(){middle} ={OTitle} O{} m }{
             ,codestyleinput* = {#3}{Output}
+            ,type in thmgroup = {#1}
             ,#2
             ,Inputify = {#3}
             ,listing file = {\inputPath}
         }
 
-        \ModifiedNewTCBInputListing{\inputcodeoutput}{ D(){middle} ={OTitle} O{} m }{
-            ,type in thmgroup = {#1}
+        \NewPCBInputListing{\inputcodeoutput}{ D(){middle} ={OTitle} O{} m }{
             ,codestyleinput = {#3}{Output}
+            ,type in thmgroup = {#1}
             ,#2
         }
 

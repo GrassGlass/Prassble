@@ -53,7 +53,7 @@
 \frontmatter
 \chapter*{Last successful compile: \DTMnow}
 
-This file is a compilation of various uses of the listing boxes generated with \codeinline{TeX}{\ModifiedNewTCBListing} and \codeinline{TeX}{\ModifiedNewTCBInputListing}. In this way, robustness checks are performed to ensure they function correctly---as bug-free as possible.
+This file is a compilation of various uses of the listing boxes generated with \codeinline{TeX}{\NewPCBListing} and \codeinline{TeX}{\NewPCBInputListing}. In this way, robustness checks are performed to ensure they function correctly---as bug-free as possible.
 \begin{code}[debug=autowidth]{Text}
     Hello
 \end{code}
@@ -67,14 +67,34 @@ This file is a compilation of various uses of the listing boxes generated with \
 \mainmatter
 \chapter{Decorations}
 \input{test_decorations.tex}
+
+\chapter{Type in thmgroup: inner}
+\section{NewPCBListing}
+\begin{answer}(standalone)
+    The first part of our answer.
+    \begin{code}(inner){\TeX}
+        The code for our answer.
+    \end{code}
+    \hspace{-\parindent-4mm} The second part of our answer lies here.
+\end{answer}
+
+\section{NewPCBInputListing}
+\begin{answer}(standalone)
+    The first part of our answer.
+    \inputcode(inner){inner_lorem_ipsum.tex}
+    \hspace{-\parindent-4mm} The second part of our answer lies here.
+\end{answer}
+
 \chapter{Autowidth}
-\section{ModifiedNewTCBListing}
-\input{test_ModifiedNewTCBListing.tex}
+\section{NewPCBListing}
+\input{test_NewPCBListing.tex}
 \begin{code}[autowidth = upper, debug = autowidth]{Text}
     test
 \end{code}
 
-\section{ModifiedNewTCBInputListing}
+\section{NewPCBInputListing}
+\RemoveFromHook{env/code/before}
+\RemoveFromHook{env/code/after}
 \RenewDocumentEnvironment{code}{ D(){standalone} ={OTitle} O{} m c}{
     \stepcounter{codeinput}%
     \def\tmpfilename{\jobname\arabic{codeinput}.txt}%
@@ -84,9 +104,9 @@ This file is a compilation of various uses of the listing boxes generated with \
     \immediate\closeout\tmptextfile%
     \inputcode(#1)[#2]{\tmpfilename}
 }{}
-\input{test_ModifiedNewTCBListing.tex}
+\input{test_NewPCBListing.tex}
 
-\section{\texttt{\textbackslash Inputify}}
+\subsection{\texttt{\textbackslash Inputify}}
 \InputCode{test/\jobname\arabic{codeinput}.txt}
 \InputCode[=,pwd]{\jobname\arabic{codeinput}.txt}
 \InputCode[=,key=Ch]{ch1/sec1.tex}

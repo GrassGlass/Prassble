@@ -21,6 +21,19 @@
             ,rounded corners = east
         }
 }
+\makeatletter
+\ExplSyntaxOn
+    \tcbset{
+        ,type~in~thmgroup/inner/.style = {
+            ,type~in~thmgroup   = middle
+            ,opacityfill        = 0.0
+            ,grow~to~left~by    = \g__Prassble_listings_type_in_thmgroup_inner_left_growth_dim
+            ,grow~to~right~by   = \g__Prassble_listings_type_in_thmgroup_inner_right_growth_dim
+            ,notitle
+        }
+    }
+\ExplSyntaxOff
+\makeatother
 
 \ExplSyntaxOn
     \keys_define:nn { keytheorems/thmuse }
@@ -34,11 +47,11 @@
                 tcb-add = {#1}
             }
         }
-    % The command \modifiedXkeytheorem{\Xkeytheorem} that creates an \Xkeytheorem (e.g. \newkeytheorem) that optionally saves the name of the environemnt into \g__Prassble_environments_used_in_HWs_clist and 
-        \NewDocumentCommand{\modifiedXkeytheorem}{ m s m D(){} +O{} }
+    % The command \modifiedXptheorem{\Xkeytheorem} that creates an \Xkeytheorem (e.g. \newkeytheorem) that optionally saves the name of the environemnt into \g__Prassble_environments_used_in_HWs_clist and 
+        \NewDocumentCommand{\modifiedXptheorem}{ m s m D(){} +O{} }
         {
             \clist_map_inline:nn {#3} {
-            % Save the environment name iff \modifiednewkeytheorem is unstarred
+            % Save the environment name iff \newptheorem is unstarred
                 \bool_if:nF {#2} {
                     \clist_gput_right:Nn \g__Prassble_environments_used_in_HWs_clist {##1}
                 }
@@ -58,13 +71,13 @@
 
         } 
         % Xkeytheorem = \newkeytheorem
-        \NewDocumentCommand{\modifiednewkeytheorem}{ }{\modifiedXkeytheorem{\newkeytheorem}}
+        \NewDocumentCommand{\newptheorem}{ }{\modifiedXptheorem{\newkeytheorem}}
         % Xkeytheorem = \renewkeytheorem
-        \NewDocumentCommand{\modifiedrenewkeytheorem}{ }{\modifiedXkeytheorem{\renewkeytheorem}}
+        \NewDocumentCommand{\renewptheorem}{ }{\modifiedXptheorem{\renewkeytheorem}}
         % Xkeytheorem = \providekeytheorem
-        \NewDocumentCommand{\modifiedprovidekeytheorem}{ }{\modifiedXkeytheorem{\providekeytheorem}}
+        \NewDocumentCommand{\provideptheorem}{ }{\modifiedXptheorem{\providekeytheorem}}
         % Xkeytheorem = \declarekeytheorem
-        \NewDocumentCommand{\modifieddeclarekeytheorem}{ }{\modifiedXkeytheorem{\declarekeytheorem}}
+        \NewDocumentCommand{\declareptheorem}{ }{\modifiedXptheorem{\declarekeytheorem}}
     % The command \StyleDependentValue[ <key> ]{ <name> }{ <clist of BoxStyles> }{ <clist of corresponding values for a key=value <key>> }{ <style macro> } that defines a macro \<name><key>, such that '<key> = \<name><key>' automatically adapts to the value of the <style macro>.
         % Declaring variables
         \int_new:N \l__Prassble_StyleDependentValue_number_in_boxstyles_int

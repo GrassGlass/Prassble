@@ -30,23 +30,23 @@
     \StyleDependentValue{purplebox}{colourful,BnW}{purplebox,BnW}{\ColorTheme}
 
     % Proof/Answer environments
-    \modifiedrenewkeytheorem*{proof}
+    \renewptheorem*{proof}
     (last)
     [style:V = \proofbox]
-    \modifiednewkeytheorem*{answer}
+    \newptheorem*{answer}
     (last)
     [style:V = \proofbox]
 
 % Numbered
     % Family of environments with chapter as parent
         % greenboxes: definition, notation, motivation, recall
-        \modifiednewkeytheorem{definition}
+        \newptheorem{definition}
         (standalone)
         [
             ,style:V = \greenbox
             ,parent:V = \DefinitionParent
         ]
-        \modifiednewkeytheorem{notation,motivation,recall}
+        \newptheorem{notation,motivation,recall}
         (standalone)
         [
             ,style:V = \greenbox
@@ -54,7 +54,7 @@
         ]
 
         % redboxes: claim, proposition, lemma, theorem, corollary
-        \modifiednewkeytheorem{claim,proposition,lemma,theorem,corollary}
+        \newptheorem{claim,proposition,lemma,theorem,corollary}
         (first)
         [
             ,style:V = \redbox
@@ -62,7 +62,7 @@
         ]
 
         % blueboxes: observation, example, remark, note
-        \modifiednewkeytheorem{observation,example,remark,note}
+        \newptheorem{observation,example,remark,note}
         (standalone)
         [
             ,style:V = \bluebox
@@ -71,13 +71,13 @@
 
     % Family of environments with section as parent, and a separate hw environment
         % purpleboxes: problem, question, exercise, hw
-        \modifiednewkeytheorem{problem}
+        \newptheorem{problem}
         (first)
         [
             ,style:V = \purplebox
             ,parent:V = \ProblemParent
         ]
-        \modifiednewkeytheorem{question,exercise}
+        \newptheorem{question,exercise}
         (first)
         [
             ,style:V = \purplebox
