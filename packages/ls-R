@@ -1,6 +1,7 @@
 % ls-R -- filename database for kpathsea; do not change this line.
 ./:
 .:
+development
 ls-R
 tex
 
@@ -9,5 +10,11 @@ tex
 latex
 
 ./tex/latex:
-file_tree.sh
+filetree
+p
+
+./tex/latex/filetree:
+file_tree
 filetree.sty
+
+./tex/latex/p:
