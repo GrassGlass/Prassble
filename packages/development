@@ -34,6 +34,7 @@
         # 1. $SELFAUTOPARENT/../texmf-local --- this is just the default directory.
         # 2. $scriptDir ---- the folder .../Prassble/packages.
         # This order ensures that $scirptDir takes precedence, so if two copies of <package A> is found (one in 1. and the other in 2.), the one in 2. will be used --- such as when we do \usepackage{ <package A> }.
+        # When we add a directory $dir to TEXMFLOCAL, all LaTeX packages should be placed under some subdirectory of dir/tex/latex.
         append_texmf_cnf="TEXMFLOCAL = \$SELFAUTOPARENT/../texmf-local,$scriptDir"
     # If $append_texmf_cnf is not found in $texmf_cnf, then append it to the end of $texmf_cnf.
         if ! grep -q "$append_texmf_cnf" "$texmf_cnf"; then
