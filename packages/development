@@ -1,5 +1,6 @@
 #!/bin/bash
-# Note! This script is built for a GitHub Codespace (specifically one spun up with the .devcontainer included). Slight modifications may be needed for it to run correctly on your machine. 
+# Run this script to ensure your copy of the LaTeX project Prassble is ready for use/compilation.
+# Note! This script should be located in .../packages/development. Don't move it elsewhere!
 
 # Update workspace first
     apt-get -y update && apt-get -y upgrade
