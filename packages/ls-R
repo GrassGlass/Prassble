@@ -11,10 +11,11 @@ latex
 
 ./tex/latex:
 filetree
-p
+prassble-math
 
 ./tex/latex/filetree:
 file_tree
 filetree.sty
 
-./tex/latex/p:
+./tex/latex/prassble-math:
+prassble-math.sty

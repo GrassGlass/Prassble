@@ -1,0 +1,318 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesExplPackage {prassble-math} {2025-10-29} {0.1} {Generic utility math macros for the LaTeX template Prassble.}
+
+\RequirePackage{mathtools}
+
+% prerequisites for \het command
+  \usepackage{stackengine}
+  \usepackage{verbatimbox} % For \addvbuffer
+
+%* Function declaration
+  \NewDocumentCommand{\Function}{ m m m }{#1 \colon #2 \to #3}
+
+%* Restriction
+  % Source: https://tex.stackexchange.com/a/22255
+  \newcommand\restr[3][]{{% we make the whole thing an ordinary symbol
+    \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+    #2 % the function
+    \littletaller % pretend it's a little taller at normal size
+    \right|_{#3}^{#1} % this is the delimiter
+    }}
+  \newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
+
+
+% Operator dim with a starred variant which has subscripts placed below the operator.
+    \let\dimNonamelimits = \dim
+    \DeclareMathOperator*{\dimNamelimits}{dim}
+    \DeclareDocumentCommand{\dim}{ s }{\IfBooleanTF{#1}{\dimNamelimits}{\dimNonamelimits}}
+
+% Paired delimiters
+  % Note: expl3 alternative: etoolbox with \ifblank{#1}{\:\cdot\:}{#1}
+  \DeclarePairedDelimiterX\abs[1]\lvert\rvert{
+    \tl_if_blank:nTF {#1} {\:\cdot\:,\:\cdot\:} {#1}
+  }
+  \DeclarePairedDelimiterX\norm[1]\lVert\rVert{
+    \tl_if_blank:nTF {#1} {\:\cdot\:,\:\cdot\:} {#1}
+  }
+  \DeclarePairedDelimiterX\inr[1]\langle\rangle{
+    \ifblank{#1}{\:\cdot\:,\:\cdot\:}{#1}
+  }
+  \DeclarePairedDelimiterX\floor[1]\lfloor\rfloor{
+    \tl_if_blank:nTF {#1} {\:\cdot\:,\:\cdot\:} {#1}
+  }
+  \DeclarePairedDelimiterX\ceil[1]\lceil\rceil{
+    \tl_if_blank:nTF {#1} {\:\cdot\:,\:\cdot\:} {#1}
+  }
+
+% Set
+% Source: mathtools package documentation
+  % just to make sure it exists
+    \providecommand\given{}
+  % can be useful to refer to this outside \Set
+    \newcommand\SetSymbol[1][]{%
+    \nonscript\:#1\vert
+    \allowbreak
+    \nonscript\:
+    \mathopen{}}
+    \DeclarePairedDelimiterX\Set[1]\lbrace\rbrace{%
+    \renewcommand\given{\SetSymbol[\delimsize]}
+    #1
+    }
+
+% Matrices
+  % We use commas as row separators and semicolons as column separators.
+    \tl_new:N \g__Prassble_matrix_left_delimiter_tl
+    \tl_new:N \g__Prassble_matrix_right_delimiter_tl
+    \tl_new:N \g__Prassble_matrix_autoscaled_left_delimiter_tl
+    \tl_new:N \g__Prassble_matrix_autoscaled_right_delimiter_tl
+    \tl_new:N \g__Prassble_matrix_contents_tl
+    \seq_new:N \g__Prassble_col_entries_seq
+    \seq_new:N \g__Prassble_matrix_rows_seq
+    % Default
+      \tl_gset:Nn \g__Prassble_matrix_left_delimiter_tl {\lparen}
+      \tl_gset:Nn \g__Prassble_matrix_right_delimiter_tl {\rparen}
+      \tl_gset:Nn \g__Prassble_matrix_autoscaled_left_delimiter_tl {
+        \tl_if_empty:NF \g__Prassble_matrix_left_delimiter_tl {
+          \left\g__Prassble_matrix_left_delimiter_tl
+        }
+      }
+      \tl_gset:Nn \g__Prassble_matrix_autoscaled_right_delimiter_tl {
+        \tl_if_empty:NF \g__Prassble_matrix_right_delimiter_tl {
+          \right\g__Prassble_matrix_right_delimiter_tl
+        }
+      }
+    % Keys
+    \keys_define:nn { prassble/math/matrix } {
+      ,delim         .choice:,
+        ,delim/ none .code:n = {
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl { }
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl { }
+        }
+        ,delim / p   .code:n = {
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lparen}
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rparen}
+        }
+        ,delim / b   .code:n = {
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lbrack}
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rbrack}
+        }
+        ,delim / B  .code:n  = {
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lbrace}
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rbrace}
+        }
+        ,delim / v  .code:n  = {
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lvert}
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rvert}
+        }
+        ,delim / V  .code:n  = {
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lVert}
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rVert}
+        }
+    }
+  % Row
+    % \Declare...\lparen\rparen is used to size inline row matrices properly; the default pmatrix uses \left( matrix \right) which often oversizes the parentheses.
+    \DeclarePairedDelimiterX{\row@core}[1]{\g__Prassble_matrix_left_delimiter_tl}{\g__Prassble_matrix_right_delimiter_tl}{
+      \begin{matrix}
+        \clist_use:nn { #1 } { & }
+      \end{matrix}
+    }
+    \NewDocumentCommand{\row}{ s O{} m }{
+    \group_begin:
+      \keys_set:nn { prassble/math/matrix } { #2 }
+      \tl_set:Nn \g__Prassble_matrix_contents_tl {
+        \clist_use:nn { #3 } { \c_space_tl & }
+      }
+      \bool_if:nTF 
+        { #1 } 
+        {
+          \row@core*{ \tl_use:N \g__Prassble_matrix_contents_tl }
+        }
+        {
+          \row@core{ \tl_use:N \g__Prassble_matrix_contents_tl }
+        }
+    \group_end:
+    }
+  % Col
+    \NewDocumentCommand{\col}{ s O{} m }{
+    \group_begin:
+      \keys_set:nn { prassble/math/matrix } { #2 }
+      \seq_set_split:Nnn \g__Prassble_col_entries_seq { ; } { #3 }
+      \int_compare:nNnTF
+        { \seq_count:N \g__Prassble_col_entries_seq } > { 1 }
+        {
+          \g__Prassble_matrix_autoscaled_left_delimiter_tl
+            \begin{matrix}
+              \seq_use:Nn \g__Prassble_col_entries_seq { \\ }
+            \end{matrix}
+          \g__Prassble_matrix_autoscaled_right_delimiter_tl
+        }
+        {
+          \bool_if:nTF
+            { #1 }
+            {
+              \g__Prassble_matrix_autoscaled_left_delimiter_tl
+                \begin{matrix}
+                    #3
+                \end{matrix}
+              \g__Prassble_matrix_autoscaled_right_delimiter_tl
+            }
+            {
+              \g__Prassble_matrix_left_delimiter_tl
+                \begin{matrix}
+                    #3
+                \end{matrix}
+              \g__Prassble_matrix_right_delimiter_tl
+            } 
+        }
+    \group_end:
+    }
+  % Matrix
+    \NewDocumentCommand{\mat}{ s O{} m }{
+    \group_begin:
+      \keys_set:nn { prassble/math/matrix } { #2 }
+      % The sequence \g__Prassble_matrix_rows_seq that contains all rows of the matrix, in order, where the nth entry of the sequence is the nth row of the matrix.
+        \seq_set_split:Nnn \g__Prassble_matrix_rows_seq { ; } { #3 }
+      % If there is only one row, use \row. Otherwise, use a usual matrix environment.
+        \int_compare:nNnTF 
+          { \seq_count:N \g__Prassble_matrix_rows_seq } = { 1 }
+          {
+            \bool_if:nTF
+              { #1 }
+              { \row*{ #3 } }
+              { \row{ #3 } }
+          }
+          {
+            \seq_map_inline:Nn \g__Prassble_matrix_rows_seq {
+              \tl_put_right:Nn \g__Prassble_matrix_contents_tl {
+                \clist_use:nn { ##1 } { \c_space_tl & } \\
+              }
+            }
+            \g__Prassble_matrix_autoscaled_left_delimiter_tl
+              \begin{matrix}
+                \tl_use:N \g__Prassble_matrix_contents_tl
+              \end{matrix}
+            \g__Prassble_matrix_autoscaled_right_delimiter_tl
+          }
+    \group_end:
+    }
+
+%* Widebar
+  % Source: https://tex.stackexchange.com/a/60253
+  \let\save@mathaccent\mathaccent
+  \newcommand*\if@single[3]{%
+    \setbox0\hbox{${\mathaccent"0362{#1}}^H$}%
+    \setbox2\hbox{${\mathaccent"0362{\kern0pt#1}}^H$}%
+    \ifdim\ht0=\ht2 #3\else #2\fi
+    }
+  %The bar will be moved to the right by a half of \macc@kerna, which is computed by amsmath:
+  \newcommand*\rel@kern[1]{\kern#1\dimexpr\macc@kerna}
+  %If there's a superscript following the bar, then no negative kern may follow the bar;
+  %an additional {} makes sure that the superscript is high enough in this case:
+  \newcommand*\widebar[1]{\@ifnextchar^{{\wide@bar{#1}{0}}}{\wide@bar{#1}{1}}}
+  %Use a separate algorithm for single symbols:
+  \newcommand*\wide@bar[2]{\if@single{#1}{\wide@bar@{#1}{#2}{1}}{\wide@bar@{#1}{#2}{2}}}
+  \newcommand*\wide@bar@[3]{%
+    \begingroup
+    \def\mathaccent##1##2{%
+  %Enable nesting of accents:
+      \let\mathaccent\save@mathaccent
+  %If there's more than a single symbol, use the first character instead (see below):
+      \if#32 \let\macc@nucleus\first@char \fi
+  %Determine the italic correction:
+      \setbox\z@\hbox{$\macc@style{\macc@nucleus}_{}$}%
+      \setbox\tw@\hbox{$\macc@style{\macc@nucleus}{}_{}$}%
+      \dimen@\wd\tw@
+      \advance\dimen@-\wd\z@
+  %Now \dimen@ is the italic correction of the symbol.
+      \divide\dimen@ 3
+      \@tempdima\wd\tw@
+      \advance\@tempdima-\scriptspace
+  %Now \@tempdima is the width of the symbol.
+      \divide\@tempdima 10
+      \advance\dimen@-\@tempdima
+  %Now \dimen@ = (italic correction / 3) - (Breite / 10)
+      \ifdim\dimen@>\z@ \dimen@0pt\fi
+  %The bar will be shortened in the case \dimen@<0 !
+      \rel@kern{0.6}\kern-\dimen@
+      \if#31
+        \overline{\rel@kern{-0.6}\kern\dimen@\macc@nucleus\rel@kern{0.4}\kern\dimen@}%
+        \advance\dimen@0.4\dimexpr\macc@kerna
+  %Place the combined final kern (-\dimen@) if it is >0 or if a superscript follows:
+        \let\final@kern#2%
+        \ifdim\dimen@<\z@ \let\final@kern1\fi
+        \if\final@kern1 \kern-\dimen@\fi
+      \else
+        \overline{\rel@kern{-0.6}\kern\dimen@#1}%
+      \fi
+    }%
+    \macc@depth\@ne
+    \let\math@bgroup\@empty \let\math@egroup\macc@set@skewchar
+    \mathsurround\z@ \frozen@everymath{\mathgroup\macc@group\relax}%
+    \macc@set@skewchar\relax
+    \let\mathaccentV\macc@nested@a
+  %The following initialises \macc@kerna and calls \mathaccent:
+    \if#31
+      \macc@nested@a\relax111{#1}%
+    \else
+  %If the argument consists of more than one symbol, and if the first token is
+  %a letter, use that letter for the computations:
+      \def\gobble@till@marker##1\endmarker{}%
+      \futurelet\first@char\gobble@till@marker#1\endmarker
+      \ifcat\noexpand\first@char A\else
+        \def\first@char{}%
+      \fi
+      \macc@nested@a\relax111{\first@char}%
+    \fi
+    \endgroup
+  }
+
+%* het command
+  % Source: https://tex.stackexchange.com/a/294182/383565
+  %! Warning! This is calibrated for computer modern roman. Other fonts may require adjustments; for more information, see the above source. 
+  \stackMath
+  \newlength\glyphwidth
+  \newlength\widthofx
+  %Use this in a document body for debugging the glyphs:
+  %\scalebox{10}{
+  %\setlength{\fboxsep}{0.0pt}
+  %\setlength{\fboxrule}{0.1pt}
+  %\fbox{\fbox{$\usebox{\hatglyphCONTENT}$}%
+  %      \fbox{$\usebox{\checkglyphCONTENT}$}}
+  %}
+  \newsavebox\hatglyphCONTENT
+  \sbox\hatglyphCONTENT{%
+  %%%% 1ST OPTIONAL ARGUMENT OF \addvbuffer (CROP OFF TOP OF STACKED hat)
+  %%%% 2ND OPTIONAL ARGUMENT OF \addvbuffer (CROP OFF BOTTOM OF STACKED hat)
+      \addvbuffer[-0.05ex -1.3ex]{$\hat{\phantom{.}}$}%
+  }
+  %%%% The floating point parameter scales the het glyphs everywhere.
+  \newcommand\hatglyph{\resizebox{0.6\widthofx}{!}{\usebox{\hatglyphCONTENT}}}
+  \newcommand\shifthat[2]{%
+  %%%% 1ST ARGUMENT OF \stackengine (GAP BETWEEN GLYPH AND \hatglyph)
+      \stackengine{0.2\widthofx}{%
+          \SavedStyle#2}{%
+          \rule{#1}{0ex}\hatglyph}{O}{c}{F}{T}{S}%
+  }
+  \newcommand\relativeGlyphOffset[1]{%
+      % The horizontal offset in arbitrary units that scale with math style.
+      \str_case:nnF{#1}{%
+          {A}{0.18}%
+          {B}{0.1}%
+          {W}{0.02}%
+          {J}{0.18}%
+          {\phi}{0.17}%
+      }{0.05}% Default
+  }
+  % \het{decoratedLetter}[A] will insert the decoratedLetter with the hat
+  % above it, horizontally adjusted as if the decoratedLetter was an "A".
+  % If the trailing optional argument is not provided, then it defaults 
+  % to the decoratedLetter. This way we could do e.g. \het{\het{A}}[A].
+  \NewDocumentCommand{\het}{mO{#1}}{%
+      \ThisStyle{%
+          \setlength\glyphwidth{\widthof{$\SavedStyle{}\longleftarrow$}}%
+          \setlength\widthofx{\widthof{$\SavedStyle{}x$}}%
+          \shifthat{\relativeGlyphOffset{#2}\glyphwidth}{#1}%
+    }%
+  }
+
+\file_input_stop:

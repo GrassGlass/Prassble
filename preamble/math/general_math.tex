@@ -17,10 +17,7 @@
 %%
 %% This work consists of all files listed in README
 %%
-% This TeX file contains general math operators, delimiters, and other useful macros 
-\newcommand{\into}{\hookrightarrow}
-\newcommand{\onto}{\twoheadrightarrow}
-\newcommand{\contra}{\longrightarrow\longleftarrow}
+% This TeX file contains general math operators, delimiters, and other useful macros.
 
 % Operators
   \DeclareMathOperator{\Spec}{Spec}
@@ -45,67 +42,9 @@
   \DeclareMathOperator{\tr}{tr}
   \DeclareMathOperator{\fgl}{\mathfrak{gl}}
   \DeclareMathOperator{\fsl}{\mathfrak{sl}}
-  \DeclareMathOperator{\MS}{M}
   \DeclareMathOperator{\adj}{adj}
-  \DeclareMathOperator{\NS}{N}
-  \DeclareMathOperator{\RS}{R}
   \DeclareMathOperator{\nullity}{nullity}
   \DeclareMathOperator{\Span}{span}
-
-  % Operator dim with a starred variant which has subscripts placed below the operator.
-    \let\dimNonamelimits = \dim
-    \DeclareMathOperator*{\dimNamelimits}{dim}
-    \DeclareDocumentCommand{\dim}{ s }{\IfBooleanTF{#1}{\dimNamelimits}{\dimNonamelimits}}
-
-  \NewDocumentCommand{\Mrep}{ m O{} m }{[#3]_{#1}^{#2}}
-
-  \DeclareMathOperator{\PS}{P}
-
-% Paired delimiters
-% Note: expl3 alternative: etoolbox with \ifblank{#1}{\:\cdot\:}{#1}
-\ExplSyntaxOn
-  \DeclarePairedDelimiterX\abs[1]\lvert\rvert{
-  \tl_if_blank:nTF {#1} {\:\cdot\:,\:\cdot\:} {#1}
-  }
-  \DeclarePairedDelimiterX\norm[1]\lVert\rVert{
-  \tl_if_blank:nTF {#1} {\:\cdot\:,\:\cdot\:} {#1}
-  }
-  \DeclarePairedDelimiterX\inr[1]\langle\rangle{
-  \ifblank{#1}{\:\cdot\:,\:\cdot\:}{#1}
-  }
-  \DeclarePairedDelimiterX\floor[1]\lfloor\rfloor{
-  \tl_if_blank:nTF {#1} {\:\cdot\:,\:\cdot\:} {#1}
-  }
-  \DeclarePairedDelimiterX\ceil[1]\lceil\rceil{
-  \tl_if_blank:nTF {#1} {\:\cdot\:,\:\cdot\:} {#1}
-  }
-\ExplSyntaxOff
-
-  % Set
-    % just to make sure it exists
-    \providecommand\given{}
-    % can be useful to refer to this outside \Set
-    \newcommand\SetSymbol[1][]{%
-    \nonscript\:#1\vert
-    \allowbreak
-    \nonscript\:
-    \mathopen{}}
-    \DeclarePairedDelimiterX\Set[1]\lbrace\rbrace{%
-    \renewcommand\given{\SetSymbol[\delimsize]}
-    #1
-    }
-
-  \DeclarePairedDelimiterX{\row}[1]{\lparen}{\rparen}{
-    \begin{matrix}
-      #1
-    \end{matrix}
-  }
-
-  \DeclarePairedDelimiterXPP{\Eigenspace}[2]{E}{\lparen}{\rparen}{}{#1,#2}
-
-  \DeclarePairedDelimiterXPP\Prob[1]{\mathbb{P}}(){}{
-  \renewcommand\given{\nonscript\:\delimsize\vert\nonscript\:\mathopen{}}
-  #1}
 
 % Special math characters
   \newcommand{\bZ}{\mathbb{Z}}
@@ -149,137 +88,3 @@
   \newcommand{\cG}{\mathcal{G}}
   \newcommand{\cH}{\mathcal{H}}
   \newcommand{\cO}{\mathcal{O}}
-
-%* Function declaration
-\NewDocumentCommand{\Function}{ m m m }{#1 \colon #2 \to #3}
-
-%* Restriction
-% Source: https://tex.stackexchange.com/a/22255
-\newcommand\restr[3][]{{% we make the whole thing an ordinary symbol
-  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
-  #2 % the function
-  \littletaller % pretend it's a little taller at normal size
-  \right|_{#3}^{#1} % this is the delimiter
-  }}
-\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
-
-%* Widebar
-% Source: https://tex.stackexchange.com/a/60253
-\makeatletter
-\let\save@mathaccent\mathaccent
-\newcommand*\if@single[3]{%
-  \setbox0\hbox{${\mathaccent"0362{#1}}^H$}%
-  \setbox2\hbox{${\mathaccent"0362{\kern0pt#1}}^H$}%
-  \ifdim\ht0=\ht2 #3\else #2\fi
-  }
-%The bar will be moved to the right by a half of \macc@kerna, which is computed by amsmath:
-\newcommand*\rel@kern[1]{\kern#1\dimexpr\macc@kerna}
-%If there's a superscript following the bar, then no negative kern may follow the bar;
-%an additional {} makes sure that the superscript is high enough in this case:
-\newcommand*\widebar[1]{\@ifnextchar^{{\wide@bar{#1}{0}}}{\wide@bar{#1}{1}}}
-%Use a separate algorithm for single symbols:
-\newcommand*\wide@bar[2]{\if@single{#1}{\wide@bar@{#1}{#2}{1}}{\wide@bar@{#1}{#2}{2}}}
-\newcommand*\wide@bar@[3]{%
-  \begingroup
-  \def\mathaccent##1##2{%
-%Enable nesting of accents:
-    \let\mathaccent\save@mathaccent
-%If there's more than a single symbol, use the first character instead (see below):
-    \if#32 \let\macc@nucleus\first@char \fi
-%Determine the italic correction:
-    \setbox\z@\hbox{$\macc@style{\macc@nucleus}_{}$}%
-    \setbox\tw@\hbox{$\macc@style{\macc@nucleus}{}_{}$}%
-    \dimen@\wd\tw@
-    \advance\dimen@-\wd\z@
-%Now \dimen@ is the italic correction of the symbol.
-    \divide\dimen@ 3
-    \@tempdima\wd\tw@
-    \advance\@tempdima-\scriptspace
-%Now \@tempdima is the width of the symbol.
-    \divide\@tempdima 10
-    \advance\dimen@-\@tempdima
-%Now \dimen@ = (italic correction / 3) - (Breite / 10)
-    \ifdim\dimen@>\z@ \dimen@0pt\fi
-%The bar will be shortened in the case \dimen@<0 !
-    \rel@kern{0.6}\kern-\dimen@
-    \if#31
-      \overline{\rel@kern{-0.6}\kern\dimen@\macc@nucleus\rel@kern{0.4}\kern\dimen@}%
-      \advance\dimen@0.4\dimexpr\macc@kerna
-%Place the combined final kern (-\dimen@) if it is >0 or if a superscript follows:
-      \let\final@kern#2%
-      \ifdim\dimen@<\z@ \let\final@kern1\fi
-      \if\final@kern1 \kern-\dimen@\fi
-    \else
-      \overline{\rel@kern{-0.6}\kern\dimen@#1}%
-    \fi
-  }%
-  \macc@depth\@ne
-  \let\math@bgroup\@empty \let\math@egroup\macc@set@skewchar
-  \mathsurround\z@ \frozen@everymath{\mathgroup\macc@group\relax}%
-  \macc@set@skewchar\relax
-  \let\mathaccentV\macc@nested@a
-%The following initialises \macc@kerna and calls \mathaccent:
-  \if#31
-    \macc@nested@a\relax111{#1}%
-  \else
-%If the argument consists of more than one symbol, and if the first token is
-%a letter, use that letter for the computations:
-    \def\gobble@till@marker##1\endmarker{}%
-    \futurelet\first@char\gobble@till@marker#1\endmarker
-    \ifcat\noexpand\first@char A\else
-      \def\first@char{}%
-    \fi
-    \macc@nested@a\relax111{\first@char}%
-  \fi
-  \endgroup
-}
-\makeatother
-
-%* hatt command
-% Source: https://tex.stackexchange.com/a/294182/383565
-\stackMath
-\newlength\glyphwidth
-\newlength\widthofx
-%Use this in a document body for debugging the glyphs:
-%\scalebox{10}{
-%\setlength{\fboxsep}{0.0pt}
-%\setlength{\fboxrule}{0.1pt}
-%\fbox{\fbox{$\usebox{\hatglyphCONTENT}$}%
-%      \fbox{$\usebox{\checkglyphCONTENT}$}}
-%}
-\newsavebox\hatglyphCONTENT
-\sbox\hatglyphCONTENT{%
-%%%% 1ST OPTIONAL ARGUMENT OF \addvbuffer (CROP OFF TOP OF STACKED hat)
-%%%% 2ND OPTIONAL ARGUMENT OF \addvbuffer (CROP OFF BOTTOM OF STACKED hat)
-    \addvbuffer[-0.05ex -1.3ex]{$\hat{\phantom{.}}$}%
-}
-%%%% The floating point parameter scales the hatt glyphs everywhere.
-\newcommand\hatglyph{\resizebox{0.6\widthofx}{!}{\usebox{\hatglyphCONTENT}}}
-\newcommand\shifthat[2]{%
-%%%% 1ST ARGUMENT OF \stackengine (GAP BETWEEN GLYPH AND \hatglyph)
-    \stackengine{0.2\widthofx}{%
-        \SavedStyle#2}{%
-        \rule{#1}{0ex}\hatglyph}{O}{c}{F}{T}{S}%
-}
-\ExplSyntaxOn
-\newcommand\relativeGlyphOffset[1]{%
-    % The horizontal offset in arbitrary units that scale with math style.
-    \str_case:nnF{#1}{%
-        {A}{0.18}%
-        {B}{0.1}%
-        {W}{0.02}%
-        {J}{0.18}%
-        {\phi}{0.17}%
-    }{0.05}% Default
-}\ExplSyntaxOff
-% \hatt{decoratedLetter}[A] will insert the decoratedLetter with the hat
-% above it, horizontally adjusted as if the decoratedLetter was an "A".
-% If the trailing optional argument is not provided, then it defaults 
-% to the decoratedLetter. This way we could do e.g. \hatt{\hatt{A}}[A].
-\NewDocumentCommand{\hatt}{mO{#1}}{%
-    \ThisStyle{%
-        \setlength\glyphwidth{\widthof{$\SavedStyle{}\longleftarrow$}}%
-        \setlength\widthofx{\widthof{$\SavedStyle{}x$}}%
-        \shifthat{\relativeGlyphOffset{#2}\glyphwidth}{#1}%
-  }%
-}

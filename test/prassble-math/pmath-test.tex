@@ -1,0 +1,191 @@
+\documentclass[a4paper]{book}
+
+\usepackage{array}
+\usepackage{prassble-math}
+\newcolumntype{C}{>{\renewcommand{\arraystretch}{1}\(}c<{\)}}
+
+
+\usepackage[margin = 1.25in]{geometry}
+\geometry{bottom=15mm}
+
+\begin{document}
+
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+\chapter{Matrices}
+
+\section{Row matrix}
+\begin{enumerate}
+    \item Row matrices whose delimiters are of the default size---and not too big.
+    \begin{center}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\row{1,2}| & \row{1,2}\\
+            \verb|\row[delim=p]{1,2}| & \row[delim=p]{1,2}\\
+            \verb|\row[delim=b]{1,2}| & \row[delim=b]{1,2}\\
+            \verb|\row[delim=B]{1,2}| & \row[delim=B]{1,2}\\
+            \verb|\row[delim=v]{1,2}| & \row[delim=v]{1,2}\\
+            \verb|\row[delim=V]{1,2}| & \row[delim=V]{1,2}\\
+        \end{tabular}
+    \end{center}
+    \item Row matrices with default sized delimiters, which are too small.
+    \begin{center}
+        \renewcommand{\arraystretch}{1.8}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\row{\dfrac{1}{2}, \dfrac{1}{3}}| & \row{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\row[delim=p]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim=p]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\row[delim=b]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim=b]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\row[delim=B]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim=B]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\row[delim=v]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim=v]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\row[delim=V]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim=V]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+        \end{tabular}
+    \end{center}
+    \item Row matrices with scaled delimiters.
+    \begin{center}
+        \renewcommand{\arraystretch}{2.0}
+        \begin{tabular}{cCC}
+            Command & \text{Output} & \text{Correct output}\\
+            \verb|\row*{\dfrac{1}{2}, \dfrac{1}{3}}| & \row*{\dfrac{1}{2}, \dfrac{1}{3}} & \begin{pmatrix} \dfrac{1}{2} & \dfrac{1}{3} \end{pmatrix}\\
+            \verb|\row*[delim=p]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row*[delim=p]{\dfrac{1}{2}, \dfrac{1}{3}} & \begin{pmatrix} \dfrac{1}{2} & \dfrac{1}{3} \end{pmatrix}\\
+            \verb|\row*[delim=b]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row*[delim=b]{\dfrac{1}{2}, \dfrac{1}{3}} & \begin{bmatrix} \dfrac{1}{2} & \dfrac{1}{3} \end{bmatrix}\\
+            \verb|\row*[delim=B]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row*[delim=B]{\dfrac{1}{2}, \dfrac{1}{3}} & \begin{Bmatrix} \dfrac{1}{2} & \dfrac{1}{3} \end{Bmatrix}\\
+            \verb|\row*[delim=v]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row*[delim=v]{\dfrac{1}{2}, \dfrac{1}{3}} & \begin{vmatrix} \dfrac{1}{2} & \dfrac{1}{3} \end{vmatrix}\\
+            \verb|\row*[delim=V]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row*[delim=V]{\dfrac{1}{2}, \dfrac{1}{3}} & \begin{Vmatrix} \dfrac{1}{2} & \dfrac{1}{3} \end{Vmatrix}\\
+        \end{tabular}
+    \end{center}
+\end{enumerate}
+
+\section{Column matrix}
+\begin{enumerate}
+    \item Column matrices whose delimiters are of the default size---and not too big.
+    \begin{center}
+        \begin{tabular}{cCC}
+            Command & \text{Output} & \text{Correct output}\\
+            \verb|\col{}| & \col{} & \begin{pmatrix} \end{pmatrix}\\
+            \verb|\col{~}| & \col{~} & \begin{pmatrix} ~ \end{pmatrix}\\
+            \verb|\col{1}| & \col{1}\\
+            \verb|\col[delim=p]{1}| & \col[delim=p]{1}\\
+            \verb|\col[delim=b]{1}| & \col[delim=b]{1}\\
+            \verb|\col[delim=B]{1}| & \col[delim=B]{1}\\
+            \verb|\col[delim=v]{1}| & \col[delim=v]{1}\\
+            \verb|\col[delim=V]{1}| & \col[delim=V]{1}\\
+        \end{tabular}
+    \end{center}
+    \item Column matrices with default sized delimiters, which are too small.
+    \begin{center}
+        \renewcommand{\arraystretch}{1.8}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\col{\dfrac{1}{2}}| & \col{\dfrac{1}{2}}\\
+            \verb|\col[delim=p]{\dfrac{1}{2}}| & \col[delim=p]{\dfrac{1}{2}}\\
+            \verb|\col[delim=b]{\dfrac{1}{2}}| & \col[delim=b]{\dfrac{1}{2}}\\
+            \verb|\col[delim=B]{\dfrac{1}{2}}| & \col[delim=B]{\dfrac{1}{2}}\\
+            \verb|\col[delim=v]{\dfrac{1}{2}}| & \col[delim=v]{\dfrac{1}{2}}\\
+            \verb|\col[delim=V]{\dfrac{1}{2}}| & \col[delim=V]{\dfrac{1}{2}}\\
+        \end{tabular}
+    \end{center}
+    \item Column matries with scaled delimiters.
+    \begin{center}
+        \renewcommand{\arraystretch}{2.1}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\col*{\dfrac{1}{2}}| & \col*{\dfrac{1}{2}}\\
+            \verb|\col*[delim=p]{\dfrac{1}{2}}| & \col*[delim=p]{\dfrac{1}{2}}\\
+            \verb|\col*[delim=b]{\dfrac{1}{2}}| & \col*[delim=b]{\dfrac{1}{2}}\\
+            \verb|\col*[delim=B]{\dfrac{1}{2}}| & \col*[delim=B]{\dfrac{1}{2}}\\
+            \verb|\col*[delim=v]{\dfrac{1}{2}}| & \col*[delim=v]{\dfrac{1}{2}}\\
+            \verb|\col*[delim=V]{\dfrac{1}{2}}| & \col*[delim=V]{\dfrac{1}{2}}\\
+        \end{tabular}
+    \end{center}
+\item Column matrices with (automatically) scaled delimiters.
+    \begin{center}
+        \renewcommand{\arraystretch}{2.1}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\col{1;2}| & \col{1;2}\\
+            \verb|\col[delim=p]{1;2}| & \col[delim=p]{1;2}\\
+            \verb|\col[delim=b]{1;2}| & \col[delim=b]{1;2}\\
+            \verb|\col[delim=B]{1;2}| & \col[delim=B]{1;2}\\
+            \verb|\col[delim=v]{1;2}| & \col[delim=v]{1;2}\\
+            \verb|\col[delim=V]{1;2}| & \col[delim=V]{1;2}\\
+        \end{tabular}
+    \end{center}
+\end{enumerate}
+
+\section{General matrices}
+\begin{enumerate}
+    \item Matrices whose delimiters are of the default size---and not too big.
+    \begin{center}
+        \begin{tabular}{cCC}
+            Command & \text{Output} & \text{Correct output}\\
+            \verb|\mat{}| & \mat{} & \begin{pmatrix} \end{pmatrix}\\
+            \verb|\mat{~}| & \mat{~} & \begin{pmatrix} ~ \end{pmatrix}\\
+            \verb|\mat{1}| & \mat{1}\\
+            \verb|\mat[delim=p]{1}| & \mat[delim=p]{1}\\
+            \verb|\mat[delim=b]{1}| & \mat[delim=b]{1}\\
+            \verb|\mat[delim=B]{1}| & \mat[delim=B]{1}\\
+            \verb|\mat[delim=v]{1}| & \mat[delim=v]{1}\\
+            \verb|\mat[delim=V]{1}| & \mat[delim=V]{1}\\
+            \verb|\mat[delim=p]{1,2}| & \mat[delim=p]{1,2}\\
+            \verb|\mat[delim=b]{1,2}| & \mat[delim=b]{1,2}\\
+            \verb|\mat[delim=B]{1,2}| & \mat[delim=B]{1,2}\\
+            \verb|\mat[delim=v]{1,2}| & \mat[delim=v]{1,2}\\
+            \verb|\mat[delim=V]{1,2}| & \mat[delim=V]{1,2}\\
+        \end{tabular}
+    \end{center}
+    \item Matrices with default sized delimiters, which are too small.
+    \begin{center}
+        \renewcommand{\arraystretch}{1.8}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\mat{\dfrac{1}{2}}| & \mat{\dfrac{1}{2}}\\
+            \verb|\mat[delim=p]{\dfrac{1}{2}}| & \mat[delim=p]{\dfrac{1}{2}}\\
+            \verb|\mat[delim=b]{\dfrac{1}{2}}| & \mat[delim=b]{\dfrac{1}{2}}\\
+            \verb|\mat[delim=B]{\dfrac{1}{2}}| & \mat[delim=B]{\dfrac{1}{2}}\\
+            \verb|\mat[delim=v]{\dfrac{1}{2}}| & \mat[delim=v]{\dfrac{1}{2}}\\
+            \verb|\mat[delim=V]{\dfrac{1}{2}}| & \mat[delim=V]{\dfrac{1}{2}}\\
+            \verb|\mat{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat[delim=p]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim=p]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat[delim=b]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim=b]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat[delim=B]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim=B]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat[delim=v]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim=v]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat[delim=V]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim=V]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+        \end{tabular}
+    \end{center}
+    \item Matrices with scaled delimiters.
+    \begin{center}
+        \renewcommand{\arraystretch}{2.1}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\mat*{\dfrac{1}{2}}| & \mat*{\dfrac{1}{2}}\\
+            \verb|\mat*[delim=p]{\dfrac{1}{2}}| & \mat*[delim=p]{\dfrac{1}{2}}\\
+            \verb|\mat*[delim=b]{\dfrac{1}{2}}| & \mat*[delim=b]{\dfrac{1}{2}}\\
+            \verb|\mat*[delim=B]{\dfrac{1}{2}}| & \mat*[delim=B]{\dfrac{1}{2}}\\
+            \verb|\mat*[delim=v]{\dfrac{1}{2}}| & \mat*[delim=v]{\dfrac{1}{2}}\\
+            \verb|\mat*[delim=V]{\dfrac{1}{2}}| & \mat*[delim=V]{\dfrac{1}{2}}\\
+            \verb|\mat*{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat*{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat*[delim=p]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat*[delim=p]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat*[delim=b]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat*[delim=b]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat*[delim=B]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat*[delim=B]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat*[delim=v]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat*[delim=v]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat*[delim=V]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat*[delim=V]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+        \end{tabular}
+    \end{center}
+    \item Matrices with automatically scaled delimiters.
+
+    \begin{center}
+        \renewcommand{\arraystretch}{2.1}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\mat{1; 2}| & \mat{1; 2}\\
+            \verb|\mat{1,2 ; 3,4}| & \mat{1,2 ; 3,4}\\[1.75mm]
+            \verb|\mat{\dfrac{1}{1},\dfrac{2}{2} ; \dfrac{3}{3},\dfrac{4}{4}}| & \mat{\dfrac{1}{1},\dfrac{2}{2} ; \dfrac{3}{3},\dfrac{4}{4}}\\
+        \end{tabular}
+    \end{center}
+\end{enumerate}
+\end{document}
