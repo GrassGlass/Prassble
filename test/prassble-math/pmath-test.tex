@@ -1,5 +1,6 @@
 \documentclass[a4paper]{book}
 
+\usepackage[T1]{fontenc}
 \usepackage{array}
 \usepackage{prassble-math}
 \newcolumntype{C}{>{\renewcommand{\arraystretch}{1}\(}c<{\)}}
@@ -58,6 +59,19 @@
             \verb|\row*[delim=V]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row*[delim=V]{\dfrac{1}{2}, \dfrac{1}{3}} & \begin{Vmatrix} \dfrac{1}{2} & \dfrac{1}{3} \end{Vmatrix}\\
         \end{tabular}
     \end{center}
+    \item Row matrices with manually scaled delimiters.
+    \begin{center}
+        \renewcommand{\arraystretch}{1.8}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\row[delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\row[delim=p,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim=p,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\row[delim=b,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim=b,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\row[delim=B,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim=B,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\row[delim=v,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim=v,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\row[delim=V,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \row[delim=V,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+        \end{tabular}
+    \end{center}
 \end{enumerate}
 
 \section{Column matrix}
@@ -113,6 +127,30 @@
             \verb|\col[delim=B]{1;2}| & \col[delim=B]{1;2}\\
             \verb|\col[delim=v]{1;2}| & \col[delim=v]{1;2}\\
             \verb|\col[delim=V]{1;2}| & \col[delim=V]{1;2}\\
+        \end{tabular}
+    \end{center}
+    \item Column matrices with manually scaled delimiters.
+    
+    \begin{center}
+        \renewcommand{\arraystretch}{1.8}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\col[delim-size=\Big]{\dfrac{1}{2}}| & \col[delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\col[delim=p,delim-size=\Big]{\dfrac{1}{2}}| & \col[delim=p,delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\col[delim=b,delim-size=\Big]{\dfrac{1}{2}}| & \col[delim=b,delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\col[delim=B,delim-size=\Big]{\dfrac{1}{2}}| & \col[delim=B,delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\col[delim=v,delim-size=\Big]{\dfrac{1}{2}}| & \col[delim=v,delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\col[delim=V,delim-size=\Big]{\dfrac{1}{2}}| & \col[delim=V,delim-size=\Big]{\dfrac{1}{2}}\\
+        \end{tabular}
+        \renewcommand{\arraystretch}{2.1}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\col[delim-size=\Big]{1;2}| & \col[delim-size=\Big]{1;2}\\
+            \verb|\col[delim=p,delim-size=\Big]{1;2}| & \col[delim=p,delim-size=\Big]{1;2}\\
+            \verb|\col[delim=b,delim-size=\Big]{1;2}| & \col[delim=b,delim-size=\Big]{1;2}\\
+            \verb|\col[delim=B,delim-size=\Big]{1;2}| & \col[delim=B,delim-size=\Big]{1;2}\\
+            \verb|\col[delim=v,delim-size=\Big]{1;2}| & \col[delim=v,delim-size=\Big]{1;2}\\
+            \verb|\col[delim=V,delim-size=\Big]{1;2}| & \col[delim=V,delim-size=\Big]{1;2}\\
         \end{tabular}
     \end{center}
 \end{enumerate}
@@ -185,6 +223,32 @@
             \verb|\mat{1; 2}| & \mat{1; 2}\\
             \verb|\mat{1,2 ; 3,4}| & \mat{1,2 ; 3,4}\\[1.75mm]
             \verb|\mat{\dfrac{1}{1},\dfrac{2}{2} ; \dfrac{3}{3},\dfrac{4}{4}}| & \mat{\dfrac{1}{1},\dfrac{2}{2} ; \dfrac{3}{3},\dfrac{4}{4}}\\
+        \end{tabular}
+    \end{center}
+    \item Matrices with manually scaled delimiters.
+        \begin{center}
+        \renewcommand{\arraystretch}{2.1}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\mat[delim-size=\Big]{\dfrac{1}{2}}| & \mat[delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\mat[delim=p,delim-size=\Big]{\dfrac{1}{2}}| & \mat[delim=p,delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\mat[delim=b,delim-size=\Big]{\dfrac{1}{2}}| & \mat[delim=b,delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\mat[delim=B,delim-size=\Big]{\dfrac{1}{2}}| & \mat[delim=B,delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\mat[delim=v,delim-size=\Big]{\dfrac{1}{2}}| & \mat[delim=v,delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\mat[delim=V,delim-size=\Big]{\dfrac{1}{2}}| & \mat[delim=V,delim-size=\Big]{\dfrac{1}{2}}\\
+            \verb|\mat[delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat[delim=p,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim=p,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat[delim=b,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim=b,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat[delim=B,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim=B,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat[delim=v,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim=v,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+            \verb|\mat[delim=V,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}| & \mat[delim=V,delim-size=\Big]{\dfrac{1}{2}, \dfrac{1}{3}}\\
+        \end{tabular}
+        \renewcommand{\arraystretch}{2.1}
+        \begin{tabular}{cC}
+            Command & \text{Output}\\
+            \verb|\mat[delim-size=\Big]{1; 2}| & \mat[delim-size=\Big]{1; 2}\\
+            \verb|\mat[delim-size=\Big]{1,2 ; 3,4}| & \mat[delim-size=\Big]{1,2 ; 3,4}\\[1.75mm]
+            \verb|\mat[delim-size=\Big]{\dfrac{1}{1},\dfrac{2}{2} ; \dfrac{3}{3},\dfrac{4}{4}}| & \mat{\dfrac{1}{1},\dfrac{2}{2} ; \dfrac{3}{3},\dfrac{4}{4}}\\
         \end{tabular}
     \end{center}
 \end{enumerate}

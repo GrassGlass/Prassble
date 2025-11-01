@@ -63,11 +63,43 @@
   % We use commas as row separators and semicolons as column separators.
     \tl_new:N \g__Prassble_matrix_left_delimiter_tl
     \tl_new:N \g__Prassble_matrix_right_delimiter_tl
+    \tl_new:N \g__Prassble_matrix_delimiters_scale_tl
     \tl_new:N \g__Prassble_matrix_autoscaled_left_delimiter_tl
     \tl_new:N \g__Prassble_matrix_autoscaled_right_delimiter_tl
-    \tl_new:N \g__Prassble_matrix_contents_tl
+    \tl_new:N \g__Prassble_matrix_left_delimiter_scale_tl
+    \tl_new:N \g__Prassble_matrix_right_delimiter_scale_tl
+    \tl_new:N \g__Prassble_matrix_env_contents_tl
     \seq_new:N \g__Prassble_col_entries_seq
     \seq_new:N \g__Prassble_matrix_rows_seq
+    \seq_new:N \g__Prassble_matrix_row_entries_seq
+    \cs_new:Npn \__Prassble_matrix_core:nnn #1#2#3 {
+      \tl_put_left:Nn \g__Prassble_matrix_left_delimiter_tl { \g__Prassble_matrix_left_delimiter_scale_tl }
+      \tl_put_left:Nn \g__Prassble_matrix_right_delimiter_tl { \g__Prassble_matrix_right_delimiter_scale_tl }
+      \int_compare:nNnTF 
+        { #2 } > { 1 }
+        {
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_scale_tl { \left }
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_scale_tl { \right }
+        }
+        {
+          \tl_if_empty:eT 
+            { 
+              \g__Prassble_matrix_left_delimiter_scale_tl 
+              \g__Prassble_matrix_right_delimiter_scale_tl
+            } 
+            {
+              \bool_if:nT { #1 } {
+                \tl_set:Nn \g__Prassble_matrix_left_delimiter_scale_tl { \left }
+                \tl_set:Nn \g__Prassble_matrix_right_delimiter_scale_tl { \right }
+              }
+            }
+        }
+      \g__Prassble_matrix_left_delimiter_tl
+        \begin{matrix}
+          #3
+        \end{matrix}
+      \g__Prassble_matrix_right_delimiter_tl
+    }
     % Default
       \tl_gset:Nn \g__Prassble_matrix_left_delimiter_tl {\lparen}
       \tl_gset:Nn \g__Prassble_matrix_right_delimiter_tl {\rparen}
@@ -108,28 +140,23 @@
           \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lVert}
           \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rVert}
         }
+
+      ,delim-size-l   .tl_set:N   = \g__Prassble_matrix_left_delimiter_scale_tl
+      ,delim-size-r   .tl_set:N   = \g__Prassble_matrix_right_delimiter_scale_tl
+      ,delim-size     .tl_set:N   = \g__Prassble_matrix_delimiters_scale_tl
+      ,delim-size     .meta:n     = {
+        ,delim-size-l = { \use:c {\cs_to_str:N #1 l} }
+        ,delim-size-r = { \use:c {\cs_to_str:N #1 r} }
+      }
     }
   % Row
-    % \Declare...\lparen\rparen is used to size inline row matrices properly; the default pmatrix uses \left( matrix \right) which often oversizes the parentheses.
-    \DeclarePairedDelimiterX{\row@core}[1]{\g__Prassble_matrix_left_delimiter_tl}{\g__Prassble_matrix_right_delimiter_tl}{
-      \begin{matrix}
-        \clist_use:nn { #1 } { & }
-      \end{matrix}
-    }
     \NewDocumentCommand{\row}{ s O{} m }{
     \group_begin:
       \keys_set:nn { prassble/math/matrix } { #2 }
-      \tl_set:Nn \g__Prassble_matrix_contents_tl {
-        \clist_use:nn { #3 } { \c_space_tl & }
+      \seq_set_split:Nnn \g__Prassble_matrix_row_entries_seq { , } { #3 }
+      \__Prassble_matrix_core:nnn { #1 } { 1 } {
+        \seq_use:Nn \g__Prassble_matrix_row_entries_seq { \c_space_tl & }
       }
-      \bool_if:nTF 
-        { #1 } 
-        {
-          \row@core*{ \tl_use:N \g__Prassble_matrix_contents_tl }
-        }
-        {
-          \row@core{ \tl_use:N \g__Prassble_matrix_contents_tl }
-        }
     \group_end:
     }
   % Col
@@ -137,62 +164,32 @@
     \group_begin:
       \keys_set:nn { prassble/math/matrix } { #2 }
       \seq_set_split:Nnn \g__Prassble_col_entries_seq { ; } { #3 }
-      \int_compare:nNnTF
-        { \seq_count:N \g__Prassble_col_entries_seq } > { 1 }
-        {
-          \g__Prassble_matrix_autoscaled_left_delimiter_tl
-            \begin{matrix}
-              \seq_use:Nn \g__Prassble_col_entries_seq { \\ }
-            \end{matrix}
-          \g__Prassble_matrix_autoscaled_right_delimiter_tl
-        }
-        {
-          \bool_if:nTF
-            { #1 }
-            {
-              \g__Prassble_matrix_autoscaled_left_delimiter_tl
-                \begin{matrix}
-                    #3
-                \end{matrix}
-              \g__Prassble_matrix_autoscaled_right_delimiter_tl
-            }
-            {
-              \g__Prassble_matrix_left_delimiter_tl
-                \begin{matrix}
-                    #3
-                \end{matrix}
-              \g__Prassble_matrix_right_delimiter_tl
-            } 
-        }
+      \__Prassble_matrix_core:nnn 
+        { #1 } 
+        { \seq_count:N \g__Prassble_col_entries_seq } 
+        { \seq_use:Nn \g__Prassble_col_entries_seq { \\ } }
     \group_end:
     }
   % Matrix
     \NewDocumentCommand{\mat}{ s O{} m }{
     \group_begin:
       \keys_set:nn { prassble/math/matrix } { #2 }
-      % The sequence \g__Prassble_matrix_rows_seq that contains all rows of the matrix, in order, where the nth entry of the sequence is the nth row of the matrix.
-        \seq_set_split:Nnn \g__Prassble_matrix_rows_seq { ; } { #3 }
-      % If there is only one row, use \row. Otherwise, use a usual matrix environment.
-        \int_compare:nNnTF 
-          { \seq_count:N \g__Prassble_matrix_rows_seq } = { 1 }
-          {
-            \bool_if:nTF
-              { #1 }
-              { \row*{ #3 } }
-              { \row{ #3 } }
-          }
-          {
-            \seq_map_inline:Nn \g__Prassble_matrix_rows_seq {
-              \tl_put_right:Nn \g__Prassble_matrix_contents_tl {
-                \clist_use:nn { ##1 } { \c_space_tl & } \\
-              }
-            }
-            \g__Prassble_matrix_autoscaled_left_delimiter_tl
-              \begin{matrix}
-                \tl_use:N \g__Prassble_matrix_contents_tl
-              \end{matrix}
-            \g__Prassble_matrix_autoscaled_right_delimiter_tl
-          }
+      \seq_set_split:Nnn \g__Prassble_matrix_rows_seq { ; } { #3 }
+      \seq_map_inline:Nn \g__Prassble_matrix_rows_seq {
+        \tl_put_right:Nn \g__Prassble_matrix_env_contents_tl {
+          \clist_use:nn { ##1 } { \c_space_tl & } \\
+        }
+      }
+      \__Prassble_matrix_core:nnn 
+        { #1 } 
+        { \seq_count:N \g__Prassble_matrix_rows_seq } 
+        {
+          \tl_use:N \g__Prassble_matrix_env_contents_tl
+          % For some reason, the following doesn't work.
+            % \seq_map_inline:Nn \g__Prassble_matrix_rows_seq {
+            %   \clist_use:nn { ##1 } { \c_space_tl & } \\
+            % }
+        }
     \group_end:
     }
 
