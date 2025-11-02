@@ -9,8 +9,11 @@
 }
 \ExplSyntaxOff
 \begin{document}
+\forestset{
+  file tree/.append style={for tree={l sep = 1cm}}
+}
 \begin{center}
-  \filetree{some_folder}
+  \filetree[forest={}]{some_folder}
   \filetree[O=FileTrees/OutputGoesHere.tex,font=\sffamily]{../tree}
   \filetree[i=folder,debug]{}
   \filetree[i-extensions=.sty,debug]{}
@@ -18,8 +21,7 @@
 \end{center}
 This should include all files, be it \verb|.aux|, \verb|.log|, etc.
 \begin{center}
-  \forestset{ file~tree/.code = {write} }
-  \filetree[I=*.tex,debug,forest={for tree={l~sep=10cm}}]{./}
+  \filetree[I=*.tex,debug]{./}
 \end{center}
 \newpage
 Here: what

@@ -168,7 +168,6 @@
       ,directory
       ,fit = band
       ,l~sep = 2\g__filetree_pic_size_dim+4mm
-      ,\g__FileTree_user_appended_for_tree_keys_tl
     }
   }
 }
@@ -239,7 +238,7 @@
 
 ,pathkey        .tl_set:N   = \g__FileTree_pathkey_tl
 
-,forest         .code:n     = { \forestset{ file~tree/.append~code = #1 }}
+,forest         .code:n     = { \forestset{ file~tree/.append~style = #1 }}
 ,for-tree       .tl_set:N   = \g__FileTree_user_appended_for_tree_keys_tl
 }
 
