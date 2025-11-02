@@ -1,11 +1,19 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesExplPackage {prassble-math} {2025-10-29} {0.1} {Generic utility math macros for the LaTeX template Prassble.}
 
-\RequirePackage{mathtools}
+\DeclareKeys{
+  ,widebar  .bool_set:N = \g__Prassble_math_pkg_options_widebar_bool
+  ,het      .bool_set:N = \g__Prassble_math_pkg_options_het_bool
+  ,widebar  .default:n = true
+  ,het      .default:n = true
+  ,all      .meta:n    = {
+    ,widebar  = true
+    ,het      = true
+  }
+}
+\ProcessKeyOptions
 
-% prerequisites for \het command
-  \usepackage{stackengine}
-  \usepackage{verbatimbox} % For \addvbuffer
+\RequirePackage{mathtools}
 
 %* Function declaration
   \NewDocumentCommand{\Function}{ m m m }{#1 \colon #2 \to #3}
@@ -63,56 +71,56 @@
   % We use commas as row separators and semicolons as column separators.
     \tl_new:N \g__Prassble_matrix_left_delimiter_tl
     \tl_new:N \g__Prassble_matrix_right_delimiter_tl
-    \tl_new:N \g__Prassble_matrix_delimiters_scale_tl
-    \tl_new:N \g__Prassble_matrix_autoscaled_left_delimiter_tl
-    \tl_new:N \g__Prassble_matrix_autoscaled_right_delimiter_tl
-    \tl_new:N \g__Prassble_matrix_left_delimiter_scale_tl
-    \tl_new:N \g__Prassble_matrix_right_delimiter_scale_tl
+    \tl_new:N \g__Prassble_matrix_delimiters_size_tl
+    \tl_new:N \g__Prassble_matrix_left_delimiter_size_tl
+    \tl_new:N \g__Prassble_matrix_right_delimiter_size_tl
     \tl_new:N \g__Prassble_matrix_env_contents_tl
+    \tl_new:N \g__Prassble_matrix_env_to_use_tl
+    \tl_new:N \g__Prassble_matrix_env_args_tl
+    \tl_new:N \g__Prassble_matrix_row_separator_tl
+    \tl_new:N \g__Prassble_matrix_col_separator_tl
     \seq_new:N \g__Prassble_col_entries_seq
     \seq_new:N \g__Prassble_matrix_rows_seq
     \seq_new:N \g__Prassble_matrix_row_entries_seq
-    \cs_new:Npn \__Prassble_matrix_core:nnn #1#2#3 {
-      \tl_put_left:Nn \g__Prassble_matrix_left_delimiter_tl { \g__Prassble_matrix_left_delimiter_scale_tl }
-      \tl_put_left:Nn \g__Prassble_matrix_right_delimiter_tl { \g__Prassble_matrix_right_delimiter_scale_tl }
+    \cs_generate_variant:Nn \seq_set_split:Nnn {NVn}
+    \cs_new:Npn \__Prassble_matrix_core@:nnnn #1#2#3#4 {
+      \tl_put_left:Nn \g__Prassble_matrix_left_delimiter_tl { \g__Prassble_matrix_left_delimiter_size_tl }
+      \tl_put_left:Nn \g__Prassble_matrix_right_delimiter_tl { \g__Prassble_matrix_right_delimiter_size_tl }
       \int_compare:nNnTF 
         { #2 } > { 1 }
         {
-          \tl_set:Nn \g__Prassble_matrix_left_delimiter_scale_tl { \left }
-          \tl_set:Nn \g__Prassble_matrix_right_delimiter_scale_tl { \right }
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_size_tl { \left }
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_size_tl { \right }
         }
         {
           \tl_if_empty:eT 
             { 
-              \g__Prassble_matrix_left_delimiter_scale_tl 
-              \g__Prassble_matrix_right_delimiter_scale_tl
+              \g__Prassble_matrix_left_delimiter_size_tl 
+              \g__Prassble_matrix_right_delimiter_size_tl
             } 
             {
               \bool_if:nT { #1 } {
-                \tl_set:Nn \g__Prassble_matrix_left_delimiter_scale_tl { \left }
-                \tl_set:Nn \g__Prassble_matrix_right_delimiter_scale_tl { \right }
+                \tl_set:Nn \g__Prassble_matrix_left_delimiter_size_tl { \left }
+                \tl_set:Nn \g__Prassble_matrix_right_delimiter_size_tl { \right }
               }
             }
         }
       \g__Prassble_matrix_left_delimiter_tl
-        \begin{matrix}
+        \begin{\g__Prassble_matrix_env_to_use_tl}#4
           #3
-        \end{matrix}
+        \end{\g__Prassble_matrix_env_to_use_tl}
       \g__Prassble_matrix_right_delimiter_tl
     }
+    \cs_generate_variant:Nn \__Prassble_matrix_core@:nnnn {nnnV}
+    \cs_new:Npn \__Prassble_matrix_core:nnn #1#2#3 {
+      \__Prassble_matrix_core@:nnnV { #1 } { #2 } { #3 } { \g__Prassble_matrix_env_args_tl }
+    }
     % Default
-      \tl_gset:Nn \g__Prassble_matrix_left_delimiter_tl {\lparen}
-      \tl_gset:Nn \g__Prassble_matrix_right_delimiter_tl {\rparen}
-      \tl_gset:Nn \g__Prassble_matrix_autoscaled_left_delimiter_tl {
-        \tl_if_empty:NF \g__Prassble_matrix_left_delimiter_tl {
-          \left\g__Prassble_matrix_left_delimiter_tl
-        }
-      }
-      \tl_gset:Nn \g__Prassble_matrix_autoscaled_right_delimiter_tl {
-        \tl_if_empty:NF \g__Prassble_matrix_right_delimiter_tl {
-          \right\g__Prassble_matrix_right_delimiter_tl
-        }
-      }
+      \tl_gset:Nn \g__Prassble_matrix_left_delimiter_tl { \lparen }
+      \tl_gset:Nn \g__Prassble_matrix_right_delimiter_tl { \rparen }
+      \tl_gset:Nn \g__Prassble_matrix_env_to_use_tl { matrix }
+      \tl_gset:Nn \g__Prassble_matrix_row_separator_tl { ; }
+      \tl_gset:Nn \g__Prassble_matrix_col_separator_tl { , }
     % Keys
     \keys_define:nn { prassble/math/matrix } {
       ,delim         .choice:,
@@ -121,39 +129,43 @@
           \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl { }
         }
         ,delim / p   .code:n = {
-          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lparen}
-          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rparen}
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl { \lparen }
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl { \rparen }
         }
         ,delim / b   .code:n = {
-          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lbrack}
-          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rbrack}
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl { \lbrack }
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl { \rbrack }
         }
         ,delim / B  .code:n  = {
-          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lbrace}
-          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rbrace}
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl { \lbrace }
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl { \rbrace }
         }
         ,delim / v  .code:n  = {
-          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lvert}
-          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rvert}
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl { \lvert }
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl { \rvert }
         }
         ,delim / V  .code:n  = {
-          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl {\lVert}
-          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl {\rVert}
+          \tl_set:Nn \g__Prassble_matrix_left_delimiter_tl { \lVert }
+          \tl_set:Nn \g__Prassble_matrix_right_delimiter_tl { \rVert }
         }
 
-      ,delim-size-l   .tl_set:N   = \g__Prassble_matrix_left_delimiter_scale_tl
-      ,delim-size-r   .tl_set:N   = \g__Prassble_matrix_right_delimiter_scale_tl
-      ,delim-size     .tl_set:N   = \g__Prassble_matrix_delimiters_scale_tl
+      ,delim-size-l   .tl_set:N   = \g__Prassble_matrix_left_delimiter_size_tl
+      ,delim-size-r   .tl_set:N   = \g__Prassble_matrix_right_delimiter_size_tl
+      ,delim-size     .tl_set:N   = \g__Prassble_matrix_delimiters_size_tl
       ,delim-size     .meta:n     = {
-        ,delim-size-l = { \use:c {\cs_to_str:N #1 l} }
-        ,delim-size-r = { \use:c {\cs_to_str:N #1 r} }
+        ,delim-size-l = { \use:c { \cs_to_str:N #1 l } }
+        ,delim-size-r = { \use:c { \cs_to_str:N #1 r } }
       }
+
+      ,env            .tl_set:N   = \g__Prassble_matrix_env_to_use_tl
+      ,env-args       .tl_set:N   = \g__Prassble_matrix_env_args_tl
+      ,env-opts       .meta:n     = { env-args = #1 }
     }
   % Row
     \NewDocumentCommand{\row}{ s O{} m }{
     \group_begin:
       \keys_set:nn { prassble/math/matrix } { #2 }
-      \seq_set_split:Nnn \g__Prassble_matrix_row_entries_seq { , } { #3 }
+      \seq_set_split:NVn \g__Prassble_matrix_row_entries_seq \g__Prassble_matrix_col_separator_tl { #3 }
       \__Prassble_matrix_core:nnn { #1 } { 1 } {
         \seq_use:Nn \g__Prassble_matrix_row_entries_seq { \c_space_tl & }
       }
@@ -163,7 +175,7 @@
     \NewDocumentCommand{\col}{ s O{} m }{
     \group_begin:
       \keys_set:nn { prassble/math/matrix } { #2 }
-      \seq_set_split:Nnn \g__Prassble_col_entries_seq { ; } { #3 }
+      \seq_set_split:NVn \g__Prassble_col_entries_seq \g__Prassble_matrix_row_separator_tl { #3 }
       \__Prassble_matrix_core:nnn 
         { #1 } 
         { \seq_count:N \g__Prassble_col_entries_seq } 
@@ -174,10 +186,11 @@
     \NewDocumentCommand{\mat}{ s O{} m }{
     \group_begin:
       \keys_set:nn { prassble/math/matrix } { #2 }
-      \seq_set_split:Nnn \g__Prassble_matrix_rows_seq { ; } { #3 }
+      \seq_set_split:NVn \g__Prassble_matrix_rows_seq \g__Prassble_matrix_row_separator_tl { #3 }
       \seq_map_inline:Nn \g__Prassble_matrix_rows_seq {
+        \seq_set_split:NVn \g__Prassble_matrix_row_entries_seq \g__Prassble_matrix_col_separator_tl { ##1 }
         \tl_put_right:Nn \g__Prassble_matrix_env_contents_tl {
-          \clist_use:nn { ##1 } { \c_space_tl & } \\
+          \seq_use:Nn \g__Prassble_matrix_row_entries_seq { \c_space_tl & } \\
         }
       }
       \__Prassble_matrix_core:nnn 
@@ -192,9 +205,11 @@
         }
     \group_end:
     }
-
-%* Widebar
-  % Source: https://tex.stackexchange.com/a/60253
+\NewDocumentEnvironment{matris}{ O{} b }{ \mat[ #1 ]{ #2 } }{ }
+\NewDocumentEnvironment{matris*}{ O{} b }{ \mat*[ #1 ]{ #2 } }{ }
+\bool_if:NT \g__Prassble_math_pkg_options_widebar_bool {
+  %* Widebar
+    % Source: https://tex.stackexchange.com/a/60253
   \let\save@mathaccent\mathaccent
   \newcommand*\if@single[3]{%
     \setbox0\hbox{${\mathaccent"0362{#1}}^H$}%
@@ -216,8 +231,8 @@
   %If there's more than a single symbol, use the first character instead (see below):
       \if#32 \let\macc@nucleus\first@char \fi
   %Determine the italic correction:
-      \setbox\z@\hbox{$\macc@style{\macc@nucleus}_{}$}%
-      \setbox\tw@\hbox{$\macc@style{\macc@nucleus}{}_{}$}%
+      \setbox\z@\hbox{$\macc@style{\macc@nucleus}\sb{}$}%
+      \setbox\tw@\hbox{$\macc@style{\macc@nucleus}{}\sb{}$}%
       \dimen@\wd\tw@
       \advance\dimen@-\wd\z@
   %Now \dimen@ is the italic correction of the symbol.
@@ -262,10 +277,14 @@
     \fi
     \endgroup
   }
+}
 
-%* het command
-  % Source: https://tex.stackexchange.com/a/294182/383565
-  %! Warning! This is calibrated for computer modern roman. Other fonts may require adjustments; for more information, see the above source. 
+\bool_if:NT \g__Prassble_math_pkg_options_het_bool {
+  \RequirePackage{scalerel, stackengine}
+  \RequirePackage{verbatimbox} % For \addvbuffer
+  %* het command
+    % Source: https://tex.stackexchange.com/a/294182/383565
+    %! Warning! This is calibrated for computer modern roman. Other fonts may require adjustments; for more information, see the above source. 
   \stackMath
   \newlength\glyphwidth
   \newlength\widthofx
@@ -273,8 +292,7 @@
   %\scalebox{10}{
   %\setlength{\fboxsep}{0.0pt}
   %\setlength{\fboxrule}{0.1pt}
-  %\fbox{\fbox{$\usebox{\hatglyphCONTENT}$}%
-  %      \fbox{$\usebox{\checkglyphCONTENT}$}}
+  %\fbox{$\usebox{\hatglyphCONTENT}$}%
   %}
   \newsavebox\hatglyphCONTENT
   \sbox\hatglyphCONTENT{%
@@ -282,7 +300,7 @@
   %%%% 2ND OPTIONAL ARGUMENT OF \addvbuffer (CROP OFF BOTTOM OF STACKED hat)
       \addvbuffer[-0.05ex -1.3ex]{$\hat{\phantom{.}}$}%
   }
-  %%%% The floating point parameter scales the het glyphs everywhere.
+  %%%% The floating point parameter scales the hatt glyphs everywhere.
   \newcommand\hatglyph{\resizebox{0.6\widthofx}{!}{\usebox{\hatglyphCONTENT}}}
   \newcommand\shifthat[2]{%
   %%%% 1ST ARGUMENT OF \stackengine (GAP BETWEEN GLYPH AND \hatglyph)
@@ -311,5 +329,6 @@
           \shifthat{\relativeGlyphOffset{#2}\glyphwidth}{#1}%
     }%
   }
+}
 
 \file_input_stop:

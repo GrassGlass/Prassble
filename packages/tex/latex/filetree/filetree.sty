@@ -11,10 +11,11 @@
 \definecolor{g__filetree_folderborder_colors}{RGB}{110,144,169}
 
 % Variables
-  % Strings
   \tl_new:N \g__filetree_font_tl
     \tl_set:Nn \g__filetree_font_tl {\ttfamily}
   \tl_new:N \g__FileTree_pathkey_tl
+  \tl_new:N \g__FileTree_user_appended_forest_keys_tl
+  \tl_new:N \g__FileTree_user_appended_for_tree_keys_tl
   \str_new:N \g__filetree_i_str
   \str_new:N \g__filetree_I_only_str
   \str_new:N \g__filetree_file_path_str
@@ -166,7 +167,8 @@
     ,for~tree={% folder icons by default; override using file for file icons
       ,directory
       ,fit = band
-      ,l~sep = 2\g__filetree_pic_size_dim+2mm
+      ,l~sep = 2\g__filetree_pic_size_dim+4mm
+      ,\g__FileTree_user_appended_for_tree_keys_tl
     }
   }
 }
@@ -236,6 +238,9 @@
 ,Inputify           .code:n   = { \__filetree_Inputify:nn #1 } 
 
 ,pathkey        .tl_set:N   = \g__FileTree_pathkey_tl
+
+,forest         .code:n     = { \forestset{ file~tree/.append~code = #1 }}
+,for-tree       .tl_set:N   = \g__FileTree_user_appended_for_tree_keys_tl
 }
 
 \NewDocumentCommand{\filetree}{ O{} m }{

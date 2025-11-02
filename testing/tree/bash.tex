@@ -18,7 +18,8 @@
 \end{center}
 This should include all files, be it \verb|.aux|, \verb|.log|, etc.
 \begin{center}
-  \filetree[I=*.tex,debug]{./}
+  \forestset{ file~tree/.code = {write} }
+  \filetree[I=*.tex,debug,forest={for tree={l~sep=10cm}}]{./}
 \end{center}
 \newpage
 Here: what
