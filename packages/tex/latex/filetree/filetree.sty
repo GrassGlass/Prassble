@@ -49,7 +49,7 @@
     \str_gset:Ne \g__filetree_Output_To_str {FileTrees/tree_\int_use:N \g__filetree_current_tree_number_int.tex}
 
     \keys_set:nn { filetree } { #1 }
-    % Final flag processing before parsing to file_tree.sh
+    % Final flag processing before parsing to textree
     %* Even though we use the e-type argument later, it must be used now also.
         % -i
         \str_if_empty:NF \g__filetree_i_str {
@@ -64,17 +64,17 @@
             \str_set:Ne \g__filetree_final_Output_To_str { -O~"\g__filetree_Output_To_str" }
         }
         
-    % File path parsed to file_tree.sh
+    % File path parsed to textree
         \str_set:Ne \g__filetree_file_path_str {
           \str_if_empty:nTF { #2 }
             { "./" }
             { "#2" }
         }
 
-    % Flags and argument passed to file_tree.sh
+    % Flags and argument passed to textree
       \str_set:Ne \g__filetree_sys_shell_now_str {
-      % Execute the bash script file_tree.sh
-          file_tree
+      % Execute the bash script textree
+          textree
       \c_space_tl
       % -i flag
           \g__filetree_final_i_str
@@ -85,14 +85,14 @@
       % -O flag
           \g__filetree_final_Output_To_str
       \c_space_tl
-      % File path parsed to file_tree.sh (the argument of file_tree.sh)
+      % File path parsed to textree (the argument of textree)
           \g__filetree_file_path_str
       }
       \bool_if:NT \g__filetree_debug_bool {
         \begin{center}
           \fbox{
             \begin{minipage}{\linewidth}
-              String~passed~to~\texttt{file_tree.sh}:\par
+              String~passed~to~\texttt{textree}:\par
               \texttt{\str_use:N \g__filetree_sys_shell_now_str}
             \end{minipage}
           }
@@ -255,7 +255,7 @@
 }
 
 % Ensure bash script works correctly in PATH (i.e. when it is incorporated into TeXlive)
-% sudo cp -s "/workspaces/Prassble/testing/tree/file_tree.sh" "/usr/local/bin/file_tree"
+% sudo cp -s "/workspaces/Prassble/testing/tree/textree" "/usr/local/bin/textree"
 % source ~/.bashrc
 
 \file_input_stop:

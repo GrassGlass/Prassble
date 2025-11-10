@@ -1,0 +1,25 @@
+#!/bin/bash
+# Flags
+    # Source: https://stackoverflow.com/a/7948533/31298396
+TEMP=$(getopt -o ''\
+              --long foo: \
+              -n 'testing' -- "$@")
+
+if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 1 ; fi
+
+# Note the quotes around '$TEMP': they are essential!
+eval set -- "$TEMP"
+
+while true; do
+  case "$1" in
+    --foo ) :; shift 2 ;;
+    -- ) shift; break ;;
+    * ) break ;;
+  esac
+done
+
+test_function () {
+    echo "$1"
+}
+
+test_function "$1"

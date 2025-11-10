@@ -1,0 +1,7 @@
+\begin{forest}
+ file tree,
+  [{folder}
+    [{bash.tex}\symlinkrightarrow {/workspaces/Prassble/testing/tree/bash.tex}]
+    [{bash\_test.tex}]
+  ]
+\end{forest}
