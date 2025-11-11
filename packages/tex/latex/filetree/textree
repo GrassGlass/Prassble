@@ -1,9 +1,10 @@
 #!/bin/bash
 # Flags
     # Source: https://stackoverflow.com/a/7948533/31298396
-TEMP=$(getopt -o i:I:O:n:\
+TEMP=$(getopt -o i:I:O:n:N:adlfxL:P\
               --long "\
                       namestyle:,\
+                      Name:,\
                       ignore:,ignore-add:,ignore-also:,\
                       Ignore:,Ignore-only:,\
                       wsl,WSL,\
@@ -24,15 +25,26 @@ WSL=false
 CYGWIN=false
 DEBUG=false
 NAMESTYLE=name
+tree_options=
+    # Print out an XML representation of the tree.
+    tree_options+=' -X'
 
 while true; do
   case "$1" in
     -n | --namestyle ) NAMESTYLE="$2"; shift 2 ;;
+    -N | --Name ) NAME="$2"; shift 2 ;;
     -i | --ignore | --ignore-add | --ignore-also ) IGNORE_ALSO="$2"; shift 2 ;;
     -I | --Ignore | --Ignore-only ) IGNORE_ONLY="$2"; shift 2 ;;
     -O ) OUTPUT_TO="$2"; shift 2 ;;
     --wsl | --WSL ) WSL=true; shift;;
     --cygwin | --Cygwin | --CYGWIN ) CYGWIN=true; shift;;
+    -a ) tree_options+=' -a'; shift;;
+    -d ) tree_options+=' -d'; shift;;
+    -l ) tree_options+=' -l'; shift;;
+    -f ) tree_options+=' -f'; shift;;
+    -x ) tree_options+=' -x'; shift;;
+    -L ) tree_options+=" -L $2"; shift 2 ;;
+    -P ) tree_options+=' -P'; shift;;
     --debug ) DEBUG=true; printf "\n =============\n debug mode on\n =============\n"; shift;;
     -- ) shift; break ;;
     * ) break ;;
@@ -68,12 +80,17 @@ path_processing () {
 }
 
 # Processing paths
-tree_target="$(path_processing "$1")"
-OUTPUT_TO="$(path_processing "$OUTPUT_TO")"
+    # Target directory to textree
+        # If $1 is unset, set tree_target as ""./". Otherwise, process its path --- apply the function path_processing on it.
+        if [ -z ${1+x} ]; then
+            tree_target='./'
+        else
+            tree_target="$(path_processing "$1")"
+        fi
+    # File to send the output of textree to
+    OUTPUT_TO="$(path_processing "$OUTPUT_TO")"
 
 # Process the name to set for the target directory, from the $NAMESTYLE set.
-    # $1: $NAMESTYLE
-    # $2: $tree_target
 case $NAMESTYLE in
     # Case 1: $NAME = name: set $directory_name to be the name of the target directory, instead of $1.
         # Source: https://discord.com/channels/846677253290983444/846681015011115018/1425821608878280794
@@ -90,6 +107,12 @@ case $NAMESTYLE in
     ;;
     *) echo "-n NAMESTYLE or --name NAMESTYLE recieved an invalid NAMESTYLE of $NAMESTYLE" || exit ;;
 esac
+
+# If there is a provided NAME, use it as the name of the target directory to typeset.
+if [ ! -z ${NAME+x} ]; then
+    directory_name=$NAME
+fi
+
 # Escape the replacement string
     # Source: https://stackoverflow.com/a/29613573/31298396
 directory_name_escaped=$(sed 's/[&/\]/\\&/g' <<<"$directory_name")
@@ -102,10 +125,10 @@ directory_path_escaped=$(sed 's/[^^]/[&]/g; s/\^/\\^/g' <<< "$tree_target") # es
 tree \
     `# Exclude the folder "some_folder", "another_folder", all files starting with "ignore_this", and all files with extension .log, .out, etc` \
     -I "$IGNORE" \
-    `# Print out an XML representation of the tree.` \
-    -X \
     `# Turn off file/directory count at end of tree listing.` \
     --noreport \
+    `# Additional options to pass to tree` \
+    $tree_options \
     `# The directory $1` \
     "$tree_target" \
 `# Pass the output of tree to the input of sed` \
@@ -194,16 +217,21 @@ if [ $DEBUG = true ]; then
 echo -ne \
 "\
 ${textblue}${textbf}BOOL${textrm}
-${textblue}DEBUG:$DEBUG
+${textblue}NAME:$NAME
+${textblue}NAMESTYLE:$NAMESTYLE
+${textblue}IGNORE:$IGNORE
+${textblue}IGNORE_ALSO:$IGNORE_ALSO
+${textblue}IGNORE_ONLY:$IGNORE_ONLY
 ${textblue}WSL:$WSL
 ${textblue}CYGWIN:$CYGWIN
+${textblue}DEBUG:$DEBUG
 ${textgreen}${textbf}Strings${textrm}
-${textgreen}tree_target:$tree_target
+${textgreen}tree_target:$tree_target:$(realpath "$tree_target")
 ${textgreen}directory_name:$directory_name
 ${textgreen}directory_name_escaped:$directory_name_escaped
 ${textgreen}directory_path_escaped:$directory_path_escaped\
 ${textreset}\
 "\
  | \
-column -t -s ":" -N "${ulstart}${textbf}VARIABLE,VALUE${textrm}${ulend}"
+column -t -s ":" -C "name=${ulstart}${textbf}VARIABLE" -C "name=VALUE${textrm}${ulend},wrap" -C "name=${ulstart}Remarks${ulend},wrap"
 fi

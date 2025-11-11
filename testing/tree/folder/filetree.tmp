@@ -3,5 +3,8 @@
   [{folder}
     [{bash.tex}\symlinkrightarrow {/workspaces/Prassble/testing/tree/bash.tex}]
     [{bash\_test.tex}]
+    [{some\_subdirectory}
+      [{file}]
+    ]
   ]
 \end{forest}
