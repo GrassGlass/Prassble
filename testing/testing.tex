@@ -1,11 +1,42 @@
 \documentclass{book}
-\def\ColorTheme{BnW}
-\input{../preamble/preamble.tex}
+\usepackage[T1]{fontenc}
+\usepackage{filetree}
 \begin{document}
-\begin{theorem}
-  This is the first theorem in here.
-\end{theorem}
-\begin{code}[=,listing and text]{Text}
-  Hello this is my beautiful code listing.
-\end{code}
+\forestset{
+  file tree/.append style={for tree={l sep=0.8cm}}
+}
+\begin{forest}
+ file tree
+ ,tikz+={\draw[line width=0.07pt] (current bounding box.north west) -- (current bounding box.north east) -- (current bounding box.south east) -- (current bounding box.south west) -- cycle;}
+ ,for tree={
+    ,tikz+={\draw[line width=0.07pt] (\forestoption{name}.north west) -- (\forestoption{name}.north east) -- (\forestoption{name}.south east) -- (\forestoption{name}.south west) -- cycle;
+    \node[anchor=west] at (\forestoption{name}.east) {\forestoption{name}};}
+  }
+  [{tree}
+    [{\$\&\#{\textbackslash} {\textbar}\_*{\textasciicircum}\@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}, file]
+    [{FileTrees\_IncludeThis}]
+    [{a\_file\_with\_[}, file, tikz+={\gdef\foo{Nope}}]
+    [{a\_file\_with\_]}, file, tikz+={\gdef\foo{Code is executed in sequential order of nodes.}}]
+    [{a\_file\_with\_][\_[\_]\_[[[}, file]
+    [{a\_file\_with\_\{}, file]
+    [{a\_file\_with\_\}}, file]
+    [{a\_file\_with\_\}\{\_\{\_\}\_\{\{\{}, file]
+    [{a\_folder\_with\_'\_and\_"\_yes}, file]
+    [{another\_folder}]
+    [{basename}, file]
+    [{bash.pdf}, file]
+    [{bash.tex}, file]
+    [{bash\_test.tex}, file]
+    [{folder}]
+    [{hello.sh}, file]
+    [{include\_this}
+      [{folder1}]
+      [{include\_this.tex}, file]
+    ]
+    [{some\_folder}
+      [{tmp.tex}, file]
+    ]
+  ]
+\end{forest}\par
+\meaning\foo
 \end{document}

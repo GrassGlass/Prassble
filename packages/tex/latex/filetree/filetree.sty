@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesExplPackage {filetree} {2025-10-16} {1.0} {Automatic generation of forest file trees with bash (tree + sed).}
 
-% Source : https://tex.stackexchange.com/a/515774/383565
+% Source : https://tex.stackexchange.com/a/405253/383565
 
 % Packages
 \RequirePackage[edges]{forest}
@@ -110,6 +110,7 @@
         ,draw           = g__filetree_folderborder_colors
         ,top~color      = g__filetree_folderbg_colors!50
         ,bottom~color   = g__filetree_folderbg_colors
+        ,sharp~corners
     ] 
     (-1.05*\g__filetree_pic_size_dim,0.2\g__filetree_pic_size_dim+5pt) rectangle ++(.75*\g__filetree_pic_size_dim,-0.2\g__filetree_pic_size_dim-5pt);
 
@@ -117,6 +118,7 @@
         ,draw           = g__filetree_folderborder_colors
         ,top~color      = g__filetree_folderbg_colors!50
         ,bottom~color   = g__filetree_folderbg_colors
+        ,sharp~corners
     ] 
     (-1.15*\g__filetree_pic_size_dim,-\g__filetree_pic_size_dim) rectangle (1.15*\g__filetree_pic_size_dim,\g__filetree_pic_size_dim);
   }
@@ -125,6 +127,7 @@
         ,draw           = g__filetree_folderborder_colors
         ,top~color      = g__filetree_folderbg_colors!5
         ,bottom~color   = g__filetree_folderbg_colors!10
+        ,sharp~corners
     ] 
     (-\g__filetree_pic_size_dim,.4*\g__filetree_pic_size_dim+5pt) coordinate (a) |- (\g__filetree_pic_size_dim,-1.2*\g__filetree_pic_size_dim) coordinate (b) -- ++(0,1.6*\g__filetree_pic_size_dim) coordinate (c) -- ++(-4pt,5pt) coordinate (d) -- cycle (d) |- (c) ;
   }
@@ -138,6 +141,7 @@
       ,folder
       ,font     = \g__filetree_font_tl
       ,grow'    = 0
+      ,edge = {rounded~corners=5pt}
     }
     ,before~typesetting~nodes = {
       ,for~tree     = {
@@ -149,7 +153,7 @@
         }
         ,align  = {l}
       }{}
-    },
+    }
   }
   ,filetree_pic_me_set/.code~n~args = { 2 } {
     \forestset{

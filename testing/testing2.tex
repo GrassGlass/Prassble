@@ -1,151 +1,70 @@
-\documentclass[11pt, a4paper]{book}
-\usepackage{eqparbox}
-\usepackage[skins, breakable, minted]{tcolorbox}
-
-% Counters
-    \newcounter{code}
-    \setcounter{code}{1}
-
-% Lengths
-    \newlength{\BorderlineWestThickness}
-    \newlength{\boxsep}
-    \newlength{\boxrule}
-    \newlength{\numbersep}
-    \newlength{\linenumberpadding}
-    \newlength{\lefthspace}
-
-    \setlength{\BorderlineWestThickness}{2pt}
-    \setlength{\boxsep}{1pt}
-    \setlength{\boxrule}{0pt}
-    \setlength{\numbersep}{10pt}
-    \setlength{\linenumberpadding}{8.6pt}
-    \setlength{\lefthspace}{8.5pt}
-
-\makeatletter
-\ExplSyntaxOn
-  \dim_new:N \g__Prassble_listings_Leftupper_dim
-  \cs_new:Npn \__Prassble_listings_codestylecore@borderlinewest: {
-      \fill[blue] (frame.south~west)
-      rectangle ([xshift=\BorderlineWestThickness]frame.north~west);}
-
-  \tcbset{
-    ,Leftupper/.code = {
-        \dim_set:Nn \g__Prassble_listings_Leftupper_dim {\numbersep-\boxsep+\eqboxwidth{code\arabic{code}}+(\linenumberpadding+\BorderlineWestThickness)/2} % 4mm is the initial leftupper
-        \pgfkeysalso{
-        leftupper = \g__Prassble_listings_Leftupper_dim
-        }
-    }
-    ,codestylebase/.style =
-    {
-        ,Leftupper
-        ,listing~engine                  = minted
-        ,minted~options                  = 
-        {
-          ,breaklines
-          ,autogobble
-          ,linenos
-          ,numbersep = \numbersep
-        }
-        ,listing~only
-        ,breakable
-        ,enhanced
-        ,skin                            = enhanced~jigsaw
-        ,boxsep                          = \boxsep
-        ,boxrule                         = \boxrule
-        ,colback                         = black!10 
-        ,borderline~west                 = {\BorderlineWestThickness}{0pt}{black}
-        ,overlay~unbroken                = {
-        % Background for the code line numbers
-            % Case 1: The current (partial) box contains only an upper part.
-            \int_compare:nNnT {\tcbsegmentstate}={0} {
-            \filldraw[black!20] 
-            (frame.south~west) --
-            (interior.north~west) {[rounded~corners=4] --
-            ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) --
-            ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west)} --
-            (frame.south~west);
-            }
-            % Case 2: The current (partial) box contains an upper and a lower part. The segmentation node can be used for positioning.
-            \int_compare:nNnT {\tcbsegmentstate}={1} {
-            \filldraw[black!20] 
-            (segmentation.west) --
-            (interior.north~west) {[rounded~corners=4] --
-            ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) --
-            ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]segmentation.west)} --
-            (segmentation.west);
-            }
-        % Borderline west of \BorderlineWestThickness thickness
-        \__Prassble_listings_codestylecore@borderlinewest:
-        }
-        ,overlay~first                   = {
-        % Background for the code line numbers
-        \filldraw[black!20] 
-        (frame.south~west) --
-        (interior.north~west) {[rounded~corners=4] --
-        ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0)} --
-        ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west) --
-        (frame.south~west);
-        % Borderline west of \BorderlineWestThickness thickness
-        \__Prassble_listings_codestylecore@borderlinewest:
-        }
-        ,overlay~middle                  = {
-        % Background for the code line numbers
-        \fill[black!20] (frame.south~west)
-        rectangle ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.north~west);
-        % Borderline west of \BorderlineWestThickness thickness
-        \__Prassble_listings_codestylecore@borderlinewest:
-        }
-        ,overlay~last                    = {
-        % Background for the code line numbers
-            % Case 1: The current (partial) box contains only an upper part.
-            \int_compare:nNnT {\tcbsegmentstate}={0} {
-            \filldraw[black!20] 
-            (frame.south~west) --
-            (frame.north~west) --
-            ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) {[rounded~corners=4] --
-            ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]frame.south~west)} --
-            (frame.south~west);
-            }
-            % Case 2: The current (partial) box contains an upper and a lower part. The segmentation node can be used for positioning.
-            \int_compare:nNnT {\tcbsegmentstate}={1} {
-            \filldraw[black!20] 
-            (segmentation.west) --
-            (frame.north~west) --
-            ++(\eqboxwidth{code\arabic{code}}+\linenumberpadding,0) {[rounded~corners=4] --
-            ([xshift=\eqboxwidth{code\arabic{code}}+\linenumberpadding]segmentation.west)} --
-            (segmentation.west);
-            }
-        % Borderline west of \BorderlineWestThickness thickness
-        \__Prassble_listings_codestylecore@borderlinewest:
-        }
-    }
-  }
-\ExplSyntaxOff
-\makeatother
-
-\newtcblisting{code}[1]{
-    ,codestylebase
-    ,minted language = Text
+\documentclass[border=10pt,multi,tikz]{standalone}
+\usepackage[edges]{forest}
+\definecolor{folderbg}{RGB}{124,166,198}
+\definecolor{folderborder}{RGB}{110,144,169}
+\newlength\Size
+\setlength\Size{4pt}
+\tikzset{%
+  folder/.pic={%
+    \filldraw [draw=folderborder, top color=folderbg!50, bottom color=folderbg] (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);
+    \filldraw [draw=folderborder, top color=folderbg!50, bottom color=folderbg] (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
+  },
+  file/.pic={%
+    \filldraw [draw=folderborder, top color=folderbg!5, bottom color=folderbg!10] (-\Size,.4*\Size+5pt) coordinate (a) |- (\Size,-1.2*\Size) coordinate (b) -- ++(0,1.6*\Size) coordinate (c) -- ++(-5pt,5pt) coordinate (d) -- cycle (d) |- (c) ;
+  },
 }
-
-% framebox and red line numbers for debugging
-\renewcommand{\theFancyVerbLine}{%
-                \eqframebox[code\arabic{code}][c]{%
-                    \textcolor{red}{\scriptsize\arabic{FancyVerbLine}}%
-                }%
-            }
-
+\forestset{%
+  declare autowrapped toks={pic me}{},
+  declare boolean register={pic root},
+  pic root=0,
+  pic dir tree/.style={%
+    for tree={%
+      folder,
+      font=\ttfamily,
+      grow'=0,
+    },
+    before typesetting nodes={%
+      for tree={%
+        edge label+/.option={pic me},
+      },
+      if pic root={
+        tikz+={
+          \pic at ([xshift=\Size].west) {folder};
+        },
+        align={l}
+      }{},
+    },
+  },
+  pic me set/.code n args=2{%
+    \forestset{%
+      #1/.style={%
+        inner xsep=2\Size,
+        pic me={pic {#2}},
+      }
+    }
+  },
+  pic me set={directory}{folder},
+  pic me set={file}{file},
+}
 \begin{document}
-\begin{code}{Julia}
-    ~
 
-
-
-    ~
-\end{code}
-\ExplSyntaxOn
-\dim_new:N \debug
-\dim_set:Nn \debug {(\eqboxwidth{code\arabic{code}}+\linenumberpadding)/2}
-\ExplSyntaxOff
-\rule{\debug}{1pt}
+\begin{forest}
+  pic dir tree,
+  pic root,
+  for tree={% folder icons by default; override using file for file icons
+    directory,
+  },
+  [system
+    [config
+    ]
+    [lib
+      [Access
+      ]
+      [Plugin
+      ]
+      [file.txt, file
+      ]
+    ]
+  ]
+\end{forest}
 \end{document}
