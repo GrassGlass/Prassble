@@ -1,6 +1,83 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+use Getopt::Long;
 
-system("tree -X");
-print "hi NAME\n";
+# Option processing
+    my $data   = "file.dat";
+    my $length = 24;
+    my $debug;
+    GetOptions ("length=i" => \$length,    # numeric
+                "file=s"   => \$data,      # string
+                "debug"  => \$debug)   # flag
+    or die("Error in command line arguments\n");
+
+# Argument processing
+    my $textree_target;
+    if (@ARGV == 0)
+    {
+        $textree_target = "\"./\"";
+    }
+    foreach my $arg (@ARGV) {
+        if ($arg eq "")
+        {
+            die("Error: an empty target directory has been provided");
+        }
+        $textree_target .= "\"$arg\" "
+    } 
+
+# Subroutines
+    # if_debugging
+    sub if_debugging {
+        if (scalar @_ > 1) {
+            die("More than one argument has been passed to the subroutine 'if_debugging'.");
+        }
+        if (defined $debug && $debug == 1)
+        {
+            $_[0]
+        }
+    }
+
+my $tree_XML = `tree -X $textree_target`;
+my @array;
+
+foreach my $line (split(/\n/, $tree_XML)) {
+    if ("$line" =~ m/<directory name="(.*)">/)
+    {
+        print "$1\n";
+    }
+}
+
+if (defined $debug && $debug == 1)
+{
+    # Conditionally laod the module Text::Table::Boxed to draw tables
+        # Source: https://stackoverflow.com/a/1917276/31298396
+        eval {
+            require Text::Table::Boxed;
+            Text::Table::Boxed->import();
+            1; 
+        } or do {
+        my $error = $@;
+        # Module load failed. You could recover, try loading
+        # an alternate module, die with $error...
+        # whatever's appropriate
+        };
+
+    print "
+    =================
+      DEBUG ENABLED
+    =================
+    \n";
+    # Table of various variables
+        # Source: https://stackoverflow.com/a/79276873/31298396
+    my $debug_table = Text::Table::Boxed->new({
+    columns => [ {title => "Person",align => 'center'}, "Age", "Notes" ],
+    style => "boxrule",
+    });
+
+    $debug_table->load(
+        [ '$textree_target', "$textree_target"],
+    );
+
+    print $debug_table;
+}

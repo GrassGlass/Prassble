@@ -3,7 +3,66 @@
 \usepackage{filetree}
 \begin{document}
 \forestset{
-  file tree/.append style={for tree={l sep=0.8cm}}
+  ,file tree/.append style={for tree={l sep=0.8cm}}
+}
+\forestset{%
+  declare toks={real siblings}{},
+  extensible edge/.style={%
+    delay={%
+      prepend={[\strut,
+        delay={%
+          do dynamics,
+          temptoksa=,
+          for following siblings={%
+            if temptoksa={}{}{%
+              temptoksa+={,},
+            },
+            temptoksa+/.option=name,
+          },
+          real siblings/.register=temptoksa,
+          folder,
+          grow'=0,
+          before computing xy={%
+            l'=0pt,
+            s'=-15pt,
+          },
+          delay n=2{%
+            split option={real siblings}{,}{append},
+          },
+        },
+        edge path'={%
+          (!u.parent anchor) ++(\foresteregister{folder indent},0pt)
+          -- ++(0pt,-5pt) edge [dotted]  
+          ([xshift=\foresteregister{folder indent}].parent anchor)
+        },
+      ]},
+    },
+  },
+  extend/.style={%
+    delay={%
+      append={[\strut,
+        folder,
+        grow'=0,
+        before computing xy={%
+          l'=0pt,
+          s'=-15pt,
+        },
+        if n children=0{%
+          before drawing tree={%
+            delay={%
+              y/.min={>O{y}}{parent,descendants},
+            },
+          },
+        }{},
+        edge path'={%
+          ([xshift=\forestregister{folder indent}]!uu.parent anchor) 
+          coordinate (a) --
+          ([yshift=9pt].parent anchor -| a)
+          edge [dotted] (.parent anchor -| a)
+        },
+      ]},
+    },
+  },
 }
 \begin{forest}
  file tree
@@ -12,7 +71,7 @@
     ,tikz+={\draw[line width=0.07pt] (\forestoption{name}.north west) -- (\forestoption{name}.north east) -- (\forestoption{name}.south east) -- (\forestoption{name}.south west) -- cycle;
     \node[anchor=west] at (\forestoption{name}.east) {\forestoption{name}};}
   }
-  [{tree}
+  [{tree, extensible edge}
     [{\$\&\#{\textbackslash} {\textbar}\_*{\textasciicircum}\@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}, file]
     [{FileTrees\_IncludeThis}]
     [{a\_file\_with\_[}, file, tikz+={\gdef\foo{Nope}}]
@@ -39,4 +98,20 @@
   ]
 \end{forest}\par
 \meaning\foo
+
+\begin{forest}
+  file tree,
+  [system,extensible edge
+    [config
+    ]
+    [lib,extend
+      [Access
+      ]
+      [Plugin
+      ]
+      [file.txt, file,extend
+      ]
+    ]
+  ]
+\end{forest}
 \end{document}
