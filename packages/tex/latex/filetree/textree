@@ -28,56 +28,87 @@ use Getopt::Long;
 
 # Subroutines
     # if_debugging
-    sub if_debugging {
-        if (scalar @_ > 1) {
-            die("More than one argument has been passed to the subroutine 'if_debugging'.");
+        # Help obtained from: https://discord.com/channels/846677253290983444/947413601688358935/1440347953457004574 (private discord server)
+        sub if_debugging {
+            my ($code) = @_;
+
+            if (@_ > 1) {
+                die "More than one argument has been passed to the subroutine 'if_debugging'.\n";
+            }
+        
+            return unless defined $debug && $debug == 1;
+
+            $code->();
         }
-        if (defined $debug && $debug == 1)
-        {
-            $_[0]
-        }
-    }
+
+# Use the 'diagnostics' module if the flag '--debugging' is used.
+    if_debugging( sub { eval {
+        require diagnostics;
+            diagnostics->import();
+            1; 
+    } } );
 
 my $tree_XML = `tree -X $textree_target`;
-my @array;
+my @tree;
+
+my $directory_regex = m/<(directory) name="(.*)">/;
+my $file_regex = m/<(file) name="(.*)">/;
+my $symlink_regex = m/<(link) name="(.*)" target="(.*)">/;
 
 foreach my $line (split(/\n/, $tree_XML)) {
-    if ("$line" =~ m/<directory name="(.*)">/)
-    {
-        print "$1\n";
-    }
+    # We will push $column_int empty entries in a row of the (multidimensional) array @tree before placing our data of interest --- the array [name, type] or [name, type, link target] --- in the ($column_int + 1)th entry. 
+        # It is also, equivalently, the number of two consecutive space characters '<space><space>' in a line --- two consecutive spaces is the indentation used by the 'tree -X' command.
+        # type: directory, file, or link (symlink)
+        # link target: target of the (sym)link
+        # Source: https://stackoverflow.com/a/9538604/31298396
+        my $column_int = () = $line =~ /  /g;
+    # Regex-based extraction of directory, file, and (sym)link information.
+        if ("$line" =~ /$directory_regex|$file_regex|$symlink_regex/ )
+        {
+            # Construct an 1D array @tmp_row of size $column_int + 1
+                # Source: https://stackoverflow.com/a/5323857/31298396
+                # The first $column_int entries are empty
+                    my @tmp_row = ("") x $column_int;
+                # The ($column_int + 1)th entry is nonempty. It is the 1D array [name, type] or [name, type, link target] aforementioned.
+                    # If 'type = link', then include a third entry for the link target.
+                        if ("$1" eq "link")
+                        {
+                            push(@tmp_row, [$2, $1, $3]);
+                        }else
+                        {
+                            push(@tmp_row, [$2, $1]);
+                        }
+            # Construct the array @tree row by row; push @tmp_row to @tree.
+                push(@tree, @tmp_row);
+        }
 }
 
-if (defined $debug && $debug == 1)
-{
-    # Conditionally laod the module Text::Table::Boxed to draw tables
-        # Source: https://stackoverflow.com/a/1917276/31298396
-        eval {
-            require Text::Table::Boxed;
-            Text::Table::Boxed->import();
-            1; 
-        } or do {
-        my $error = $@;
-        # Module load failed. You could recover, try loading
-        # an alternate module, die with $error...
-        # whatever's appropriate
-        };
+# Debug info
+    if_debugging(
+        sub {
+            # Conditionally load the module Text::SimpleTable::AutoWidth to draw tables
+                # Source: https://stackoverflow.com/a/62747490/31298396
+                eval {
+                    require Text::SimpleTable::AutoWidth;
+                    Text::SimpleTable::AutoWidth->import();
+                    1; 
+                } or do {
+                my $error = $@;
+                # Module load failed. You could recover, try loading
+                # an alternate module, die with $error...
+                # whatever's appropriate
+                };
 
-    print "
+            print "
     =================
       DEBUG ENABLED
     =================
-    \n";
-    # Table of various variables
-        # Source: https://stackoverflow.com/a/79276873/31298396
-    my $debug_table = Text::Table::Boxed->new({
-    columns => [ {title => "Person",align => 'center'}, "Age", "Notes" ],
-    style => "boxrule",
-    });
-
-    $debug_table->load(
-        [ '$textree_target', "$textree_target"],
+            \n";
+            # Table of various variables
+                # Source: https://stackoverflow.com/a/62747490/31298396
+            print Text::SimpleTable::AutoWidth
+                ->new( captions => [qw/ Variables Value /] )
+                ->row( '$textree_target', $textree_target )
+                ->draw();
+        }
     );
-
-    print $debug_table;
-}

@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my $re = m/(testing)/;
+
+if ("foo" =~ /$re/)
+{
+    printf "\n";
+}

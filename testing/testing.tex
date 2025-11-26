@@ -1,7 +1,29 @@
 \documentclass{book}
 \usepackage[T1]{fontenc}
 \usepackage{filetree}
+\usepackage{showframe}
+
+\ExplSyntaxOn
+\cs_new:Npn \__filetree_remaining_height_on_page_use: {
+  \dim_compare:nNnTF { \pagegoal } = { \maxdimen }
+    { \dim_eval:n { \textheight } }
+    { \dim_eval:n { \pagegoal - \pagetotal } }
+}
+
+\NewDocumentCommand{\RemainingHeight}{ }{
+  \__filetree_remaining_height_on_page_use:
+}
+\ExplSyntaxOff
+
 \begin{document}
+\ExplSyntaxOn
+\iow_new:N \g__filetree_heights_iow
+\int_new:N \l__filetree_object_number_int
+\seq_new:N \l__filetree_heights_seq
+\NewDocumentCommand{\SaveHeight}{ m }{
+  \seq_gput_right:Ne \l__filetree_heights_seq { \dim_to_decimal:n { #1 } }
+}
+\ExplSyntaxOff
 \forestset{
   ,file tree/.append style={for tree={l sep=0.8cm}}
 }
@@ -66,10 +88,16 @@
 }
 \begin{forest}
  file tree
- ,tikz+={\draw[line width=0.07pt] (current bounding box.north west) -- (current bounding box.north east) -- (current bounding box.south east) -- (current bounding box.south west) -- cycle;}
+ ,tikz+={
+    \draw[line width=0.07pt] (current bounding box.north west) -- (current bounding box.north east) -- (current bounding box.south east) -- (current bounding box.south west) -- cycle;
+    \path let \p1=($(current bounding box.north)-(current bounding box.south)$) in (current bounding box.east) node[right] {\y1\SaveHeight{\y1}};
+  }
  ,for tree={
-    ,tikz+={\draw[line width=0.07pt] (\forestoption{name}.north west) -- (\forestoption{name}.north east) -- (\forestoption{name}.south east) -- (\forestoption{name}.south west) -- cycle;
-    \node[anchor=west] at (\forestoption{name}.east) {\forestoption{name}};}
+    ,tikz+={
+      \draw[line width=0.07pt] (\forestoption{name}.north west) -- (\forestoption{name}.north east) -- (\forestoption{name}.south east) -- (\forestoption{name}.south west) -- cycle;
+      % \node[anchor=west] at (\forestoption{name}.east) {\forestoption{name}};
+      \path let \p1=($(current bounding box.north)-(\forestoption{name}.south)$) in (\forestoption{name}.east) node[below right] {\y1\SaveHeight{\y1}};
+    }
   }
   [{tree, extensible edge}
     [{\$\&\#{\textbackslash} {\textbar}\_*{\textasciicircum}\@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}, file]
@@ -96,22 +124,36 @@
       [{tmp.tex}, file]
     ]
   ]
+  \xdef\ssep{\foresteoption{s sep}}
 \end{forest}\par
-\meaning\foo
+\meaning\foo\par
+\fbox{\texttt{s sep}: \ssep}\par
+\ExplSyntaxOn
+\fbox{ \seq_use:Nn \l__filetree_heights_seq {,} }\par
 
-\begin{forest}
-  file tree,
-  [system,extensible edge
-    [config
-    ]
-    [lib,extend
-      [Access
-      ]
-      [Plugin
-      ]
-      [file.txt, file,extend
-      ]
-    ]
-  ]
-\end{forest}
+\iow_open:Nn \g__filetree_heights_iow { height.pl }
+\iow_now:Ne \g__filetree_heights_iow { \c_hash_str !/usr/bin/perl }
+\iow_now:Ne \g__filetree_heights_iow { 
+  my~
+  \c_dollar_str remaining \c_underscore_str height~ =~ \dim_to_decimal:n { \__filetree_remaining_height_on_page_use: }; 
+}
+\seq_map_inline:Nn \l__filetree_heights_seq
+  {
+    \int_incr:N \l__filetree_object_number_int
+    \iow_now:Ne \g__filetree_heights_iow
+      {
+        my~
+        \c_dollar_str position \c_underscore_str \int_use:N \l__filetree_object_number_int
+          \c_space_tl = ~ #1;
+      }
+  }
+\iow_close:N \g__filetree_heights_iow
+\ExplSyntaxOff
+\fbox{Remaining space on page: \RemainingHeight}
+\par
+\renewcommand{\fboxsep}{0pt}
+\fbox{\parbox[c][\RemainingHeight]{2cm}{}}
+\newpage
+\RemainingHeight\par
+\fbox{\parbox[c][\RemainingHeight]{2cm}{}}
 \end{document}
