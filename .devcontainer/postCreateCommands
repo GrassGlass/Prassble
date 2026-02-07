@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # Extension Perl: prerequisites
-sudo apt install -y libanyevent-perl libclass-refresh-perl libcompiler-lexer-perl \
-    libdata-dump-perl libio-aio-perl libjson-perl libmoose-perl libpadwalker-perl \
-    libscalar-list-utils-perl libcoro-perl
+sudo apt install -y build-essential libanyevent-perl libclass-refresh-perl libcompiler-lexer-perl \
+libdata-dump-perl libio-aio-perl libjson-perl libmoose-perl libpadwalker-perl \
+libscalar-list-utils-perl libcoro-perl
+
 echo "yes" | sudo cpan Perl::LanguageServer
 
 # # Julia package (most important is Revise.jl, which is needed for the Julia LSP to work)
