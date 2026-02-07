@@ -16,20 +16,27 @@
                 "streetsidesoftware.code-spell-checker",
                 // Git
                 "eamodio.gitlens",
-                // // Julia
+                // // // Julia
                 // "julialang.language-julia",
+                // // SageMath
+                //     // Jupyter
+                //     "ms-toolsai.jupyter",
+                //     // SageMath
+                //     "Lov3.sagemath-enhanced",
                 // Bash
                 "mads-hartmann.bash-ide-vscode",
                 "timonwong.shellcheck",
                 // Perl
                 "richterger.perl",
                 // Others
-                "aaron-bond.better-comments"
+                "aaron-bond.better-comments",
+                "alefragnani.Bookmarks"
             ]
         }
     },
     "features": {
         // // Julia
         // "ghcr.io/julialang/devcontainer-features/julia:1": {}
-    }
+    },
+    "postCreateCommand": "bash ./.devcontainer/postCreateCommands"
 }

@@ -27,6 +27,7 @@
     }
     # Scripts to apply the function to
         script_to_path ./tex/latex/filetree/file_tree
+        script_to_path ./tex/latex/filetree/textree
 
 
 # Ensure this directory "packages" is registered under TeXlive  

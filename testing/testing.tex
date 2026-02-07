@@ -89,8 +89,9 @@
 \begin{forest}
  file tree
  ,tikz+={
+  % The bounding box of the forest environment
     \draw[line width=0.07pt] (current bounding box.north west) -- (current bounding box.north east) -- (current bounding box.south east) -- (current bounding box.south west) -- cycle;
-    \path let \p1=($(current bounding box.north)-(current bounding box.south)$) in (current bounding box.east) node[right] {\y1\SaveHeight{\y1}};
+    % \path let \p1=($(current bounding box.north)-(current bounding box.south)$) in (current bounding box.east) node[right] {\y1\SaveHeight{\y1}};
   }
  ,for tree={
     ,tikz+={
@@ -131,22 +132,24 @@
 \ExplSyntaxOn
 \fbox{ \seq_use:Nn \l__filetree_heights_seq {,} }\par
 
+\str_new:N \l__filetree_total_heights_perl_array_str
+\str_set:Ne \l__filetree_total_heights_perl_array_str {
+  \seq_use:Nn \l__filetree_heights_seq {, ~}
+}
+\str_put_left:Ne \l__filetree_total_heights_perl_array_str { \c_space_tl \c_space_tl \c_space_tl \c_space_tl }
+
 \iow_open:Nn \g__filetree_heights_iow { height.pl }
 \iow_now:Ne \g__filetree_heights_iow { \c_hash_str !/usr/bin/perl }
 \iow_now:Ne \g__filetree_heights_iow { 
   my~
   \c_dollar_str remaining \c_underscore_str height~ =~ \dim_to_decimal:n { \__filetree_remaining_height_on_page_use: }; 
+  \iow_newline:
+  my ~ \c_atsign_str total_height ~ = ~ (
+    \iow_newline:
+    \str_use:N \l__filetree_total_heights_perl_array_str
+    \iow_newline:
+  );
 }
-\seq_map_inline:Nn \l__filetree_heights_seq
-  {
-    \int_incr:N \l__filetree_object_number_int
-    \iow_now:Ne \g__filetree_heights_iow
-      {
-        my~
-        \c_dollar_str position \c_underscore_str \int_use:N \l__filetree_object_number_int
-          \c_space_tl = ~ #1;
-      }
-  }
 \iow_close:N \g__filetree_heights_iow
 \ExplSyntaxOff
 \fbox{Remaining space on page: \RemainingHeight}

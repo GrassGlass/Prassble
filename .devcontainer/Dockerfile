@@ -6,10 +6,14 @@
 # Install the latest TeXlive image
 FROM texlive/texlive:latest
 
+# Update && Upgrade
+RUN <<EOF
+apt-get -y update && apt-get -y upgrade
+apt-get install sudo
+EOF
+
 # Install Git-LFS to ensure Git source control works 
 RUN <<EOF
-apt-get update && apt-get upgrade
-apt-get install sudo
 sudo apt-get install git-lfs
 EOF
 
@@ -17,13 +21,4 @@ EOF
 RUN <<EOF
 apt install -y golang
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
-EOF
-
-# Extension Perl: prerequisites
-RUN <<EOF
-sudo apt install libanyevent-perl libclass-refresh-perl libcompiler-lexer-perl \
-    libdata-dump-perl libio-aio-perl libjson-perl libmoose-perl libpadwalker-perl \
-    libscalar-list-utils-perl libcoro-perl
-
-sudo cpan Perl::LanguageServer
 EOF

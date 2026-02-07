@@ -1,25 +1,5 @@
 #!/usr/bin/perl
 my $remaining_height = 42.17546;
-my $position_1 = 458.87057;
-my $position_2 = 19.0993;
-my $position_3 = 40.75922;
-my $position_4 = 61.54855;
-my $position_5 = 83.17102;
-my $position_6 = 104.79349;
-my $position_7 = 126.41595;
-my $position_8 = 148.03842;
-my $position_9 = 169.66089;
-my $position_10 = 191.28336;
-my $position_11 = 213.34326;
-my $position_12 = 234.1326;
-my $position_13 = 253.97083;
-my $position_14 = 276.03073;
-my $position_15 = 295.86896;
-my $position_16 = 316.6583;
-my $position_17 = 336.49652;
-my $position_18 = 356.33475;
-my $position_19 = 377.12408;
-my $position_20 = 396.56232;
-my $position_21 = 417.35165;
-my $position_22 = 438.14099;
-my $position_23 = 459.23557;
+my @total_height = (
+    19.0993, 40.75922, 61.54855, 83.17102, 104.79349, 126.41595, 148.03842, 169.66089, 191.28336, 213.34326, 234.1326, 253.97083, 276.03073, 295.86896, 316.6583, 336.49652, 356.33475, 377.12408, 396.56232, 417.35165, 438.14099, 459.23557
+);

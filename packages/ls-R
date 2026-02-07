@@ -16,6 +16,8 @@ prassble-math
 ./tex/latex/filetree:
 file_tree
 filetree.sty
+textree
+textree_sed
 
 ./tex/latex/prassble-math:
 prassble-math.sty
