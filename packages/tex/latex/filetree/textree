@@ -51,9 +51,9 @@ use Getopt::Long;
 my $tree_XML = `tree -X $textree_target`;
 my @tree;
 
-my $directory_regex = m/<(directory) name="(.*)">/;
-my $file_regex = m/<(file) name="(.*)">/;
-my $symlink_regex = m/<(link) name="(.*)" target="(.*)">/;
+my $directory_regex = qr/<(directory) name="(.*)">/;
+my $file_regex = qr/<(file) name="(.*)">/;
+my $symlink_regex = qr/<(link) name="(.*)" target="(.*)">/;
 
 foreach my $line (split(/\n/, $tree_XML)) {
     # We will push $column_int empty entries in a row of the (multidimensional) array @tree before placing our data of interest --- the array [name, type] or [name, type, link target] --- in the ($column_int + 1)th entry. 

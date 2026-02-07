@@ -2,9 +2,11 @@
 use strict;
 use warnings;
 
-my $re = m/(testing)/;
+my $re = qr/numbers: ([1-9]*)/;
 
-if ("foo" =~ /$re/)
-{
-    printf "\n";
+if ("numbers: 123" =~ $re) {
+    if ("$1" eq "123") 
+    {
+        print("hello\n")
+    }
 }

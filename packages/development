@@ -8,26 +8,26 @@
 # Bash packages to install
     apt install tree
 
-# Get relative paths to work relative to this script's location, rather than the location where the script is invoked from. 
-    # Source: https://stackoverflow.com/a/24114056/31298396
-    scriptDir=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
-    cd "$scriptDir" || exit
-    # For debugging, we log the pwd.
-    pwd
+# # Get relative paths to work relative to this script's location, rather than the location where the script is invoked from. 
+#     # Source: https://stackoverflow.com/a/24114056/31298396
+#     scriptDir=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
+#     cd "$scriptDir" || exit
+#     # For debugging, we log the pwd.
+#     pwd
 
 # Function to copy bash script in PATH (i.e. when it is incorporated into TeXlive)
     script_to_path() {
         new_name=${2:-$(basename $1)}
-        # Remove the script if it is already present, so we can copy the updated version (if it has been updated, otherwise the same version) 
-            rm /usr/local/bin/$new_name
+        # Remove the script if it is already present, so we can copy the updated version
+            sudo rm /usr/local/bin/$new_name
         # Copy with symbolic link
-            sudo cp "$1" "/usr/local/bin/$new_name"
+            sudo ln -s "$1" "/usr/local/bin/$new_name"
         # Magic update thingy
             source ~/.bashrc
     }
     # Scripts to apply the function to
-        script_to_path ./tex/latex/filetree/file_tree
-        script_to_path ./tex/latex/filetree/textree
+        script_to_path "/workspaces/Prassble/packages/tex/latex/filetree/file_tree"
+        script_to_path "/workspaces/Prassble/packages/tex/latex/filetree/textree"
 
 
 # Ensure this directory "packages" is registered under TeXlive  
