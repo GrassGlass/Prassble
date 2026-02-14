@@ -1,19 +1,33 @@
-\documentclass{article}
+% Source - https://tex.stackexchange.com/a/521559
+% Posted by user194703, modified by community. See post 'Timeline' for change history
+% Retrieved 2026-02-14, License - CC BY-SA 4.0
 
+\documentclass[tikz,margin=3]{standalone}
+\usetikzlibrary{fpu}
+\newcommand{\pgfmathparseFPU}[1]{\begingroup%
+\pgfkeys{/pgf/fpu,/pgf/fpu/output format=fixed}%
+\pgfmathparse{#1}%
+\pgfmathsmuggle\pgfmathresult\endgroup}
+\makeatletter
+\pgfmathdeclarefunction{distance}{2}{%
+\begingroup%
+\pgfextractx{\pgf@xa}{\pgfpointanchor{#1}{center}}%
+\pgfextracty{\pgf@ya}{\pgfpointanchor{#1}{center}}%
+\pgfextractx{\pgf@xb}{\pgfpointanchor{#2}{center}}%
+\pgfextracty{\pgf@yb}{\pgfpointanchor{#2}{center}}%
+\pgfmathparseFPU{sqrt((\pgf@xa-\pgf@xb)*(\pgf@xa-\pgf@xb)+(\pgf@ya-\pgf@yb)*(\pgf@ya-\pgf@yb))}%
+\pgfmathsmuggle\pgfmathresult\endgroup%
+}%
+\makeatother
 \begin{document}
-\ExplSyntaxOn
-\seq_put_right:Nn \l_tmpa_seq { \1 }
-\iow_open:Nn \g_tmpa_iow { test.pl }
-\iow_now:Ne \g_tmpa_iow{ \c_hash_str !/usr/bin/perl }
-\seq_map_inline:Nn \l_tmpa_seq
-  {
-    \int_incr:N \l_tmpa_int
-    \iow_now:Ne \g_tmpa_iow
-      {
-        my~
-        \c_dollar_str width \c_underscore_str \int_use:N \l_tmpa_int
-          \c_space_tl = ~ #1
-      }
-  }
-\ExplSyntaxOff
+\begin{tikzpicture}
+  \draw (0,0) coordinate (b) -- (40pt,0)
+              coordinate (c) -- (40pt,30pt)
+              coordinate (a) -- cycle;
+  \pgfmathsetmacro{\mydistance}{distance("a","b")}            
+  \path node 
+  {$\pgfmathprintnumber{\mydistance}\,\mathrm{pt}=
+  \pgfmathparse{\mydistance/1cm}\pgfmathprintnumber{\pgfmathresult}\,\mathrm{cm}$};
+  \draw (0,0) circle [radius={distance("a","b")}];
+\end{tikzpicture}
 \end{document}

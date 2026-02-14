@@ -8,12 +8,12 @@
 # Bash packages to install
     apt install tree
 
-# # Get relative paths to work relative to this script's location, rather than the location where the script is invoked from. 
-#     # Source: https://stackoverflow.com/a/24114056/31298396
-#     scriptDir=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
-#     cd "$scriptDir" || exit
-#     # For debugging, we log the pwd.
-#     pwd
+# Get relative paths to work relative to this script's location, rather than the location where the script is invoked from. 
+    # Source: https://stackoverflow.com/a/24114056/31298396
+    scriptDir=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
+    cd "$scriptDir" || exit
+    # For debugging, we log the pwd.
+    pwd
 
 # Function to copy bash script in PATH (i.e. when it is incorporated into TeXlive)
     script_to_path() {
@@ -38,9 +38,9 @@
         # This order ensures that $scirptDir takes precedence, so if two copies of <package A> is found (one in 1. and the other in 2.), the one in 2. will be used --- such as when we do \usepackage{ <package A> }.
         # When we add a directory $dir to TEXMFLOCAL, all LaTeX packages should be placed under some subdirectory of dir/tex/latex.
         append_texmf_cnf="TEXMFLOCAL = \$SELFAUTOPARENT/../texmf-local,$scriptDir"
-    # If $append_texmf_cnf is not found in $texmf_cnf, then append it to the end of $texmf_cnf.
-        if ! grep -q "$append_texmf_cnf" "$texmf_cnf"; then
-            printf "\n$append_texmf_cnf" >> $texmf_cnf
-        fi
+    # Remove any existing 'TEXMFLOCAL = ' line.
+        sed -i 's/.*TEXMFLOCAL.*//' "$texmf_cnf"
+    # Append to the end of $texmf_cnf.
+        printf "\n$append_texmf_cnf" >> $texmf_cnf
     # Update stuff for kpsewhich to function correctly
         texhash

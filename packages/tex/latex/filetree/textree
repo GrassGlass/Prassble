@@ -89,7 +89,6 @@ my %file_target_count_by_types = (
     'total'                   => 0,
     'non-symlinks'            => 0, 
     'plain-file'              => 0, 
-    'symlink'                 => 0, 
     'pipe'                    => 0, 
     'socket'                  => 0, 
     'block-special-file'      => 0, 
@@ -236,20 +235,31 @@ while(my $line = <$in>) {
     }
     print($out $line);
 }
+
 my $report_symlinks = "{\n";
 for (keys %symlink_target_count_by_types){
     $report_symlinks .=
 <<EOF
-            ,$_ = $symlink_target_count_by_types{$_}
+                ,$_ = $symlink_target_count_by_types{$_}
 EOF
 }
-$report_symlinks .= "        }";
+$report_symlinks .= "            }";
+
+my $report_files = "{\n";
+$file_target_count_by_types{'symlink'} = "$report_symlinks";
+for (keys %file_target_count_by_types){
+    $report_files .=
+<<EOF
+            ,$_ = $file_target_count_by_types{$_}
+EOF
+}
+$report_files .= "        }";
+
 print($out 
 <<EOF
     \\report{
-        ,file = $file_count
         ,dir  = $dir_count
-        ,symlink = $report_symlinks
+        ,file = $report_files
     }
 EOF
 );

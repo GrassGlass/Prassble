@@ -27,40 +27,133 @@
 \forestset{
   ,file tree/.append style={for tree={l sep=0.8cm}}
 }
+
+\usetikzlibrary{fpu}
+\newcommand{\pgfmathparseFPU}[1]{\begingroup%
+\pgfkeys{/pgf/fpu=true,/pgf/fpu/output format=fixed}%
+\pgfmathparse{#1}%
+\pgfmathsmuggle\pgfmathresult\endgroup}
+\makeatletter
+\pgfmathdeclarefunction{distance}{2}{%
+\begingroup%
+\pgfextractx{\pgf@xa}{\pgfpointanchor{#1}{center}}%
+\pgfextracty{\pgf@ya}{\pgfpointanchor{#1}{center}}%
+\pgfextractx{\pgf@xb}{\pgfpointanchor{#2}{center}}%
+\pgfextracty{\pgf@yb}{\pgfpointanchor{#2}{center}}%
+\pgfmathparseFPU{sqrt((\pgf@xa-\pgf@xb)*(\pgf@xa-\pgf@xb)+(\pgf@ya-\pgf@yb)*(\pgf@ya-\pgf@yb))}%
+\pgfmathsmuggle\pgfmathresult\endgroup%
+}%
+\makeatother
+\makeatletter
+\def\dirtree@dot@radius{1pt}
 \forestset{%
   declare toks={real siblings}{},
-  extensible edge/.style={%
+  vdots@root/.style={%
     delay={%
-      prepend={[\strut,
-        delay={%
-          do dynamics,
-          temptoksa=,
-          for following siblings={%
-            if temptoksa={}{}{%
-              temptoksa+={,},
+      if n children=0{%
+        before computing xy={%
+          for current and following siblings={%
+            s'+=-10pt,
+          },
+        },
+        if n=1{%
+          edge path'={%
+            (!u.parent anchor) ++(\foresteregister{folder indent},0pt)
+            coordinate (a) --
+            ($(!u.parent anchor -| a)!1/3!(.child anchor -| a)$)
+            edge [dotted]  
+            ($(!u.parent anchor -| a)!2/3!(.child anchor -| a)$)
+            ($(!u.parent anchor -| a)!2/3!(.child anchor -| a)$)
+            |- (.child anchor)
+          },
+        }{%
+          edge path'={%
+            (!u.parent anchor |- !p.child anchor) 
+            ++(\foresteregister{folder indent},0pt)
+            coordinate (a) --
+            ($(!p.child anchor -| a)!1/3!(.child anchor -| a)$)
+            edge [dotted]  
+            ($(!p.child anchor -| a)!2/3!(.child anchor -| a)$)
+            ($(!p.child anchor -| a)!2/3!(.child anchor -| a)$)
+            |- (.child anchor)
+          },
+        },
+        for following siblings={%
+          edge path'={%
+            (!u.parent anchor |- !p.child anchor) 
+            ++(\foresteregister{folder indent},0pt) |-
+            (.child anchor)
+          },
+        },
+      }{%
+        prepend={[\strut,
+            delay={%
+              do dynamics,
+              temptoksa=,
+              for following siblings={%
+                if temptoksa={}{}{%
+                  temptoksa+={,},
+                },
+                temptoksa+/.option=name,
+              },
+              real siblings/.register=temptoksa,
+              folder,
+              grow'=0,
+              before computing xy={%
+                l'=0pt,
+                s'=-15pt,
+              },
+              delay n=2{%
+                split option={real siblings}{,}{append},
+              },
+              before typesetting nodes={%
+                temptoksa/.option=name,
+                delay={
+                  do dynamics,
+                  for children={
+                    if n=1{
+                      edge path'={%
+                        (!uu.parent anchor) ++(\foresteregister{folder indent},0pt)
+                        coordinate (a) --
+                        ($(a)!1/3!(.child anchor -| a)$) coordinate (A)        
+                        %
+                        ($(a)!2/3!(.child anchor -| a)$)  coordinate (B)
+                        %
+                        ($(a)!2/3!(.child anchor -| a)$)
+                        |-  (.child anchor)%
+                      },
+                      tikz+={
+                        \coordinate (A') at ($(A)+(0,\dirtree@dot@radius)$);
+                        \coordinate (B') at ($(B)-(0,\dirtree@dot@radius)$);
+                        \coordinate (C) at ($0.25*($(B')-(A')$)$);
+                        % Debugging
+                          % \draw[blue] ($(A')-(5pt,0)$) -- ($(A')+(5pt,0)$);
+                          % \draw[red] ($(A')+(C)-(5pt,0)$) -- ($(A')+(C)+(5pt,0)$);
+                          % \draw[red] ($(A')+2*(C)-(5pt,0)$) -- ($(A')+2*(C)+(5pt,0)$);
+                          % \draw[red] ($(A')+3*(C)-(5pt,0)$) -- ($(A')+3*(C)+(5pt,0)$);
+                          % \draw[red] ($(A')+4*(C)-(5pt,0)$) -- ($(A')+4*(C)+(5pt,0)$);
+                          % \draw[blue] ($(B')-(5pt,0)$) -- ($(B')+(5pt,0)$);
+                        \fill ($(A')+(C)$) circle (\dirtree@dot@radius);
+                        \fill ($(A')+2*(C)$) circle (\dirtree@dot@radius);
+                        \fill ($(A')+3*(C)$) circle (\dirtree@dot@radius);
+                      },
+                    }{
+                      edge path'={%
+                        (!uu.parent anchor) ++(\foresteregister{folder indent},0pt)
+                        coordinate (a) 
+                        (a |- !p.child anchor) |- (.child anchor)
+                      },
+                    },
+                  },
+                },
+              },
             },
-            temptoksa+/.option=name,
-          },
-          real siblings/.register=temptoksa,
-          folder,
-          grow'=0,
-          before computing xy={%
-            l'=0pt,
-            s'=-15pt,
-          },
-          delay n=2{%
-            split option={real siblings}{,}{append},
-          },
-        },
-        edge path'={%
-          (!u.parent anchor) ++(\foresteregister{folder indent},0pt)
-          -- ++(0pt,-5pt) edge [dotted]  
-          ([xshift=\foresteregister{folder indent}].parent anchor)
-        },
-      ]},
+            no edge,
+        ]},
+      },
     },
   },
-  extend/.style={%
+  vdots@others/.style={%
     delay={%
       append={[\strut,
         folder,
@@ -79,13 +172,26 @@
         edge path'={%
           ([xshift=\forestregister{folder indent}]!uu.parent anchor) 
           coordinate (a) --
-          ([yshift=9pt].parent anchor -| a)
-          edge [dotted] (.parent anchor -| a)
+          ([yshift=9pt].parent anchor -| a) coordinate (A)
+          %
+          (.parent anchor -| a) coordinate (B)
+        },
+        tikz+={
+          \coordinate (A') at ($(A)+(0,\dirtree@dot@radius)$);
+          \coordinate (B') at ($(B)-(0,\dirtree@dot@radius)$);
+          \coordinate (C) at ($0.25*($(B')-(A')$)$);
+          \fill ($(A')+(C)$) circle (\dirtree@dot@radius);
+          \fill ($(A')+2*(C)$) circle (\dirtree@dot@radius);
+          \fill ($(A')+3*(C)$) circle (\dirtree@dot@radius);
         },
       ]},
     },
   },
+  vdots/.style={
+    if level = 0{vdots@root}{vdots@others}
+  }
 }
+\makeatother
 \begin{forest}
  file tree
  ,tikz+={
@@ -100,7 +206,7 @@
       \path let \p1=($(current bounding box.north)-(\forestoption{name}.south)$) in (\forestoption{name}.east) node[below right] {\y1\SaveHeight{\y1}};
     }
   }
-  [{tree, extensible edge}
+  [{tree}, vdots
     [{\$\&\#{\textbackslash} {\textbar}\_*{\textasciicircum}\@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}, file]
     [{FileTrees\_IncludeThis}]
     [{a\_file\_with\_[}, file, tikz+={\gdef\foo{Nope}}]
@@ -122,7 +228,7 @@
       [{include\_this.tex}, file]
     ]
     [{some\_folder}
-      [{tmp.tex}, file]
+      [{tmp.tex}, file, vdots]
     ]
   ]
   \xdef\ssep{\foresteoption{s sep}}

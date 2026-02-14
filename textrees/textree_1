@@ -174,10 +174,7 @@
             ]
             [{\filefmt{plain-file}{./testing/test.pl}}, file]
             [{\filefmt{plain-file}{./testing/testing}}, file]
-            [{\filefmt{plain-file}{./testing/testing.aux}}, file]
-            [{\filefmt{plain-file}{./testing/testing.log}}, file]
             [{\filefmt{plain-file}{./testing/testing.pdf}}, file]
-            [{\filefmt{plain-file}{./testing/testing.synctex.gz}}, file]
             [{\filefmt{plain-file}{./testing/testing.tex}}, file]
             [{\filefmt{plain-file}{./testing/testing2.pdf}}, file]
             [{\filefmt{plain-file}{./testing/testing2.tex}}, file]
@@ -245,18 +242,27 @@
     ]
 \end{forest}
     \report{
-        ,file = 1
         ,dir  = 1
-        ,symlink = {
-            ,character-special-file = 0
-            ,symlink = 0
-            ,nonexistent = 0
-            ,plain-file = 1
-            ,dir = 1
-            ,tty = 0
-            ,block-special-file = 0
+        ,file = {
+            ,total = 0
             ,pipe = 0
-            ,total = 2
             ,socket = 0
+            ,block-special-file = 0
+            ,plain-file = 151
+            ,non-symlinks = 151
+            ,symlink = {
+                ,symlink = 0
+                ,tty = 0
+                ,character-special-file = 0
+                ,dir = 1
+                ,total = 2
+                ,nonexistent = 0
+                ,pipe = 0
+                ,socket = 0
+                ,block-special-file = 0
+                ,plain-file = 1
+            }
+            ,tty = 0
+            ,character-special-file = 0
         }
     }
