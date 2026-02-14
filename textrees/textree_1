@@ -1,0 +1,262 @@
+\begin{forest}
+    [{\dirfmt{.}}, dir
+        [{\dirfmt{./Documentation}}, dir
+            [{\filefmt{plain-file}{./Documentation/Doc_Titlepage.tex}}, file]
+            [{\filefmt{plain-file}{./Documentation/Prassble_Documentation.pdf}}, file]
+            [{\filefmt{plain-file}{./Documentation/Prassble_Documentation.tex}}, file]
+        ]
+        [{\filefmt{plain-file}{./LICENSE.txt}}, file]
+        [{\filefmt{plain-file}{./Prassble_is_here.txt}}, file]
+        [{\filefmt{plain-file}{./README.md}}, file]
+        [{\dirfmt{./figures}}, dir
+            [{\filefmt{plain-file}{./figures/Three_Planes_Orthogonal_Complements_licensed_under_CC_BY-SA_4.0.pdf}}, file]
+            [{\filefmt{plain-file}{./figures/iibui.pdf}}, file]
+        ]
+        [{\dirfmt{./files}}, dir
+            [{\dirfmt{./files/chapters}}, dir
+                [{\dirfmt{./files/chapters/ch1}}, dir
+                    [{\filefmt{plain-file}{./files/chapters/ch1/sec1.tex}}, file]
+                    [{\filefmt{plain-file}{./files/chapters/ch1/sec2.tex}}, file]
+                ]
+                [{\dirfmt{./files/chapters/ch2}}, dir
+                    [{\filefmt{plain-file}{./files/chapters/ch2/sec1.tex}}, file]
+                ]
+            ]
+            [{\dirfmt{./files/homework}}, dir
+                [{\filefmt{plain-file}{./files/homework/1.tex}}, file]
+            ]
+        ]
+        [{\dirfmt{./homework}}, dir
+            [{\dirfmt{./homework/hw1}}, dir
+                [{\filefmt{plain-file}{./homework/hw1/hw1.pdf}}, file]
+                [{\filefmt{plain-file}{./homework/hw1/hw1.tex}}, file]
+            ]
+        ]
+        [{\filefmt{plain-file}{./main.pdf}}, file]
+        [{\filefmt{plain-file}{./main.tex}}, file]
+        [{\filefmt{plain-file}{./maintitlepage.tex}}, file]
+        [{\filefmt{plain-file}{./mkPrassble.pl}}, file]
+        [{\dirfmt{./packages}}, dir
+            [{\filefmt{plain-file}{./packages/development}}, file]
+            [{\filefmt{plain-file}{./packages/ls-R}}, file]
+            [{\dirfmt{./packages/tex}}, dir
+                [{\dirfmt{./packages/tex/latex}}, dir
+                    [{\dirfmt{./packages/tex/latex/filetree}}, dir
+                        [{\filefmt{plain-file}{./packages/tex/latex/filetree/file_tree}}, file]
+                        [{\filefmt{plain-file}{./packages/tex/latex/filetree/filetree.sty}}, file]
+                        [{\filefmt{plain-file}{./packages/tex/latex/filetree/textree}}, file]
+                        [{\filefmt{plain-file}{./packages/tex/latex/filetree/textree_sed}}, file]
+                    ]
+                    [{\dirfmt{./packages/tex/latex/prassble-math}}, dir
+                        [{\filefmt{plain-file}{./packages/tex/latex/prassble-math/prassble-math.sty}}, file]
+                    ]
+                ]
+            ]
+        ]
+        [{\filefmt{plain-file}{./pmath-test.pdf}}, file]
+        [{\dirfmt{./preamble}}, dir
+            [{\dirfmt{./preamble/commands}}, dir
+                [{\dirfmt{./preamble/commands/modified_commands}}, dir
+                    [{\filefmt{plain-file}{./preamble/commands/modified_commands/Chapter_and_Section.tex}}, file]
+                    [{\filefmt{plain-file}{./preamble/commands/modified_commands/FileTree.tex}}, file]
+                    [{\filefmt{plain-file}{./preamble/commands/modified_commands/Input_macro.tex}}, file]
+                ]
+                [{\dirfmt{./preamble/commands/newcommands}}, dir
+                    [{\filefmt{plain-file}{./preamble/commands/newcommands/KeywordForInput.tex}}, file]
+                ]
+            ]
+            [{\filefmt{plain-file}{./preamble/custom-symbols.tex}}, file]
+            [{\filefmt{plain-file}{./preamble/enumeration.tex}}, file]
+            [{\dirfmt{./preamble/environments}}, dir
+                [{\dirfmt{./preamble/environments/box_styles}}, dir
+                    [{\filefmt{plain-file}{./preamble/environments/box_styles/lengths_and_counters.tex}}, file]
+                    [{\dirfmt{./preamble/environments/box_styles/listings}}, dir
+                        [{\filefmt{plain-file}{./preamble/environments/box_styles/listings/codestyles.tex}}, file]
+                        [{\dirfmt{./preamble/environments/box_styles/listings/commands}}, dir
+                            [{\dirfmt{./preamble/environments/box_styles/listings/commands/modified_commands}}, dir
+                                [{\filefmt{plain-file}{./preamble/environments/box_styles/listings/commands/modified_commands/NewInputListing.tex}}, file]
+                                [{\filefmt{plain-file}{./preamble/environments/box_styles/listings/commands/modified_commands/NewListing.tex}}, file]
+                            ]
+                            [{\dirfmt{./preamble/environments/box_styles/listings/commands/newcommands}}, dir
+                                [{\filefmt{plain-file}{./preamble/environments/box_styles/listings/commands/newcommands/all_short_names.tex}}, file]
+                                [{\filefmt{plain-file}{./preamble/environments/box_styles/listings/commands/newcommands/name_converters.tex}}, file]
+                                [{\filefmt{plain-file}{./preamble/environments/box_styles/listings/commands/newcommands/new_variables.tex}}, file]
+                            ]
+                        ]
+                    ]
+                    [{\dirfmt{./preamble/environments/box_styles/nonlistings}}, dir
+                        [{\dirfmt{./preamble/environments/box_styles/nonlistings/commands}}, dir
+                            [{\dirfmt{./preamble/environments/box_styles/nonlistings/commands/modified_commands}}, dir
+                                [{\filefmt{plain-file}{./preamble/environments/box_styles/nonlistings/commands/modified_commands/newkeytheorem.tex}}, file]
+                            ]
+                            [{\dirfmt{./preamble/environments/box_styles/nonlistings/commands/newcommands}}, dir
+                                [{\filefmt{plain-file}{./preamble/environments/box_styles/nonlistings/commands/newcommands/InputKeyword_HW-in-Main.tex}}, file]
+                            ]
+                        ]
+                        [{\filefmt{plain-file}{./preamble/environments/box_styles/nonlistings/theoremstyles.tex}}, file]
+                    ]
+                ]
+                [{\dirfmt{./preamble/environments/derived_environments}}, dir
+                    [{\filefmt{plain-file}{./preamble/environments/derived_environments/colours.tex}}, file]
+                    [{\filefmt{plain-file}{./preamble/environments/derived_environments/lengths.tex}}, file]
+                    [{\filefmt{plain-file}{./preamble/environments/derived_environments/listings.tex}}, file]
+                    [{\filefmt{plain-file}{./preamble/environments/derived_environments/nonlistings.tex}}, file]
+                ]
+            ]
+            [{\filefmt{plain-file}{./preamble/external_hyperlink_format.tex}}, file]
+            [{\filefmt{plain-file}{./preamble/hw_zexternaldocument_main.tex}}, file]
+            [{\dirfmt{./preamble/math}}, dir
+                [{\filefmt{plain-file}{./preamble/math/general_math.tex}}, file]
+                [{\filefmt{plain-file}{./preamble/math/specific_math.tex}}, file]
+            ]
+            [{\filefmt{plain-file}{./preamble/other.tex}}, file]
+            [{\filefmt{plain-file}{./preamble/page-formatting.tex}}, file]
+            [{\filefmt{plain-file}{./preamble/preamble.tex}}, file]
+        ]
+        [{\dirfmt{./test}}, dir
+            [{\dirfmt{./test/listings}}, dir
+                [{\filefmt{plain-file}{./test/listings/inner_lorem_ipsum.tex}}, file]
+                [{\filefmt{plain-file}{./test/listings/sample_code.tex}}, file]
+                [{\filefmt{plain-file}{./test/listings/test.jl}}, file]
+                [{\filefmt{plain-file}{./test/listings/test.pdf}}, file]
+                [{\filefmt{plain-file}{./test/listings/test.tex}}, file]
+                [{\filefmt{plain-file}{./test/listings/test1.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test10.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test11.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test12.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test13.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test14.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test15.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test16.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test17.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test18.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test19.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test2.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test20.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test21.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test22.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test23.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test24.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test25.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test26.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test27.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test28.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test29.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test3.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test30.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test31.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test32.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test33.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test34.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test35.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test36.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test37.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test4.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test5.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test6.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test7.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test8.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test9.txt}}, file]
+                [{\filefmt{plain-file}{./test/listings/test_NewPCBListing.tex}}, file]
+                [{\filefmt{plain-file}{./test/listings/test_decorations.tex}}, file]
+            ]
+            [{\dirfmt{./test/prassble-math}}, dir
+                [{\filefmt{plain-file}{./test/prassble-math/pmath-test.pdf}}, file]
+                [{\filefmt{plain-file}{./test/prassble-math/pmath-test.tex}}, file]
+            ]
+        ]
+        [{\dirfmt{./testing}}, dir
+            [{\filefmt{plain-file}{./testing/height.pl}}, file]
+            [{\dirfmt{./testing/tcolorbox}}, dir
+                [{\filefmt{plain-file}{./testing/tcolorbox/sample_code.tex}}, file]
+                [{\filefmt{plain-file}{./testing/tcolorbox/test_too.pdf}}, file]
+                [{\filefmt{plain-file}{./testing/tcolorbox/test_too.tex}}, file]
+            ]
+            [{\filefmt{plain-file}{./testing/test.pl}}, file]
+            [{\filefmt{plain-file}{./testing/testing}}, file]
+            [{\filefmt{plain-file}{./testing/testing.aux}}, file]
+            [{\filefmt{plain-file}{./testing/testing.log}}, file]
+            [{\filefmt{plain-file}{./testing/testing.pdf}}, file]
+            [{\filefmt{plain-file}{./testing/testing.synctex.gz}}, file]
+            [{\filefmt{plain-file}{./testing/testing.tex}}, file]
+            [{\filefmt{plain-file}{./testing/testing2.pdf}}, file]
+            [{\filefmt{plain-file}{./testing/testing2.tex}}, file]
+            [{\dirfmt{./testing/tree}}, dir
+                [{\filefmt{plain-file}{./testing/tree/$&#\ |_*^@%<>{}~+-=:;"'`!?.}}, file]
+                [{\dirfmt{./testing/tree/FileTrees}}, dir
+                    [{\filefmt{plain-file}{./testing/tree/FileTrees/OutputGoesHere.tex}}, file]
+                    [{\filefmt{plain-file}{./testing/tree/FileTrees/tree_1.tex}}, file]
+                    [{\filefmt{plain-file}{./testing/tree/FileTrees/tree_3.tex}}, file]
+                    [{\filefmt{plain-file}{./testing/tree/FileTrees/tree_4.tex}}, file]
+                    [{\filefmt{plain-file}{./testing/tree/FileTrees/tree_5.tex}}, file]
+                    [{\filefmt{plain-file}{./testing/tree/FileTrees/tree_6.tex}}, file]
+                    [{\filefmt{plain-file}{./testing/tree/FileTrees/tree_7.tex}}, file]
+                    [{\filefmt{plain-file}{./testing/tree/FileTrees/tree_8.tex}}, file]
+                ]
+                [{\filefmt{plain-file}{./testing/tree/a_file_with_[}}, file]
+                [{\filefmt{plain-file}{./testing/tree/a_file_with_]}}, file]
+                [{\filefmt{plain-file}{./testing/tree/a_file_with_][_[_]_[[[}}, file]
+                [{\filefmt{plain-file}{./testing/tree/a_file_with_{}}, file]
+                [{\filefmt{plain-file}{./testing/tree/a_file_with_}}}, file]
+                [{\filefmt{plain-file}{./testing/tree/a_file_with_}{_{_}_{{{}}, file]
+                [{\filefmt{plain-file}{./testing/tree/a_folder_with_'_and_"_yes}}, file]
+                [{\filefmt{plain-file}{./testing/tree/basename}}, file]
+                [{\filefmt{plain-file}{./testing/tree/bash.pdf}}, file]
+                [{\filefmt{plain-file}{./testing/tree/bash.tex}}, file]
+                [{\filefmt{plain-file}{./testing/tree/bash_test.tex}}, file]
+                [{\filefmt{plain-file}{./testing/tree/filetree.tmp}}, file]
+                [{\dirfmt{./testing/tree/folder}}, dir
+                    [{\filefmt{plain-file}{./testing/tree/folder/&quot;}}, file]
+                    [{\symlinkfmt{plain-file}{./testing/tree/folder/bash.tex}{/workspaces/Prassble/testing/tree/bash.tex}}, symlink]
+                    [{\filefmt{plain-file}{./testing/tree/folder/bash_test.tex}}, file]
+                    [{\dirfmt{./testing/tree/folder/some_subdirectory}}, dir
+                        [{\filefmt{plain-file}{./testing/tree/folder/some_subdirectory/file}}, file]
+                    ]
+                    [{\symlinkfmt{dir}{./testing/tree/folder/symlink-test}{/workspaces/Prassble/testing/tree/include_this}}, symlink]
+                    [{\filefmt{plain-file}{./testing/tree/folder/testing}}, file]
+                ]
+                [{\filefmt{plain-file}{./testing/tree/hello.sh}}, file]
+                [{\dirfmt{./testing/tree/include_this}}, dir
+                    [{\filefmt{plain-file}{./testing/tree/include_this/include_this.tex}}, file]
+                ]
+                [{\dirfmt{./testing/tree/some_folder}}, dir
+                    [{\filefmt{plain-file}{./testing/tree/some_folder/tmp.tex}}, file]
+                ]
+                [{\filefmt{plain-file}{./testing/tree/tst.tmp}}, file]
+            ]
+            [{\filefmt{plain-file}{./testing/tst.tex}}, file]
+            [{\dirfmt{./testing/xr}}, dir
+                [{\filefmt{plain-file}{./testing/xr/1.tex}}, file]
+                [{\filefmt{plain-file}{./testing/xr/hw1.pdf}}, file]
+                [{\filefmt{plain-file}{./testing/xr/hw1.tex}}, file]
+                [{\filefmt{plain-file}{./testing/xr/hw1_ref_warning_correction.tmp}}, file]
+                [{\filefmt{plain-file}{./testing/xr/main.pdf}}, file]
+                [{\filefmt{plain-file}{./testing/xr/main.tex}}, file]
+                [{\filefmt{plain-file}{./testing/xr/regex.pdf}}, file]
+                [{\filefmt{plain-file}{./testing/xr/regex.tex}}, file]
+                [{\filefmt{plain-file}{./testing/xr/seq_mwe.pdf}}, file]
+                [{\filefmt{plain-file}{./testing/xr/seq_mwe.tex}}, file]
+            ]
+        ]
+        [{\dirfmt{./textrees}}, dir
+            [{\filefmt{plain-file}{./textrees/textree_0}}, file]
+            [{\filefmt{plain-file}{./textrees/textree_1}}, file]
+        ]
+    ]
+\end{forest}
+    \report{
+        ,file = 1
+        ,dir  = 1
+        ,symlink = {
+            ,character-special-file = 0
+            ,symlink = 0
+            ,nonexistent = 0
+            ,plain-file = 1
+            ,dir = 1
+            ,tty = 0
+            ,block-special-file = 0
+            ,pipe = 0
+            ,total = 2
+            ,socket = 0
+        }
+    }

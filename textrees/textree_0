@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tree>
-    <directory name=".">
+    <directory name="/workspaces/Prassble">
         <directory name="Documentation">
             <file name="Doc_Titlepage.tex"></file>
             <file name="Prassble_Documentation.pdf"></file>
@@ -209,7 +209,6 @@
                 <directory name="folder">
                     <link name="bash.tex" target="/workspaces/Prassble/testing/tree/bash.tex"></link>
                     <file name="bash_test.tex"></file>
-                    <file name="filetree_1_0"></file>
                     <directory name="some_subdirectory">
                         <file name="file"></file>
                     </directory>
@@ -241,6 +240,7 @@
         </directory>
         <directory name="textrees">
             <file name="textree_0"></file>
+            <file name="textree_1"></file>
         </directory>
     </directory>
     <report>
