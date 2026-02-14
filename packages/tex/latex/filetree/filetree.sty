@@ -13,18 +13,6 @@
 % Variables
   \tl_new:N \g__filetree_font_tl
     \tl_set:Nn \g__filetree_font_tl {\ttfamily}
-  \tl_new:N \g__FileTree_pathkey_tl
-  \tl_new:N \g__FileTree_user_appended_forest_keys_tl
-  \tl_new:N \g__FileTree_user_appended_for_tree_keys_tl
-  \str_new:N \g__filetree_i_str
-  \str_new:N \g__filetree_I_only_str
-  \str_new:N \g__filetree_file_path_str
-  \str_new:N \g__filetree_final_i_str
-  \str_new:N \g__filetree_final_I_str
-  \str_new:N \g__filetree_Output_To_str
-  \str_new:N \g__filetree_final_Output_To_str
-  \str_new:N \l__FileTree_full_path_str
-  \str_new:N \g__filetree_sys_shell_now_str
 
   % Integers
   \int_new:N \g__filetree_current_tree_number_int
@@ -33,75 +21,66 @@
   \dim_new:N \g__filetree_pic_size_dim
     \dim_set:Nn \g__filetree_pic_size_dim {4pt}
 
-  % Booleans
-  \bool_new:N \g__filetree_I_bool
-  \bool_new:N \g__filetree_debug_bool
+  % \cs_new:Npn \__filetree_paths_and_options_core_processing:nn #1#2 {
+  %   % Step the counter for the file tree number
+  %   \int_gincr:N \g__filetree_current_tree_number_int
+  %   % Default output location
+  %   \str_gset:Ne \g__filetree_Output_To_str {FileTrees/tree_\int_use:N \g__filetree_current_tree_number_int.tex}
 
-  % Control sequences 
-  \cs_new:Npn \__filetree_Inputify:nn #1#2 {
-    \seq_clear:N \l_tmpa_seq 
-    \__Prassble_Input@core:nnnn { #1 } { \g__FileTree_pathkey_tl } { #2 } { \str_set:Ne \l__FileTree_full_path_str }
-  }
-  \cs_new:Npn \__filetree_paths_and_options_core_processing:nn #1#2 {
-    % Step the counter for the file tree number
-    \int_gincr:N \g__filetree_current_tree_number_int
-    % Default output location
-    \str_gset:Ne \g__filetree_Output_To_str {FileTrees/tree_\int_use:N \g__filetree_current_tree_number_int.tex}
-
-    \keys_set:nn { filetree } { #1 }
-    % Final flag processing before parsing to textree
-    %* Even though we use the e-type argument later, it must be used now also.
-        % -i
-        \str_if_empty:NF \g__filetree_i_str {
-            \str_set:Ne \g__filetree_final_i_str { -i~"\g__filetree_i_str" }
-        }
-        % -I
-        \bool_if:NT \g__filetree_I_bool {
-            \str_set:Ne \g__filetree_final_I_str { -I~"\g__filetree_I_only_str"}
-        }
-        % -O
-        \str_if_empty:NF \g__filetree_Output_To_str {
-            \str_set:Ne \g__filetree_final_Output_To_str { -O~"\g__filetree_Output_To_str" }
-        }
+  %   \keys_set:nn { filetree } { #1 }
+  %   % Final flag processing before parsing to textree
+  %   %* Even though we use the e-type argument later, it must be used now also.
+  %       % -i
+  %       \str_if_empty:NF \g__filetree_i_str {
+  %           \str_set:Ne \g__filetree_final_i_str { -i~"\g__filetree_i_str" }
+  %       }
+  %       % -I
+  %       \bool_if:NT \g__filetree_I_bool {
+  %           \str_set:Ne \g__filetree_final_I_str { -I~"\g__filetree_I_only_str"}
+  %       }
+  %       % -O
+  %       \str_if_empty:NF \g__filetree_Output_To_str {
+  %           \str_set:Ne \g__filetree_final_Output_To_str { -O~"\g__filetree_Output_To_str" }
+  %       }
         
-    % File path parsed to textree
-        \str_set:Ne \g__filetree_file_path_str {
-          \str_if_empty:nTF { #2 }
-            { "./" }
-            { "#2" }
-        }
+  %   % File path parsed to textree
+  %       \str_set:Ne \g__filetree_file_path_str {
+  %         \str_if_empty:nTF { #2 }
+  %           { "./" }
+  %           { "#2" }
+  %       }
 
-    % Flags and argument passed to textree
-      \str_set:Ne \g__filetree_sys_shell_now_str {
-      % Execute the bash script textree
-          textree
-      \c_space_tl
-      % -i flag
-          \g__filetree_final_i_str
-      \c_space_tl
-      % -I flag (activated only if the string is nonempty)
-          \g__filetree_final_I_str
-      \c_space_tl
-      % -O flag
-          \g__filetree_final_Output_To_str
-      \c_space_tl
-      % File path parsed to textree (the argument of textree)
-          \g__filetree_file_path_str
-      }
-      \bool_if:NT \g__filetree_debug_bool {
-        \begin{center}
-          \fbox{
-            \begin{minipage}{\linewidth}
-              String~passed~to~\texttt{textree}:\par
-              \texttt{\str_use:N \g__filetree_sys_shell_now_str}
-            \end{minipage}
-          }
-        \end{center}
-      }
-  }
+  %   % Flags and argument passed to textree
+  %     \str_set:Ne \g__filetree_sys_shell_now_str {
+  %     % Execute the bash script textree
+  %         textree
+  %     \c_space_tl
+  %     % -i flag
+  %         \g__filetree_final_i_str
+  %     \c_space_tl
+  %     % -I flag (activated only if the string is nonempty)
+  %         \g__filetree_final_I_str
+  %     \c_space_tl
+  %     % -O flag
+  %         \g__filetree_final_Output_To_str
+  %     \c_space_tl
+  %     % File path parsed to textree (the argument of textree)
+  %         \g__filetree_file_path_str
+  %     }
+  %     \bool_if:NT \g__filetree_debug_bool {
+  %       \begin{center}
+  %         \fbox{
+  %           \begin{minipage}{\linewidth}
+  %             String~passed~to~\texttt{textree}:\par
+  %             \texttt{\str_use:N \g__filetree_sys_shell_now_str}
+  %           \end{minipage}
+  %         }
+  %       \end{center}
+  %     }
+  % }
 
-  % Messages
-  \msg_new:nnn {filetree} {shell_escape_is_disabled} {Unrestricted~shell~escape~is~disabled.~Using~cached~files~\msg_line_context:,~if~they~exist.}
+  % % Messages
+  % \msg_new:nnn {filetree} {shell_escape_is_disabled} {Unrestricted~shell~escape~is~disabled.~Using~cached~files~\msg_line_context:,~if~they~exist.}
 
 % Keys
 \tikzset{
@@ -175,6 +154,158 @@
     }
   }
 }
+\makeatletter
+\dim_new:N \g_dirtree_dots_radius_dim
+\dim_set:Nn \g_dirtree_dots_radius_dim {1pt}
+\int_new:N \l_dirtree_nth_set_of_dots_int
+\forestset{%
+  declare~toks={real~siblings}{},
+  vdots@root/.code={\int_incr:N \l_dirtree_nth_set_of_dots_int},
+  vdots@others/.code={\int_incr:N \l_dirtree_nth_set_of_dots_int},
+  vdots@root/.append~style={%
+    delay={%
+      if~n~children=0{%
+        before~computing~xy={%
+          for~current~and~following~siblings={%
+            s'+=-10pt,
+          },
+        },
+        if~n=1{%
+          edge~path'={%
+            (!u.parent~anchor) ++(\foresteregister{folder~indent},0pt)
+            coordinate (a) --
+            ($(!u.parent~anchor -| a)!1/3!(.child~anchor -| a)$)
+            edge [dotted]  
+            ($(!u.parent~anchor -| a)!2/3!(.child~anchor -| a)$)
+            ($(!u.parent~anchor -| a)!2/3!(.child~anchor -| a)$)
+            |- (.child~anchor)
+          },
+        }{%
+          edge~path'={%
+            (!u.parent~anchor |- !p.child~anchor) 
+            ++(\foresteregister{folder~indent},0pt)
+            coordinate (a) --
+            ($(!p.child~anchor -| a)!1/3!(.child~anchor -| a)$)
+            edge [dotted]  
+            ($(!p.child~anchor -| a)!2/3!(.child~anchor -| a)$)
+            ($(!p.child~anchor -| a)!2/3!(.child~anchor -| a)$)
+            |- (.child~anchor)
+          },
+        },
+        for~following~siblings={%
+          edge~path'={%
+            (!u.parent~anchor |- !p.child~anchor) 
+            ++(\foresteregister{folder~indent},0pt) |-
+            (.child~anchor)
+          },
+        },
+      }{%
+        prepend={[\strut,
+            delay={%
+              do~dynamics,
+              temptoksa=,
+              for~following~siblings={%
+                if~temptoksa={}{}{%
+                  temptoksa+={,},
+                },
+                temptoksa+/.option=name,
+              },
+              real~siblings/.register=temptoksa,
+              folder,
+              grow'=0,
+              before~computing~xy={%
+                l'=0pt,
+                s'=-15pt,
+              },
+              delay~n=2{%
+                split~option={real~siblings}{,}{append},
+              },
+              before~typesetting~nodes={%
+                temptoksa/.option=name,
+                delay={
+                  do~dynamics,
+                  for~children={
+                    if~n=1{
+                      edge~path'={%
+                        (!uu.parent~anchor) ++(\foresteregister{folder~indent},0pt)
+                        coordinate (a) --
+                        ($(a)!1/3!(.child~anchor -| a)$) coordinate (A1)        
+                        %
+                        ($(a)!2/3!(.child~anchor -| a)$)  coordinate (B1)
+                        %
+                        ($(a)!2/3!(.child~anchor -| a)$)
+                        |-  (.child~anchor)%
+                      },
+                      tikz+={
+                        \coordinate (A'1) at ($(A1)+(0,\dim_use:N \g_dirtree_dots_radius_dim)$);
+                        \coordinate (B'1) at ($(B1)-(0,\dim_use:N \g_dirtree_dots_radius_dim)$);
+                        \coordinate (C1) at ($0.25*($(B'1)-(A'1)$)$);
+                        % Debugging
+                          % \draw[blue] ($(A')-(5pt,0)$) -- ($(A')+(5pt,0)$);
+                          % \draw[red] ($(A')+(C)-(5pt,0)$) -- ($(A')+(C)+(5pt,0)$);
+                          % \draw[red] ($(A')+2*(C)-(5pt,0)$) -- ($(A')+2*(C)+(5pt,0)$);
+                          % \draw[red] ($(A')+3*(C)-(5pt,0)$) -- ($(A')+3*(C)+(5pt,0)$);
+                          % \draw[red] ($(A')+4*(C)-(5pt,0)$) -- ($(A')+4*(C)+(5pt,0)$);
+                          % \draw[blue] ($(B')-(5pt,0)$) -- ($(B')+(5pt,0)$);
+                        \fill ($(A'1)+(C1)$) circle (\dim_use:N \g_dirtree_dots_radius_dim);
+                        \fill ($(A'1)+2*(C1)$) circle (\dim_use:N \g_dirtree_dots_radius_dim);
+                        \fill ($(A'1)+3*(C1)$) circle (\dim_use:N \g_dirtree_dots_radius_dim);
+                      },
+                    }{
+                      edge~path'={%
+                        (!uu.parent~anchor) ++(\foresteregister{folder~indent},0pt)
+                        coordinate (a) 
+                        (a |- !p.child~anchor) |- (.child~anchor)
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            no~edge,
+        ]},
+      },
+    },
+  },
+  vdots@others/.append~style={%
+    delay={%
+      append={[\strut,
+        folder,
+        grow'=0,
+        before~computing~xy={%
+          l'=0pt,
+          s'=-15pt,
+        },
+        if~n~children=0{%
+          before~drawing~tree={%
+            delay={%
+              y/.min={>O{y}}{parent,descendants},
+            },
+          },
+        }{},
+        edge~path'={%
+          ([xshift=\forestregister{folder~indent}]!uu.parent~anchor) 
+          coordinate (a) --
+          ([yshift=9pt].parent~anchor -| a) coordinate (A1)
+          %
+          (.parent~anchor -| a) coordinate (B1)
+        },
+        tikz+={
+          \coordinate (A'1) at ($(A1)+(0,\dim_use:N \g_dirtree_dots_radius_dim)$);
+          \coordinate (B'1) at ($(B1)-(0,\dim_use:N \g_dirtree_dots_radius_dim)$);
+          \coordinate (C1) at ($0.25*($(B'1)-(A'1)$)$);
+          \fill ($(A'1)+(C1)$) circle (\dim_use:N \g_dirtree_dots_radius_dim);
+          \fill ($(A'1)+2*(C1)$) circle (\dim_use:N \g_dirtree_dots_radius_dim);
+          \fill ($(A'1)+3*(C1)$) circle (\dim_use:N \g_dirtree_dots_radius_dim);
+        },
+      ]},
+    },
+  },
+  vdots/.style={
+    if~level = 0{vdots@root}{vdots@others}
+  }
+}
+\makeatother
 
 \keys_define:nn {filetree} {
 ,font           .tl_set:N = \g__filetree_font_tl
