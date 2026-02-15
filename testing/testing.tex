@@ -41,7 +41,7 @@
       \path let \p1=($(current bounding box.north)-(\forestoption{name}.south)$) in (\forestoption{name}.east) node[below right] {\y1\SaveHeight{\y1}};
     }
   }
-  [{tree}, vdots
+  [{tree}
     [{\$\&\#{\textbackslash} {\textbar}\_*{\textasciicircum}\@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}, file]
     [{FileTrees\_IncludeThis}]
     [{a\_file\_with\_[}, file, tikz+={\gdef\foo{Nope}}]
@@ -63,7 +63,7 @@
       [{include\_this.tex}, file]
     ]
     [{some\_folder}
-      [{tmp.tex}, file, vdots]
+      [{tmp.tex}, file]
     ]
   ]
   \xdef\ssep{\foresteoption{s sep}}
