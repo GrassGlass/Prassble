@@ -1,3 +1,7 @@
+% Source - https://tex.stackexchange.com/q/759723
+% Posted by Grass, modified by community. See post 'Timeline' for change history
+% Retrieved 2026-02-15, License - CC BY-SA 4.0
+
 % Source - https://tex.stackexchange.com/a/755401
 % Posted by cfr, modified by community. See post 'Timeline' for change history
 % Retrieved 2026-02-14, License - CC BY-SA 4.0
@@ -60,7 +64,7 @@
 %===========================================%
 \makeatletter
 \def\dirtree@dot@radius{0.5pt}
-\def\dirtree@vdots@length{10pt}
+\def\dirtree@vdots@length{5pt}
 \forestset{%
   declare toks={real siblings}{},
   continue/.style={%
@@ -125,12 +129,14 @@
                 temptoksa/.option=name,
                 delay={
                   do dynamics,
+                  s sep=1cm,
+                  l sep=1cm,
                   for children={
                     if n=1{
                       edge path'={%
                         (!uu.parent anchor) ++(\foresteregister{folder indent},0pt)
                         coordinate (a) --
-                        ($($(a)!1/2!(.child anchor -| a)$)+0.5*(0,\dirtree@vdots@length)$) coordinate (A\foresteoption{id})
+                        ($($(a)!1/2!(.child anchor -| a)$)+0.5*(0,\dirtree@vdots@length)$) coordinate (A\foresteoption{id})        
                         %
                         ($($(a)!1/2!(.child anchor -| a)$)-0.5*(0,\dirtree@vdots@length)$) coordinate (B\foresteoption{id}) |-  (.child anchor)%
                       },
@@ -165,7 +171,7 @@
         grow'=0,
         before computing xy={%
           l'=0pt,
-          s'=0pt,
+          s'=-\dirtree@vdots@length,
         },
         if n children=0{%
           before drawing tree={%

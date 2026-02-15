@@ -41,7 +41,7 @@
       \path let \p1=($(current bounding box.north)-(\forestoption{name}.south)$) in (\forestoption{name}.east) node[below right] {\y1\SaveHeight{\y1}};
     }
   }
-  [{tree}
+  [{tree}, continue
     [{\$\&\#{\textbackslash} {\textbar}\_*{\textasciicircum}\@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}, file]
     [{FileTrees\_IncludeThis}]
     [{a\_file\_with\_[}, file, tikz+={\gdef\foo{Nope}}]
@@ -62,14 +62,21 @@
       [{folder1}]
       [{include\_this.tex}, file]
     ]
-    [{some\_folder}
-      [{tmp.tex}, file]
+    [{some\_folder}, to be continued
+      [{tmp.tex}, file, to be continued]
     ]
   ]
-  \xdef\ssep{\foresteoption{s sep}}
+  \xdef\ssep{\meaning\forestoption{s sep}}
 \end{forest}\par
 \meaning\foo\par
 \fbox{\texttt{s sep}: \ssep}\par
+\ExplSyntaxOn
+\forestset{
+  s sep=\forestoption{id}*1cm,
+}
+\tl_set:No \l_tmpa_tl {\forestoption{s sep}}
+\fbox{s~sep: \meaning\l_tmpa_tl}\par
+\ExplSyntaxOff
 \ExplSyntaxOn
 \fbox{ \seq_use:Nn \l__filetree_heights_seq {,} }\par
 
