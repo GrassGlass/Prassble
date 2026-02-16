@@ -187,40 +187,40 @@
   continue/.append~style={%
     delay={%
       if~n~children=0{%
-        % before~computing~xy={%
-        %   for~current~and~following~siblings={%
-        %     s'+=-10pt,
-        %   },
-        % },
-        % if~n=1{%
-        %   edge~path'={%
-        %     (!u.parent~anchor) ++(\foresteregister{folder~indent},0pt)
-        %     coordinate (a) --
-        %     ($(!u.parent~anchor -| a)!1/3!(.child~anchor -| a)$)
-        %     edge [dotted]  
-        %     ($(!u.parent~anchor -| a)!2/3!(.child~anchor -| a)$)
-        %     ($(!u.parent~anchor -| a)!2/3!(.child~anchor -| a)$)
-        %     |- (.child~anchor)
-        %   },
-        % }{%
-        %   edge~path'={%
-        %     (!u.parent~anchor |- !p.child~anchor) 
-        %     ++(\foresteregister{folder~indent},0pt)
-        %     coordinate (a) --
-        %     ($(!p.child~anchor -| a)!1/3!(.child~anchor -| a)$)
-        %     edge [dotted]  
-        %     ($(!p.child~anchor -| a)!2/3!(.child~anchor -| a)$)
-        %     ($(!p.child~anchor -| a)!2/3!(.child~anchor -| a)$)
-        %     |- (.child~anchor)
-        %   },
-        % },
-        % for~following~siblings={%
-        %   edge~path'={%
-        %     (!u.parent~anchor |- !p.child~anchor) 
-        %     ++(\foresteregister{folder~indent},0pt) |-
-        %     (.child~anchor)
-        %   },
-        % },
+        before~computing~xy={%
+          for~current~and~following~siblings={%
+            s'+=-10pt,
+          },
+        },
+        if~n=1{%
+          edge~path'={%
+            (!u.parent~anchor) ++(\foresteregister{folder~indent},0pt)
+            coordinate (a) --
+            ($(!u.parent~anchor -| a)!1/3!(.child~anchor -| a)$)
+            edge [dotted]  
+            ($(!u.parent~anchor -| a)!2/3!(.child~anchor -| a)$)
+            ($(!u.parent~anchor -| a)!2/3!(.child~anchor -| a)$)
+            |- (.child~anchor)
+          },
+        }{%
+          edge~path'={%
+            (!u.parent~anchor |- !p.child~anchor) 
+            ++(\foresteregister{folder~indent},0pt)
+            coordinate (a) --
+            ($(!p.child~anchor -| a)!1/3!(.child~anchor -| a)$)
+            edge [dotted]  
+            ($(!p.child~anchor -| a)!2/3!(.child~anchor -| a)$)
+            ($(!p.child~anchor -| a)!2/3!(.child~anchor -| a)$)
+            |- (.child~anchor)
+          },
+        },
+        for~following~siblings={%
+          edge~path'={%
+            (!u.parent~anchor |- !p.child~anchor) 
+            ++(\foresteregister{folder~indent},0pt) |-
+            (.child~anchor)
+          },
+        },
       }{%
         prepend={[\strut,
             delay={%
@@ -284,7 +284,7 @@
         grow'=0,
         before~computing~xy={%
           l'=0pt,
-          s'=-0pt,
+          s'=-\g_dirtree_dots_length_dim,
         },
         if~n~children=0{%
           before~drawing~tree={%
@@ -297,8 +297,8 @@
           (!uu.parent~anchor |- !u.child~anchor) 
           ++(\foresteregister{folder~indent},0pt)
           coordinate (a) --
-          ($(!uu.parent~anchor |- !u.parent~anchor)+(\foresteregister{folder~indent},0pt)$) coordinate (A\foresteoption{id})
-          
+          (.parent~anchor -| a) coordinate (A\foresteoption{id})
+          %
           ([yshift=-\g_dirtree_dots_length_dim]% length of vdots
           A\foresteoption{id}) coordinate (B\foresteoption{id})
         },
