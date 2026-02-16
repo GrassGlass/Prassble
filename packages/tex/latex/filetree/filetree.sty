@@ -157,53 +157,70 @@
 \makeatletter
 \dim_new:N \g_dirtree_dots_radius_dim
 \dim_new:N \g_dirtree_dots_length_dim
-\tl_new:N \g__dirtree_old_s_sep_tl
-\tl_new:N \g__dirtree_old_l_sep_tl
 \dim_set:Nn \g_dirtree_dots_radius_dim {0.5pt}
 \dim_set:Nn \g_dirtree_dots_length_dim {5pt}
 \forestset{%
   declare~toks={real~siblings}{},
-  continue/.code = {
-    \tl_gset_eq:Nc \g__dirtree_old_s_sep_tl {fRsT\forest@cn/s~sep}
-    \tl_gset_eq:Nc \g__dirtree_old_l_sep_tl {fRsT\forest@cn/l~sep}
+  continue_tikz_vdots/.style = {
+    tikz+={
+      \coordinate (A') at ($(A\foresteoption{id})+(0,\g_dirtree_dots_radius_dim)$);
+      \coordinate (B') at ($(B\foresteoption{id})-(0,\g_dirtree_dots_radius_dim)$);
+      \coordinate (C) at ($0.25*($(B')-(A')$)$);
+      \fill ($(A')+(C)$) circle (\g_dirtree_dots_radius_dim);
+      \fill ($(A')+2*(C)$) circle (\g_dirtree_dots_radius_dim);
+      \fill ($(A')+3*(C)$) circle (\g_dirtree_dots_radius_dim);
+      % Debugging
+        % \draw[blue] ($(A')-(5pt,0)$) -- ($(A')+(5pt,0)$);
+        % \draw[red] ($(A')+(C)-(5pt,0)$) -- ($(A')+(C)+(5pt,0)$);
+        % \draw[red] ($(A')+2*(C)-(5pt,0)$) -- ($(A')+2*(C)+(5pt,0)$);
+        % \draw[red] ($(A')+3*(C)-(5pt,0)$) -- ($(A')+3*(C)+(5pt,0)$);
+        % \draw[red] ($(A')+4*(C)-(5pt,0)$) -- ($(A')+4*(C)+(5pt,0)$);
+        % \draw[blue] ($(B')-(5pt,0)$) -- ($(B')+(5pt,0)$);                        
+    },
   },
+  % Old way to ensure s sep and l sep are correct when 'continue' is used
+    % continue/.code = {
+    %   % WARNING: forest internal macros, this may need fixing if forest's internals change.
+    %   \tl_gset_eq:Nc \g__dirtree_old_s_sep_tl {fRsT\forest@cn/s~sep}
+    %   \tl_gset_eq:Nc \g__dirtree_old_l_sep_tl {fRsT\forest@cn/l~sep}
+    % },
   continue/.append~style={%
     delay={%
       if~n~children=0{%
-        before~computing~xy={%
-          for~current~and~following~siblings={%
-            s'+=-10pt,
-          },
-        },
-        if~n=1{%
-          edge~path'={%
-            (!u.parent~anchor) ++(\foresteregister{folder~indent},0pt)
-            coordinate (a) --
-            ($(!u.parent~anchor -| a)!1/3!(.child~anchor -| a)$)
-            edge [dotted]  
-            ($(!u.parent~anchor -| a)!2/3!(.child~anchor -| a)$)
-            ($(!u.parent~anchor -| a)!2/3!(.child~anchor -| a)$)
-            |- (.child~anchor)
-          },
-        }{%
-          edge~path'={%
-            (!u.parent~anchor |- !p.child~anchor) 
-            ++(\foresteregister{folder~indent},0pt)
-            coordinate (a) --
-            ($(!p.child~anchor -| a)!1/3!(.child~anchor -| a)$)
-            edge [dotted]  
-            ($(!p.child~anchor -| a)!2/3!(.child~anchor -| a)$)
-            ($(!p.child~anchor -| a)!2/3!(.child~anchor -| a)$)
-            |- (.child~anchor)
-          },
-        },
-        for~following~siblings={%
-          edge~path'={%
-            (!u.parent~anchor |- !p.child~anchor) 
-            ++(\foresteregister{folder~indent},0pt) |-
-            (.child~anchor)
-          },
-        },
+        % before~computing~xy={%
+        %   for~current~and~following~siblings={%
+        %     s'+=-10pt,
+        %   },
+        % },
+        % if~n=1{%
+        %   edge~path'={%
+        %     (!u.parent~anchor) ++(\foresteregister{folder~indent},0pt)
+        %     coordinate (a) --
+        %     ($(!u.parent~anchor -| a)!1/3!(.child~anchor -| a)$)
+        %     edge [dotted]  
+        %     ($(!u.parent~anchor -| a)!2/3!(.child~anchor -| a)$)
+        %     ($(!u.parent~anchor -| a)!2/3!(.child~anchor -| a)$)
+        %     |- (.child~anchor)
+        %   },
+        % }{%
+        %   edge~path'={%
+        %     (!u.parent~anchor |- !p.child~anchor) 
+        %     ++(\foresteregister{folder~indent},0pt)
+        %     coordinate (a) --
+        %     ($(!p.child~anchor -| a)!1/3!(.child~anchor -| a)$)
+        %     edge [dotted]  
+        %     ($(!p.child~anchor -| a)!2/3!(.child~anchor -| a)$)
+        %     ($(!p.child~anchor -| a)!2/3!(.child~anchor -| a)$)
+        %     |- (.child~anchor)
+        %   },
+        % },
+        % for~following~siblings={%
+        %   edge~path'={%
+        %     (!u.parent~anchor |- !p.child~anchor) 
+        %     ++(\foresteregister{folder~indent},0pt) |-
+        %     (.child~anchor)
+        %   },
+        % },
       }{%
         prepend={[\strut,
             delay={%
@@ -229,8 +246,11 @@
                 temptoksa/.option=name,
                 delay={
                   do~dynamics,
-                  s~sep = \g__dirtree_old_s_sep_tl,
-                  l~sep = \g__dirtree_old_l_sep_tl,
+                  % Old way to ensure s sep and l sep are correct when 'continue' is used
+                    % s~sep = \g__dirtree_old_s_sep_tl,
+                    % l~sep = \g__dirtree_old_l_sep_tl,
+                  s~sep/.option=!1.s~sep,
+                  l~sep/.option=!1.l~sep,
                   for~children={
                     if~n=1{
                       edge~path'={%
@@ -240,21 +260,7 @@
                         %
                         ($($(a)!1/2!(.child~anchor -| a)$)-0.5*(0,\g_dirtree_dots_length_dim)$) coordinate (B\foresteoption{id}) |-  (.child~anchor)%
                       },
-                      tikz+={
-                        \coordinate (A') at ($(A\foresteoption{id})+(0,\g_dirtree_dots_radius_dim)$);
-                        \coordinate (B') at ($(B\foresteoption{id})-(0,\g_dirtree_dots_radius_dim)$);
-                        \coordinate (C) at ($0.25*($(B')-(A')$)$);
-                        \fill ($(A')+(C)$) circle (\g_dirtree_dots_radius_dim);
-                        \fill ($(A')+2*(C)$) circle (\g_dirtree_dots_radius_dim);
-                        \fill ($(A')+3*(C)$) circle (\g_dirtree_dots_radius_dim);
-                        % Debugging
-                          % \draw[blue] ($(A')-(5pt,0)$) -- ($(A')+(5pt,0)$);
-                          % \draw[red] ($(A')+(C)-(5pt,0)$) -- ($(A')+(C)+(5pt,0)$);
-                          % \draw[red] ($(A')+2*(C)-(5pt,0)$) -- ($(A')+2*(C)+(5pt,0)$);
-                          % \draw[red] ($(A')+3*(C)-(5pt,0)$) -- ($(A')+3*(C)+(5pt,0)$);
-                          % \draw[red] ($(A')+4*(C)-(5pt,0)$) -- ($(A')+4*(C)+(5pt,0)$);
-                          % \draw[blue] ($(B')-(5pt,0)$) -- ($(B')+(5pt,0)$);                        
-                      },
+                      continue_tikz_vdots
                     }{
                       edge~path'={%
                         (!uu.parent~anchor) ++(\foresteregister{folder~indent},0pt)
@@ -291,19 +297,12 @@
           (!uu.parent~anchor |- !u.child~anchor) 
           ++(\foresteregister{folder~indent},0pt)
           coordinate (a) --
-          (.parent~anchor -| a) coordinate (A\foresteoption{id})
-          %
+          ($(!uu.parent~anchor |- !u.parent~anchor)+(\foresteregister{folder~indent},-\forestoption{s~sep})$)
+          coordinate (A\foresteoption{id})
           ([yshift=-\g_dirtree_dots_length_dim]% length of vdots
-          A\foresteoption{id}) coordinate (B\foresteoption{id})     
+          A\foresteoption{id}) coordinate (B\foresteoption{id})
         },
-        tikz+={
-          \coordinate (A') at ($(A\foresteoption{id})+(0,\g_dirtree_dots_radius_dim)$);
-          \coordinate (B') at ($(B\foresteoption{id})-(0,\g_dirtree_dots_radius_dim)$);
-          \coordinate (C) at ($0.25*($(B')-(A')$)$);
-          \fill ($(A')+(C)$) circle (\g_dirtree_dots_radius_dim);
-          \fill ($(A')+2*(C)$) circle (\g_dirtree_dots_radius_dim);
-          \fill ($(A')+3*(C)$) circle (\g_dirtree_dots_radius_dim);
-        },
+        continue_tikz_vdots
       ]},
     },
   },

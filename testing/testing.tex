@@ -32,7 +32,9 @@
  ,tikz+={
   % The bounding box of the forest environment
     \draw[line width=0.07pt] (current bounding box.north west) -- (current bounding box.north east) -- (current bounding box.south east) -- (current bounding box.south west) -- cycle;
-    % \path let \p1=($(current bounding box.north)-(current bounding box.south)$) in (current bounding box.east) node[right] {\y1\SaveHeight{\y1}};
+    \path let \p1=($(current bounding box.north)-(current bounding box.south)$) in (current bounding box.south east) node[below right] {\y1
+    % \SaveHeight{\y1}
+    };
   }
  ,for tree={
     ,tikz+={
@@ -66,7 +68,7 @@
       [{tmp.tex}, file, to be continued]
     ]
   ]
-  \xdef\ssep{\meaning\forestoption{s sep}}
+  \xdef\ssep{\forestoption{s sep}}
 \end{forest}\par
 \meaning\foo\par
 \fbox{\texttt{s sep}: \ssep}\par
@@ -77,7 +79,7 @@
 \fbox{s sep: \UseName{fRsT\forest@cn/s sep} and \forestoption{s sep}}\par
 \makeatother
 \ExplSyntaxOn
-\fbox{\tl_use:N \g__dirtree_old_s_sep_tl }\par
+% \fbox{\tl_use:N \g__dirtree_old_s_sep_tl }\par
 \fbox{ \seq_use:Nn \l__filetree_heights_seq {,} }\par
 
 \str_new:N \l__filetree_total_heights_perl_array_str

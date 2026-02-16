@@ -1,3 +1,7 @@
+% Source - https://tex.stackexchange.com/a/759731
+% Posted by cfr, modified by community. See post 'Timeline' for change history
+% Retrieved 2026-02-16, License - CC BY-SA 4.0
+
 % Source - https://tex.stackexchange.com/q/759723
 % Posted by Grass, modified by community. See post 'Timeline' for change history
 % Retrieved 2026-02-15, License - CC BY-SA 4.0
@@ -70,40 +74,40 @@
   continue/.style={%
     delay={%
       if n children=0{%
-        before computing xy={%
-          for current and following siblings={%
-            s'+=-10pt,
-          },
-        },
-        if n=1{%
-          edge path'={%
-            (!u.parent anchor) ++(\foresteregister{folder indent},0pt)
-            coordinate (a) --
-            ($(!u.parent anchor -| a)!1/3!(.child anchor -| a)$)
-            edge [dotted]  
-            ($(!u.parent anchor -| a)!2/3!(.child anchor -| a)$)
-            ($(!u.parent anchor -| a)!2/3!(.child anchor -| a)$)
-            |- (.child anchor)
-          },
-        }{%
-          edge path'={%
-            (!u.parent anchor |- !p.child anchor) 
-            ++(\foresteregister{folder indent},0pt)
-            coordinate (a) --
-            ($(!p.child anchor -| a)!1/3!(.child anchor -| a)$)
-            edge [dotted]  
-            ($(!p.child anchor -| a)!2/3!(.child anchor -| a)$)
-            ($(!p.child anchor -| a)!2/3!(.child anchor -| a)$)
-            |- (.child anchor)
-          },
-        },
-        for following siblings={%
-          edge path'={%
-            (!u.parent anchor |- !p.child anchor) 
-            ++(\foresteregister{folder indent},0pt) |-
-            (.child anchor)
-          },
-        },
+        % before computing xy={%
+        %   for current and following siblings={%
+        %     s'+=-10pt,
+        %   },
+        % },
+      %   if n=1{%
+      %     edge path'={%
+      %       (!u.parent anchor) ++(\foresteregister{folder indent},0pt)
+      %       coordinate (a) --
+      %       ($(!u.parent anchor -| a)!1/3!(.child anchor -| a)$)
+      %       edge [dotted]  
+      %       ($(!u.parent anchor -| a)!2/3!(.child anchor -| a)$)
+      %       ($(!u.parent anchor -| a)!2/3!(.child anchor -| a)$)
+      %       |- (.child anchor)
+      %     },
+      %   }{%
+      %     edge path'={%
+      %       (!u.parent anchor |- !p.child anchor) 
+      %       ++(\foresteregister{folder indent},0pt)
+      %       coordinate (a) --
+      %       ($(!p.child anchor -| a)!1/3!(.child anchor -| a)$)
+      %       edge [dotted]  
+      %       ($(!p.child anchor -| a)!2/3!(.child anchor -| a)$)
+      %       ($(!p.child anchor -| a)!2/3!(.child anchor -| a)$)
+      %       |- (.child anchor)
+      %     },
+      %   },
+      %   for following siblings={%
+      %     edge path'={%
+      %       (!u.parent anchor |- !p.child anchor) 
+      %       ++(\foresteregister{folder indent},0pt) |-
+      %       (.child anchor)
+      %     },
+      %   },
       }{%
         prepend={[\strut,
             delay={%
@@ -129,8 +133,8 @@
                 temptoksa/.option=name,
                 delay={
                   do dynamics,
-                  s sep=1cm,
-                  l sep=1cm,
+                  s sep/.option=!1.s sep,
+                  l sep/.option=!1.l sep,
                   for children={
                     if n=1{
                       edge path'={%
@@ -171,7 +175,7 @@
         grow'=0,
         before computing xy={%
           l'=0pt,
-          s'=-\dirtree@vdots@length,
+          s=-\dirtree@vdots@length,
         },
         if n children=0{%
           before drawing tree={%
@@ -211,7 +215,7 @@
   for tree={% folder icons by default; override using file for file icons
     directory,
     s sep=1cm,
-    l sep=1cm
+    l sep=1cm,
   },
   [system
     [config
@@ -227,16 +231,47 @@
   pic root,
   for tree={% folder icons by default; override using file for file icons
     directory,
-    s sep=1cm,
-    l sep=1cm
+    s sep'=1cm,
+    l sep'=1cm
   },
   [system, continue
     [config
     ]
-    [lib, to be continued
+    [lib
+      [liba
+        [
+          script
+        ]
+      ]
       [file.txt, file, to be continued
       ]
     ]
   ]
 \end{forest}
+% \begin{forest}
+%   pic dir tree,
+%   pic root,
+%   for tree={% folder icons by default; override using file for file icons
+%     directory,
+%   },
+%   [system, continue
+%     [config, 
+%     ]
+%     [sys32, continue
+%         [config.bat, file]
+%         [dir1, continue
+%             [user\_profile, file]
+%         ]
+%     ]
+%     [lib, to be continued
+%       [Access, continue
+%         [security.config, file]
+%       ]
+%       [Plugin
+%       ]
+%       [file.txt, file,to be continued
+%       ]
+%     ]
+%   ]
+% \end{forest}
 \end{document}
