@@ -70,14 +70,14 @@
 \end{forest}\par
 \meaning\foo\par
 \fbox{\texttt{s sep}: \ssep}\par
-\ExplSyntaxOn
+\makeatletter
 \forestset{
-  s sep=\forestoption{id}*1cm,
+  s sep=10pt
 }
-\tl_set:No \l_tmpa_tl {\forestoption{s sep}}
-\fbox{s~sep: \meaning\l_tmpa_tl}\par
-\ExplSyntaxOff
+\fbox{s sep: \UseName{fRsT\forest@cn/s sep} and \forestoption{s sep}}\par
+\makeatother
 \ExplSyntaxOn
+\fbox{\tl_use:N \g__dirtree_old_s_sep_tl }\par
 \fbox{ \seq_use:Nn \l__filetree_heights_seq {,} }\par
 
 \str_new:N \l__filetree_total_heights_perl_array_str

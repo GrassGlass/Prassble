@@ -157,13 +157,15 @@
 \makeatletter
 \dim_new:N \g_dirtree_dots_radius_dim
 \dim_new:N \g_dirtree_dots_length_dim
-\cs_new:Npn \__dirtree_old_s_sep_dim: {}
-\cs_new:Npn \__dirtree_old_l_sep_dim: {}
+\tl_new:N \g__dirtree_old_s_sep_tl
+\tl_new:N \g__dirtree_old_l_sep_tl
 \dim_set:Nn \g_dirtree_dots_radius_dim {0.5pt}
 \dim_set:Nn \g_dirtree_dots_length_dim {5pt}
 \forestset{%
   declare~toks={real~siblings}{},
-  continute/.code = {
+  continue/.code = {
+    \tl_gset_eq:Nc \g__dirtree_old_s_sep_tl {fRsT\forest@cn/s~sep}
+    \tl_gset_eq:Nc \g__dirtree_old_l_sep_tl {fRsT\forest@cn/l~sep}
   },
   continue/.append~style={%
     delay={%
@@ -227,8 +229,8 @@
                 temptoksa/.option=name,
                 delay={
                   do~dynamics,
-                  % s~sep = \__dirtree_old_s_sep_dim:,
-                  % l~sep = \__dirtree_old_l_sep_dim:,
+                  s~sep = \g__dirtree_old_s_sep_tl,
+                  l~sep = \g__dirtree_old_l_sep_tl,
                   for~children={
                     if~n=1{
                       edge~path'={%
