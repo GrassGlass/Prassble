@@ -284,7 +284,7 @@
         grow'=0,
         before~computing~xy={%
           l'=0pt,
-          s'=-\g_dirtree_dots_length_dim,
+          s'=-0pt,
         },
         if~n~children=0{%
           before~drawing~tree={%
@@ -297,8 +297,8 @@
           (!uu.parent~anchor |- !u.child~anchor) 
           ++(\foresteregister{folder~indent},0pt)
           coordinate (a) --
-          ($(!uu.parent~anchor |- !u.parent~anchor)+(\foresteregister{folder~indent},-\forestoption{s~sep})$)
-          coordinate (A\foresteoption{id})
+          ($(!uu.parent~anchor |- !u.parent~anchor)+(\foresteregister{folder~indent},0pt)$) coordinate (A\foresteoption{id})
+          
           ([yshift=-\g_dirtree_dots_length_dim]% length of vdots
           A\foresteoption{id}) coordinate (B\foresteoption{id})
         },
