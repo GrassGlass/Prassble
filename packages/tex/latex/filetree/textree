@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Getopt::Long;
+use File::Basename;
 
 # Option processing
     my $data   = "file.dat";
@@ -13,10 +14,14 @@ use Getopt::Long;
     or die("Error in command line arguments\n");
 
 # Argument processing
+    my $textree_argument_count = scalar(@ARGV);
     my $textree_target;
-    if (@ARGV == 0)
+    if ($textree_argument_count == 0)
     {
         $textree_target = "\".\"";
+    }elsif ($textree_argument_count != 1)
+    {
+        die("textree: more than one argument has been given to me; there should be at most one.")
     }
     foreach my $arg (@ARGV) {
         if ($arg eq "")
@@ -48,7 +53,7 @@ use Getopt::Long;
             1; 
     } } );
 
-`tree -f -X "$textree_target" | install -D /dev/stdin "./textrees/textree_1"`;
+`tree -f -X -p -h -u -g -D -o "./textrees/textree_1" "$textree_target"`;
 
 # Source: https://stackoverflow.com/a/33245306/31298396
 sub rewrite_file {
@@ -67,12 +72,63 @@ sub rewrite_file {
     return($in, $out);
 }
 
+# Regex replace the characters of "$TeXname" to their LaTeX counterparts.
+sub TeX_escape {
+    my $args = scalar(@_);
+    if ($args == 1)
+    {
+        my ($string) = @_;
+        # To replace all backslashes '\' with '{\\textbackslash}' without conflicting with the replacement of curly braces:
+            # 1. First replace '\' with '/\textbackslash/'. 
+            # 2. Then replace '/\textbackslash/' with '{\textbackslash}', after the replacement of curly braces.  
+            # Note: Since forward slashes '/' are guaranteed to not be in basename($path), we can be sure that '/\textbackslash/' is not a substring of basename($path). So, no substring of basename($path) should be erroneously replaced. 
+        $string =~ s/\\/\/\\textbackslash\//g;
+        $string =~ s/\{/\\{/g;
+        $string =~ s/\}/\\}/g;
+        $string =~ s/\/\\textbackslash\//{\\textbackslash}/g;
+        $string =~ s/\$/\\\$/g;
+        $string =~ s/&/\\&/g;
+        $string =~ s/\#/\\#/g;
+        $string =~ s/_/\\_/g;
+        $string =~ s/%/\\%/g;
+        $string =~ s/\+/\\(+\\)/g;
+        $string =~ s/=/\\(=\\)/g;
+        $string =~ s/\|/{\\textbar}/g;
+        $string =~ s/</{\\textlangle}/g;
+        $string =~ s/>/{\\textrangle}/g;
+        $string =~ s/\^/{\\textasciicircum}/g;
+        $string =~ s/~/\\textasciitilde/g;
+        return($string);
+    }else
+    {
+        die("TeX_escape: there are $args != 1 arguments passed to me.")
+    }
+}
+
+sub path_to_TeXname {
+    my $args = scalar(@_);
+    if ($args == 1)
+    {
+        my ($path) = @_;
+        my $TeXname = TeX_escape(basename($path));
+        
+        return($TeXname);
+    }else
+    {
+        die("path_to_TeXname: there are $args != 1 arguments passed to me.")
+    }
+}
+
 my($in, $out) = rewrite_file("./textrees/textree_1");
 
+my $TeXname;
+my $TeXname_target;
 my $link_target_type;
 my $file_type;
 my $dir_count = 0;
 my $file_count = 0;
+my %properties;
+my $properties_string = "";
 my %symlink_target_count_by_types = ( 
     'total'                   => 0,
     'nonexistent'             => 0,
@@ -103,9 +159,17 @@ while(my $line = <$in>) {
     $line =~ s/&amp;/&/g;
     $line =~ s/&lt;/</g;
     $line =~ s/&gt;/>/g;
-    if ($line =~ m/( *)<directory name="(.*)">/)
+    if ($line =~ m/( *)<directory name="(.*)"(.*)>/)
     {
-        $line = "${1}[{\\dirfmt{${2}}}, dir\n";
+        $TeXname = path_to_TeXname(${2});
+        my %properties = ();
+        while ($3 =~ /(\w+)="([^"]*)"/g) {
+            $properties{$1} = $2;
+        }
+        for (keys %properties){
+            $properties_string .= ", $_ = $properties{$_}";
+        }
+        $line = "${1}[{\\dirfmt[$properties_string]{${TeXname}}}, dir\n";
     }
     elsif ($line =~ m/( *)<\/directory>/)
     {
@@ -157,7 +221,8 @@ while(my $line = <$in>) {
         }
         $file_target_count_by_types{$file_type} = $file_target_count_by_types{$file_type} + 1;
         
-        $line = "${1}[{\\filefmt{${file_type}}{${2}}}, file]\n";
+        $TeXname = path_to_TeXname(${2});
+        $line = "${1}[{\\filefmt{${file_type}}{${TeXname}}}, file]\n";
     }
     elsif ($line =~ m/( *)<link name="(.*)" target="(.*)"><\/link>/)
     {
@@ -205,7 +270,9 @@ while(my $line = <$in>) {
         }
         $symlink_target_count_by_types{$link_target_type} = $symlink_target_count_by_types{$link_target_type} + 1;
 
-        $line = "${1}[{\\symlinkfmt{${link_target_type}}{${2}}{${3}}}, symlink]\n";
+        $TeXname = path_to_TeXname(${2});
+        $TeXname_target = path_to_TeXname(${3});
+        $line = "${1}[{\\symlinkfmt{${link_target_type}}{${TeXname}}{${TeXname_target}}}, symlink]\n";
     }
     elsif ($line =~ m/<\?xml version=".*" encoding=".*"\?>|<report>|<\/report>/)
     {

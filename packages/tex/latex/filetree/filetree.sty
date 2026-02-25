@@ -143,12 +143,11 @@
     }
   }
   ,file~tree/.style = {
-    ,filetree_pic_me_set     = {directory}{folder}
+    ,filetree_pic_me_set     = {dir}{folder}
     ,filetree_pic_me_set     = {file}{file}
     ,filetree_pic_dir_tree
     ,filetree_pic_root_bool
-    ,for~tree={% folder icons by default; override using file for file icons
-      ,directory
+    ,for~tree={
       ,fit = band
       ,l~sep = 2\g__filetree_pic_size_dim+4mm
     }

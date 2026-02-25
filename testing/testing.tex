@@ -43,11 +43,11 @@
       \path let \p1=($(current bounding box.north)-(\forestoption{name}.south)$) in (\forestoption{name}.east) node[below right] {\y1\SaveHeight{\y1}};
     }
   }
-  [{tree}, continue
+  [{tree}, continue, dir
     [{\$\&\#{\textbackslash} {\textbar}\_*{\textasciicircum}\@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}, file]
-    [{FileTrees\_IncludeThis}]
-    [{a\_file\_with\_[}, file, tikz+={\gdef\foo{Nope}}]
-    [{a\_file\_with\_]}, file, tikz+={\gdef\foo{Code is executed in sequential order of nodes.}}]
+    [{FileTrees\_IncludeThis}, dir]
+    [{a\_file\_with\_[}, file, tikz+={\gdef\foo{Nope}}, dir]
+    [{a\_file\_with\_]}, file, tikz+={\gdef\foo{Code is executed in sequential order of nodes.}}, dir]
     [{a\_file\_with\_][\_[\_]\_[[[}, file]
     [{a\_file\_with\_\{}, file]
     [{a\_file\_with\_\}}, file]
@@ -58,13 +58,13 @@
     [{bash.pdf}, file]
     [{bash.tex}, file]
     [{bash\_test.tex}, file]
-    [{folder}]
+    [{folder}, dir]
     [{hello.sh}, file]
     [{include\_this}
-      [{folder1}]
+      [{folder1}, dir]
       [{include\_this.tex}, file]
     ]
-    [{some\_folder}, to be continued
+    [{some\_folder}, dir, to be continued
       [{tmp.tex}, file, to be continued]
     ]
   ]
@@ -72,6 +72,7 @@
 \end{forest}\par
 \meaning\foo\par
 \fbox{\texttt{s sep}: \ssep}\par
+\fbox{At symbol: @}\par
 \makeatletter
 \forestset{
   s sep=10pt
