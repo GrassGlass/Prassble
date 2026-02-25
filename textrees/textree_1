@@ -1,285 +1,286 @@
 \begin{forest}
-    [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 15:38}]{.}}, dir
-        [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{Documentation}}, dir
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1069}, time={Feb  7 00:28}]{Doc\_Titlepage.tex}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={262016}, time={Feb  7 00:28}]{Prassble\_Documentation.pdf}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={3548}, time={Feb  7 00:28}]{Prassble\_Documentation.tex}}, file]
+    [{\dirfmt[]{.}}, dir
+        [{\dirfmt[]{Documentation}}, dir
+            [{\filefmt[file-type={plain-file}]{Doc\_Titlepage.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{Prassble\_Documentation.pdf}}, file]
+            [{\filefmt[file-type={plain-file}]{Prassble\_Documentation.tex}}, file]
         ]
-        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={19100}, time={Feb  7 00:28}]{LICENSE.txt}}, file]
-        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={120}, time={Feb  7 00:28}]{Prassble\_is\_here.txt}}, file]
-        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={2758}, time={Feb  7 00:28}]{README.md}}, file]
-        [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{figures}}, dir
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={45755}, time={Feb  7 00:28}]{Three\_Planes\_Orthogonal\_Complements\_licensed\_under\_CC\_BY-SA\_4.0.pdf}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={5435}, time={Feb  7 00:28}]{iibui.pdf}}, file]
+        [{\filefmt[file-type={plain-file}]{LICENSE.txt}}, file]
+        [{\filefmt[file-type={plain-file}]{Prassble\_is\_here.txt}}, file]
+        [{\filefmt[file-type={plain-file}]{README.md}}, file]
+        [{\dirfmt[]{figures}}, dir
+            [{\filefmt[file-type={plain-file}]{Three\_Planes\_Orthogonal\_Complements\_licensed\_under\_CC\_BY-SA\_4.0.pdf}}, file]
+            [{\filefmt[file-type={plain-file}]{iibui.pdf}}, file]
         ]
-        [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{files}}, dir
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{chapters}}, dir
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{ch1}}, dir
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={431}, time={Feb  7 00:28}]{sec1.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1393}, time={Feb  7 00:28}]{sec2.tex}}, file]
+        [{\dirfmt[]{files}}, dir
+            [{\dirfmt[]{chapters}}, dir
+                [{\dirfmt[]{ch1}}, dir
+                    [{\filefmt[file-type={plain-file}]{sec1.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{sec2.tex}}, file]
                 ]
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{ch2}}, dir
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={130}, time={Feb  7 00:28}]{sec1.tex}}, file]
+                [{\dirfmt[]{ch2}}, dir
+                    [{\filefmt[file-type={plain-file}]{sec1.tex}}, file]
                 ]
             ]
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{homework}}, dir
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1237}, time={Feb  7 00:28}]{1.tex}}, file]
+            [{\dirfmt[]{homework}}, dir
+                [{\filefmt[file-type={plain-file}]{1.tex}}, file]
             ]
         ]
-        [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{homework}}, dir
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{hw1}}, dir
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={164056}, time={Feb  7 00:28}]{hw1.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={284}, time={Feb  7 00:28}]{hw1.tex}}, file]
+        [{\dirfmt[]{homework}}, dir
+            [{\dirfmt[]{hw1}}, dir
+                [{\filefmt[file-type={plain-file}]{hw1.pdf}}, file]
+                [{\filefmt[file-type={plain-file}]{hw1.tex}}, file]
             ]
         ]
-        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={306571}, time={Feb  7 00:28}]{main.pdf}}, file]
-        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1598}, time={Feb  7 00:28}]{main.tex}}, file]
-        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={772}, time={Feb  7 00:28}]{maintitlepage.tex}}, file]
-        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={283}, time={Feb  7 00:28}]{mkPrassble.pl}}, file]
-        [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb 14 08:15}]{packages}}, dir
-            [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={2267}, time={Feb 14 08:14}]{development}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={259}, time={Feb 14 08:15}]{ls-R}}, file]
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{tex}}, dir
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{latex}}, dir
-                    [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb 24 02:58}]{filetree}}, dir
-                        [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={6497}, time={Feb  7 00:28}]{file\_tree}}, file]
-                        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={13598}, time={Feb 24 02:31}]{filetree.sty}}, file]
-                        [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={10777}, time={Feb 25 11:07}]{textree}}, file]
-                        [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={11614}, time={Feb  7 00:28}]{textree\_sed}}, file]
+        [{\filefmt[file-type={plain-file}]{main.pdf}}, file]
+        [{\filefmt[file-type={plain-file}]{main.tex}}, file]
+        [{\filefmt[file-type={plain-file}]{maintitlepage.tex}}, file]
+        [{\filefmt[file-type={plain-file}]{mkPrassble.pl}}, file]
+        [{\dirfmt[]{packages}}, dir
+            [{\filefmt[file-type={plain-file}]{development}}, file]
+            [{\filefmt[file-type={plain-file}]{ls-R}}, file]
+            [{\dirfmt[]{tex}}, dir
+                [{\dirfmt[]{latex}}, dir
+                    [{\dirfmt[]{filetree}}, dir
+                        [{\filefmt[file-type={plain-file}]{file\_tree}}, file]
+                        [{\filefmt[file-type={plain-file}]{filetree.sty}}, file]
+                        [{\filefmt[file-type={plain-file}]{test}}, file]
+                        [{\filefmt[file-type={plain-file}]{textree}}, file]
+                        [{\filefmt[file-type={plain-file}]{textree\_sed}}, file]
                     ]
-                    [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{prassble-math}}, dir
-                        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={13733}, time={Feb  7 00:28}]{prassble-math.sty}}, file]
+                    [{\dirfmt[]{prassble-math}}, dir
+                        [{\filefmt[file-type={plain-file}]{prassble-math.sty}}, file]
                     ]
                 ]
             ]
         ]
-        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={207991}, time={Feb  7 00:28}]{pmath-test.pdf}}, file]
-        [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{preamble}}, dir
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{commands}}, dir
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{modified\_commands}}, dir
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1837}, time={Feb  7 00:28}]{Chapter\_and\_Section.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{FileTree.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={6729}, time={Feb  7 00:28}]{Input\_macro.tex}}, file]
+        [{\filefmt[file-type={plain-file}]{pmath-test.pdf}}, file]
+        [{\dirfmt[]{preamble}}, dir
+            [{\dirfmt[]{commands}}, dir
+                [{\dirfmt[]{modified\_commands}}, dir
+                    [{\filefmt[file-type={plain-file}]{Chapter\_and\_Section.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{FileTree.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{Input\_macro.tex}}, file]
                 ]
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{newcommands}}, dir
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1170}, time={Feb  7 00:28}]{KeywordForInput.tex}}, file]
+                [{\dirfmt[]{newcommands}}, dir
+                    [{\filefmt[file-type={plain-file}]{KeywordForInput.tex}}, file]
                 ]
             ]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1337}, time={Feb  7 00:28}]{custom-symbols.tex}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={2328}, time={Feb  7 00:28}]{enumeration.tex}}, file]
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{environments}}, dir
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{box\_styles}}, dir
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1228}, time={Feb  7 00:28}]{lengths\_and\_counters.tex}}, file]
-                    [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{listings}}, dir
-                        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={22036}, time={Feb  7 00:28}]{codestyles.tex}}, file]
-                        [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{commands}}, dir
-                            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{modified\_commands}}, dir
-                                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={2157}, time={Feb  7 00:28}]{NewInputListing.tex}}, file]
-                                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={2040}, time={Feb  7 00:28}]{NewListing.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{custom-symbols.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{enumeration.tex}}, file]
+            [{\dirfmt[]{environments}}, dir
+                [{\dirfmt[]{box\_styles}}, dir
+                    [{\filefmt[file-type={plain-file}]{lengths\_and\_counters.tex}}, file]
+                    [{\dirfmt[]{listings}}, dir
+                        [{\filefmt[file-type={plain-file}]{codestyles.tex}}, file]
+                        [{\dirfmt[]{commands}}, dir
+                            [{\dirfmt[]{modified\_commands}}, dir
+                                [{\filefmt[file-type={plain-file}]{NewInputListing.tex}}, file]
+                                [{\filefmt[file-type={plain-file}]{NewListing.tex}}, file]
                             ]
-                            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{newcommands}}, dir
-                                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={7815}, time={Feb  7 00:28}]{all\_short\_names.tex}}, file]
-                                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={11899}, time={Feb  7 00:28}]{name\_converters.tex}}, file]
-                                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={4133}, time={Feb  7 00:28}]{new\_variables.tex}}, file]
-                            ]
-                        ]
-                    ]
-                    [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{nonlistings}}, dir
-                        [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{commands}}, dir
-                            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{modified\_commands}}, dir
-                                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={6437}, time={Feb  7 00:28}]{newkeytheorem.tex}}, file]
-                            ]
-                            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{newcommands}}, dir
-                                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={2378}, time={Feb  7 00:28}]{InputKeyword\_HW-in-Main.tex}}, file]
+                            [{\dirfmt[]{newcommands}}, dir
+                                [{\filefmt[file-type={plain-file}]{all\_short\_names.tex}}, file]
+                                [{\filefmt[file-type={plain-file}]{name\_converters.tex}}, file]
+                                [{\filefmt[file-type={plain-file}]{new\_variables.tex}}, file]
                             ]
                         ]
-                        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={4127}, time={Feb  7 00:28}]{theoremstyles.tex}}, file]
+                    ]
+                    [{\dirfmt[]{nonlistings}}, dir
+                        [{\dirfmt[]{commands}}, dir
+                            [{\dirfmt[]{modified\_commands}}, dir
+                                [{\filefmt[file-type={plain-file}]{newkeytheorem.tex}}, file]
+                            ]
+                            [{\dirfmt[]{newcommands}}, dir
+                                [{\filefmt[file-type={plain-file}]{InputKeyword\_HW-in-Main.tex}}, file]
+                            ]
+                        ]
+                        [{\filefmt[file-type={plain-file}]{theoremstyles.tex}}, file]
                     ]
                 ]
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{derived\_environments}}, dir
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{colours.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1784}, time={Feb  7 00:28}]{lengths.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={4158}, time={Feb  7 00:28}]{listings.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={9971}, time={Feb  7 00:28}]{nonlistings.tex}}, file]
+                [{\dirfmt[]{derived\_environments}}, dir
+                    [{\filefmt[file-type={plain-file}]{colours.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{lengths.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{listings.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{nonlistings.tex}}, file]
                 ]
             ]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={2283}, time={Feb  7 00:28}]{external\_hyperlink\_format.tex}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={2089}, time={Feb  7 00:28}]{hw\_zexternaldocument\_main.tex}}, file]
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{math}}, dir
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={3056}, time={Feb  7 00:28}]{general\_math.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1502}, time={Feb  7 00:28}]{specific\_math.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{external\_hyperlink\_format.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{hw\_zexternaldocument\_main.tex}}, file]
+            [{\dirfmt[]{math}}, dir
+                [{\filefmt[file-type={plain-file}]{general\_math.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{specific\_math.tex}}, file]
             ]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={2360}, time={Feb  7 00:28}]{other.tex}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={3702}, time={Feb  7 00:28}]{page-formatting.tex}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={6323}, time={Feb  7 00:28}]{preamble.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{other.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{page-formatting.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{preamble.tex}}, file]
         ]
-        [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{test}}, dir
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{listings}}, dir
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={32}, time={Feb  7 00:28}]{inner\_lorem\_ipsum.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={5}, time={Feb  7 00:28}]{sample\_code.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={20}, time={Feb  7 00:28}]{test.jl}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={319773}, time={Feb  7 00:28}]{test.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={4608}, time={Feb  7 00:28}]{test.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={37}, time={Feb  7 00:28}]{test1.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={37}, time={Feb  7 00:28}]{test10.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={145}, time={Feb  7 00:28}]{test11.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={53}, time={Feb  7 00:28}]{test12.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={53}, time={Feb  7 00:28}]{test13.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={63}, time={Feb  7 00:28}]{test14.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={63}, time={Feb  7 00:28}]{test15.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={37}, time={Feb  7 00:28}]{test16.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={37}, time={Feb  7 00:28}]{test17.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={53}, time={Feb  7 00:28}]{test18.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={52}, time={Feb  7 00:28}]{test19.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={37}, time={Feb  7 00:28}]{test2.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={41}, time={Feb  7 00:28}]{test20.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={133}, time={Feb  7 00:28}]{test21.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={45}, time={Feb  7 00:28}]{test22.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={55}, time={Feb  7 00:28}]{test23.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={53}, time={Feb  7 00:28}]{test24.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={52}, time={Feb  7 00:28}]{test25.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={41}, time={Feb  7 00:28}]{test26.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={29}, time={Feb  7 00:28}]{test27.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={27}, time={Feb  7 00:28}]{test28.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={65}, time={Feb  7 00:28}]{test29.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={133}, time={Feb  7 00:28}]{test3.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={64}, time={Feb  7 00:28}]{test30.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={121}, time={Feb  7 00:28}]{test31.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={72}, time={Feb  7 00:28}]{test32.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={82}, time={Feb  7 00:28}]{test33.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={10}, time={Feb  7 00:28}]{test34.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={10}, time={Feb  7 00:28}]{test35.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={87}, time={Feb  7 00:28}]{test36.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={87}, time={Feb  7 00:28}]{test37.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={45}, time={Feb  7 00:28}]{test4.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={55}, time={Feb  7 00:28}]{test5.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={53}, time={Feb  7 00:28}]{test6.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={52}, time={Feb  7 00:28}]{test7.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={41}, time={Feb  7 00:28}]{test8.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={37}, time={Feb  7 00:28}]{test9.txt}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={14333}, time={Feb  7 00:28}]{test\_NewPCBListing.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1487}, time={Feb  7 00:28}]{test\_decorations.tex}}, file]
+        [{\dirfmt[]{test}}, dir
+            [{\dirfmt[]{listings}}, dir
+                [{\filefmt[file-type={plain-file}]{inner\_lorem\_ipsum.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{sample\_code.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{test.jl}}, file]
+                [{\filefmt[file-type={plain-file}]{test.pdf}}, file]
+                [{\filefmt[file-type={plain-file}]{test.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{test1.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test10.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test11.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test12.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test13.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test14.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test15.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test16.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test17.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test18.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test19.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test2.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test20.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test21.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test22.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test23.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test24.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test25.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test26.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test27.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test28.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test29.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test3.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test30.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test31.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test32.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test33.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test34.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test35.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test36.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test37.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test4.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test5.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test6.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test7.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test8.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test9.txt}}, file]
+                [{\filefmt[file-type={plain-file}]{test\_NewPCBListing.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{test\_decorations.tex}}, file]
             ]
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{prassble-math}}, dir
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={212074}, time={Feb  7 00:28}]{pmath-test.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={15754}, time={Feb  7 00:28}]{pmath-test.tex}}, file]
+            [{\dirfmt[]{prassble-math}}, dir
+                [{\filefmt[file-type={plain-file}]{pmath-test.pdf}}, file]
+                [{\filefmt[file-type={plain-file}]{pmath-test.tex}}, file]
             ]
         ]
-        [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb 24 05:24}]{testing}}, dir
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={312}, time={Feb 24 05:24}]{height.pl}}, file]
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{tcolorbox}}, dir
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={5}, time={Feb  7 00:28}]{sample\_code.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={11517}, time={Feb  7 00:28}]{test\_too.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{test\_too.tex}}, file]
+        [{\dirfmt[]{testing}}, dir
+            [{\filefmt[file-type={plain-file}]{height.pl}}, file]
+            [{\dirfmt[]{tcolorbox}}, dir
+                [{\filefmt[file-type={plain-file}]{sample\_code.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{test\_too.pdf}}, file]
+                [{\filefmt[file-type={plain-file}]{test\_too.tex}}, file]
             ]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={32}, time={Feb 16 06:11}]{test.1.75.aux}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={23264}, time={Feb 16 06:11}]{test.1.75.log}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={17262}, time={Feb 16 06:11}]{test.1.75.pdf}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={3346}, time={Feb 16 06:11}]{test.1.75.synctex.gz}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={5910}, time={Feb 16 06:11}]{test.1.75.tex}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={32}, time={Feb  7 00:28}]{test.pl}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={468}, time={Feb  7 00:28}]{testing}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={32}, time={Feb 24 05:24}]{testing.aux}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={23366}, time={Feb 24 05:24}]{testing.log}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={69843}, time={Feb 24 05:24}]{testing.pdf}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={7672}, time={Feb 24 05:24}]{testing.synctex.gz}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={3895}, time={Feb 24 05:24}]{testing.tex}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={32}, time={Feb 16 04:53}]{testing1.5.aux}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={23562}, time={Feb 16 04:53}]{testing1.5.log}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={15777}, time={Feb 16 04:53}]{testing1.5.pdf}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={2678}, time={Feb 16 04:53}]{testing1.5.synctex.gz}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={1390}, time={Feb 15 07:30}]{testing1.5.tex}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={32}, time={Feb 16 07:32}]{testing2.aux}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={23332}, time={Feb 16 07:32}]{testing2.log}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={16654}, time={Feb 16 07:32}]{testing2.pdf}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={3114}, time={Feb 16 07:32}]{testing2.synctex.gz}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={8504}, time={Feb 16 07:32}]{testing2.tex}}, file]
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb 24 05:54}]{tree}}, dir
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{\$\&\#{\textbackslash} {\textbar}\_*{\textasciicircum}@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}}, file]
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{FileTrees}}, dir
-                    [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={776}, time={Feb  7 00:28}]{OutputGoesHere.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={84}, time={Feb  7 00:28}]{tree\_1.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={761}, time={Feb  7 00:28}]{tree\_3.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={776}, time={Feb  7 00:28}]{tree\_4.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={5685}, time={Feb  7 00:28}]{tree\_5.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={868}, time={Feb  7 00:28}]{tree\_6.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={776}, time={Feb  7 00:28}]{tree\_7.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={167}, time={Feb  7 00:28}]{tree\_8.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{test.1.75.aux}}, file]
+            [{\filefmt[file-type={plain-file}]{test.1.75.log}}, file]
+            [{\filefmt[file-type={plain-file}]{test.1.75.pdf}}, file]
+            [{\filefmt[file-type={plain-file}]{test.1.75.synctex.gz}}, file]
+            [{\filefmt[file-type={plain-file}]{test.1.75.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{test.pl}}, file]
+            [{\filefmt[file-type={plain-file}]{testing}}, file]
+            [{\filefmt[file-type={plain-file}]{testing.aux}}, file]
+            [{\filefmt[file-type={plain-file}]{testing.log}}, file]
+            [{\filefmt[file-type={plain-file}]{testing.pdf}}, file]
+            [{\filefmt[file-type={plain-file}]{testing.synctex.gz}}, file]
+            [{\filefmt[file-type={plain-file}]{testing.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{testing1.5.aux}}, file]
+            [{\filefmt[file-type={plain-file}]{testing1.5.log}}, file]
+            [{\filefmt[file-type={plain-file}]{testing1.5.pdf}}, file]
+            [{\filefmt[file-type={plain-file}]{testing1.5.synctex.gz}}, file]
+            [{\filefmt[file-type={plain-file}]{testing1.5.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{testing2.aux}}, file]
+            [{\filefmt[file-type={plain-file}]{testing2.log}}, file]
+            [{\filefmt[file-type={plain-file}]{testing2.pdf}}, file]
+            [{\filefmt[file-type={plain-file}]{testing2.synctex.gz}}, file]
+            [{\filefmt[file-type={plain-file}]{testing2.tex}}, file]
+            [{\dirfmt[]{tree}}, dir
+                [{\filefmt[file-type={plain-file}]{\$\&\#{\textbackslash} {\textbar}\_*{\textasciicircum}@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}}, file]
+                [{\dirfmt[]{FileTrees}}, dir
+                    [{\filefmt[file-type={plain-file}]{OutputGoesHere.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{tree\_1.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{tree\_3.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{tree\_4.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{tree\_5.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{tree\_6.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{tree\_7.tex}}, file]
+                    [{\filefmt[file-type={plain-file}]{tree\_8.tex}}, file]
                 ]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={0}, time={Feb 24 05:36}]{{\textbackslash}textbackslash}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{a\_file\_with\_[}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{a\_file\_with\_]}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{a\_file\_with\_][\_[\_]\_[[[}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{a\_file\_with\_\{}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{a\_file\_with\_\}}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{a\_file\_with\_\}\{\_\{\_\}\_\{\{\{}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={3}, time={Feb  7 00:28}]{a\_folder\_with\_'\_and\_"\_yes}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{basename}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={121844}, time={Feb  7 00:28}]{bash.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1585}, time={Feb  7 00:28}]{bash.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={33}, time={Feb  7 00:28}]{bash\_test.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={121}, time={Feb  7 00:28}]{filetree.tmp}}, file]
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb 14 05:40}]{folder}}, dir
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={0}, time={Feb 14 05:40}]{\&quot;}}, file]
-                    [{\symlinkfmt[link-target-type={plain-file}, mode={0777}, prot={lrwxrwxrwx}, user={texlive}, group={root}, size={42}, time={Feb  7 00:28}]{bash.tex}{bash.tex}}, symlink]
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={33}, time={Feb  7 00:28}]{bash\_test.tex}}, file]
-                    [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{some\_subdirectory}}, dir
-                        [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{file}}, file]
+                [{\filefmt[file-type={plain-file}]{{\textbackslash}textbackslash}}, file]
+                [{\filefmt[file-type={plain-file}]{a\_file\_with\_[}}, file]
+                [{\filefmt[file-type={plain-file}]{a\_file\_with\_]}}, file]
+                [{\filefmt[file-type={plain-file}]{a\_file\_with\_][\_[\_]\_[[[}}, file]
+                [{\filefmt[file-type={plain-file}]{a\_file\_with\_\{}}, file]
+                [{\filefmt[file-type={plain-file}]{a\_file\_with\_\}}}, file]
+                [{\filefmt[file-type={plain-file}]{a\_file\_with\_\}\{\_\{\_\}\_\{\{\{}}, file]
+                [{\filefmt[file-type={plain-file}]{a\_folder\_with\_'\_and\_"\_yes}}, file]
+                [{\filefmt[file-type={plain-file}]{basename}}, file]
+                [{\filefmt[file-type={plain-file}]{bash.pdf}}, file]
+                [{\filefmt[file-type={plain-file}]{bash.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{bash\_test.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{filetree.tmp}}, file]
+                [{\dirfmt[]{folder}}, dir
+                    [{\filefmt[file-type={plain-file}]{\&quot;}}, file]
+                    [{\symlinkfmt[link-target-type={plain-file}]{bash.tex}{bash.tex}}, symlink]
+                    [{\filefmt[file-type={plain-file}]{bash\_test.tex}}, file]
+                    [{\dirfmt[]{some\_subdirectory}}, dir
+                        [{\filefmt[file-type={plain-file}]{file}}, file]
                     ]
-                    [{\symlinkfmt[link-target-type={dir}, mode={0777}, prot={lrwxrwxrwx}, user={texlive}, group={root}, size={46}, time={Feb  7 00:28}]{symlink-test}{include\_this}}, symlink]
-                    [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={167}, time={Feb  7 14:38}]{testing}}, file]
+                    [{\symlinkfmt[link-target-type={dir}]{symlink-test}{include\_this}}, symlink]
+                    [{\filefmt[file-type={plain-file}]{testing}}, file]
                 ]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={21}, time={Feb  7 00:28}]{hello.sh}}, file]
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{include\_this}}, dir
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{include\_this.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{hello.sh}}, file]
+                [{\dirfmt[]{include\_this}}, dir
+                    [{\filefmt[file-type={plain-file}]{include\_this.tex}}, file]
                 ]
-                [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{some\_folder}}, dir
-                    [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{tmp.tex}}, file]
+                [{\dirfmt[]{some\_folder}}, dir
+                    [{\filefmt[file-type={plain-file}]{tmp.tex}}, file]
                 ]
-                [{\filefmt[file-type={plain-file}, mode={0777}, prot={-rwxrwxrwx}, user={texlive}, group={root}, size={14}, time={Feb  7 00:28}]{tst.tmp}}, file]
+                [{\filefmt[file-type={plain-file}]{tst.tmp}}, file]
             ]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={3168}, time={Feb  7 00:28}]{tst.tex}}, file]
-            [{\dirfmt[mode={0777}, prot={drwxrwxrwx}, user={texlive}, group={root}, size={4096}, time={Feb  7 00:28}]{xr}}, dir
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={196}, time={Feb  7 00:28}]{1.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={50704}, time={Feb  7 00:28}]{hw1.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={2315}, time={Feb  7 00:28}]{hw1.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={0}, time={Feb  7 00:28}]{hw1\_ref\_warning\_correction.tmp}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={41585}, time={Feb  7 00:28}]{main.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={561}, time={Feb  7 00:28}]{main.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={13160}, time={Feb  7 00:28}]{regex.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1979}, time={Feb  7 00:28}]{regex.tex}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={27025}, time={Feb  7 00:28}]{seq\_mwe.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={texlive}, group={root}, size={1267}, time={Feb  7 00:28}]{seq\_mwe.tex}}, file]
+            [{\filefmt[file-type={plain-file}]{tst.tex}}, file]
+            [{\dirfmt[]{xr}}, dir
+                [{\filefmt[file-type={plain-file}]{1.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{hw1.pdf}}, file]
+                [{\filefmt[file-type={plain-file}]{hw1.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{hw1\_ref\_warning\_correction.tmp}}, file]
+                [{\filefmt[file-type={plain-file}]{main.pdf}}, file]
+                [{\filefmt[file-type={plain-file}]{main.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{regex.pdf}}, file]
+                [{\filefmt[file-type={plain-file}]{regex.tex}}, file]
+                [{\filefmt[file-type={plain-file}]{seq\_mwe.pdf}}, file]
+                [{\filefmt[file-type={plain-file}]{seq\_mwe.tex}}, file]
             ]
         ]
-        [{\dirfmt[mode={0755}, prot={drwxr-xr-x}, user={root}, group={root}, size={4096}, time={Feb 25 11:07}]{textrees}}, dir
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={11405}, time={Feb  8 03:23}]{textree\_0}}, file]
-            [{\filefmt[file-type={plain-file}, mode={0666}, prot={-rw-rw-rw-}, user={root}, group={root}, size={32768}, time={Feb 25 11:07}]{textree\_1}}, file]
+        [{\dirfmt[]{textrees}}, dir
+            [{\filefmt[file-type={plain-file}]{textree\_0}}, file]
+            [{\filefmt[file-type={plain-file}]{textree\_1}}, file]
         ]
     ]
 \end{forest}
     \report{
         ,dir  = 1
         ,file = {
-            ,non-symlinks = 168
-            ,character-special-file = 0
-            ,block-special-file = 0
-            ,socket = 0
-            ,total = 0
-            ,plain-file = 168
-            ,pipe = 0
-            ,tty = 0
+            ,plain-file = 169
             ,symlink = {
-                ,nonexistent = 0
-                ,block-special-file = 0
+                ,plain-file = 1
+                ,symlink = 0
                 ,total = 2
+                ,block-special-file = 0
+                ,pipe = 0
+                ,tty = 0
+                ,nonexistent = 0
+                ,dir = 1
                 ,socket = 0
                 ,character-special-file = 0
-                ,dir = 1
-                ,symlink = 0
-                ,tty = 0
-                ,plain-file = 1
-                ,pipe = 0
             }
+            ,non-symlinks = 169
+            ,total = 0
+            ,block-special-file = 0
+            ,pipe = 0
+            ,tty = 0
+            ,socket = 0
+            ,character-special-file = 0
         }
     }

@@ -53,7 +53,7 @@ use File::Basename;
             1; 
     } } );
 
-`tree -f -X -p -s -u -g -D -o "./textrees/textree_1" "$textree_target"`;
+`tree -f -X -o "./textrees/textree_1" "$textree_target"`;
 
 # Source: https://stackoverflow.com/a/33245306/31298396
 sub rewrite_file {
@@ -119,6 +119,39 @@ sub path_to_TeXname {
     }
 }
 
+sub TeX_stat {
+    my $args = scalar(@_);
+    if ($args == 1)
+    {
+        my ($path) = @_;
+        my @stat = stat($path);
+        my @TeX_stat;
+        my %stat = {
+            'dev' => $stat[0],
+            'ino' => $stat[1],
+            'mode' => $stat[2],
+            'nlink' => $stat[3],
+            'uid' => $stat[4],
+            'gid' => $stat[5],
+            'rdev' => $stat[6],
+            'size' => $stat[7],
+            'atime' => $stat[8],
+            'mtime' => $stat[9],
+            'ctime' => $stat[10],
+            'blksize' => $stat[11],
+            'blocks' => $stat[12],
+        };
+        for (keys %stat){
+            push(@TeX_stat, "$_={$stat{$_}}")
+        }
+        my $TeX_stat_string = join(', ', @TeX_stat);
+        return($TeX_stat_string);
+    }else
+    {
+        die("TeX_stat: there are $args != 1 arguments passed to me.")
+    }
+}
+
 my($in, $out) = rewrite_file("./textrees/textree_1");
 
 my $TeXname;
@@ -127,9 +160,6 @@ my $link_target_type;
 my $file_type;
 my $dir_count = 0;
 my $file_count = 0;
-my $mtime;
-my $ctime;
-my $atime;
 my %symlink_target_count_by_types = ( 
     'total'                   => 0,
     'nonexistent'             => 0,
@@ -160,16 +190,16 @@ while(my $line = <$in>) {
     $line =~ s/&amp;/&/g;
     $line =~ s/&lt;/</g;
     $line =~ s/&gt;/>/g;
-    if ($line =~ m/( *)<directory name="(.*)" mode="([^"]*)" prot="([^"]*)" user="([^"]*)" group="([^"]*)" size="([^"]*)" time="([^"]*)">/)
+    if ($line =~ m/( *)<directory name="(.*)">/)
     {
         $TeXname = path_to_TeXname(${2});
-        $line = "${1}[{\\dirfmt[mode={${3}}, prot={${4}}, user={${5}}, group={${6}}, size={${7}}, time={${8}}]{${TeXname}}}, dir\n";
+        $line = "${1}[{\\dirfmt[]{${TeXname}}}, dir\n";
     }
     elsif ($line =~ m/( *)<\/directory>/)
     {
         $line = "${1}]\n";
     }
-    elsif ($line =~ m/( *)<file name="(.*)" mode="([^"]*)" prot="([^"]*)" user="([^"]*)" group="([^"]*)" size="([^"]*)" time="([^"]*)"><\/file>/)
+    elsif ($line =~ m/( *)<file name="(.*)"><\/file>/)
     {
         $file_target_count_by_types{'non-symlinks'} = $file_target_count_by_types{'non-symlinks'} + 1;
 
@@ -216,9 +246,9 @@ while(my $line = <$in>) {
         $file_target_count_by_types{$file_type} = $file_target_count_by_types{$file_type} + 1;
         
         $TeXname = path_to_TeXname(${2});
-        $line = "${1}[{\\filefmt[file-type={${file_type}}, mode={${3}}, prot={${4}}, user={${5}}, group={${6}}, size={${7}}, time={${8}}]{${TeXname}}}, file]\n";
+        $line = "${1}[{\\filefmt[file-type={${file_type}}]{${TeXname}}}, file]\n";
     }
-    elsif ($line =~ m/( *)<link name="(.*)" target="(.*)" mode="([^"]*)" prot="([^"]*)" user="([^"]*)" group="([^"]*)" size="([^"]*)" time="([^"]*)"><\/link>/)
+    elsif ($line =~ m/( *)<link name="(.*)" target="(.*)"><\/link>/)
     {
         $symlink_target_count_by_types{'total'} = $symlink_target_count_by_types{'total'} + 1;
 
@@ -266,7 +296,7 @@ while(my $line = <$in>) {
 
         $TeXname = path_to_TeXname(${2});
         $TeXname_target = path_to_TeXname(${3});
-        $line = "${1}[{\\symlinkfmt[link-target-type={${link_target_type}}, mode={${4}}, prot={${5}}, user={${6}}, group={${7}}, size={${8}}, time={${9}}]{${TeXname}}{${TeXname_target}}}, symlink]\n";
+        $line = "${1}[{\\symlinkfmt[link-target-type={${link_target_type}}]{${TeXname}}{${TeXname_target}}}, symlink]\n";
     }
     elsif ($line =~ m/<\?xml version=".*" encoding=".*"\?>|<report>|<\/report>/)
     {
