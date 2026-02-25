@@ -1,0 +1,3 @@
+#!/usr/bin/perl
+my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size,$atime,$mtime,$ctime,$blksize,$blocks) = stat "/workspaces/Prassble/packages/tex/latex/filetree/textree";
+print("$mode\n");
