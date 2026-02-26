@@ -1,3 +1,4 @@
 #!/usr/bin/perl
-my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size,$atime,$mtime,$ctime,$blksize,$blocks) = stat "/workspaces/Prassble/packages/tex/latex/filetree/textree";
-print("$rdev\n");
+my $mode = (stat("/workspaces/Prassble/packages/tex/latex/filetree/textree"))[2];
+printf "Permissions are %04o\n", $mode & 07777;
+printf "$mode\n";

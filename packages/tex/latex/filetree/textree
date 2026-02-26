@@ -5,13 +5,25 @@ use Getopt::Long;
 use File::Basename;
 
 # Option processing
-    my $data   = "file.dat";
-    my $length = 24;
+    my $version;
+    my $all;
+    my $directories;
+    my $encyclopedic;
     my $debug;
-    GetOptions ("length=i" => \$length,    # numeric
-                "file=s"   => \$data,      # string
-                "debug"  => \$debug)   # flag
+    GetOptions(
+        "version"       => \$version,
+        "all"           => \$all,
+        "directories-only"   => \$directories,
+        "encyclopedic"  => \$encyclopedic,
+        "Debug"         => \$debug
+    )
     or die("Error in command line arguments\n");
+
+if ($version)
+{
+    my $current_year = 1900 + (localtime)[5];
+    print "tree v1.0 © 2026–$current_year by GrassGlass\n"
+}
 
 # Argument processing
     my $textree_argument_count = scalar(@ARGV);
@@ -53,7 +65,10 @@ use File::Basename;
             1; 
     } } );
 
-`tree -f -X -o "./textrees/textree_1" "$textree_target"`;
+my $tree_options = "";
+if ($all) { $tree_options .= "-a" };
+
+`tree -f -X $tree_options -o "./textrees/textree_1" "$textree_target"`;
 
 # Source: https://stackoverflow.com/a/33245306/31298396
 sub rewrite_file {
@@ -93,6 +108,7 @@ sub TeX_escape {
         $string =~ s/%/\\%/g;
         $string =~ s/\+/\\(+\\)/g;
         $string =~ s/=/\\(=\\)/g;
+        $string =~ s/ /{\\TeXtreeSpaceChar}/g;
         $string =~ s/\|/{\\textbar}/g;
         $string =~ s/</{\\textlangle}/g;
         $string =~ s/>/{\\textrangle}/g;
@@ -119,36 +135,67 @@ sub path_to_TeXname {
     }
 }
 
+sub TeX_stat_core {
+    my $args = scalar(@_);
+    if ($args == 2)
+    {
+        if ($encyclopedic)
+        {
+            my ($path, $stat_variant) = @_;
+            my %stat_variants = (
+                'stat'  => sub { stat($_[0]) },
+                'lstat' => sub { lstat($_[0]) }
+            );
+            my @stat = $stat_variants{$stat_variant}($path);
+            my $TeX_stat_string;
+            my %stat = (
+                'dev'       => $stat[0],
+                'ino'       => $stat[1],
+                'mode'      => $stat[2],
+                'nlink'     => $stat[3],
+                'uid'       => $stat[4],
+                'gid'       => $stat[5],
+                'rdev'      => $stat[6],
+                'size'      => $stat[7],
+                'atime'     => $stat[8],
+                'mtime'     => $stat[9],
+                'ctime'     => $stat[10],
+                'blksize'   => $stat[11],
+                'blocks'    => $stat[12]
+            );
+            $stat{'perms'} = sprintf("%04o", $stat{'mode'} & 07777);
+            for (keys %stat){
+                $TeX_stat_string .= "$_={$stat{$_}}, ";
+            }
+            return($TeX_stat_string);
+        }else { return ""; }
+    }else
+    {
+        die("TeX_stat_core: there are $args != 2 arguments passed to me.")
+    }
+}
+
 sub TeX_stat {
     my $args = scalar(@_);
     if ($args == 1)
     {
         my ($path) = @_;
-        my @stat = stat($path);
-        my @TeX_stat;
-        my %stat = {
-            'dev' => $stat[0],
-            'ino' => $stat[1],
-            'mode' => $stat[2],
-            'nlink' => $stat[3],
-            'uid' => $stat[4],
-            'gid' => $stat[5],
-            'rdev' => $stat[6],
-            'size' => $stat[7],
-            'atime' => $stat[8],
-            'mtime' => $stat[9],
-            'ctime' => $stat[10],
-            'blksize' => $stat[11],
-            'blocks' => $stat[12],
-        };
-        for (keys %stat){
-            push(@TeX_stat, "$_={$stat{$_}}")
-        }
-        my $TeX_stat_string = join(', ', @TeX_stat);
-        return($TeX_stat_string);
+        return(TeX_stat_core($path, "stat"))
     }else
     {
         die("TeX_stat: there are $args != 1 arguments passed to me.")
+    }
+}
+
+sub TeX_lstat {
+    my $args = scalar(@_);
+    if ($args == 1)
+    {
+        my ($path) = @_;
+        return(TeX_stat_core($path, "lstat"))
+    }else
+    {
+        die("TeX_lstat: there are $args != 1 arguments passed to me.")
     }
 }
 
@@ -160,6 +207,8 @@ my $link_target_type;
 my $file_type;
 my $dir_count = 0;
 my $file_count = 0;
+my $TeX_stat_string;
+my $TeX_lstat_string;
 my %symlink_target_count_by_types = ( 
     'total'                   => 0,
     'nonexistent'             => 0,
@@ -193,7 +242,8 @@ while(my $line = <$in>) {
     if ($line =~ m/( *)<directory name="(.*)">/)
     {
         $TeXname = path_to_TeXname(${2});
-        $line = "${1}[{\\dirfmt[]{${TeXname}}}, dir\n";
+        $TeX_stat_string = TeX_stat(${2});
+        $line = "${1}[{\\dirfmt[${TeX_stat_string}]{${TeXname}}}, dir\n";
     }
     elsif ($line =~ m/( *)<\/directory>/)
     {
@@ -246,7 +296,8 @@ while(my $line = <$in>) {
         $file_target_count_by_types{$file_type} = $file_target_count_by_types{$file_type} + 1;
         
         $TeXname = path_to_TeXname(${2});
-        $line = "${1}[{\\filefmt[file-type={${file_type}}]{${TeXname}}}, file]\n";
+        $TeX_stat_string = TeX_stat(${2});
+        $line = "${1}[{\\filefmt[file-type={${file_type}}, ${TeX_stat_string}]{${TeXname}}}, file]\n";
     }
     elsif ($line =~ m/( *)<link name="(.*)" target="(.*)"><\/link>/)
     {
@@ -296,7 +347,9 @@ while(my $line = <$in>) {
 
         $TeXname = path_to_TeXname(${2});
         $TeXname_target = path_to_TeXname(${3});
-        $line = "${1}[{\\symlinkfmt[link-target-type={${link_target_type}}]{${TeXname}}{${TeXname_target}}}, symlink]\n";
+        $TeX_stat_string = TeX_stat(${2});
+        $TeX_lstat_string = TeX_lstat(${2});
+        $line = "${1}[{\\symlinkfmt[link-target={type=${link_target_type}, ${TeX_stat_string}}, $TeX_lstat_string]{${TeXname}}{${TeXname_target}}}, symlink]\n";
     }
     elsif ($line =~ m/<\?xml version=".*" encoding=".*"\?>|<report>|<\/report>/)
     {
@@ -354,33 +407,3 @@ print($out
     }
 EOF
 );
-
-# Debug info
-    if_debugging(
-        sub {
-            # Conditionally load the module Text::SimpleTable::AutoWidth to draw tables
-                # Source: https://stackoverflow.com/a/62747490/31298396
-                eval {
-                    require Text::SimpleTable::AutoWidth;
-                    Text::SimpleTable::AutoWidth->import();
-                    1; 
-                } or do {
-                my $error = $@;
-                # Module load failed. You could recover, try loading
-                # an alternate module, die with $error...
-                # whatever's appropriate
-                };
-
-            print "
-    =================
-      DEBUG ENABLED
-    =================
-            \n";
-            # Table of various variables
-                # Source: https://stackoverflow.com/a/62747490/31298396
-            print Text::SimpleTable::AutoWidth
-                ->new( captions => [qw/ Variables Value /] )
-                ->row( '$textree_target', $textree_target )
-                ->draw();
-        }
-    );
