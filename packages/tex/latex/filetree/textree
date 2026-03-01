@@ -3,23 +3,28 @@ use strict;
 use warnings;
 use Getopt::Long;
 use File::Basename;
+use Cwd;
 
 # Option processing
-    my $version;
-    my $all;
-    my $directories;
-    my $encyclopedic;
-    my $debug;
+    my $version_opts;
+    my $all_opts;
+    my $continuous_opts;
+    my $manual_opts;
+    my $directories_opts;
+    my $encyclopedic_opts;
+    my $debug_opts;
     GetOptions(
-        "version"       => \$version,
-        "all"           => \$all,
-        "directories-only"   => \$directories,
-        "encyclopedic"  => \$encyclopedic,
-        "Debug"         => \$debug
+        "version"       => \$version_opts,
+        "all"           => \$all_opts,
+        "continuous"    => \$continuous_opts,
+        "manual=s"        => \$manual_opts,
+        "directories-only"   => \$directories_opts,
+        "encyclopedic"  => \$encyclopedic_opts,
+        "bug"         => \$debug_opts
     )
     or die("Error in command line arguments\n");
 
-if ($version)
+if ($version_opts)
 {
     my $current_year = 1900 + (localtime)[5];
     print "tree v1.0 © 2026–$current_year by GrassGlass\n"
@@ -53,7 +58,7 @@ if ($version)
                 die "More than one argument has been passed to the subroutine 'if_debugging'.\n";
             }
         
-            return unless defined $debug && $debug == 1;
+            return unless defined $debug_opts && $debug_opts == 1;
 
             $code->();
         }
@@ -66,7 +71,7 @@ if ($version)
     } } );
 
 my $tree_options = "";
-if ($all) { $tree_options .= "-a" };
+if ($all_opts) { $tree_options .= "-a" };
 
 `tree -f -X $tree_options -o "./textrees/textree_1" "$textree_target"`;
 
@@ -139,7 +144,7 @@ sub TeX_stat_core {
     my $args = scalar(@_);
     if ($args == 2)
     {
-        if ($encyclopedic)
+        if ($encyclopedic_opts)
         {
             my ($path, $stat_variant) = @_;
             my %stat_variants = (
@@ -196,6 +201,32 @@ sub TeX_lstat {
     }else
     {
         die("TeX_lstat: there are $args != 1 arguments passed to me.")
+    }
+}
+
+sub TeX_recurse_lstat {
+    my $args = scalar(@_);
+    if ($args == 1)
+    {
+        my ($path) = @_;
+        my @link_targets;
+        my $target_path;
+        my @TeX_lstat;
+        # Source: https://stackoverflow.com/a/6475315/31298396
+        while ( 
+            ( ! grep( /^$target_path$/, @link_targets ) ) 
+            || 
+            ( scalar(@link_targets) <= $rlstat_opts) 
+        ) {
+            my $TeX_lstat = TeX_lstat($target_path);
+            push(@TeX_lstat, $TeX_lstat);
+            $target_path = readlink($target_path);
+        }
+        # ...
+        return(TeX_stat_core($path, "lstat"))
+    }else
+    {
+        die("TeX_recuse_lstat: there are $args != 1 arguments passed to me.")
     }
 }
 

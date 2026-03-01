@@ -1,4 +1,4 @@
 #!/usr/bin/perl
-my $mode = (stat("/workspaces/Prassble/packages/tex/latex/filetree/textree"))[2];
-printf "Permissions are %04o\n", $mode & 07777;
-printf "$mode\n";
+# @lstat = lstat("/workspaces/Prassble/testing/tree/folder/bash.tex");
+@lstat = lstat("/workspaces/Prassble/packages/tex/latex/filetree/textree");
+print("$lstat[1]\n");
