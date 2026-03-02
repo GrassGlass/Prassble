@@ -230,52 +230,61 @@ sub link_destination {
     # There might be a trailing ", circular-link" or ", rlstat_maxed". 
 sub TeX_recurse_lstat_ignore_first {
     # "ignore_first" as in the symlink itself is not lstat'ed
-    my $args = scalar(@_);
-    if ($args == 1)
+    if ($encyclopedic_opts)
     {
-        my ($path) = @_;
-        if (-l $path)
+        my $args = scalar(@_);
+        if ($args == 1)
         {
-            my $link_is_circular;
-            my $rlstat_max_reached;
-            my @link_targets_that_are_a_link;
-            my $target_path = link_destination($path);
-            my @TeX_lstat;
-            while (
-                $link_is_circular
-                && 
-                $rlstat_max_reached
-            ) {
-                # Push the TeX_lstat of the current iteration of $target_path into @TeX_lstat.
-                my $TeX_lstat = TeX_lstat($target_path);
-                $TeX_lstat .= ", path={${target_path}}";
-                $TeX_lstat = "{${TeX_lstat}}";
-                push(@TeX_lstat, $TeX_lstat);
+            my ($path) = @_;
+            if (-l $path)
+            {
+                my $TeX_lstat;
+                my $target_TeX_path;
+                my $target_TeX_basename;
+                my $link_is_circular;
+                my $rlstat_max_reached;
+                my @link_targets_that_are_a_link;
+                my $target_path = link_destination($path);
+                my @TeX_lstat;
+                while (
+                    !$link_is_circular
+                    && 
+                    !$rlstat_max_reached
+                ) {
+                    # Push the TeX_lstat of the current iteration of $target_path into @TeX_lstat.
+                    $TeX_lstat = TeX_lstat($target_path);
+                    $target_TeX_path = TeX_escape($target_path);
+                    $target_TeX_basename = path_to_TeXname($target_path);
+                    $TeX_lstat .= "TeX-path={${target_TeX_path}}, TeX-basename={${target_TeX_basename}}";
+                    $TeX_lstat = "{${TeX_lstat}}";
+                    push(@TeX_lstat, $TeX_lstat);
 
-                $rlstat_max_reached = scalar(@link_targets_that_are_a_link) <= $rlstat_opts;
-                # If $target_path is a symlink, continue with the next iteration. Otherwise, end the loop.
-                if (-l $target_path)
-                {
-                    push(@link_targets_that_are_a_link, $target_path);
-                    $target_path = link_destination($target_path);
-                    # Source: https://stackoverflow.com/a/6475315/31298396
-                    $link_is_circular = scalar( grep( /^$target_path$/, @link_targets_that_are_a_link ) );
-                }elsif ($link_is_circular)
-                { die("TeX_recurse_lstat: symlink is circular, but one of its intermediate targets is not a link.") }
-                else
-                { last; }
-            }
-            my $return = join(',', @TeX_lstat);
-            $return = "targets={${return}}";
-            if ($link_is_circular)
-            { $return .= ", circular-link" }
-            elsif ($rlstat_max_reached)
-            { $return .= ", rlstat-maxed" }
-            return($return)
+                    $rlstat_max_reached = scalar(@link_targets_that_are_a_link) > $rlstat_opts;
+                    # If $target_path is a symlink, continue with the next iteration. Otherwise, end the loop.
+                    if (-l $target_path)
+                    {
+                        push(@link_targets_that_are_a_link, $target_path);
+                        $target_path = link_destination($target_path);
+                        # Source: https://stackoverflow.com/a/6475315/31298396
+                        $link_is_circular = scalar( grep( /^$target_path$/, @link_targets_that_are_a_link ) );
+                    }elsif ($link_is_circular)
+                    { die("TeX_recurse_lstat: symlink is circular, but one of its intermediate targets is not a link.") }
+                    else
+                    { last; }
+                }
+                my $return = join(',', @TeX_lstat);
+                $return = "targets={${return}}";
+                if ($link_is_circular)
+                { $return .= ", circular-link" }
+                elsif ($rlstat_max_reached)
+                { $return .= ", rlstat-maxed" }
+                return($return)
+            }else
+            { return; }
         }else
-        { return; }
+        { die("TeX_recurse_lstat_ignore_first: there are $args != 1 arguments passed to me.") }
     }else
-    { die("TeX_recurse_lstat_ignore_first: there are $args != 1 arguments passed to me.") }
+    { return "" }
 }
 
 my($in, $out) = rewrite_file("./textrees/textree_1");
@@ -429,7 +438,7 @@ while(my $line = <$in>) {
         $TeXname_target = path_to_TeXname(${3});
         $TeX_lstat_string = TeX_lstat(${2});
         $TeX_rstat_string = TeX_recurse_lstat_ignore_first(${2});
-        $line = "${1}[{\\symlinkfmt[link-target={type=${link_target_type}, ${TeX_rstat_string}}, $TeX_lstat_string]{${TeXname}}{${TeXname_target}}}, symlink]\n";
+        $line = "${1}[{\\symlinkfmt[link-target-type=${link_target_type}, $TeX_lstat_string ${TeX_rstat_string}}]{${TeXname}}{${TeXname_target}}}, symlink]\n";
     }
     elsif ($line =~ m/<\?xml version=".*" encoding=".*"\?>|<report>|<\/report>/)
     {
