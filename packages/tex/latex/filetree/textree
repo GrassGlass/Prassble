@@ -207,15 +207,18 @@ sub TeX_lstat {
     }
 }
 
-sub link_target_path {
+# Note: since we're relying on Steve Baker's tree command, we can assume that our OS is UNIX-based. So, we need not care about volume, nor the Windows shennanigans of special relative paths of the form "C:foo/bar".
+sub link_destination {
     my $args = scalar(@_);
     if ($args == 1)
     {
         my ($link) = @_;
         if (-l $link)
         {
-            my ($volume, $dirname, $file) = File::Spec->splitpath( $link, 0 );
-            return( File::Spec->rel2abs( $path, $base ) )
+            my $link_target = readlink($link);
+            my ($volume, $parent_path, $basename) = File::Spec->splitpath( $link, 0 );
+            # Absolute path? No worries! rel2abs(abs_path) = canonpath(abs_path).
+            return( File::Spec->rel2abs( $link_target, $parent_path ) )
         }else
         { die("link_target_path: the path passed to me does not point to a symlink.") }
     }else
@@ -236,10 +239,9 @@ sub TeX_recurse_lstat_ignore_first {
             my $link_is_circular;
             my $rlstat_max_reached;
             my @link_targets_that_are_a_link;
-            my $target_path = readlink($path);
+            my $target_path = link_destination($path);
             my @TeX_lstat;
-            # Source: https://stackoverflow.com/a/6475315/31298396
-            while ( 
+            while (
                 $link_is_circular
                 && 
                 $rlstat_max_reached
@@ -255,7 +257,8 @@ sub TeX_recurse_lstat_ignore_first {
                 if (-l $target_path)
                 {
                     push(@link_targets_that_are_a_link, $target_path);
-                    $target_path = readlink($target_path);
+                    $target_path = link_destination($target_path);
+                    # Source: https://stackoverflow.com/a/6475315/31298396
                     $link_is_circular = scalar( grep( /^$target_path$/, @link_targets_that_are_a_link ) );
                 }elsif ($link_is_circular)
                 { die("TeX_recurse_lstat: symlink is circular, but one of its intermediate targets is not a link.") }
@@ -272,7 +275,7 @@ sub TeX_recurse_lstat_ignore_first {
         }else
         { return; }
     }else
-    { die("TeX_recuse_lstat: there are $args != 1 arguments passed to me.") }
+    { die("TeX_recurse_lstat_ignore_first: there are $args != 1 arguments passed to me.") }
 }
 
 my($in, $out) = rewrite_file("./textrees/textree_1");
@@ -285,6 +288,7 @@ my $dir_count = 0;
 my $file_count = 0;
 my $TeX_stat_string;
 my $TeX_lstat_string;
+my $TeX_rstat_string;
 my %symlink_target_count_by_types = ( 
     'total'                   => 0,
     'nonexistent'             => 0,
@@ -423,9 +427,9 @@ while(my $line = <$in>) {
 
         $TeXname = path_to_TeXname(${2});
         $TeXname_target = path_to_TeXname(${3});
-        $TeX_stat_string = TeX_stat(${2});
         $TeX_lstat_string = TeX_lstat(${2});
-        $line = "${1}[{\\symlinkfmt[link-target={type=${link_target_type}, ${TeX_stat_string}}, $TeX_lstat_string]{${TeXname}}{${TeXname_target}}}, symlink]\n";
+        $TeX_rstat_string = TeX_recurse_lstat_ignore_first(${2});
+        $line = "${1}[{\\symlinkfmt[link-target={type=${link_target_type}, ${TeX_rstat_string}}, $TeX_lstat_string]{${TeXname}}{${TeXname_target}}}, symlink]\n";
     }
     elsif ($line =~ m/<\?xml version=".*" encoding=".*"\?>|<report>|<\/report>/)
     {
