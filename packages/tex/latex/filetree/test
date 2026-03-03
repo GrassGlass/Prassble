@@ -1,4 +1,5 @@
 #!/usr/bin/perl
-# @lstat = lstat("/workspaces/Prassble/testing/tree/folder/bash.tex");
-@lstat = lstat("/workspaces/Prassble/packages/tex/latex/filetree/textree");
-print("$lstat[1]\n");
+my $str = 1;
+if ( grep( /^$str$/, (1,2,3) ) )
+{ print("matched\n") }
+else { print("not matched\n") }
