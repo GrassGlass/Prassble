@@ -1,5 +1,6 @@
 #!/usr/bin/perl
-my $str = 1;
-if ( grep( /^$str$/, (1,2,3) ) )
-{ print("matched\n") }
-else { print("not matched\n") }
+use strict;
+use warnings;
+use File::Spec;
+my $str = File::Spec->rel2abs("testing/../");
+print("$str\n");

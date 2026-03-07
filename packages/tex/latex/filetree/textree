@@ -52,11 +52,10 @@ if ($version_opts)
         die("textree: more than one argument has been given to me; there should be at most one.")
     }else
     {
-        $textree_target = $ARGV[1];
+        $textree_target = $ARGV[0];
         if ( $textree_target eq "" )
         { die("Error: an empty target directory has been provided") }
     }
-    my $textree_target_braced = "\"$textree_target\"";
 
 # Subroutines
     # if_debugging
@@ -80,14 +79,17 @@ if ($version_opts)
             1; 
     } } );
 
-my $tree_options = "";
-if ($all_opts) { $tree_options .= "-a" }
-if ($directories_opts) { $tree_options .= " -d" }
-if ($pattern_opts) { $tree_options .= " -P \"$pattern_opts\"" }
-if ($ignore_opts) { $tree_options .= " -I \"$ignore_opts\"" }
-if ($xdev_opts) { $tree_options .= " -x" };
+my @tree_options = ( 'tree', '-f', '-X' );
+if ($all_opts) { push( @tree_options, '-a' ) }
+if ($directories_opts) { push( @tree_options, '-d' ) }
+if ($pattern_opts) { push( @tree_options, ('-P', $pattern_opts) )}
+if ($ignore_opts) { push( @tree_options, ('-I', $ignore_opts) ) }
+if ($xdev_opts) { push( @tree_options, '-x' ) };
+push(@tree_options, ('-o', "./textrees/textree_1", $textree_target));
 
-`tree -f -X $tree_options -o "./textrees/textree_1" "$textree_target_braced"`;
+# system() calls the correct shell (Cygwin and WSL, respectively) in both Cygwin and WSL. Nice.
+    # "Using an indirect object with exec or system is also more secure." -- https://perldoc.perl.org/functions/exec
+system { $tree_options[0] } @tree_options;
 
 # Source: https://stackoverflow.com/a/33245306/31298396
 sub rewrite_file {
@@ -278,6 +280,10 @@ sub TeX_recurse_lstat_ignore_first {
                 my $rlstat_max_reached;
                 my @link_targets_that_are_a_link;
                 my $target_path = link_destination($path);
+                # my %target_TeX_path = (
+                #     'verb' => TeX_escape($target_path),  # no processing of the path is done; the path is TeX escaped and that's it.
+                #     'rel'  =>  # path relative to $textree_target
+                # );
                 my @TeX_lstat;
                 while (
                     !$link_is_circular
