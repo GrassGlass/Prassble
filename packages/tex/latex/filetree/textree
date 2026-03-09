@@ -10,7 +10,7 @@ use File::Spec;
     my $version_opts;
     my $all_opts;
     my $directories_opts;
-    my $children_opts;
+    my $name_opts;
     my $pattern_opts;
     my $ignore_opts;
     my $encyclopedic_opts;
@@ -23,7 +23,7 @@ use File::Spec;
         "version"           => \$version_opts,
         "all"               => \$all_opts,
         "directories"       => \$directories_opts,
-        "children=s"        => \$children_opts,
+        "name=s"            => \$name_opts,
         "pattern=s"         => \$pattern_opts,
         "ignore=s"          => \$ignore_opts,
         "encyclopedic"      => \$encyclopedic_opts,
@@ -165,13 +165,13 @@ sub path_to_TeXname {
         if ( $textree_target =~ m/(.*)\/$/ ) { $textree_target_unslashed = $1 }
         my $TeXname = TeX_escape(basename(abs_path_allow_trailing_symlink($textree_target)));
         my $rel_path; # path of $path, relative to $textree_target.
-        if ( ! defined($children_opts) )
+        if ( ! defined($name_opts) )
         { unless ($path eq $textree_target)
           { $TeXname = TeX_escape(basename($path)) }
-        } # default (without the --children flag)
-        # Below: if ( grep( /^$children_opts$/, @array ) ): check whether $children_opts is an element of @array
+        } # default (without the --name flag)
+        # Below: if ( grep( /^$name_opts$/, @array ) ): check whether $name_opts is an element of @array
             # Source: https://stackoverflow.com/a/6475315/31298396
-        elsif ( grep( /^$children_opts$/, ("tree -f","f","-f") ) )
+        elsif ( grep( /^$name_opts$/, ("tree -f","f","-f") ) )
         { $TeXname = TeX_escape($path) }
         elsif ( $path =~ m/${textree_target_unslashed}(.*)/ )
         {
@@ -179,15 +179,15 @@ sub path_to_TeXname {
             # If $rel_path is not identical to "$textree_target", it has the exact form "$textree_target/...". Make $rel_path into the form ./...
             if ( $rel_path =~ m/\/(.*)/ )
             { $rel_path = "." . "$rel_path" }
-            if ( grep( /^$children_opts$/, ("r","rel","relative","rel-path","rel-paths","relative-path","relative-paths") ) )
+            if ( grep( /^$name_opts$/, ("r","rel","relative","rel-path","rel-paths","relative-path","relative-paths") ) )
             { unless ($path eq $textree_target)
               { $TeXname = TeX_escape($rel_path) }
             }
-            elsif ( grep( /^$children_opts$/, ("a","abs","absolute","abs-path","abs-paths","absolute-path","absolute-paths") ) )
+            elsif ( grep( /^$name_opts$/, ("a","abs","absolute","abs-path","abs-paths","absolute-path","absolute-paths") ) )
             {
                 $TeXname = TeX_escape(abs_path_allow_trailing_symlink($path))
                 # $TeXname = TeX_escape(File::Spec->rel2abs( $rel_path, $textree_target ))
-            }else { die("path_to_TeXname: the value of \$children_opts is not recognised.") }
+            }else { die("path_to_TeXname: the value of \$name_opts is not recognised.") }
         }
         else { die("path_to_TeXname: the \$path = \'$path\' is not of the form" . ' \'m/${textree_target}(.*)/\'' . ' = ' . "\'$textree_target(...)\'") } # if regex did not match, which should never be the case since we used the '-f' flag of the tree command.
         return($TeXname)
