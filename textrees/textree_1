@@ -1,5 +1,5 @@
 \begin{forest}
-    [{\dirfmt[]{..}}, dir
+    [{\dirfmt[]{workspaces}}, dir
         [{\dirfmt[]{Prassble}}, dir
             [{\dirfmt[]{Documentation}}, dir
                 [{\filefmt[file-type={plain-file}, ]{Doc\_Titlepage.tex}}, file]
@@ -266,24 +266,24 @@
         ,dir  = 1
         ,file = {
             ,tty = 0
-            ,block-special-file = 0
-            ,total = 0
-            ,character-special-file = 0
-            ,socket = 0
             ,plain-file = 169
+            ,total = 0
             ,pipe = 0
+            ,socket = 0
             ,symlink = {
-                ,tty = 0
-                ,total = 2
-                ,block-special-file = 0
-                ,pipe = 0
-                ,plain-file = 1
-                ,symlink = 0
-                ,character-special-file = 0
-                ,dir = 1
                 ,nonexistent = 0
+                ,plain-file = 1
+                ,pipe = 0
+                ,total = 2
+                ,tty = 0
+                ,dir = 1
+                ,block-special-file = 0
+                ,character-special-file = 0
                 ,socket = 0
+                ,symlink = 0
             }
+            ,character-special-file = 0
+            ,block-special-file = 0
             ,non-symlinks = 169
         }
     }

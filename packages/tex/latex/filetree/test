@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use File::Spec;
-my $path = "..";
-my $path_unslashed = $path;
-if ( $path =~ m/(.*)\/$/ ) { $path_unslashed = $1; print("$path_unslashed\n"); }
+use File::Basename;
+print(basename("..\n"));
