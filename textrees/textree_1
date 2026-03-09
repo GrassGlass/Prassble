@@ -1,263 +1,263 @@
 \begin{forest}
-    [{\dirfmt[]{/workspaces}}, dir
-        [{\dirfmt[]{/workspaces/Prassble}}, dir
-            [{\dirfmt[]{/workspaces/Prassble/Documentation}}, dir
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/Documentation/Doc\_Titlepage.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/Documentation/Prassble\_Documentation.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/Documentation/Prassble\_Documentation.tex}}, file]
+    [{\dirfmt[]{..}}, dir
+        [{\dirfmt[]{Prassble}}, dir
+            [{\dirfmt[]{Documentation}}, dir
+                [{\filefmt[file-type={plain-file}, ]{Doc\_Titlepage.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{Prassble\_Documentation.pdf}}, file]
+                [{\filefmt[file-type={plain-file}, ]{Prassble\_Documentation.tex}}, file]
             ]
-            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/LICENSE.txt}}, file]
-            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/Prassble\_is\_here.txt}}, file]
-            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/README.md}}, file]
-            [{\dirfmt[]{/workspaces/Prassble/figures}}, dir
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/figures/Three\_Planes\_Orthogonal\_Complements\_licensed\_under\_CC\_BY-SA\_4.0.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/figures/iibui.pdf}}, file]
+            [{\filefmt[file-type={plain-file}, ]{LICENSE.txt}}, file]
+            [{\filefmt[file-type={plain-file}, ]{Prassble\_is\_here.txt}}, file]
+            [{\filefmt[file-type={plain-file}, ]{README.md}}, file]
+            [{\dirfmt[]{figures}}, dir
+                [{\filefmt[file-type={plain-file}, ]{Three\_Planes\_Orthogonal\_Complements\_licensed\_under\_CC\_BY-SA\_4.0.pdf}}, file]
+                [{\filefmt[file-type={plain-file}, ]{iibui.pdf}}, file]
             ]
-            [{\dirfmt[]{/workspaces/Prassble/files}}, dir
-                [{\dirfmt[]{/workspaces/Prassble/files/chapters}}, dir
-                    [{\dirfmt[]{/workspaces/Prassble/files/chapters/ch1}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/files/chapters/ch1/sec1.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/files/chapters/ch1/sec2.tex}}, file]
+            [{\dirfmt[]{files}}, dir
+                [{\dirfmt[]{chapters}}, dir
+                    [{\dirfmt[]{ch1}}, dir
+                        [{\filefmt[file-type={plain-file}, ]{sec1.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{sec2.tex}}, file]
                     ]
-                    [{\dirfmt[]{/workspaces/Prassble/files/chapters/ch2}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/files/chapters/ch2/sec1.tex}}, file]
+                    [{\dirfmt[]{ch2}}, dir
+                        [{\filefmt[file-type={plain-file}, ]{sec1.tex}}, file]
                     ]
                 ]
-                [{\dirfmt[]{/workspaces/Prassble/files/homework}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/files/homework/1.tex}}, file]
+                [{\dirfmt[]{homework}}, dir
+                    [{\filefmt[file-type={plain-file}, ]{1.tex}}, file]
                 ]
             ]
-            [{\dirfmt[]{/workspaces/Prassble/homework}}, dir
-                [{\dirfmt[]{/workspaces/Prassble/homework/hw1}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/homework/hw1/hw1.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/homework/hw1/hw1.tex}}, file]
+            [{\dirfmt[]{homework}}, dir
+                [{\dirfmt[]{hw1}}, dir
+                    [{\filefmt[file-type={plain-file}, ]{hw1.pdf}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{hw1.tex}}, file]
                 ]
             ]
-            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/main.pdf}}, file]
-            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/main.tex}}, file]
-            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/maintitlepage.tex}}, file]
-            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/mkPrassble.pl}}, file]
-            [{\dirfmt[]{/workspaces/Prassble/packages}}, dir
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/packages/development}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/packages/ls-R}}, file]
-                [{\dirfmt[]{/workspaces/Prassble/packages/tex}}, dir
-                    [{\dirfmt[]{/workspaces/Prassble/packages/tex/latex}}, dir
-                        [{\dirfmt[]{/workspaces/Prassble/packages/tex/latex/filetree}}, dir
-                            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/packages/tex/latex/filetree/file\_tree}}, file]
-                            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/packages/tex/latex/filetree/filetree.sty}}, file]
-                            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/packages/tex/latex/filetree/test}}, file]
-                            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/packages/tex/latex/filetree/textree}}, file]
-                            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/packages/tex/latex/filetree/textree\_sed}}, file]
+            [{\filefmt[file-type={plain-file}, ]{main.pdf}}, file]
+            [{\filefmt[file-type={plain-file}, ]{main.tex}}, file]
+            [{\filefmt[file-type={plain-file}, ]{maintitlepage.tex}}, file]
+            [{\filefmt[file-type={plain-file}, ]{mkPrassble.pl}}, file]
+            [{\dirfmt[]{packages}}, dir
+                [{\filefmt[file-type={plain-file}, ]{development}}, file]
+                [{\filefmt[file-type={plain-file}, ]{ls-R}}, file]
+                [{\dirfmt[]{tex}}, dir
+                    [{\dirfmt[]{latex}}, dir
+                        [{\dirfmt[]{filetree}}, dir
+                            [{\filefmt[file-type={plain-file}, ]{file\_tree}}, file]
+                            [{\filefmt[file-type={plain-file}, ]{filetree.sty}}, file]
+                            [{\filefmt[file-type={plain-file}, ]{test}}, file]
+                            [{\filefmt[file-type={plain-file}, ]{textree}}, file]
+                            [{\filefmt[file-type={plain-file}, ]{textree\_sed}}, file]
                         ]
-                        [{\dirfmt[]{/workspaces/Prassble/packages/tex/latex/prassble-math}}, dir
-                            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/packages/tex/latex/prassble-math/prassble-math.sty}}, file]
+                        [{\dirfmt[]{prassble-math}}, dir
+                            [{\filefmt[file-type={plain-file}, ]{prassble-math.sty}}, file]
                         ]
                     ]
                 ]
             ]
-            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/pmath-test.pdf}}, file]
-            [{\dirfmt[]{/workspaces/Prassble/preamble}}, dir
-                [{\dirfmt[]{/workspaces/Prassble/preamble/commands}}, dir
-                    [{\dirfmt[]{/workspaces/Prassble/preamble/commands/modified\_commands}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/commands/modified\_commands/Chapter\_and\_Section.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/commands/modified\_commands/FileTree.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/commands/modified\_commands/Input\_macro.tex}}, file]
+            [{\filefmt[file-type={plain-file}, ]{pmath-test.pdf}}, file]
+            [{\dirfmt[]{preamble}}, dir
+                [{\dirfmt[]{commands}}, dir
+                    [{\dirfmt[]{modified\_commands}}, dir
+                        [{\filefmt[file-type={plain-file}, ]{Chapter\_and\_Section.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{FileTree.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{Input\_macro.tex}}, file]
                     ]
-                    [{\dirfmt[]{/workspaces/Prassble/preamble/commands/newcommands}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/commands/newcommands/KeywordForInput.tex}}, file]
+                    [{\dirfmt[]{newcommands}}, dir
+                        [{\filefmt[file-type={plain-file}, ]{KeywordForInput.tex}}, file]
                     ]
                 ]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/custom-symbols.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/enumeration.tex}}, file]
-                [{\dirfmt[]{/workspaces/Prassble/preamble/environments}}, dir
-                    [{\dirfmt[]{/workspaces/Prassble/preamble/environments/box\_styles}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/box\_styles/lengths\_and\_counters.tex}}, file]
-                        [{\dirfmt[]{/workspaces/Prassble/preamble/environments/box\_styles/listings}}, dir
-                            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/box\_styles/listings/codestyles.tex}}, file]
-                            [{\dirfmt[]{/workspaces/Prassble/preamble/environments/box\_styles/listings/commands}}, dir
-                                [{\dirfmt[]{/workspaces/Prassble/preamble/environments/box\_styles/listings/commands/modified\_commands}}, dir
-                                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/box\_styles/listings/commands/modified\_commands/NewInputListing.tex}}, file]
-                                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/box\_styles/listings/commands/modified\_commands/NewListing.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{custom-symbols.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{enumeration.tex}}, file]
+                [{\dirfmt[]{environments}}, dir
+                    [{\dirfmt[]{box\_styles}}, dir
+                        [{\filefmt[file-type={plain-file}, ]{lengths\_and\_counters.tex}}, file]
+                        [{\dirfmt[]{listings}}, dir
+                            [{\filefmt[file-type={plain-file}, ]{codestyles.tex}}, file]
+                            [{\dirfmt[]{commands}}, dir
+                                [{\dirfmt[]{modified\_commands}}, dir
+                                    [{\filefmt[file-type={plain-file}, ]{NewInputListing.tex}}, file]
+                                    [{\filefmt[file-type={plain-file}, ]{NewListing.tex}}, file]
                                 ]
-                                [{\dirfmt[]{/workspaces/Prassble/preamble/environments/box\_styles/listings/commands/newcommands}}, dir
-                                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/box\_styles/listings/commands/newcommands/all\_short\_names.tex}}, file]
-                                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/box\_styles/listings/commands/newcommands/name\_converters.tex}}, file]
-                                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/box\_styles/listings/commands/newcommands/new\_variables.tex}}, file]
-                                ]
-                            ]
-                        ]
-                        [{\dirfmt[]{/workspaces/Prassble/preamble/environments/box\_styles/nonlistings}}, dir
-                            [{\dirfmt[]{/workspaces/Prassble/preamble/environments/box\_styles/nonlistings/commands}}, dir
-                                [{\dirfmt[]{/workspaces/Prassble/preamble/environments/box\_styles/nonlistings/commands/modified\_commands}}, dir
-                                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/box\_styles/nonlistings/commands/modified\_commands/newkeytheorem.tex}}, file]
-                                ]
-                                [{\dirfmt[]{/workspaces/Prassble/preamble/environments/box\_styles/nonlistings/commands/newcommands}}, dir
-                                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/box\_styles/nonlistings/commands/newcommands/InputKeyword\_HW-in-Main.tex}}, file]
+                                [{\dirfmt[]{newcommands}}, dir
+                                    [{\filefmt[file-type={plain-file}, ]{all\_short\_names.tex}}, file]
+                                    [{\filefmt[file-type={plain-file}, ]{name\_converters.tex}}, file]
+                                    [{\filefmt[file-type={plain-file}, ]{new\_variables.tex}}, file]
                                 ]
                             ]
-                            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/box\_styles/nonlistings/theoremstyles.tex}}, file]
+                        ]
+                        [{\dirfmt[]{nonlistings}}, dir
+                            [{\dirfmt[]{commands}}, dir
+                                [{\dirfmt[]{modified\_commands}}, dir
+                                    [{\filefmt[file-type={plain-file}, ]{newkeytheorem.tex}}, file]
+                                ]
+                                [{\dirfmt[]{newcommands}}, dir
+                                    [{\filefmt[file-type={plain-file}, ]{InputKeyword\_HW-in-Main.tex}}, file]
+                                ]
+                            ]
+                            [{\filefmt[file-type={plain-file}, ]{theoremstyles.tex}}, file]
                         ]
                     ]
-                    [{\dirfmt[]{/workspaces/Prassble/preamble/environments/derived\_environments}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/derived\_environments/colours.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/derived\_environments/lengths.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/derived\_environments/listings.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/environments/derived\_environments/nonlistings.tex}}, file]
+                    [{\dirfmt[]{derived\_environments}}, dir
+                        [{\filefmt[file-type={plain-file}, ]{colours.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{lengths.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{listings.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{nonlistings.tex}}, file]
                     ]
                 ]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/external\_hyperlink\_format.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/hw\_zexternaldocument\_main.tex}}, file]
-                [{\dirfmt[]{/workspaces/Prassble/preamble/math}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/math/general\_math.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/math/specific\_math.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{external\_hyperlink\_format.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{hw\_zexternaldocument\_main.tex}}, file]
+                [{\dirfmt[]{math}}, dir
+                    [{\filefmt[file-type={plain-file}, ]{general\_math.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{specific\_math.tex}}, file]
                 ]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/other.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/page-formatting.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/preamble/preamble.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{other.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{page-formatting.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{preamble.tex}}, file]
             ]
-            [{\dirfmt[]{/workspaces/Prassble/test}}, dir
-                [{\dirfmt[]{/workspaces/Prassble/test/listings}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/inner\_lorem\_ipsum.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/sample\_code.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test.jl}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test1.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test10.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test11.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test12.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test13.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test14.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test15.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test16.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test17.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test18.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test19.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test2.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test20.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test21.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test22.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test23.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test24.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test25.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test26.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test27.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test28.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test29.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test3.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test30.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test31.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test32.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test33.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test34.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test35.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test36.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test37.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test4.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test5.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test6.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test7.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test8.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test9.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test\_NewPCBListing.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/listings/test\_decorations.tex}}, file]
+            [{\dirfmt[]{test}}, dir
+                [{\dirfmt[]{listings}}, dir
+                    [{\filefmt[file-type={plain-file}, ]{inner\_lorem\_ipsum.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{sample\_code.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test.jl}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test.pdf}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test1.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test10.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test11.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test12.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test13.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test14.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test15.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test16.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test17.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test18.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test19.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test2.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test20.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test21.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test22.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test23.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test24.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test25.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test26.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test27.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test28.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test29.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test3.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test30.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test31.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test32.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test33.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test34.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test35.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test36.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test37.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test4.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test5.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test6.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test7.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test8.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test9.txt}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test\_NewPCBListing.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test\_decorations.tex}}, file]
                 ]
-                [{\dirfmt[]{/workspaces/Prassble/test/prassble-math}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/prassble-math/pmath-test.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/test/prassble-math/pmath-test.tex}}, file]
+                [{\dirfmt[]{prassble-math}}, dir
+                    [{\filefmt[file-type={plain-file}, ]{pmath-test.pdf}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{pmath-test.tex}}, file]
                 ]
             ]
-            [{\dirfmt[]{/workspaces/Prassble/testing}}, dir
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/height.pl}}, file]
-                [{\dirfmt[]{/workspaces/Prassble/testing/tcolorbox}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tcolorbox/sample\_code.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tcolorbox/test\_too.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tcolorbox/test\_too.tex}}, file]
+            [{\dirfmt[]{testing}}, dir
+                [{\filefmt[file-type={plain-file}, ]{height.pl}}, file]
+                [{\dirfmt[]{tcolorbox}}, dir
+                    [{\filefmt[file-type={plain-file}, ]{sample\_code.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test\_too.pdf}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{test\_too.tex}}, file]
                 ]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/test.1.75.aux}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/test.1.75.log}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/test.1.75.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/test.1.75.synctex.gz}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/test.1.75.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/test.pl}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing.aux}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing.log}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing.synctex.gz}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing1.5.aux}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing1.5.log}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing1.5.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing1.5.synctex.gz}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing1.5.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing2.aux}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing2.log}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing2.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing2.synctex.gz}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/testing2.tex}}, file]
-                [{\dirfmt[]{/workspaces/Prassble/testing/tree}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/\$\&\#{\textbackslash}{\TeXtreeSpaceChar}{\textbar}\_*{\textasciicircum}@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}}, file]
-                    [{\dirfmt[]{/workspaces/Prassble/testing/tree/FileTrees}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/FileTrees/OutputGoesHere.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/FileTrees/tree\_1.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/FileTrees/tree\_3.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/FileTrees/tree\_4.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/FileTrees/tree\_5.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/FileTrees/tree\_6.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/FileTrees/tree\_7.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/FileTrees/tree\_8.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{test.1.75.aux}}, file]
+                [{\filefmt[file-type={plain-file}, ]{test.1.75.log}}, file]
+                [{\filefmt[file-type={plain-file}, ]{test.1.75.pdf}}, file]
+                [{\filefmt[file-type={plain-file}, ]{test.1.75.synctex.gz}}, file]
+                [{\filefmt[file-type={plain-file}, ]{test.1.75.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{test.pl}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing.aux}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing.log}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing.pdf}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing.synctex.gz}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing1.5.aux}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing1.5.log}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing1.5.pdf}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing1.5.synctex.gz}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing1.5.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing2.aux}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing2.log}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing2.pdf}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing2.synctex.gz}}, file]
+                [{\filefmt[file-type={plain-file}, ]{testing2.tex}}, file]
+                [{\dirfmt[]{tree}}, dir
+                    [{\filefmt[file-type={plain-file}, ]{\$\&\#{\textbackslash}{\TeXtreeSpaceChar}{\textbar}\_*{\textasciicircum}@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}}, file]
+                    [{\dirfmt[]{FileTrees}}, dir
+                        [{\filefmt[file-type={plain-file}, ]{OutputGoesHere.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{tree\_1.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{tree\_3.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{tree\_4.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{tree\_5.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{tree\_6.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{tree\_7.tex}}, file]
+                        [{\filefmt[file-type={plain-file}, ]{tree\_8.tex}}, file]
                     ]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/{\textbackslash}textbackslash}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/a\_file\_with\_[}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/a\_file\_with\_]}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/a\_file\_with\_][\_[\_]\_[[[}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/a\_file\_with\_\{}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/a\_file\_with\_\}}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/a\_file\_with\_\}\{\_\{\_\}\_\{\{\{}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/a\_folder\_with\_'\_and\_"\_yes}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/basename}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/bash.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/bash.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/bash\_test.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/filetree.tmp}}, file]
-                    [{\dirfmt[]{/workspaces/Prassble/testing/tree/folder}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/folder/\&quot;}}, file]
-                        [{\symlinkfmt[link-target-type=plain-file,  }]{/workspaces/Prassble/testing/tree/bash.tex}{/workspaces/Prassble/testing/tree/bash.tex}}, symlink]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/folder/bash\_test.tex}}, file]
-                        [{\dirfmt[]{/workspaces/Prassble/testing/tree/folder/some\_subdirectory}}, dir
-                            [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/folder/some\_subdirectory/file}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{{\textbackslash}textbackslash}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_[}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_]}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_][\_[\_]\_[[[}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_\{}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_\}}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_\}\{\_\{\_\}\_\{\{\{}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{a\_folder\_with\_'\_and\_"\_yes}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{basename}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{bash.pdf}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{bash.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{bash\_test.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{filetree.tmp}}, file]
+                    [{\dirfmt[]{folder}}, dir
+                        [{\filefmt[file-type={plain-file}, ]{\&quot;}}, file]
+                        [{\symlinkfmt[link-target-type=plain-file,  }]{bash.tex}{bash.tex}}, symlink]
+                        [{\filefmt[file-type={plain-file}, ]{bash\_test.tex}}, file]
+                        [{\dirfmt[]{some\_subdirectory}}, dir
+                            [{\filefmt[file-type={plain-file}, ]{file}}, file]
                         ]
-                        [{\symlinkfmt[link-target-type=dir,  }]{/workspaces/Prassble/testing/tree/include\_this}{/workspaces/Prassble/testing/tree/include\_this}}, symlink]
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/folder/testing}}, file]
+                        [{\symlinkfmt[link-target-type=dir,  }]{symlink-test}{include\_this}}, symlink]
+                        [{\filefmt[file-type={plain-file}, ]{testing}}, file]
                     ]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/hello.sh}}, file]
-                    [{\dirfmt[]{/workspaces/Prassble/testing/tree/include\_this}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/include\_this/include\_this.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{hello.sh}}, file]
+                    [{\dirfmt[]{include\_this}}, dir
+                        [{\filefmt[file-type={plain-file}, ]{include\_this.tex}}, file]
                     ]
-                    [{\dirfmt[]{/workspaces/Prassble/testing/tree/some\_folder}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/some\_folder/tmp.tex}}, file]
+                    [{\dirfmt[]{some\_folder}}, dir
+                        [{\filefmt[file-type={plain-file}, ]{tmp.tex}}, file]
                     ]
-                    [{\dirfmt[]{/workspaces/Prassble/testing/tree/spaced{\TeXtreeSpaceChar}folder}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tree/tst.tmp}}, file]
+                    [{\dirfmt[]{spaced{\TeXtreeSpaceChar}folder}}, dir
+                    [{\filefmt[file-type={plain-file}, ]{tst.tmp}}, file]
                 ]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/tst.tex}}, file]
-                [{\dirfmt[]{/workspaces/Prassble/testing/xr}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/xr/1.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/xr/hw1.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/xr/hw1.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/xr/hw1\_ref\_warning\_correction.tmp}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/xr/main.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/xr/main.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/xr/regex.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/xr/regex.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/xr/seq\_mwe.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/testing/xr/seq\_mwe.tex}}, file]
+                [{\filefmt[file-type={plain-file}, ]{tst.tex}}, file]
+                [{\dirfmt[]{xr}}, dir
+                    [{\filefmt[file-type={plain-file}, ]{1.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{hw1.pdf}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{hw1.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{hw1\_ref\_warning\_correction.tmp}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{main.pdf}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{main.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{regex.pdf}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{regex.tex}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{seq\_mwe.pdf}}, file]
+                    [{\filefmt[file-type={plain-file}, ]{seq\_mwe.tex}}, file]
                 ]
             ]
-            [{\dirfmt[]{/workspaces/Prassble/textrees}}, dir
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/textrees/textree\_0}}, file]
-                [{\filefmt[file-type={plain-file}, ]{/workspaces/Prassble/textrees/textree\_1}}, file]
+            [{\dirfmt[]{textrees}}, dir
+                [{\filefmt[file-type={plain-file}, ]{textree\_0}}, file]
+                [{\filefmt[file-type={plain-file}, ]{textree\_1}}, file]
             ]
         ]
     ]
@@ -265,25 +265,25 @@
     \report{
         ,dir  = 1
         ,file = {
+            ,tty = 0
+            ,block-special-file = 0
             ,total = 0
-            ,plain-file = 169
             ,character-special-file = 0
             ,socket = 0
-            ,tty = 0
+            ,plain-file = 169
+            ,pipe = 0
             ,symlink = {
+                ,tty = 0
+                ,total = 2
                 ,block-special-file = 0
                 ,pipe = 0
-                ,socket = 0
-                ,tty = 0
-                ,character-special-file = 0
-                ,nonexistent = 0
-                ,total = 2
                 ,plain-file = 1
                 ,symlink = 0
+                ,character-special-file = 0
                 ,dir = 1
+                ,nonexistent = 0
+                ,socket = 0
             }
-            ,pipe = 0
-            ,block-special-file = 0
             ,non-symlinks = 169
         }
     }

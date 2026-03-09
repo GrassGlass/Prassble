@@ -162,7 +162,7 @@ sub path_to_TeXname {
     {
         my ($path) = @_;
         my $textree_target_unslashed = $textree_target;
-        if ( $textree_target =~ m/(.*)\/$/ ) { $textree_target_unslashed = $1; print("$textree_target_unslashed\n"); }
+        if ( $textree_target =~ m/(.*)\/$/ ) { $textree_target_unslashed = $1 }
         my $TeXname;
         my $rel_path; # path of $path, relative to $textree_target.
         if ( ! defined($name_opts) )
