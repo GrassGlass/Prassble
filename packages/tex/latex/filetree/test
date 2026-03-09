@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use File::Spec;
-my $str = File::Spec->rel2abs("testing/../");
-print("$str\n");
+my $path = "testing/..";
+my $path_unslashed = $path;
+if ( $path =~ m/(.*)\/$/ ) { $path_unslashed = $1; print("$path_unslashed\n"); }

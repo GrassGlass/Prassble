@@ -72,7 +72,7 @@ if ($version_opts)
             $code->();
         }
 
-# Use the 'diagnostics' module if the flag '--debugging' is used.
+# Use the 'diagnostics' module if the flag '--bug' is used.
     if_debugging( sub { eval {
         require diagnostics;
             diagnostics->import();
@@ -107,6 +107,20 @@ sub rewrite_file {
 
     return($in, $out);
 }
+
+sub abs_path_allow_trailing_symlink {
+    my $args = scalar(@_);
+    if ($args == 1)
+    {
+        my ($path) = @_;
+        my ($volume, $parent_dir, $basename) = File::Spec->splitpath( $path, 0 );
+        my $abs_path = abs_path($path);
+        return($abs_path . "/" . $basename)
+    }else
+    {
+        die("abs_path_allow_trailing_symlink: there are $args != 1 arguments passed to me.")
+    }
+} 
 
 # Regex replace the characters of "$TeXname" to their LaTeX counterparts.
 sub TeX_escape {
@@ -147,15 +161,17 @@ sub path_to_TeXname {
     if ($args == 1)
     {
         my ($path) = @_;
+        my $textree_target_unslashed = $textree_target;
+        if ( $textree_target =~ m/(.*)\/$/ ) { $textree_target_unslashed = $1; print("$textree_target_unslashed\n"); }
         my $TeXname;
         my $rel_path; # path of $path, relative to $textree_target.
         if ( ! defined($name_opts) )
-        { $TeXname = TeX_escape(basename($path)) } # default (without the --format-file flag)
+        { $TeXname = TeX_escape(basename($path)) } # default (without the --name flag)
         # Below: if ( grep( /^$name_opts$/, @array ) ): check whether $name_opts is an element of @array
             # Source: https://stackoverflow.com/a/6475315/31298396
         elsif ( grep( /^$name_opts$/, ("tree -f","f","-f") ) )
         { $TeXname = TeX_escape($path) }
-        elsif ( $path =~ m/${textree_target}(.*)/ )
+        elsif ( $path =~ m/${textree_target_unslashed}(.*)/ )
         {
             $rel_path = $1;
             # If $rel_path is not identical to "$textree_target", it has the exact form "$textree_target/...". Make $rel_path into the form ./...
@@ -163,7 +179,11 @@ sub path_to_TeXname {
             { $rel_path = "." . "$rel_path" }
             if ( grep( /^$name_opts$/, ("r","rel","relative","rel-path","rel-paths","relative-path","relative-paths") ) )
             {
-                $TeXname = TeX_escape($rel_path)
+                if ($path eq $textree_target)
+                {
+                    $TeXname = TeX_escape($textree_target)
+                }else
+                { $TeXname = TeX_escape($rel_path) }
             }
             elsif ( grep( /^$name_opts$/, ("a","abs","absolute","abs-path","abs-paths","absolute-path","absolute-paths") ) )
             {
@@ -251,9 +271,9 @@ sub link_destination {
         if (-l $link)
         {
             my $link_target = readlink($link);
-            my ($volume, $parent_path, $basename) = File::Spec->splitpath( $link, 0 );
+            my ($volume, $parent_dir, $basename) = File::Spec->splitpath( $link, 0 );
             # Absolute path? No worries! rel2abs(abs_path) = canonpath(abs_path).
-            return( File::Spec->rel2abs( $link_target, $parent_path ) )
+            return( File::Spec->rel2abs( $link_target, $parent_dir ) )
         }else
         { die("link_target_path: the path passed to me does not point to a symlink.") }
     }else
