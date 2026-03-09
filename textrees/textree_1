@@ -1,263 +1,263 @@
 \begin{forest}
-    [{\dirfmt[]{workspaces}}, dir
-        [{\dirfmt[]{Prassble}}, dir
-            [{\dirfmt[]{Documentation}}, dir
-                [{\filefmt[file-type={plain-file}, ]{Doc\_Titlepage.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{Prassble\_Documentation.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{Prassble\_Documentation.tex}}, file]
+    [\dirfmt[blocks={8}, ino={1572867}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773022713}, rdev={0}, nlink={4}, size={4096}, perms={0757}, blksize={4096}, mtime={1770424090}, uid={1000}, mode={16879}, , target-directory]{workspaces}
+        [\dirfmt[dev={1796}, ctime={1773040332}, ino={1572874}, gid={0}, atime={1773040333}, blocks={8}, nlink={14}, size={4096}, rdev={0}, mtime={1773040332}, uid={1000}, perms={0777}, blksize={4096}, mode={16895}, ]{Prassble}
+            [\dirfmt[rdev={0}, size={4096}, nlink={2}, blocks={8}, atime={1773022713}, ctime={1770430553}, dev={1796}, gid={0}, ino={1572929}, mode={16895}, blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, ]{Documentation}
+                [\filefmt[file-type={plain-file}, blocks={8}, atime={1773041804}, dev={1796}, ctime={1770430553}, gid={0}, ino={1572930}, rdev={0}, nlink={1}, size={1069}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, ]{Doc\_Titlepage.tex}]
+                [\filefmt[file-type={plain-file}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, size={262016}, nlink={1}, rdev={0}, gid={0}, ino={1572931}, ctime={1770430553}, dev={1796}, atime={1771058355}, blocks={512}, ]{Prassble\_Documentation.pdf}]
+                [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={3548}, blocks={8}, atime={1773041804}, ctime={1770430553}, dev={1796}, gid={0}, ino={1572932}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{Prassble\_Documentation.tex}]
             ]
-            [{\filefmt[file-type={plain-file}, ]{LICENSE.txt}}, file]
-            [{\filefmt[file-type={plain-file}, ]{Prassble\_is\_here.txt}}, file]
-            [{\filefmt[file-type={plain-file}, ]{README.md}}, file]
-            [{\dirfmt[]{figures}}, dir
-                [{\filefmt[file-type={plain-file}, ]{Three\_Planes\_Orthogonal\_Complements\_licensed\_under\_CC\_BY-SA\_4.0.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{iibui.pdf}}, file]
+            [\filefmt[file-type={plain-file}, rdev={0}, size={19100}, nlink={1}, blocks={40}, dev={1796}, ctime={1770430553}, ino={1572933}, gid={0}, atime={1771058355}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, ]{LICENSE.txt}]
+            [\filefmt[file-type={plain-file}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, rdev={0}, size={120}, nlink={1}, blocks={8}, ino={1572934}, gid={0}, dev={1796}, ctime={1770430553}, atime={1771058355}, ]{Prassble\_is\_here.txt}]
+            [\filefmt[file-type={plain-file}, rdev={0}, size={2765}, nlink={1}, blocks={8}, ctime={1773040332}, dev={1796}, gid={0}, ino={1572935}, atime={1773040333}, mode={33206}, perms={0666}, blksize={4096}, mtime={1773040332}, uid={0}, ]{README.md}]
+            [\dirfmt[perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={16895}, blocks={8}, ctime={1770430553}, dev={1796}, gid={0}, ino={1572936}, atime={1773022713}, rdev={0}, size={4096}, nlink={2}, ]{figures}
+                [\filefmt[file-type={plain-file}, atime={1771058355}, dev={1796}, ctime={1770430553}, ino={1572937}, gid={0}, blocks={96}, size={45755}, nlink={1}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, ]{Three\_Planes\_Orthogonal\_Complements\_licensed\_under\_CC\_BY-SA\_4.0.pdf}]
+                [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, size={5435}, nlink={1}, blocks={16}, atime={1771058355}, ctime={1770430553}, dev={1796}, ino={1572938}, gid={0}, ]{iibui.pdf}]
             ]
-            [{\dirfmt[]{files}}, dir
-                [{\dirfmt[]{chapters}}, dir
-                    [{\dirfmt[]{ch1}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{sec1.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{sec2.tex}}, file]
+            [\dirfmt[perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={16895}, blocks={8}, ctime={1770430553}, dev={1796}, gid={0}, ino={1572939}, atime={1773022713}, rdev={0}, nlink={4}, size={4096}, ]{files}
+                [\dirfmt[mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, mode={16895}, dev={1796}, ctime={1770430553}, gid={0}, ino={1572940}, atime={1773022713}, blocks={8}, size={4096}, nlink={4}, rdev={0}, ]{chapters}
+                    [\dirfmt[mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, mode={16895}, ctime={1770430553}, dev={1796}, gid={0}, ino={1572941}, atime={1773022713}, blocks={8}, nlink={2}, size={4096}, rdev={0}, ]{ch1}
+                        [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, nlink={1}, size={431}, blocks={8}, atime={1773041803}, dev={1796}, ctime={1770430553}, gid={0}, ino={1572942}, ]{sec1.tex}]
+                        [\filefmt[file-type={plain-file}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, nlink={1}, size={1393}, rdev={0}, ino={1572943}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773041803}, blocks={8}, ]{sec2.tex}]
                     ]
-                    [{\dirfmt[]{ch2}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{sec1.tex}}, file]
+                    [\dirfmt[blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, mode={16895}, blocks={8}, atime={1773022713}, ctime={1770430553}, dev={1796}, gid={0}, ino={1572944}, rdev={0}, nlink={2}, size={4096}, ]{ch2}
+                        [\filefmt[file-type={plain-file}, size={130}, nlink={1}, rdev={0}, ctime={1770430553}, dev={1796}, gid={0}, ino={1572945}, atime={1773041803}, blocks={8}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, ]{sec1.tex}]
                     ]
                 ]
-                [{\dirfmt[]{homework}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{1.tex}}, file]
+                [\dirfmt[atime={1773022713}, ctime={1770430553}, dev={1796}, gid={0}, ino={1572946}, blocks={8}, size={4096}, nlink={2}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, mode={16895}, ]{homework}
+                    [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={1237}, blocks={8}, ino={1572947}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773041803}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, ]{1.tex}]
                 ]
             ]
-            [{\dirfmt[]{homework}}, dir
-                [{\dirfmt[]{hw1}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{hw1.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{hw1.tex}}, file]
+            [\dirfmt[size={4096}, nlink={3}, rdev={0}, ino={1572949}, gid={0}, dev={1796}, ctime={1770430553}, atime={1773022713}, blocks={8}, mode={16895}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, ]{homework}
+                [\dirfmt[rdev={0}, nlink={2}, size={4096}, blocks={8}, dev={1796}, ctime={1770430553}, ino={1572950}, gid={0}, atime={1773022713}, mode={16895}, perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, ]{hw1}
+                    [\filefmt[file-type={plain-file}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, blocks={328}, atime={1771058355}, ctime={1770430553}, dev={1796}, ino={1572951}, gid={0}, rdev={0}, size={164056}, nlink={1}, ]{hw1.pdf}]
+                    [\filefmt[file-type={plain-file}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={33206}, blocks={8}, ctime={1770430553}, dev={1796}, gid={0}, ino={1572952}, atime={1773041804}, rdev={0}, size={284}, nlink={1}, ]{hw1.tex}]
                 ]
             ]
-            [{\filefmt[file-type={plain-file}, ]{main.pdf}}, file]
-            [{\filefmt[file-type={plain-file}, ]{main.tex}}, file]
-            [{\filefmt[file-type={plain-file}, ]{maintitlepage.tex}}, file]
-            [{\filefmt[file-type={plain-file}, ]{mkPrassble.pl}}, file]
-            [{\dirfmt[]{packages}}, dir
-                [{\filefmt[file-type={plain-file}, ]{development}}, file]
-                [{\filefmt[file-type={plain-file}, ]{ls-R}}, file]
-                [{\dirfmt[]{tex}}, dir
-                    [{\dirfmt[]{latex}}, dir
-                        [{\dirfmt[]{filetree}}, dir
-                            [{\filefmt[file-type={plain-file}, ]{file\_tree}}, file]
-                            [{\filefmt[file-type={plain-file}, ]{filetree.sty}}, file]
-                            [{\filefmt[file-type={plain-file}, ]{test}}, file]
-                            [{\filefmt[file-type={plain-file}, ]{textree}}, file]
-                            [{\filefmt[file-type={plain-file}, ]{textree\_sed}}, file]
+            [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1771912587}, gid={0}, ino={1572953}, dev={1796}, ctime={1770430553}, blocks={600}, size={306571}, nlink={1}, rdev={0}, ]{main.pdf}]
+            [\filefmt[file-type={plain-file}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, nlink={1}, size={1598}, rdev={0}, atime={1773041803}, gid={0}, ino={1572954}, ctime={1770430553}, dev={1796}, blocks={8}, ]{main.tex}]
+            [\filefmt[file-type={plain-file}, rdev={0}, size={772}, nlink={1}, blocks={8}, atime={1773041803}, ino={1572955}, gid={0}, ctime={1770430553}, dev={1796}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{maintitlepage.tex}]
+            [\filefmt[file-type={plain-file}, blocks={8}, gid={0}, ino={1572956}, dev={1796}, ctime={1770430553}, atime={1771058355}, rdev={0}, nlink={1}, size={283}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={33206}, ]{mkPrassble.pl}]
+            [\dirfmt[rdev={0}, nlink={3}, size={4096}, blocks={8}, atime={1773022713}, ctime={1771056900}, dev={1796}, gid={0}, ino={1572957}, mode={16895}, blksize={4096}, perms={0777}, uid={1000}, mtime={1771056900}, ]{packages}
+                [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={2267}, blocks={8}, dev={1796}, ctime={1771056884}, ino={1572958}, gid={0}, atime={1771900144}, mode={33279}, perms={0777}, blksize={4096}, mtime={1771056884}, uid={1000}, ]{development}]
+                [\filefmt[file-type={plain-file}, size={259}, nlink={1}, rdev={0}, dev={1796}, ctime={1771056900}, gid={0}, ino={1619492}, atime={1773041805}, blocks={8}, mode={33206}, mtime={1771056900}, uid={0}, perms={0666}, blksize={4096}, ]{ls-R}]
+                [\dirfmt[perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={16895}, blocks={8}, dev={1796}, ctime={1770430553}, gid={0}, ino={1572960}, atime={1773022713}, rdev={0}, size={4096}, nlink={3}, ]{tex}
+                    [\dirfmt[nlink={4}, size={4096}, rdev={0}, ino={1572961}, gid={0}, dev={1796}, ctime={1770430553}, atime={1773022713}, blocks={8}, mode={16895}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, ]{latex}
+                        [\dirfmt[blksize={4096}, perms={0777}, uid={1000}, mtime={1772018100}, mode={16895}, blocks={8}, atime={1773022713}, dev={1796}, ctime={1772018100}, ino={1572962}, gid={0}, rdev={0}, size={4096}, nlink={2}, ]{filetree}
+                            [\filefmt[file-type={plain-file}, gid={0}, ino={1572963}, dev={1796}, ctime={1770430553}, atime={1771903094}, blocks={16}, size={6497}, nlink={1}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, mode={33279}, ]{file\_tree}]
+                            [\filefmt[file-type={plain-file}, ino={1572964}, gid={0}, dev={1796}, ctime={1771900291}, atime={1772249532}, blocks={32}, nlink={1}, size={13598}, rdev={0}, mtime={1771900291}, uid={0}, perms={0666}, blksize={4096}, mode={33206}, ]{filetree.sty}]
+                            [\filefmt[file-type={plain-file}, perms={0777}, blksize={4096}, mtime={1773044979}, uid={0}, mode={33279}, blocks={8}, ino={1619683}, gid={0}, dev={1796}, ctime={1773044979}, atime={1773044979}, rdev={0}, nlink={1}, size={86}, ]{test}]
+                            [\filefmt[file-type={plain-file}, uid={1000}, mtime={1773046445}, blksize={4096}, perms={0777}, mode={33279}, atime={1773046445}, ino={1572965}, gid={0}, dev={1796}, ctime={1773046445}, blocks={40}, nlink={1}, size={19039}, rdev={0}, ]{textree}]
+                            [\filefmt[file-type={plain-file}, ino={1572966}, gid={0}, dev={1796}, ctime={1770430553}, atime={1771900488}, blocks={24}, nlink={1}, size={11614}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, mode={33279}, ]{textree\_sed}]
                         ]
-                        [{\dirfmt[]{prassble-math}}, dir
-                            [{\filefmt[file-type={plain-file}, ]{prassble-math.sty}}, file]
+                        [\dirfmt[uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, mode={16895}, atime={1773022713}, ctime={1770430553}, dev={1796}, ino={1572967}, gid={0}, blocks={8}, size={4096}, nlink={2}, rdev={0}, ]{prassble-math}
+                            [\filefmt[file-type={plain-file}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, size={13733}, nlink={1}, rdev={0}, dev={1796}, ctime={1770430553}, ino={1572968}, gid={0}, atime={1771058355}, blocks={32}, ]{prassble-math.sty}]
                         ]
                     ]
                 ]
             ]
-            [{\filefmt[file-type={plain-file}, ]{pmath-test.pdf}}, file]
-            [{\dirfmt[]{preamble}}, dir
-                [{\dirfmt[]{commands}}, dir
-                    [{\dirfmt[]{modified\_commands}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{Chapter\_and\_Section.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{FileTree.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{Input\_macro.tex}}, file]
+            [\filefmt[file-type={plain-file}, nlink={1}, size={207991}, rdev={0}, atime={1771058355}, dev={1796}, ctime={1770430553}, ino={1572969}, gid={0}, blocks={408}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{pmath-test.pdf}]
+            [\dirfmt[size={4096}, nlink={5}, rdev={0}, atime={1773022713}, dev={1796}, ctime={1770430553}, ino={1572970}, gid={0}, blocks={8}, mode={16895}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, ]{preamble}
+                [\dirfmt[blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, mode={16895}, blocks={8}, atime={1773022713}, gid={0}, ino={1572971}, dev={1796}, ctime={1770430553}, rdev={0}, nlink={4}, size={4096}, ]{commands}
+                    [\dirfmt[rdev={0}, nlink={2}, size={4096}, blocks={8}, atime={1773022713}, ctime={1770430553}, dev={1796}, ino={1572972}, gid={0}, mode={16895}, blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, ]{modified\_commands}
+                        [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, nlink={1}, size={1837}, blocks={8}, atime={1773041803}, dev={1796}, ctime={1770430553}, ino={1572973}, gid={0}, ]{Chapter\_and\_Section.tex}]
+                        [\filefmt[file-type={plain-file}, dev={1796}, ctime={1770430553}, gid={0}, ino={1572974}, atime={1773041803}, blocks={0}, size={0}, nlink={1}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ]{FileTree.tex}]
+                        [\filefmt[file-type={plain-file}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, rdev={0}, nlink={1}, size={6729}, blocks={16}, ino={1572975}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773041803}, ]{Input\_macro.tex}]
                     ]
-                    [{\dirfmt[]{newcommands}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{KeywordForInput.tex}}, file]
+                    [\dirfmt[uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, mode={16895}, atime={1773022713}, ino={1572976}, gid={0}, dev={1796}, ctime={1770430553}, blocks={8}, size={4096}, nlink={2}, rdev={0}, ]{newcommands}
+                        [\filefmt[file-type={plain-file}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, blocks={8}, atime={1773041804}, ino={1572977}, gid={0}, dev={1796}, ctime={1770430553}, rdev={0}, nlink={1}, size={1170}, ]{KeywordForInput.tex}]
                     ]
                 ]
-                [{\filefmt[file-type={plain-file}, ]{custom-symbols.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{enumeration.tex}}, file]
-                [{\dirfmt[]{environments}}, dir
-                    [{\dirfmt[]{box\_styles}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{lengths\_and\_counters.tex}}, file]
-                        [{\dirfmt[]{listings}}, dir
-                            [{\filefmt[file-type={plain-file}, ]{codestyles.tex}}, file]
-                            [{\dirfmt[]{commands}}, dir
-                                [{\dirfmt[]{modified\_commands}}, dir
-                                    [{\filefmt[file-type={plain-file}, ]{NewInputListing.tex}}, file]
-                                    [{\filefmt[file-type={plain-file}, ]{NewListing.tex}}, file]
+                [\filefmt[file-type={plain-file}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ino={1572978}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773041804}, blocks={8}, nlink={1}, size={1337}, rdev={0}, ]{custom-symbols.tex}]
+                [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={2328}, blocks={8}, atime={1773041804}, ctime={1770430553}, dev={1796}, gid={0}, ino={1572979}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{enumeration.tex}]
+                [\dirfmt[uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, mode={16895}, atime={1773022713}, ctime={1770430553}, dev={1796}, ino={1572980}, gid={0}, blocks={8}, nlink={4}, size={4096}, rdev={0}, ]{environments}
+                    [\dirfmt[blocks={8}, atime={1773022713}, gid={0}, ino={1572981}, ctime={1770430553}, dev={1796}, rdev={0}, nlink={4}, size={4096}, blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, mode={16895}, ]{box\_styles}
+                        [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={1228}, blocks={8}, atime={1773041804}, dev={1796}, ctime={1770430553}, ino={1572982}, gid={0}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{lengths\_and\_counters.tex}]
+                        [\dirfmt[atime={1773022713}, gid={0}, ino={1572983}, ctime={1770430553}, dev={1796}, blocks={8}, size={4096}, nlink={3}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, mode={16895}, ]{listings}
+                            [\filefmt[file-type={plain-file}, gid={0}, ino={1572984}, ctime={1770430553}, dev={1796}, atime={1773041805}, blocks={48}, size={22036}, nlink={1}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ]{codestyles.tex}]
+                            [\dirfmt[mode={16895}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, size={4096}, nlink={4}, rdev={0}, ino={1572985}, gid={0}, dev={1796}, ctime={1770430553}, atime={1773022713}, blocks={8}, ]{commands}
+                                [\dirfmt[blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, mode={16895}, blocks={8}, atime={1773022713}, dev={1796}, ctime={1770430553}, gid={0}, ino={1572986}, rdev={0}, size={4096}, nlink={2}, ]{modified\_commands}
+                                    [\filefmt[file-type={plain-file}, atime={1773041804}, dev={1796}, ctime={1770430553}, gid={0}, ino={1572987}, blocks={8}, size={2157}, nlink={1}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, ]{NewInputListing.tex}]
+                                    [\filefmt[file-type={plain-file}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, blocks={8}, atime={1773041804}, gid={0}, ino={1572988}, dev={1796}, ctime={1770430553}, rdev={0}, nlink={1}, size={2040}, ]{NewListing.tex}]
                                 ]
-                                [{\dirfmt[]{newcommands}}, dir
-                                    [{\filefmt[file-type={plain-file}, ]{all\_short\_names.tex}}, file]
-                                    [{\filefmt[file-type={plain-file}, ]{name\_converters.tex}}, file]
-                                    [{\filefmt[file-type={plain-file}, ]{new\_variables.tex}}, file]
-                                ]
-                            ]
-                        ]
-                        [{\dirfmt[]{nonlistings}}, dir
-                            [{\dirfmt[]{commands}}, dir
-                                [{\dirfmt[]{modified\_commands}}, dir
-                                    [{\filefmt[file-type={plain-file}, ]{newkeytheorem.tex}}, file]
-                                ]
-                                [{\dirfmt[]{newcommands}}, dir
-                                    [{\filefmt[file-type={plain-file}, ]{InputKeyword\_HW-in-Main.tex}}, file]
+                                [\dirfmt[mode={16895}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, size={4096}, nlink={2}, rdev={0}, dev={1796}, ctime={1770430553}, ino={1572989}, gid={0}, atime={1773022713}, blocks={8}, ]{newcommands}
+                                    [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={7815}, blocks={16}, ino={1572990}, gid={0}, dev={1796}, ctime={1770430553}, atime={1773041805}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, ]{all\_short\_names.tex}]
+                                    [\filefmt[file-type={plain-file}, dev={1796}, ctime={1770430553}, gid={0}, ino={1572991}, atime={1773041804}, blocks={24}, size={11899}, nlink={1}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ]{name\_converters.tex}]
+                                    [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1773041804}, gid={0}, ino={1572992}, dev={1796}, ctime={1770430553}, blocks={16}, size={4133}, nlink={1}, rdev={0}, ]{new\_variables.tex}]
                                 ]
                             ]
-                            [{\filefmt[file-type={plain-file}, ]{theoremstyles.tex}}, file]
+                        ]
+                        [\dirfmt[rdev={0}, size={4096}, nlink={3}, blocks={8}, atime={1773022713}, gid={0}, ino={1572993}, dev={1796}, ctime={1770430553}, mode={16895}, blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, ]{nonlistings}
+                            [\dirfmt[uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, mode={16895}, atime={1773022713}, gid={0}, ino={1572994}, dev={1796}, ctime={1770430553}, blocks={8}, size={4096}, nlink={4}, rdev={0}, ]{commands}
+                                [\dirfmt[atime={1773022713}, gid={0}, ino={1572995}, ctime={1770430553}, dev={1796}, blocks={8}, size={4096}, nlink={2}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, mode={16895}, ]{modified\_commands}
+                                    [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, size={6437}, nlink={1}, blocks={16}, atime={1773041805}, gid={0}, ino={1572996}, ctime={1770430553}, dev={1796}, ]{newkeytheorem.tex}]
+                                ]
+                                [\dirfmt[perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={16895}, blocks={8}, gid={0}, ino={1572997}, dev={1796}, ctime={1770430553}, atime={1773022713}, rdev={0}, nlink={2}, size={4096}, ]{newcommands}
+                                    [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1773041805}, ino={1572998}, gid={0}, dev={1796}, ctime={1770430553}, blocks={8}, size={2378}, nlink={1}, rdev={0}, ]{InputKeyword\_HW-in-Main.tex}]
+                                ]
+                            ]
+                            [\filefmt[file-type={plain-file}, blocks={16}, atime={1773041805}, gid={0}, ino={1572999}, dev={1796}, ctime={1770430553}, rdev={0}, nlink={1}, size={4127}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, ]{theoremstyles.tex}]
                         ]
                     ]
-                    [{\dirfmt[]{derived\_environments}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{colours.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{lengths.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{listings.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{nonlistings.tex}}, file]
+                    [\dirfmt[mode={16895}, blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, rdev={0}, size={4096}, nlink={2}, blocks={8}, atime={1773022713}, gid={0}, ino={1573000}, ctime={1770430553}, dev={1796}, ]{derived\_environments}
+                        [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1773041804}, dev={1796}, ctime={1770430553}, ino={1573001}, gid={0}, blocks={0}, nlink={1}, size={0}, rdev={0}, ]{colours.tex}]
+                        [\filefmt[file-type={plain-file}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, blocks={8}, atime={1773041804}, dev={1796}, ctime={1770430553}, ino={1573002}, gid={0}, rdev={0}, size={1784}, nlink={1}, ]{lengths.tex}]
+                        [\filefmt[file-type={plain-file}, blocks={16}, atime={1773041804}, gid={0}, ino={1573003}, ctime={1770430553}, dev={1796}, rdev={0}, nlink={1}, size={4158}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, ]{listings.tex}]
+                        [\filefmt[file-type={plain-file}, atime={1773041804}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573004}, blocks={24}, size={9971}, nlink={1}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, ]{nonlistings.tex}]
                     ]
                 ]
-                [{\filefmt[file-type={plain-file}, ]{external\_hyperlink\_format.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{hw\_zexternaldocument\_main.tex}}, file]
-                [{\dirfmt[]{math}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{general\_math.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{specific\_math.tex}}, file]
+                [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={2283}, blocks={8}, ino={1573005}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773041804}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, ]{external\_hyperlink\_format.tex}]
+                [\filefmt[file-type={plain-file}, blocks={8}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573006}, atime={1773041803}, rdev={0}, size={2089}, nlink={1}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={33206}, ]{hw\_zexternaldocument\_main.tex}]
+                [\dirfmt[mode={16895}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, size={4096}, nlink={2}, rdev={0}, gid={0}, ino={1573007}, ctime={1770430553}, dev={1796}, atime={1773022713}, blocks={8}, ]{math}
+                    [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1773041805}, gid={0}, ino={1573008}, dev={1796}, ctime={1770430553}, blocks={8}, size={3056}, nlink={1}, rdev={0}, ]{general\_math.tex}]
+                    [\filefmt[file-type={plain-file}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={33206}, blocks={8}, ino={1573009}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773041805}, rdev={0}, nlink={1}, size={1502}, ]{specific\_math.tex}]
                 ]
-                [{\filefmt[file-type={plain-file}, ]{other.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{page-formatting.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{preamble.tex}}, file]
+                [\filefmt[file-type={plain-file}, gid={0}, ino={1573010}, ctime={1770430553}, dev={1796}, atime={1773041804}, blocks={8}, size={2360}, nlink={1}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ]{other.tex}]
+                [\filefmt[file-type={plain-file}, nlink={1}, size={3702}, rdev={0}, atime={1773041803}, dev={1796}, ctime={1770430553}, ino={1573011}, gid={0}, blocks={8}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{page-formatting.tex}]
+                [\filefmt[file-type={plain-file}, rdev={0}, size={6323}, nlink={1}, blocks={16}, ino={1573012}, gid={0}, dev={1796}, ctime={1770430553}, atime={1773041803}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, ]{preamble.tex}]
             ]
-            [{\dirfmt[]{test}}, dir
-                [{\dirfmt[]{listings}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{inner\_lorem\_ipsum.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{sample\_code.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test.jl}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test1.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test10.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test11.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test12.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test13.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test14.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test15.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test16.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test17.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test18.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test19.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test2.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test20.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test21.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test22.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test23.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test24.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test25.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test26.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test27.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test28.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test29.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test3.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test30.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test31.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test32.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test33.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test34.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test35.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test36.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test37.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test4.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test5.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test6.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test7.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test8.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test9.txt}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test\_NewPCBListing.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test\_decorations.tex}}, file]
+            [\dirfmt[mode={16895}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, size={4096}, nlink={4}, rdev={0}, atime={1773022713}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573013}, blocks={8}, ]{test}
+                [\dirfmt[nlink={2}, size={4096}, rdev={0}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573014}, atime={1773022713}, blocks={8}, mode={16895}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, ]{listings}
+                    [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1773041804}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573015}, blocks={8}, size={32}, nlink={1}, rdev={0}, ]{inner\_lorem\_ipsum.tex}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, nlink={1}, size={5}, blocks={8}, atime={1773041804}, ino={1573016}, gid={0}, ctime={1770430553}, dev={1796}, ]{sample\_code.tex}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, nlink={1}, size={20}, rdev={0}, atime={1771058355}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573017}, blocks={8}, ]{test.jl}]
+                    [\filefmt[file-type={plain-file}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, blocks={632}, atime={1771058355}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573018}, rdev={0}, nlink={1}, size={319773}, ]{test.pdf}]
+                    [\filefmt[file-type={plain-file}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573019}, atime={1773041804}, blocks={16}, size={4608}, nlink={1}, rdev={0}, ]{test.tex}]
+                    [\filefmt[file-type={plain-file}, nlink={1}, size={37}, rdev={0}, atime={1771058355}, dev={1796}, ctime={1770430553}, ino={1573020}, gid={0}, blocks={8}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{test1.txt}]
+                    [\filefmt[file-type={plain-file}, size={37}, nlink={1}, rdev={0}, atime={1771058355}, gid={0}, ino={1573021}, ctime={1770430553}, dev={1796}, blocks={8}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{test10.txt}]
+                    [\filefmt[file-type={plain-file}, atime={1771058355}, dev={1796}, ctime={1770430553}, ino={1573022}, gid={0}, blocks={8}, nlink={1}, size={145}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, ]{test11.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, size={53}, nlink={1}, blocks={8}, atime={1771058355}, ino={1573023}, gid={0}, dev={1796}, ctime={1770430553}, ]{test12.txt}]
+                    [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1771058355}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573024}, blocks={8}, nlink={1}, size={53}, rdev={0}, ]{test13.txt}]
+                    [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1771058355}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573025}, blocks={8}, nlink={1}, size={63}, rdev={0}, ]{test14.txt}]
+                    [\filefmt[file-type={plain-file}, blocks={8}, gid={0}, ino={1573026}, dev={1796}, ctime={1770430553}, atime={1771058355}, rdev={0}, nlink={1}, size={63}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={33206}, ]{test15.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, size={37}, nlink={1}, blocks={8}, atime={1771058355}, ctime={1770430553}, dev={1796}, ino={1573027}, gid={0}, ]{test16.txt}]
+                    [\filefmt[file-type={plain-file}, nlink={1}, size={37}, rdev={0}, atime={1771058355}, dev={1796}, ctime={1770430553}, ino={1573028}, gid={0}, blocks={8}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{test17.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, size={53}, nlink={1}, blocks={8}, atime={1771058355}, ino={1573029}, gid={0}, dev={1796}, ctime={1770430553}, ]{test18.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, size={52}, nlink={1}, blocks={8}, atime={1771058355}, ino={1573030}, gid={0}, ctime={1770430553}, dev={1796}, ]{test19.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, size={37}, nlink={1}, rdev={0}, atime={1771058355}, ino={1573031}, gid={0}, dev={1796}, ctime={1770430553}, blocks={8}, ]{test2.txt}]
+                    [\filefmt[file-type={plain-file}, size={41}, nlink={1}, rdev={0}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573032}, atime={1771058355}, blocks={8}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, ]{test20.txt}]
+                    [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={133}, blocks={8}, atime={1771058355}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573033}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{test21.txt}]
+                    [\filefmt[file-type={plain-file}, rdev={0}, size={45}, nlink={1}, blocks={8}, atime={1771058355}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573034}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{test22.txt}]
+                    [\filefmt[file-type={plain-file}, size={55}, nlink={1}, rdev={0}, atime={1771058355}, dev={1796}, ctime={1770430553}, ino={1573035}, gid={0}, blocks={8}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{test23.txt}]
+                    [\filefmt[file-type={plain-file}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, gid={0}, ino={1573036}, dev={1796}, ctime={1770430553}, atime={1771058355}, blocks={8}, nlink={1}, size={53}, rdev={0}, ]{test24.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, nlink={1}, size={52}, rdev={0}, ino={1573037}, gid={0}, dev={1796}, ctime={1770430553}, atime={1771058355}, blocks={8}, ]{test25.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, size={41}, nlink={1}, blocks={8}, atime={1771058355}, gid={0}, ino={1573038}, ctime={1770430553}, dev={1796}, ]{test26.txt}]
+                    [\filefmt[file-type={plain-file}, size={29}, nlink={1}, rdev={0}, gid={0}, ino={1573039}, dev={1796}, ctime={1770430553}, atime={1771058355}, blocks={8}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, ]{test27.txt}]
+                    [\filefmt[file-type={plain-file}, atime={1771058355}, gid={0}, ino={1573040}, dev={1796}, ctime={1770430553}, blocks={8}, size={27}, nlink={1}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, ]{test28.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, size={65}, nlink={1}, rdev={0}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573041}, atime={1771058355}, blocks={8}, ]{test29.txt}]
+                    [\filefmt[file-type={plain-file}, size={133}, nlink={1}, rdev={0}, atime={1771058355}, dev={1796}, ctime={1770430553}, ino={1573042}, gid={0}, blocks={8}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{test3.txt}]
+                    [\filefmt[file-type={plain-file}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, blocks={8}, atime={1771058355}, ino={1573043}, gid={0}, dev={1796}, ctime={1770430553}, rdev={0}, size={64}, nlink={1}, ]{test30.txt}]
+                    [\filefmt[file-type={plain-file}, blocks={8}, atime={1771058355}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573044}, rdev={0}, size={121}, nlink={1}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, ]{test31.txt}]
+                    [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={72}, blocks={8}, atime={1771058355}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573045}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{test32.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, nlink={1}, size={82}, rdev={0}, ctime={1770430553}, dev={1796}, ino={1573046}, gid={0}, atime={1771058355}, blocks={8}, ]{test33.txt}]
+                    [\filefmt[file-type={plain-file}, nlink={1}, size={10}, rdev={0}, atime={1771058355}, gid={0}, ino={1573047}, dev={1796}, ctime={1770430553}, blocks={8}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{test34.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, rdev={0}, size={10}, nlink={1}, blocks={8}, ino={1573048}, gid={0}, ctime={1770430553}, dev={1796}, atime={1771058355}, ]{test35.txt}]
+                    [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1771058355}, ino={1573049}, gid={0}, ctime={1770430553}, dev={1796}, blocks={8}, size={87}, nlink={1}, rdev={0}, ]{test36.txt}]
+                    [\filefmt[file-type={plain-file}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573050}, atime={1771058355}, blocks={8}, nlink={1}, size={87}, rdev={0}, ]{test37.txt}]
+                    [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={45}, blocks={8}, atime={1771058355}, gid={0}, ino={1573051}, dev={1796}, ctime={1770430553}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{test4.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, size={55}, nlink={1}, rdev={0}, atime={1771058355}, ino={1573052}, gid={0}, dev={1796}, ctime={1770430553}, blocks={8}, ]{test5.txt}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, rdev={0}, nlink={1}, size={53}, blocks={8}, gid={0}, ino={1573053}, ctime={1770430553}, dev={1796}, atime={1771058355}, ]{test6.txt}]
+                    [\filefmt[file-type={plain-file}, gid={0}, ino={1573054}, ctime={1770430553}, dev={1796}, atime={1771058355}, blocks={8}, size={52}, nlink={1}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ]{test7.txt}]
+                    [\filefmt[file-type={plain-file}, rdev={0}, size={41}, nlink={1}, blocks={8}, gid={0}, ino={1573055}, ctime={1770430553}, dev={1796}, atime={1771058355}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, ]{test8.txt}]
+                    [\filefmt[file-type={plain-file}, nlink={1}, size={37}, rdev={0}, atime={1771058355}, ctime={1770430553}, dev={1796}, ino={1573056}, gid={0}, blocks={8}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{test9.txt}]
+                    [\filefmt[file-type={plain-file}, atime={1773041804}, ino={1573057}, gid={0}, ctime={1770430553}, dev={1796}, blocks={32}, size={14333}, nlink={1}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, ]{test\_NewPCBListing.tex}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, size={1487}, nlink={1}, rdev={0}, ctime={1770430553}, dev={1796}, ino={1573058}, gid={0}, atime={1773041804}, blocks={8}, ]{test\_decorations.tex}]
                 ]
-                [{\dirfmt[]{prassble-math}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{pmath-test.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{pmath-test.tex}}, file]
+                [\dirfmt[mode={16895}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, nlink={2}, size={4096}, rdev={0}, atime={1773022713}, ino={1573059}, gid={0}, dev={1796}, ctime={1770430553}, blocks={8}, ]{prassble-math}
+                    [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1771058355}, ino={1573060}, gid={0}, dev={1796}, ctime={1770430553}, blocks={416}, size={212074}, nlink={1}, rdev={0}, ]{pmath-test.pdf}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, rdev={0}, size={15754}, nlink={1}, blocks={32}, atime={1773041804}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573061}, ]{pmath-test.tex}]
                 ]
             ]
-            [{\dirfmt[]{testing}}, dir
-                [{\filefmt[file-type={plain-file}, ]{height.pl}}, file]
-                [{\dirfmt[]{tcolorbox}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{sample\_code.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test\_too.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{test\_too.tex}}, file]
+            [\dirfmt[nlink={5}, size={4096}, rdev={0}, atime={1773022713}, dev={1796}, ctime={1771910693}, gid={0}, ino={1573062}, blocks={8}, mode={16895}, uid={1000}, mtime={1771910693}, blksize={4096}, perms={0777}, ]{testing}
+                [\filefmt[file-type={plain-file}, mode={33206}, uid={1000}, mtime={1771910693}, blksize={4096}, perms={0666}, nlink={1}, size={312}, rdev={0}, atime={1772016380}, ino={1573063}, gid={0}, ctime={1771910693}, dev={1796}, blocks={8}, ]{height.pl}]
+                [\dirfmt[nlink={2}, size={4096}, rdev={0}, atime={1773022713}, ino={1573064}, gid={0}, ctime={1770430553}, dev={1796}, blocks={8}, mode={16895}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777}, ]{tcolorbox}
+                    [\filefmt[file-type={plain-file}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ino={1573065}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773041802}, blocks={8}, nlink={1}, size={5}, rdev={0}, ]{sample\_code.tex}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, rdev={0}, nlink={1}, size={11517}, blocks={24}, dev={1796}, ctime={1770430553}, ino={1573066}, gid={0}, atime={1771058355}, ]{test\_too.pdf}]
+                    [\filefmt[file-type={plain-file}, atime={1773041802}, gid={0}, ino={1573067}, dev={1796}, ctime={1770430553}, blocks={0}, size={0}, nlink={1}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, ]{test\_too.tex}]
                 ]
-                [{\filefmt[file-type={plain-file}, ]{test.1.75.aux}}, file]
-                [{\filefmt[file-type={plain-file}, ]{test.1.75.log}}, file]
-                [{\filefmt[file-type={plain-file}, ]{test.1.75.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{test.1.75.synctex.gz}}, file]
-                [{\filefmt[file-type={plain-file}, ]{test.1.75.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{test.pl}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing.aux}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing.log}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing.synctex.gz}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing1.5.aux}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing1.5.log}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing1.5.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing1.5.synctex.gz}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing1.5.tex}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing2.aux}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing2.log}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing2.pdf}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing2.synctex.gz}}, file]
-                [{\filefmt[file-type={plain-file}, ]{testing2.tex}}, file]
-                [{\dirfmt[]{tree}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{\$\&\#{\textbackslash}{\TeXtreeSpaceChar}{\textbar}\_*{\textasciicircum}@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}}, file]
-                    [{\dirfmt[]{FileTrees}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{OutputGoesHere.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{tree\_1.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{tree\_3.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{tree\_4.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{tree\_5.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{tree\_6.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{tree\_7.tex}}, file]
-                        [{\filefmt[file-type={plain-file}, ]{tree\_8.tex}}, file]
+                [\filefmt[file-type={plain-file}, nlink={1}, size={32}, rdev={0}, ino={1619681}, gid={0}, ctime={1771222317}, dev={1796}, atime={1771222317}, blocks={8}, mode={33206}, mtime={1771222317}, uid={0}, perms={0666}, blksize={4096}, ]{test.1.75.aux}]
+                [\filefmt[file-type={plain-file}, mode={33206}, perms={0666}, blksize={4096}, mtime={1771222317}, uid={0}, rdev={0}, size={23264}, nlink={1}, blocks={48}, gid={0}, ino={1619678}, ctime={1771222317}, dev={1796}, atime={1771218300}, ]{test.1.75.log}]
+                [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={0}, mtime={1771222317}, rdev={0}, nlink={1}, size={17262}, blocks={40}, atime={1771222317}, ino={1619682}, gid={0}, dev={1796}, ctime={1771222317}, ]{test.1.75.pdf}]
+                [\filefmt[file-type={plain-file}, mode={33206}, perms={0666}, blksize={4096}, mtime={1771222317}, uid={0}, rdev={0}, size={3346}, nlink={1}, blocks={8}, ctime={1771222317}, dev={1796}, gid={0}, ino={1619680}, atime={1771222316}, ]{test.1.75.synctex.gz}]
+                [\filefmt[file-type={plain-file}, blocks={16}, atime={1773041802}, dev={1796}, ctime={1771222316}, gid={0}, ino={1619600}, rdev={0}, nlink={1}, size={5910}, blksize={4096}, perms={0666}, uid={0}, mtime={1771222316}, mode={33206}, ]{test.1.75.tex}]
+                [\filefmt[file-type={plain-file}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, size={32}, nlink={1}, rdev={0}, atime={1771058355}, ino={1573068}, gid={0}, ctime={1770430553}, dev={1796}, blocks={8}, ]{test.pl}]
+                [\filefmt[file-type={plain-file}, perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={33279}, blocks={8}, gid={0}, ino={1573069}, dev={1796}, ctime={1770430553}, atime={1771900082}, rdev={0}, size={468}, nlink={1}, ]{testing}]
+                [\filefmt[file-type={plain-file}, mode={33206}, perms={0666}, blksize={4096}, mtime={1771910693}, uid={0}, rdev={0}, size={32}, nlink={1}, blocks={8}, ctime={1771910693}, dev={1796}, ino={1619547}, gid={0}, atime={1771910693}, ]{testing.aux}]
+                [\filefmt[file-type={plain-file}, mtime={1771910693}, uid={0}, perms={0666}, blksize={4096}, mode={33206}, ino={1572915}, gid={0}, ctime={1771910693}, dev={1796}, atime={1771229380}, blocks={48}, nlink={1}, size={23366}, rdev={0}, ]{testing.log}]
+                [\filefmt[file-type={plain-file}, nlink={1}, size={69843}, rdev={0}, atime={1772868244}, gid={0}, ino={1619598}, dev={1796}, ctime={1771910693}, blocks={144}, mode={33206}, uid={0}, mtime={1771910693}, blksize={4096}, perms={0666}, ]{testing.pdf}]
+                [\filefmt[file-type={plain-file}, rdev={0}, size={7672}, nlink={1}, blocks={16}, atime={1771910692}, dev={1796}, ctime={1771910693}, ino={1619464}, gid={0}, mode={33206}, blksize={4096}, perms={0666}, uid={0}, mtime={1771910693}, ]{testing.synctex.gz}]
+                [\filefmt[file-type={plain-file}, rdev={0}, size={3895}, nlink={1}, blocks={8}, ctime={1771910691}, dev={1796}, gid={0}, ino={1573071}, atime={1773041803}, mode={33206}, perms={0666}, blksize={4096}, mtime={1771910691}, uid={1000}, ]{testing.tex}]
+                [\filefmt[file-type={plain-file}, blksize={4096}, perms={0666}, uid={0}, mtime={1771217585}, mode={33206}, blocks={8}, atime={1771217585}, gid={0}, ino={1619596}, dev={1796}, ctime={1771217585}, rdev={0}, nlink={1}, size={32}, ]{testing1.5.aux}]
+                [\filefmt[file-type={plain-file}, perms={0666}, blksize={4096}, mtime={1771217585}, uid={0}, mode={33206}, blocks={48}, ctime={1771217585}, dev={1796}, ino={1619490}, gid={0}, atime={1771140632}, rdev={0}, size={23562}, nlink={1}, ]{testing1.5.log}]
+                [\filefmt[file-type={plain-file}, mode={33206}, uid={0}, mtime={1771217585}, blksize={4096}, perms={0666}, size={15777}, nlink={1}, rdev={0}, atime={1771217586}, gid={0}, ino={1619599}, ctime={1771217585}, dev={1796}, blocks={32}, ]{testing1.5.pdf}]
+                [\filefmt[file-type={plain-file}, perms={0666}, blksize={4096}, mtime={1771217585}, uid={0}, mode={33206}, blocks={8}, dev={1796}, ctime={1771217585}, gid={0}, ino={1619597}, atime={1771217584}, rdev={0}, nlink={1}, size={2678}, ]{testing1.5.synctex.gz}]
+                [\filefmt[file-type={plain-file}, uid={0}, mtime={1771140651}, blksize={4096}, perms={0666}, mode={33206}, atime={1773041802}, ino={1619462}, gid={0}, dev={1796}, ctime={1771140651}, blocks={8}, size={1390}, nlink={1}, rdev={0}, ]{testing1.5.tex}]
+                [\filefmt[file-type={plain-file}, size={32}, nlink={1}, rdev={0}, ctime={1771227141}, dev={1796}, gid={0}, ino={1619463}, atime={1771227141}, blocks={8}, mode={33206}, mtime={1771227141}, uid={0}, perms={0666}, blksize={4096}, ]{testing2.aux}]
+                [\filefmt[file-type={plain-file}, blocks={48}, dev={1796}, ctime={1771227141}, gid={0}, ino={1573072}, atime={1771227140}, rdev={0}, nlink={1}, size={23332}, perms={0666}, blksize={4096}, mtime={1771227141}, uid={0}, mode={33206}, ]{testing2.log}]
+                [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={0}, mtime={1771227141}, rdev={0}, nlink={1}, size={16654}, blocks={40}, atime={1771900119}, ctime={1771227141}, dev={1796}, gid={0}, ino={1619549}, ]{testing2.pdf}]
+                [\filefmt[file-type={plain-file}, mode={33206}, blksize={4096}, perms={0666}, uid={0}, mtime={1771227141}, rdev={0}, size={3114}, nlink={1}, blocks={8}, atime={1771227140}, gid={0}, ino={1619523}, dev={1796}, ctime={1771227141}, ]{testing2.synctex.gz}]
+                [\filefmt[file-type={plain-file}, blocks={24}, atime={1773041803}, gid={0}, ino={1573073}, dev={1796}, ctime={1771227140}, rdev={0}, size={8504}, nlink={1}, blksize={4096}, perms={0666}, uid={1000}, mtime={1771227140}, mode={33206}, ]{testing2.tex}]
+                [\dirfmt[uid={1000}, mtime={1772868135}, blksize={4096}, perms={0777}, mode={16895}, atime={1773022713}, dev={1796}, ctime={1772868135}, ino={1573074}, gid={0}, blocks={8}, nlink={7}, size={4096}, rdev={0}, ]{tree}
+                    [\filefmt[file-type={plain-file}, rdev={0}, size={0}, nlink={1}, blocks={0}, atime={1771047580}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573075}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{\$\&\#{\textbackslash}{\TeXtreeSpaceChar}{\textbar}\_*{\textasciicircum}@\%{\textlangle}{\textrangle}\{\}\textasciitilde\(+\)-\(=\):;"'`!?.}]
+                    [\dirfmt[mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, mode={16895}, ctime={1770430553}, dev={1796}, ino={1573076}, gid={0}, atime={1773022713}, blocks={8}, size={4096}, nlink={2}, rdev={0}, ]{FileTrees}
+                        [\filefmt[file-type={plain-file}, size={776}, nlink={1}, rdev={0}, gid={0}, ino={1573077}, dev={1796}, ctime={1770430553}, atime={1773041803}, blocks={8}, mode={33279}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, ]{OutputGoesHere.tex}]
+                        [\filefmt[file-type={plain-file}, mode={33279}, blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, rdev={0}, nlink={1}, size={84}, blocks={8}, atime={1773041802}, gid={0}, ino={1573078}, ctime={1770430553}, dev={1796}, ]{tree\_1.tex}]
+                        [\filefmt[file-type={plain-file}, blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, mode={33279}, blocks={8}, atime={1773041802}, gid={0}, ino={1573079}, dev={1796}, ctime={1770430553}, rdev={0}, size={761}, nlink={1}, ]{tree\_3.tex}]
+                        [\filefmt[file-type={plain-file}, ino={1573080}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773041802}, blocks={8}, size={776}, nlink={1}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, mode={33279}, ]{tree\_4.tex}]
+                        [\filefmt[file-type={plain-file}, mode={33279}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, nlink={1}, size={5685}, rdev={0}, gid={0}, ino={1573081}, dev={1796}, ctime={1770430553}, atime={1773041803}, blocks={16}, ]{tree\_5.tex}]
+                        [\filefmt[file-type={plain-file}, mode={33279}, blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, rdev={0}, size={868}, nlink={1}, blocks={8}, atime={1773041802}, ino={1573082}, gid={0}, dev={1796}, ctime={1770430553}, ]{tree\_6.tex}]
+                        [\filefmt[file-type={plain-file}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, mode={33279}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573083}, atime={1773041802}, blocks={8}, size={776}, nlink={1}, rdev={0}, ]{tree\_7.tex}]
+                        [\filefmt[file-type={plain-file}, mtime={1770424091}, uid={1000}, perms={0777}, blksize={4096}, mode={33279}, gid={0}, ino={1573084}, ctime={1770430553}, dev={1796}, atime={1773041803}, blocks={8}, nlink={1}, size={167}, rdev={0}, ]{tree\_8.tex}]
                     ]
-                    [{\filefmt[file-type={plain-file}, ]{{\textbackslash}textbackslash}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_[}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_]}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_][\_[\_]\_[[[}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_\{}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_\}}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{a\_file\_with\_\}\{\_\{\_\}\_\{\{\{}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{a\_folder\_with\_'\_and\_"\_yes}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{basename}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{bash.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{bash.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{bash\_test.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{filetree.tmp}}, file]
-                    [{\dirfmt[]{folder}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{\&quot;}}, file]
-                        [{\symlinkfmt[link-target-type=plain-file,  }]{bash.tex}{bash.tex}}, symlink]
-                        [{\filefmt[file-type={plain-file}, ]{bash\_test.tex}}, file]
-                        [{\dirfmt[]{some\_subdirectory}}, dir
-                            [{\filefmt[file-type={plain-file}, ]{file}}, file]
+                    [\filefmt[file-type={plain-file}, blocks={0}, atime={1771911386}, ino={1619627}, gid={0}, ctime={1771911386}, dev={1796}, rdev={0}, nlink={1}, size={0}, blksize={4096}, perms={0666}, uid={0}, mtime={1771911386}, mode={33206}, ]{{\textbackslash}textbackslash}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, size={0}, nlink={1}, rdev={0}, atime={1771058355}, gid={0}, ino={1573085}, ctime={1770430553}, dev={1796}, blocks={0}, ]{a\_file\_with\_[}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, size={0}, nlink={1}, rdev={0}, dev={1796}, ctime={1770430553}, ino={1573086}, gid={0}, atime={1771058355}, blocks={0}, ]{a\_file\_with\_]}]
+                    [\filefmt[file-type={plain-file}, blocks={0}, atime={1771058355}, ino={1573087}, gid={0}, dev={1796}, ctime={1770430553}, rdev={0}, size={0}, nlink={1}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, ]{a\_file\_with\_][\_[\_]\_[[[}]
+                    [\filefmt[file-type={plain-file}, rdev={0}, size={0}, nlink={1}, blocks={0}, atime={1771058355}, ino={1573088}, gid={0}, ctime={1770430553}, dev={1796}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{a\_file\_with\_\{}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, rdev={0}, size={0}, nlink={1}, blocks={0}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573089}, atime={1771058355}, ]{a\_file\_with\_\}}]
+                    [\filefmt[file-type={plain-file}, size={0}, nlink={1}, rdev={0}, atime={1771058355}, gid={0}, ino={1573090}, dev={1796}, ctime={1770430553}, blocks={0}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{a\_file\_with\_\}\{\_\{\_\}\_\{\{\{}]
+                    [\filefmt[file-type={plain-file}, nlink={1}, size={3}, rdev={0}, atime={1771058355}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573091}, blocks={8}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, ]{a\_folder\_with\_'\_and\_"\_yes}]
+                    [\filefmt[file-type={plain-file}, ctime={1770430553}, dev={1796}, ino={1573092}, gid={0}, atime={1771058355}, blocks={0}, nlink={1}, size={0}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ]{basename}]
+                    [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={121844}, blocks={240}, atime={1771910524}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573093}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{bash.pdf}]
+                    [\filefmt[file-type={plain-file}, mode={33206}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, nlink={1}, size={1585}, rdev={0}, atime={1773041802}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573094}, blocks={8}, ]{bash.tex}]
+                    [\filefmt[file-type={plain-file}, blocks={8}, atime={1773041802}, dev={1796}, ctime={1770430553}, ino={1573095}, gid={0}, rdev={0}, size={33}, nlink={1}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, ]{bash\_test.tex}]
+                    [\filefmt[file-type={plain-file}, blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, mode={33279}, blocks={8}, atime={1771910544}, ctime={1770430553}, dev={1796}, ino={1573096}, gid={0}, rdev={0}, size={121}, nlink={1}, ]{filetree.tmp}]
+                    [\dirfmt[perms={0777}, blksize={4096}, mtime={1771047615}, uid={1000}, mode={16895}, blocks={8}, ino={1573097}, gid={0}, ctime={1771047615}, dev={1796}, atime={1773022713}, rdev={0}, nlink={3}, size={4096}, ]{folder}
+                        [\filefmt[file-type={plain-file}, blocks={0}, atime={1771047615}, dev={1796}, ctime={1771047615}, ino={1573101}, gid={0}, rdev={0}, size={0}, nlink={1}, blksize={4096}, perms={0666}, uid={0}, mtime={1771047615}, mode={33206}, ]{\&quot;}]
+                        [\symlinkfmt[link-target-type=plain-file, rdev={0}, nlink={1}, size={42}, blocks={0}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573099}, atime={1773022713}, mode={41471}, perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000},  targets={{rdev={0}, nlink={1}, size={1585}, blocks={8}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573094}, atime={1773041802}, mode={33206}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, TeX-path={/workspaces/Prassble/testing/tree/bash.tex}, TeX-basename={bash.tex}}}}]{bash.tex}{bash.tex}]
+                        [\filefmt[file-type={plain-file}, nlink={1}, size={33}, rdev={0}, ino={1573100}, gid={0}, dev={1796}, ctime={1770430553}, atime={1773041802}, blocks={8}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, ]{bash\_test.tex}]
+                        [\dirfmt[mode={16895}, perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, rdev={0}, size={4096}, nlink={2}, blocks={8}, ctime={1770430553}, dev={1796}, ino={1573102}, gid={0}, atime={1773022713}, ]{some\_subdirectory}
+                            [\filefmt[file-type={plain-file}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, atime={1771058355}, ino={1573103}, gid={0}, ctime={1770430553}, dev={1796}, blocks={0}, nlink={1}, size={0}, rdev={0}, ]{file}]
                         ]
-                        [{\symlinkfmt[link-target-type=dir,  }]{symlink-test}{include\_this}}, symlink]
-                        [{\filefmt[file-type={plain-file}, ]{testing}}, file]
+                        [\symlinkfmt[link-target-type=dir, nlink={1}, size={46}, rdev={0}, atime={1773022713}, ino={1573104}, gid={0}, dev={1796}, ctime={1770430553}, blocks={0}, mode={41471}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0777},  targets={{perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={16895}, blocks={8}, ino={1573107}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773022713}, rdev={0}, nlink={2}, size={4096}, TeX-path={/workspaces/Prassble/testing/tree/include\_this}, TeX-basename={include\_this}}}}]{symlink-test}{include\_this}]
+                        [\filefmt[file-type={plain-file}, rdev={0}, size={167}, nlink={1}, blocks={8}, dev={1796}, ctime={1770475107}, gid={0}, ino={1573105}, atime={1771058355}, mode={33279}, perms={0777}, blksize={4096}, mtime={1770475107}, uid={1000}, ]{testing}]
                     ]
-                    [{\filefmt[file-type={plain-file}, ]{hello.sh}}, file]
-                    [{\dirfmt[]{include\_this}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{include\_this.tex}}, file]
+                    [\filefmt[file-type={plain-file}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573106}, atime={1771900085}, blocks={8}, nlink={1}, size={21}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ]{hello.sh}]
+                    [\dirfmt[blocks={8}, ctime={1770430553}, dev={1796}, ino={1573107}, gid={0}, atime={1773022713}, rdev={0}, size={4096}, nlink={2}, perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={16895}, ]{include\_this}
+                        [\filefmt[file-type={plain-file}, ctime={1770430553}, dev={1796}, ino={1573108}, gid={0}, atime={1773041802}, blocks={0}, size={0}, nlink={1}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ]{include\_this.tex}]
                     ]
-                    [{\dirfmt[]{some\_folder}}, dir
-                        [{\filefmt[file-type={plain-file}, ]{tmp.tex}}, file]
+                    [\dirfmt[perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={16895}, blocks={8}, ino={1573109}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773022713}, rdev={0}, size={4096}, nlink={2}, ]{some\_folder}
+                        [\filefmt[file-type={plain-file}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, blocks={0}, atime={1773041802}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573110}, rdev={0}, size={0}, nlink={1}, ]{tmp.tex}]
                     ]
-                    [{\dirfmt[]{spaced{\TeXtreeSpaceChar}folder}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{tst.tmp}}, file]
+                    [\dirfmt[blocks={8}, atime={1773022713}, ctime={1772868135}, dev={1796}, gid={0}, ino={1619829}, rdev={0}, size={4096}, nlink={2}, blksize={4096}, perms={0777}, uid={0}, mtime={1772868135}, mode={16895}, ]{spaced{\TeXtreeSpaceChar}folder}
+                    [\filefmt[file-type={plain-file}, perms={0777}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={33279}, blocks={8}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573111}, atime={1771910547}, rdev={0}, nlink={1}, size={14}, ]{tst.tmp}]
                 ]
-                [{\filefmt[file-type={plain-file}, ]{tst.tex}}, file]
-                [{\dirfmt[]{xr}}, dir
-                    [{\filefmt[file-type={plain-file}, ]{1.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{hw1.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{hw1.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{hw1\_ref\_warning\_correction.tmp}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{main.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{main.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{regex.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{regex.tex}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{seq\_mwe.pdf}}, file]
-                    [{\filefmt[file-type={plain-file}, ]{seq\_mwe.tex}}, file]
+                [\filefmt[file-type={plain-file}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={33206}, blocks={8}, ino={1573112}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773041803}, rdev={0}, nlink={1}, size={3168}, ]{tst.tex}]
+                [\dirfmt[rdev={0}, size={4096}, nlink={2}, blocks={8}, atime={1773022713}, gid={0}, ino={1573113}, ctime={1770430553}, dev={1796}, mode={16895}, blksize={4096}, perms={0777}, uid={1000}, mtime={1770424091}, ]{xr}
+                    [\filefmt[file-type={plain-file}, rdev={0}, size={196}, nlink={1}, blocks={8}, atime={1773041802}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573114}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{1.tex}]
+                    [\filefmt[file-type={plain-file}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, mode={33206}, blocks={104}, atime={1771058355}, ctime={1770430553}, dev={1796}, gid={0}, ino={1573115}, rdev={0}, nlink={1}, size={50704}, ]{hw1.pdf}]
+                    [\filefmt[file-type={plain-file}, nlink={1}, size={2315}, rdev={0}, dev={1796}, ctime={1770430553}, gid={0}, ino={1573116}, atime={1773041802}, blocks={8}, mode={33206}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, ]{hw1.tex}]
+                    [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={0}, blocks={0}, atime={1771058355}, ctime={1770430553}, dev={1796}, ino={1573117}, gid={0}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{hw1\_ref\_warning\_correction.tmp}]
+                    [\filefmt[file-type={plain-file}, rdev={0}, nlink={1}, size={41585}, blocks={88}, atime={1771058355}, gid={0}, ino={1573118}, dev={1796}, ctime={1770430553}, mode={33206}, blksize={4096}, perms={0666}, uid={1000}, mtime={1770424091}, ]{main.pdf}]
+                    [\filefmt[file-type={plain-file}, blocks={8}, ino={1573119}, gid={0}, ctime={1770430553}, dev={1796}, atime={1773041802}, rdev={0}, nlink={1}, size={561}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={33206}, ]{main.tex}]
+                    [\filefmt[file-type={plain-file}, atime={1771058355}, ctime={1770430553}, dev={1796}, ino={1573120}, gid={0}, blocks={32}, size={13160}, nlink={1}, rdev={0}, uid={1000}, mtime={1770424091}, blksize={4096}, perms={0666}, mode={33206}, ]{regex.pdf}]
+                    [\filefmt[file-type={plain-file}, ino={1573121}, gid={0}, dev={1796}, ctime={1770430553}, atime={1773041802}, blocks={8}, size={1979}, nlink={1}, rdev={0}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, ]{regex.tex}]
+                    [\filefmt[file-type={plain-file}, blocks={56}, ino={1573122}, gid={0}, ctime={1770430553}, dev={1796}, atime={1771058355}, rdev={0}, size={27025}, nlink={1}, perms={0666}, blksize={4096}, mtime={1770424091}, uid={1000}, mode={33206}, ]{seq\_mwe.pdf}]
+                    [\filefmt[file-type={plain-file}, mtime={1770424091}, uid={1000}, perms={0666}, blksize={4096}, mode={33206}, dev={1796}, ctime={1770430553}, ino={1573123}, gid={0}, atime={1773041802}, blocks={8}, size={1267}, nlink={1}, rdev={0}, ]{seq\_mwe.tex}]
                 ]
             ]
-            [{\dirfmt[]{textrees}}, dir
-                [{\filefmt[file-type={plain-file}, ]{textree\_0}}, file]
-                [{\filefmt[file-type={plain-file}, ]{textree\_1}}, file]
+            [\dirfmt[nlink={2}, size={4096}, rdev={0}, atime={1773046086}, gid={0}, ino={1572948}, ctime={1773046564}, dev={1796}, blocks={8}, mode={16877}, uid={0}, mtime={1773046564}, blksize={4096}, perms={0755}, ]{textrees}
+                [\filefmt[file-type={plain-file}, perms={0666}, blksize={4096}, mtime={1770521007}, uid={0}, mode={33206}, blocks={24}, ino={1572909}, gid={0}, ctime={1770521007}, dev={1796}, atime={1772075146}, rdev={0}, nlink={1}, size={11405}, ]{textree\_0}]
+                [\filefmt[file-type={plain-file}, atime={1773046564}, gid={0}, ino={1619945}, ctime={1773046564}, dev={1796}, blocks={112}, nlink={1}, size={57344}, rdev={0}, uid={0}, mtime={1773046564}, blksize={4096}, perms={0666}, mode={33206}, ]{textree\_1}]
             ]
         ]
     ]
@@ -265,25 +265,25 @@
     \report{
         ,dir  = 1
         ,file = {
-            ,tty = 0
-            ,plain-file = 169
-            ,total = 0
-            ,pipe = 0
-            ,socket = 0
+            ,non-symlinks = 169
             ,symlink = {
                 ,nonexistent = 0
-                ,plain-file = 1
-                ,pipe = 0
-                ,total = 2
-                ,tty = 0
-                ,dir = 1
-                ,block-special-file = 0
                 ,character-special-file = 0
-                ,socket = 0
+                ,pipe = 0
+                ,tty = 0
+                ,block-special-file = 0
+                ,plain-file = 1
+                ,dir = 1
                 ,symlink = 0
+                ,total = 2
+                ,socket = 0
             }
+            ,socket = 0
+            ,total = 0
             ,character-special-file = 0
+            ,pipe = 0
+            ,tty = 0
             ,block-special-file = 0
-            ,non-symlinks = 169
+            ,plain-file = 169
         }
     }

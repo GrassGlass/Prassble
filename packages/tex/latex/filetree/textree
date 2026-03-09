@@ -390,7 +390,9 @@ while(my $line = <$in>) {
     {
         $TeXname = path_to_TeXname(${2});
         $TeX_stat_string = TeX_stat(${2});
-        $line = "${1}[{\\dirfmt[${TeX_stat_string}]{${TeXname}}}, dir\n";
+        if (${2} eq $textree_target)
+        { $TeX_stat_string .= ", target-directory" }
+        $line = "${1}[\\dirfmt[${TeX_stat_string}]{${TeXname}}\n";
     }
     elsif ($line =~ m/( *)<\/directory>/)
     {
@@ -444,7 +446,7 @@ while(my $line = <$in>) {
         
         $TeXname = path_to_TeXname(${2});
         $TeX_stat_string = TeX_stat(${2});
-        $line = "${1}[{\\filefmt[file-type={${file_type}}, ${TeX_stat_string}]{${TeXname}}}, file]\n";
+        $line = "${1}[\\filefmt[file-type={${file_type}}, ${TeX_stat_string}]{${TeXname}}]\n";
     }
     elsif ($line =~ m/( *)<link name="(.*)" target="(.*)"><\/link>/)
     {
@@ -496,7 +498,7 @@ while(my $line = <$in>) {
         $TeXname_target = path_to_TeXname(${3});
         $TeX_lstat_string = TeX_lstat(${2});
         $TeX_rstat_string = TeX_recurse_lstat_ignore_first(${2});
-        $line = "${1}[{\\symlinkfmt[link-target-type=${link_target_type}, $TeX_lstat_string ${TeX_rstat_string}}]{${TeXname}}{${TeXname_target}}}, symlink]\n";
+        $line = "${1}[\\symlinkfmt[link-target-type=${link_target_type}, $TeX_lstat_string ${TeX_rstat_string}}]{${TeXname}}{${TeXname_target}}]\n";
     }
     elsif ($line =~ m/<\?xml version=".*" encoding=".*"\?>|<report>|<\/report>/)
     {
