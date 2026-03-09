@@ -114,8 +114,8 @@ sub abs_path_allow_trailing_symlink {
     {
         my ($path) = @_;
         my ($volume, $parent_dir, $basename) = File::Spec->splitpath( $path, 0 );
-        my $abs_path = Cwd::abs_path($parent_dir);
-        return($abs_path . "/" . $basename)
+        my $parent_abs = Cwd::abs_path($parent_dir);
+        return(File::Spec->catpath( $volume, $parent_abs, $basename ))
     }else
     {
         die("abs_path_allow_trailing_symlink: there are $args != 1 arguments passed to me.")
