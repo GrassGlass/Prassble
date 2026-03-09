@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-my $path = "testing/..";
+use File::Spec;
+my $path = "..";
 my $path_unslashed = $path;
 if ( $path =~ m/(.*)\/$/ ) { $path_unslashed = $1; print("$path_unslashed\n"); }

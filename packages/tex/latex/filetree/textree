@@ -113,7 +113,7 @@ sub abs_path_allow_trailing_symlink {
     if ($args == 1)
     {
         my ($path) = @_;
-        my ($volume, $parent_dir, $basename) = File::Spec->splitpath( $path, 0 );
+        my ($volume, $parent_dir, $basename) = File::Spec->splitpath( $path, 1 );
         my $parent_abs = Cwd::abs_path($parent_dir);
         return(File::Spec->catpath( $volume, $parent_abs, $basename ))
     }else
