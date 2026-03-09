@@ -293,7 +293,8 @@ sub TeX_recurse_lstat_ignore_first {
             if (-l $path)
             {
                 my $TeX_lstat;
-                my $target_TeX_path;
+                my $target_TeX_abs_path;
+                my $target_TeX_rel_path;
                 my $target_TeX_basename;
                 my $link_is_circular;
                 my $rlstat_max_reached;
@@ -311,9 +312,10 @@ sub TeX_recurse_lstat_ignore_first {
                 ) {
                     # Push the TeX_lstat of the current iteration of $target_path into @TeX_lstat.
                     $TeX_lstat = TeX_lstat($target_path);
-                    $target_TeX_path = TeX_escape($target_path);
-                    $target_TeX_basename = path_to_TeXname($target_path);
-                    $TeX_lstat .= "TeX-path={${target_TeX_path}}, TeX-basename={${target_TeX_basename}}";
+                    $target_TeX_abs_path = TeX_escape($target_path);
+                    $target_TeX_rel_path = TeX_escape(File::Spec->abs2rel($target_path, $textree_target));
+                    $target_TeX_basename = basename($target_path);
+                    $TeX_lstat .= "rel-path={${target_TeX_rel_path}}, abs-path={${target_TeX_abs_path}}, basename={${target_TeX_basename}}";
                     $TeX_lstat = "{${TeX_lstat}}";
                     push(@TeX_lstat, $TeX_lstat);
 
